@@ -1,0 +1,11 @@
+#divBas{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#ecran_game{
+    width: 100vw;
+    height:50vh;
+    border:1px solid #000000; 
+    background:#ff9898
+}
