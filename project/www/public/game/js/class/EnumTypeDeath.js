@@ -46,17 +46,20 @@ console.log(typeDeath.findEnumId(3));
 console.log(typeDeath.findEnumKey("REQUIN"));
 console.log(typeDeath.findEnumName("avion"));
 
-let avion = typeDeath.enum.AVION;
-let requin = typeDeath.enum.REQUIN;
+let inconnue = typeDeath.enum.AVION;
+let inconnue2 = typeDeath.enum.REQUIN;
 
-if(typeDeath.enum.AVION === avion) {
-    console.log("true");
+if(typeDeath.enum.AVION === inconnue) {
+    console.log("mort par avion : true");
 } else {
-    console.log("false");
+    console.log("mort par avion : false");
 }
 
-if(typeDeath.enum.AVION === requin) {
-    console.log("true");
+if(typeDeath.enum.AVION === inconnue2) {
+    console.log("mort par avion : true");
 } else {
-    console.log("false");
+    console.log("mort par avion : false");
 }
+
+7
+console.log(inconnue.description);
