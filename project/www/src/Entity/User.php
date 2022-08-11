@@ -32,9 +32,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Score::class, orphanRemoval: true)]
     private Collection $scores;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mort::class, orphanRemoval: true)]
+    private Collection $morts;
+
     public function __construct()
     {
         $this->scores = new ArrayCollection();
+        $this->morts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,6 +154,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($score->getUser() === $this) {
                 $score->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mort>
+     */
+    public function getMorts(): Collection
+    {
+        return $this->morts;
+    }
+
+    public function addMort(Mort $mort): self
+    {
+        if (!$this->morts->contains($mort)) {
+            $this->morts->add($mort);
+            $mort->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMort(Mort $mort): self
+    {
+        if ($this->morts->removeElement($mort)) {
+            // set the owning side to null (unless already changed)
+            if ($mort->getUser() === $this) {
+                $mort->setUser(null);
             }
         }
 
