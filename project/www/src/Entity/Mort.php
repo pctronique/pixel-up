@@ -22,6 +22,10 @@ class Mort
     #[ORM\OneToMany(mappedBy: 'cat', targetEntity: CatMort::class)]
     private Collection $catMorts;
 
+    #[ORM\ManyToOne(inversedBy: 'morts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?catmort $cat_mort = null;
+
     public function __construct()
     {
         $this->catMorts = new ArrayCollection();
@@ -70,6 +74,18 @@ class Mort
                 $catMort->setCat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCatMort(): ?catmort
+    {
+        return $this->cat_mort;
+    }
+
+    public function setCatMort(?catmort $cat_mort): self
+    {
+        $this->cat_mort = $cat_mort;
 
         return $this;
     }
