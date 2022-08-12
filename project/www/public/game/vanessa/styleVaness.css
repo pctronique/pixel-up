@@ -1,5 +1,5 @@
 #screenGame{
-    width: 100%;
+    width:700px;
     height: 50vh;
     position: absolute;
     bottom: 0;
@@ -17,13 +17,4 @@ div.scroll {
     overflow-y: auto;
     text-align: center;
     padding: 20px;
-}
-#feu{
-   width: 100vw;
-   height: 20px;
-    border:1px solid #000000; 
-    background:#ff5f09;
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
