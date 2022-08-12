@@ -1,12 +1,15 @@
 #screenGame{
     width:700px;
     height: 50vh;
-    position: absolute;
+    position: relative;
     bottom: 0;
     right: 0;
 }
+#canvas{
+    position: absolute;
+}
 #ecran_joueur{
-    width: 100vw;
+ 
     border:1px solid #000000; 
     background:#017472
 }
@@ -18,3 +21,4 @@ div.scroll {
     text-align: center;
     padding: 20px;
 }
+/*jouer sur le margin top scroll bar*/
