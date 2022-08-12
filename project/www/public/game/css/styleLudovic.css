@@ -1,0 +1,8 @@
+#game {
+    position: relative;
+}
+#utilisateur {
+    position: absolute;
+    margin-left: -335px;
+    margin-top: 950px;
+}
