@@ -1,0 +1,29 @@
+#screenGame{
+    width: 100%;
+    height: 50vh;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#ecran_joueur{
+    width: 100vw;
+    border:1px solid #000000; 
+    background:#017472
+}
+div.scroll {
+    width: 600px;
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    padding: 20px;
+}
+#feu{
+   width: 100vw;
+   height: 20px;
+    border:1px solid #000000; 
+    background:#ff5f09;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
