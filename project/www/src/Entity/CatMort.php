@@ -16,10 +16,6 @@ class CatMort
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'catMorts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?mort $cat = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -33,18 +29,6 @@ class CatMort
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getCat(): ?mort
-    {
-        return $this->cat;
-    }
-
-    public function setCat(?mort $cat): self
-    {
-        $this->cat = $cat;
 
         return $this;
     }
