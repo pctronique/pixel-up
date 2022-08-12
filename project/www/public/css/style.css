@@ -8,10 +8,16 @@ body{
     background:  center no-repeat url("../media/PixelUpBackground.png");
 }
 
-header div{
+
+  header h1{
+    color: white;
+    font-family: 'Silkscreen', cursive;
     margin: 0 100px;
-    width: 20%;
-}
+  }
+
+  header{
+    padding: 40px;
+  }
 
 #pacman{
     margin: auto;
@@ -69,7 +75,7 @@ header div{
   }
 
   #menu{
-    margin:  100px auto;
+    margin:  50px auto;
     width: fit-content;
     text-align: center;
   }
@@ -137,3 +143,34 @@ header div{
   footer li:nth-of-type(6){
     background-color: #6D594D;
   }
+
+#profilForm{
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.flexForm{
+    display: flex;
+    width: 500px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#profilForm label{
+    color: white;
+    font-family: 'Silkscreen', cursive;
+}
+
+#profilForm input{
+    background: black;
+    border: 2px solid white;
+    color: white;
+    height: 40px;
+}
+
+input[type="submit"]{
+    width: 50%;
+    margin: auto;
+}
