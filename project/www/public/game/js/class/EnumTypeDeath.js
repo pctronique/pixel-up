@@ -1,4 +1,4 @@
-class EnumTypeDeathCreate {
+class EnumTypeMortCreate {
     constructor(id, name, description) {
         this.id = id;
         this.name = name;
@@ -6,7 +6,7 @@ class EnumTypeDeathCreate {
     }
 }
 
-class EnumTypeDeath {
+class EnumTypeMort {
     constructor() {
         this.enum = [];
         this.enum["TOMBER"] = new EnumTypeDeathCreate(0, "tomber", "Vous êtes tombé.");
@@ -39,27 +39,3 @@ class EnumTypeDeath {
         }
     }
 }
-
-let typeDeath = new EnumTypeDeath();
-console.log(typeDeath.enum.TOMBER);
-console.log(typeDeath.findEnumId(3));
-console.log(typeDeath.findEnumKey("REQUIN"));
-console.log(typeDeath.findEnumName("avion"));
-
-let inconnue = typeDeath.enum.AVION;
-let inconnue2 = typeDeath.enum.REQUIN;
-
-if(typeDeath.enum.AVION === inconnue) {
-    console.log("mort par avion : true");
-} else {
-    console.log("mort par avion : false");
-}
-
-if(typeDeath.enum.AVION === inconnue2) {
-    console.log("mort par avion : true");
-} else {
-    console.log("mort par avion : false");
-}
-
-7
-console.log(inconnue.description);

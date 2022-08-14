@@ -1,6 +1,5 @@
 class Pause{
     constructor() {
-       
     }
 
     setActive(active){

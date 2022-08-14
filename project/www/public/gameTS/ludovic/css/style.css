@@ -1,5 +1,13 @@
+body {
+    margin : 0;
+    padding : 0;
+}
 #game {
     position: relative;
+    display: flex;
+}
+#game canvas {
+    display: flex;
 }
 #utilisateur {
     position: absolute;

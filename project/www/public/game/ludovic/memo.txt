@@ -1,0 +1,3 @@
+pour vanessa : 
+    => let st = -1*((screenGame.scrollHeight-screenGame.scrollWidth)+(screenGame.scrollWidth-screenGame.offsetHeight)-screenGame.scrollTop);
+
