@@ -67,3 +67,7 @@ select {
     font: inherit;
     padding: 0;
 }
+
+input:focus {
+    outline:  none;
+}

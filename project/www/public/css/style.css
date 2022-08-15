@@ -1,3 +1,5 @@
+/* HEADER & BACKGROUND */
+
 header{
     display: flex;
     align-items: center;
@@ -9,13 +11,13 @@ body{
 }
 
 
-  header h1{
+header h1{
     color: white;
     font-family: 'Silkscreen', cursive;
     margin: 0 100px;
   }
 
-  header{
+header{
     padding: 40px;
   }
 
@@ -33,6 +35,8 @@ body{
     height: 20px;
     width: 20px;
 }
+
+/* FLECHE ROUGE DECO */
 
 .btn {
     text-decoration: none;
@@ -65,14 +69,16 @@ body{
 }
 
 .btn .arrow::before {
-    transform: rotate(45deg);
-    transform-origin: right bottom;
-  }
+  transform: rotate(45deg);
+  transform-origin: right bottom;
+}
   
-  .btn .arrow::after {
-    transform: rotate(-45deg);
-    transform-origin: right top;
-  }
+.btn .arrow::after {
+  transform: rotate(-45deg);
+  transform-origin: right top;
+}
+
+/* MENU PRINCIPAL */
 
   #menu{
     margin:  50px auto;
@@ -107,10 +113,13 @@ body{
 
   }
 
+/* FOOTER */
+
   footer ul{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 40px;
   }
 
   footer li{
@@ -144,18 +153,24 @@ body{
     background-color: #6D594D;
   }
 
+/* FORMULAIRE EDITPROFIL */
+
 #profilForm{
     margin: auto;
     width: fit-content;
     text-align: center;
+    border: 5px white solid;
+    background: rgb(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .flexForm{
     display: flex;
-    width: 500px;
-    margin: auto;
-    justify-content: center;
+    margin: 20px 0;
     align-items: center;
+    position: relative;
+    justify-content: space-evenly;
 }
 
 #profilForm label{
@@ -165,12 +180,43 @@ body{
 
 #profilForm input{
     background: black;
-    border: 2px solid white;
+    border: 1px solid white;
     color: white;
     height: 40px;
+    border-radius: 15px;
+    text-align : center;
+    margin : 35px 0;
 }
 
 input[type="submit"]{
     width: 50%;
-    margin: auto;
+    margin: 25px 100px !important;
+    font-family: 'Silkscreen', cursive;
+    cursor: pointer;
+    transition: 0.2s;
+    background: white !important;
+    border: 2px solid black !important;
+    color: black !important;
+}
+
+input[type="submit"]:hover{
+  transform: scale(1.05);
+  
+}
+
+.flexForm:nth-of-type(1), .flexForm:nth-of-type(3), .flexForm:nth-of-type(5){
+  flex-direction: row-reverse;
+}
+
+.flexForm:nth-of-type(1) svg, .flexForm:nth-of-type(3) svg, .flexForm:nth-of-type(5) svg{
+  transform: scaleX(-1);
+}
+
+.flexForm::after {
+  content: "";
+  background-color: white;
+  position: absolute;
+  height: 4px;
+  width: 70%;
+  bottom: -5px;
 }
