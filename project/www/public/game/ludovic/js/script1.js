@@ -1,16 +1,14 @@
-let joueur = new Joueur(new Taille(20,50));
-joueur.setPosition(new Position(350,950));
+if (window.Worker) {
+    let game = new Game();
+    game.addBackground(700,1000);
+    game.setJoueur(350,950, 20,50);
+    game.afficher();
 
-let background = new Background("background_game", new Taille(700,1000));
+    let screenGame = document.getElementById("screenGame");
+    screenGame.scrollTop = screenGame.scrollHeight;
 
-let game = new Game();
-game.setBackgroundDeb(background);
-game.setJoueur(joueur);
-game.afficher();
+    game.start();
 
-joueur.deplacer();
-joueur.sauter();
-
-let screenGame = document.getElementById("screenGame");
-screenGame.scrollTop = screenGame.scrollHeight;
-
+} else {
+    console.log("Your browser doesn't support web workers.");
+}
