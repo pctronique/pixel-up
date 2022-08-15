@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Score;
+use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PixelUpController extends AbstractController
 {
@@ -34,6 +36,18 @@ class PixelUpController extends AbstractController
     public function updateP(): Response
     {
         return $this->render('pixel_up/updateProfil.html.twig', [
+            'controller_name' => 'PixelUpController',
+        ]);
+    }
+
+    /**
+     * @Route("/score", name="app_score")
+     */
+    public function score(): Response
+    {
+        $scores = $this->getDoctrine()->getRepository(ScoreRepository::class)->findAll();
+        dd($scores);
+        return $this->render('pixel_up/score.html.twig', [
             'controller_name' => 'PixelUpController',
         ]);
     }
