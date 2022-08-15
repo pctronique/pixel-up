@@ -1,13 +1,13 @@
 class Taille{
-    constructor(x, y){
+    constructor(x = 0, y = 0){
         this.x=x;
         this.y=y;
-} 
-getX(){    
-    
-}  
-getY(){
-
-}
+    } 
+    getX(){    
+        return this.x;
+    }  
+    getY(){
+        return this.y;
+    }
 }
 
