@@ -167,7 +167,7 @@ header{
 
 .flexForm{
     display: flex;
-    margin: 20px 0;
+    margin-bottom: 20px;
     align-items: center;
     position: relative;
     justify-content: space-evenly;
