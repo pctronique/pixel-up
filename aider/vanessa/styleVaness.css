@@ -1,0 +1,26 @@
+body {
+    margin:0;
+    padding:0;
+    background-color: black;
+}
+#screenGame{
+    position: relative;
+    width:700px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#canvas{
+    position: absolute;    
+    left: 0px;
+    margin-left: 0px;
+    margin-top: -20px;
+}
+#ecran_joueur{
+}
+div.scroll {
+    width: 600px;
+    height: 150px;
+    padding: 0px;
+}
+/*jouer sur le margin top scroll bar*/

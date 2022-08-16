@@ -58,14 +58,14 @@ class Joueur extends Personnage {
         document.getElementById(idPosY).value = e.data[0];
         document.getElementById(idPosY).dispatchEvent(new Event("change"));
       }
-      /*classJoueur.setPositionY(e.data[0]);
+      classJoueur.setPositionY(e.data[0]);
       if (classJoueur.background != undefined) {
         classJoueur.background.afficher();
       }
       let enumCollision = classJoueur.getEnumCollision();
       if (enumCollision[0] != EnumCollision.NULL) {
         console.log(enumCollision[0]);
-      }*/
+      }
     };
   }
 
@@ -179,7 +179,7 @@ class Joueur extends Personnage {
       if (enumCollision[0] == EnumCollision.HAUT) {
         let pos = new Position(x, y-1);
         this.setPosition(pos);
-      } else if (enumCollision[0] == EnumCollision.BAS) {
+      }/* else if (enumCollision[0] == EnumCollision.BAS) {
         let pos = new Position(x, y+1);
         this.setPosition(pos);
         this.movPosDev();
@@ -191,7 +191,7 @@ class Joueur extends Personnage {
         let pos = new Position(x-1, y);
         this.setPosition(pos);
         this.movPosDev();
-      }
+      }*/
       if (this.background != undefined) {
         this.background.afficher();
       }
