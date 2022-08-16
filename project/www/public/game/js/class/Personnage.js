@@ -11,14 +11,15 @@ class Personnage extends BlockRectange // implements InterfaceGravite
     }
 
     getEnumCollision() {
-        this.tabPlateforme.forEach(element => {
+        for (let index = 0; index < this.tabPlateforme.length; index++) {
+            const element = this.tabPlateforme[index];
             let collision = new Collision(this);
             collision.setPlateforme(element);
             let enumCollision = collision.getEnumCollision();
             if(enumCollision != EnumCollision.NULL) {
                 return [enumCollision, element];
             }
-        });
+        };
         return [EnumCollision.NULL, undefined];
     }
 

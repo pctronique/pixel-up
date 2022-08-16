@@ -12,6 +12,7 @@ class Background {
     }
 
     creerPlatforme() {
+            this.plateformes = [];
             let positions = [[0, 100, 200, 300, 400, 500, 600], [50, 150, 250, 350, 450, 550, 650]]
             let defaultHauteur = 70;
             let startHauteur = defaultHauteur;
@@ -53,7 +54,7 @@ class Background {
         this.joueur = joueur;
     }
 
-    deplacement(){
+    deplacement(scroll){
 
     }
 
@@ -82,6 +83,7 @@ class Background {
             }
         });
         if(this.joueur != undefined) {
+            this.joueur.setTabPlateforme(this.plateformes);
             this.joueur.setCanvasBackground(this.idBackground);
             this.joueur.afficher();
         }

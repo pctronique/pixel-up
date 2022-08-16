@@ -17,7 +17,10 @@ class Plateforme extends BlockRectange {
     }
 
     action(enumCollision) {
-
+        if(enumCollision == EnumCollision.HAUT) {
+            return EnumAction.STOP;
+        }
+        return EnumAction.NULL;
     }
     
 }

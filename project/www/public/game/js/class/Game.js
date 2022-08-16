@@ -35,6 +35,10 @@ class Game {
     this.joueur.setPosition(new Position(posX, posY));
   }
 
+  getJoueur() {
+    return this.joueur;
+  }
+
   afficher() {
     if (this.backgrounds[0] != undefined && this.joueur != undefined) {
       this.joueur.setBackground(this.backgrounds[0]);
@@ -56,4 +60,12 @@ class Game {
         });
       }
   }
+
+  startDev() {
+    if (this.joueur != undefined) {
+      document.body.addEventListener("keydown", (event) => {
+        this.joueur.moveDev(event.key);
+      });
+    }
+}
 }
