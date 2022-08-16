@@ -16,17 +16,17 @@ security:
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
-                # where to redirect after logout
+                # Où rediriger après la déconnexion
                 # target: app_any_route
 
-            # activate different ways to authenticate
+            # Activer différentes façons de s'authentifier
             # https://symfony.com/doc/current/security.html#the-firewall
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+     # Un moyen simple de contrôler l'accès à de grandes sections de votre site
+    # Remarque : Seul le *premier* contrôle d'accès qui correspond sera utilisé
     access_control:
             - { path: ^/admin, roles: ROLE_ADMIN }
             - { path: ^/profile, roles: ROLE_USER }
@@ -34,12 +34,14 @@ security:
 when@test:
     security:
         password_hashers:
-            # By default, password hashers are resource intensive and take time. This is
-            # important to generate secure password hashes. In tests however, secure hashes
-            # are not important, waste resources and increase test times. The following
-            # reduces the work factor to the lowest possible values.
+
+            # Par défaut, les hacheurs de mot de passe sont gourmands en ressources et prennent du temps. C'est
+            # important pour générer des hachages de mots de passe sécurisés. Dans les tests cependant, les hachages sécurisés
+            # ne sont pas importants, gaspillent des ressources et augmentent les temps de test. Ce qui suit
+            # réduit le facteur de travail aux valeurs les plus basses possibles.
+
             Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
                 algorithm: auto
-                cost: 4 # Lowest possible value for bcrypt
-                time_cost: 3 # Lowest possible value for argon
-                memory_cost: 10 # Lowest possible value for argon
+                cost: 4 # La valeur la plus basse possible pour bcrypt
+                time_cost: 3 # La valeur la plus basse possible pour argon
+                memory_cost: 10 # La valeur la plus basse possible pour argon
