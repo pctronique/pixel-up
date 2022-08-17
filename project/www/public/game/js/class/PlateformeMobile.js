@@ -1,0 +1,8 @@
+class PlateformeMobile {
+    constructor() {
+
+    }
+   setPos() {
+       
+    }
+}

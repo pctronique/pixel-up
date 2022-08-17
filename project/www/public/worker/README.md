@@ -1,1 +1,0 @@
-Les Web Workers sont un outil permettant au contenu web d'exécuter des scripts dans des tâches (threads) d'arrière-plan. Le thread associé au worker peut réaliser des tâches sans qu'il y ait d'interférence avec l'interface utilisateur. 
