@@ -35,6 +35,10 @@ class Game {
     this.joueur.setPosition(new Position(posX, posY));
   }
 
+  getJoueur() {
+    return this.joueur;
+  }
+
   afficher() {
     if (this.backgrounds[0] != undefined && this.joueur != undefined) {
       this.joueur.setBackground(this.backgrounds[0]);
@@ -52,8 +56,17 @@ class Game {
           if(event.key == " ") {
             this.joueur.sauter();
           }
-          this.joueur.move(event.key);
+          this.joueur.choixMouvement(event.key)
+          //this.joueur.move(event.key);
         });
       }
   }
+
+  startDev() {
+    if (this.joueur != undefined) {
+      document.body.addEventListener("keydown", (event) => {
+        this.joueur.moveDev(event.key);
+      });
+    }
+}
 }

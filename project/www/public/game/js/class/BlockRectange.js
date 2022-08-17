@@ -35,6 +35,14 @@ class BlockRectange extends Pause {
     this.areteRectangle = new AreteRectangle(this.pos, this.taille);
   }
 
+  setPositionXY(posX, posY) {
+    this.pos = new Position(posX, posY);
+    if (this.pos === undefined) {
+      this.pos = new Position();
+    }
+    this.areteRectangle = new AreteRectangle(this.pos, this.taille);
+  }
+
   setPositionX(posX) {
     if(this.pos != undefined && posX != undefined) {
       this.pos.x = posX;

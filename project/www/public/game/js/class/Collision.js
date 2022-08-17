@@ -15,23 +15,34 @@ class Collision {
         if(this.plateforme == undefined) {
             return EnumCollision.NULL;
         }
-        let persoAreteRectangle = this.personnage.setAreteRectangle();
-        let ptfAreteRectangle = this.plateforme.setAreteRectangle();
-        if(persoAreteRectangle.bas().pos == ptfAreteRectangle.haut().pos || persoAreteRectangle.haut().pos == ptfAreteRectangle.bas().pos) {
-            if(persoAreteRectangle.bas().debut >= persoAreteRectangle.bas().debut && persoAreteRectangle.bas().debut < persoAreteRectangle.bas().fin || 
-            persoAreteRectangle.bas().fin >= persoAreteRectangle.bas().fin && persoAreteRectangle.bas().fin > persoAreteRectangle.bas().debut) {
-                if(persoAreteRectangle.bas().pos == ptfAreteRectangle.haut().pos) {
-                    return EnumCollision.HAUT;
-                }
-                return EnumCollision.BAS;
+        let persoAreteRectangle = this.personnage.getAreteRectangle();
+        let ptfAreteRectangle = this.plateforme.getAreteRectangle();
+        if(persoAreteRectangle.gauche().pos == ptfAreteRectangle.droite().pos || persoAreteRectangle.droite().pos == ptfAreteRectangle.gauche().pos) {
+            if(
+                persoAreteRectangle.gauche().debut >= ptfAreteRectangle.gauche().debut && 
+                persoAreteRectangle.gauche().debut < ptfAreteRectangle.gauche().fin || 
+                persoAreteRectangle.gauche().fin >= ptfAreteRectangle.gauche().fin && 
+                persoAreteRectangle.gauche().debut < ptfAreteRectangle.gauche().debut || 
+                ptfAreteRectangle.gauche().fin >= persoAreteRectangle.gauche().fin && 
+                ptfAreteRectangle.gauche().debut < persoAreteRectangle.gauche().fin) {
+                    if(persoAreteRectangle.droite().pos == ptfAreteRectangle.gauche().pos) {
+                        return EnumCollision.GAUCHE;
+                    }
+                    return EnumCollision.DROITE;
             }
-        } else if(persoAreteRectangle.gauche().pos == ptfAreteRectangle.droite().pos || persoAreteRectangle.droite().pos == ptfAreteRectangle.gauche().pos) {
-            if(persoAreteRectangle.gauche().debut >= persoAreteRectangle.gauche().debut && persoAreteRectangle.gauche().debut < persoAreteRectangle.gauche().fin || 
-            persoAreteRectangle.gauche().fin >= persoAreteRectangle.gauche().fin && persoAreteRectangle.gauche().fin > persoAreteRectangle.gauche().debut) {
-                if(persoAreteRectangle.gauche().pos == ptfAreteRectangle.gauche().pos) {
-                    return EnumCollision.GAUCHE;
-                }
-                return EnumCollision.DROITE;
+        }
+        if(persoAreteRectangle.bas().pos == ptfAreteRectangle.haut().pos || persoAreteRectangle.haut().pos == ptfAreteRectangle.bas().pos) {
+            if(
+                persoAreteRectangle.bas().debut >= ptfAreteRectangle.bas().debut && 
+                persoAreteRectangle.bas().debut < ptfAreteRectangle.bas().fin || 
+                persoAreteRectangle.bas().fin >= ptfAreteRectangle.bas().fin && 
+                persoAreteRectangle.bas().debut < ptfAreteRectangle.bas().debut || 
+                ptfAreteRectangle.bas().fin >= persoAreteRectangle.bas().fin && 
+                ptfAreteRectangle.bas().debut < persoAreteRectangle.bas().fin) {
+                    if(persoAreteRectangle.bas().pos == ptfAreteRectangle.haut().pos) {
+                        return EnumCollision.HAUT;
+                    }
+                    return EnumCollision.BAS;
             }
         }
         return EnumCollision.NULL;
