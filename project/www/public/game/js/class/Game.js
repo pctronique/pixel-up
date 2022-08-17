@@ -56,7 +56,8 @@ class Game {
           if(event.key == " ") {
             this.joueur.sauter();
           }
-          this.joueur.move(event.key);
+          this.joueur.choixMouvement(event.key)
+          //this.joueur.move(event.key);
         });
       }
   }

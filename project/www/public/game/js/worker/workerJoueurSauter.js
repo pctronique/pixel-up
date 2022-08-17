@@ -1,14 +1,15 @@
 onmessage = function (e) {
   let y = e.data[0];
-  for (let index = 0; index < 120; index+=5) {
-    y -= 5;
-    postMessage([y, false, false]);
+  for (let index = 0; index < 200; index+=1) {
+    y -= 1;
+
+    postMessage([y, false, true]);
   }
   let number = 0;
-  while (number < 120) {
-    y += 5;
-    postMessage([y, true, false]);
-    number+=5;
+  while (number < 200) {
+    y += 1;
+    postMessage([y, true, true]);
+    number+=1;
   }
-  postMessage([y, false, true]);
+  postMessage([y, false, false]);
 };

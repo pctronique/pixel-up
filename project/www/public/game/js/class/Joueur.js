@@ -3,16 +3,15 @@ class Joueur extends Personnage {
     super(taille);
     this.workerJoueurSauter = undefined;
     this.workerJoueur = new Worker("./../js/worker/workerJoueur.js");
-    this.workerJoueurSauter = new Worker(
-      "./../js/worker/workerJoueurSauter.js"
-    );
+    this.workerJoueurSauter = undefined;
     this.workerJoueurMove = new Worker("./../js/worker/workerJoueurMove.js");
     this.idPosX = undefined;
     this.idPosY = undefined;
+    this.sauter0 = false;
   }
 
   addListenerPos(idPosX, idPosY) {
-    this.idPosX = idPosX;
+    /*this.idPosX = idPosX;
     this.idPosY = idPosY;
     let classJoueur = this;
     if (document.getElementById(idPosX) != undefined) {
@@ -34,43 +33,76 @@ class Joueur extends Personnage {
       });
     }
     if (document.getElementById(idPosY) != undefined) {
-      document.getElementById(idPosY).addEventListener("change", function (e) {
-        classJoueur.setPositionXY(document.getElementById(idPosX).value, document.getElementById(idPosY).value);
-        if (classJoueur.background != undefined) {
-          classJoueur.background.afficher();
-        }
-        let enumCollision = classJoueur.getEnumCollision();
-        if (enumCollision[0] != EnumCollision.NULL) {
-          console.log(enumCollision[0]);
+      let sauter = true;
+      /*document.getElementById(idPosY).addEventListener("change", function (e) {
+        if(sauter) {
+          classJoueur.setPositionXY(document.getElementById(idPosX).value, document.getElementById(idPosY).value);
+          if (classJoueur.background != undefined) {
+            classJoueur.background.afficher();
+          }
+          let enumCollision = classJoueur.getEnumCollision();
+          if (enumCollision[0] != EnumCollision.NULL) {
+            console.log(enumCollision[0]);
+          }
         }
       });
-    }
+    }*/
     this.startWorker();
-    this.eventSauter();
+    //this.eventSauter();
     this.eventMove();
+  }
+
+  finSauter() {
+    console.log("00258");
+    this.sauter0 = false;
   }
 
   eventSauter() {
     let classJoueur = this;
     let idPosY = this.idPosY;
+    let sauter = true;
+    let sauter0 = this.sauter0;
     this.workerJoueurSauter.onmessage = function (e) {
-      if (document.getElementById(idPosY) != undefined) {
-        document.getElementById(idPosY).value = e.data[0];
-        document.getElementById(idPosY).dispatchEvent(new Event("change"));
+      console.log(sauter0);
+      if(sauter) {
+        if (document.getElementById(idPosY) != undefined) {
+          document.getElementById(idPosY).value = e.data[0];
+          document.getElementById(idPosY).dispatchEvent(new Event("change"));
+        }
+        classJoueur.setPositionY(e.data[0]);
+        if (classJoueur.background != undefined) {
+          classJoueur.background.afficher();
+        }
+        let enumCollision = classJoueur.getEnumCollision();
+        if (enumCollision[0] != EnumCollision.NULL && e.data[1]) {
+          console.log(enumCollision[0]);
+          if(enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
+            sauter = false;
+            sauter0 = false;
+            classJoueur.finSauter();
+          }
+        }
       }
-      classJoueur.setPositionY(e.data[0]);
-      if (classJoueur.background != undefined) {
-        classJoueur.background.afficher();
+      if(sauter0) {
+        sauter0 = e.data[2];
       }
-      let enumCollision = classJoueur.getEnumCollision();
-      if (enumCollision[0] != EnumCollision.NULL) {
-        console.log(enumCollision[0]);
+      if(!sauter0 && this.workerJoueurSauter != undefined) {
+        classJoueur.finSauter();
+        this.workerJoueurSauter.terminate();
+        this.workerJoueurSauter = undefined;
       }
     };
   }
 
   sauter() {
-    this.workerJoueurSauter.postMessage([this.pos.y]);
+    if(!this.sauter0) {
+      this.sauter0 = true;
+      this.workerJoueurSauter = new Worker(
+        "./../js/worker/workerJoueurSauter.js"
+      );
+      this.eventSauter();
+      this.workerJoueurSauter.postMessage([this.pos.y]);
+    }
   }
 
   eventMove() {
@@ -225,41 +257,41 @@ class Joueur extends Personnage {
 
   choixMouvement(eventKey) {
     // private
-    /*if (this.background != undefined) {
+    if (this.background != undefined) {
       this.tabPlateforme = this.background.getPlateformes();
-    }*/
-    /*let x = this.pos.x;
-    let y = this.pos.y;*/
+    }
+    let x = this.pos.x;
+    let y = this.pos.y;
     if (eventKey == "ArrowRight") {
       this.mouvement(EnumMouvement.DROITE);
-      /*for (let index = 0; index < 10; index++) {
+      for (let index = 0; index < 10; index++) {
         let pos = new Position(x + index, y);
         this.setPosition(pos);
         if (this.background != undefined) {
           this.background.afficher();
         }
-        let enumCollision = this.setEnumCollision();
+        let enumCollision = this.getEnumCollision();
         if (enumCollision[0] != EnumCollision.NULL) {
           console.log(enumCollision[0]);
           break;
         }
-      }*/
+      }
     } else if (eventKey == "ArrowLeft") {
       this.mouvement(EnumMouvement.GAUCHE);
-      /*for (let index = 0; index < 10; index++) {
+      for (let index = 0; index < 10; index++) {
         let pos = new Position(x - index, y);
         this.setPosition(pos);
         if (this.background != undefined) {
           this.background.afficher();
         }
-        let enumCollision = this.setEnumCollision();
+        let enumCollision = this.getEnumCollision();
         if (enumCollision[0] != EnumCollision.NULL) {
           console.log(enumCollision[0]);
           break;
         }
-      }*/
-    } else if (eventKey == "ArrowDown") {
-      this.mouvement(EnumMouvement.BAS);
+      }
+    //} else if (eventKey == "ArrowDown") {
+      //this.mouvement(EnumMouvement.BAS);
       /*for (let index = 0; index < 10; index++) {
         let pos = new Position(x, y + index);
         this.setPosition(pos);
@@ -272,8 +304,8 @@ class Joueur extends Personnage {
           break;
         }
       }*/
-    } else if (eventKey == "ArrowUp") {
-      this.mouvement(EnumMouvement.HAUT);
+    //} else if (eventKey == "ArrowUp") {
+      //this.mouvement(EnumMouvement.HAUT);
       /*for (let index = 0; index < 10; index++) {
         let pos = new Position(x, y - index);
         this.setPosition(pos);
@@ -286,8 +318,8 @@ class Joueur extends Personnage {
           break;
         }
       }*/
-    } else if (eventKey == " ") {
-      this.mouvement(EnumMouvement.SAUTER);
+    //} else if (eventKey == " ") {
+      //this.mouvement(EnumMouvement.SAUTER);
       /*for (let index = 0; index < 120; index++) {
         y -= 1;
         this.pos = new Position(x, y);
