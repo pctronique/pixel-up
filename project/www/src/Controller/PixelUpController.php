@@ -45,8 +45,6 @@ class PixelUpController extends AbstractController
      */
     public function score(): Response
     {
-        $scores = $this->getDoctrine()->getRepository(ScoreRepository::class)->findAll();
-        dd($scores);
         return $this->render('pixel_up/score.html.twig', [
             'controller_name' => 'PixelUpController',
         ]);
