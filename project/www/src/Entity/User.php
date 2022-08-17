@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -21,7 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = ["ROLE_USER"];
 
     /**
      * @var string The hashed password
@@ -35,8 +37,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mort::class, orphanRemoval: true)]
     private Collection $morts;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Avatar $avatar = null;
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     public function __construct()
     {
@@ -62,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
+     * Un identifiant visuel qui représente cet utilisateur.
      *
      * @see UserInterface
      */
@@ -85,7 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        // garantir que chaque utilisateur a au moins ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -114,8 +116,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     * Le retour d'un sel n'est nécessaire que si vous n'utilisez pas un
+     * algorithme de hachage (par exemple bcrypt ou sodium) dans votre security.yaml.
      *
      * @see UserInterface
      */
@@ -129,7 +131,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
+        // Si vous stockez des données temporaires et sensibles sur l'utilisateur, effacez-les ici
         // $this->plainPassword = null;
     }
 
@@ -154,7 +156,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeScore(Score $score): self
     {
         if ($this->scores->removeElement($score)) {
-            // set the owning side to null (unless already changed)
+            // définir le côté propriétaire sur null (sauf si déjà modifié)
             if ($score->getUser() === $this) {
                 $score->setUser(null);
             }
@@ -193,19 +195,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAvatar(): ?Avatar
+
+    public function isVerified(): bool
     {
-        return $this->avatar;
+        return $this->isVerified;
     }
 
-    public function setAvatar(Avatar $avatar): self
+    public function setIsVerified(bool $isVerified): self
     {
-        // set the owning side of the relation if necessary
-        if ($avatar->getUser() !== $this) {
-            $avatar->setUser($this);
-        }
-
-        $this->avatar = $avatar;
+        $this->isVerified = $isVerified;
 
         return $this;
     }

@@ -1,5 +1,5 @@
 when@dev:
     debug:
-        # Forwards VarDumper Data clones to a centralized server allowing to inspect dumps on CLI or in your browser.
-        # See the "server:dump" command to start a new server.
+        # Transfère les clones de données VarDumper vers un serveur centralisé permettant d'inspecter les vidages sur CLI ou dans votre navigateur.
+        # Voir la commande "server:dump" pour démarrer un nouveau serveur.
         dump_destination: "tcp://%env(VAR_DUMPER_SERVER)%"

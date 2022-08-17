@@ -2,8 +2,8 @@ doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
 
-        # IMPORTANT: You MUST configure your server version,
-        # either here or in the DATABASE_URL env var (see .env file)
+        # IMPORTANT : Vous DEVEZ configurer la version de votre serveur,
+        # ici ou dans le DATABASE_URL env var (see .env file)
         #server_version: '13'
     orm:
         auto_generate_proxy_classes: true
