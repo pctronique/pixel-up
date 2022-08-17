@@ -3,31 +3,36 @@ const second = document.querySelector('#number2');
 
 const result = document.querySelector('.result');
 
-if (window.Worker) {
-  const myWorker = new Worker("./worker.js");
-
-  first.onchange = function() {
-    myWorker.postMessage([first.value, second.value]);
-    console.log('Message posted to worker');
+class Test {
+  constructor() {
+    this.myWorker = new Worker("./worker.js");
   }
 
-  second.onchange = function() {
-    myWorker.postMessage([first.value, second.value]);
-    console.log('Message posted to worker');
+  eventListener() {
+    this.myWorker.addEventListener("message", function(e) {
+      result.textContent = e.data;
+      console.log('Message received from worker');
+    });
   }
 
-  myWorker.onmessage = function(e) {
+  change(value) {
+    this.myWorker.postMessage(value);
+      console.log('Message posted to worker');
+  }
+}
+/*
+  const myWorker = new Worker("worker.js");
+
+  
+
+
+  myWorker.addEventListener("message", function(e) {
     result.textContent = e.data;
     console.log('Message received from worker');
-  }
-} else {
-  console.log('Your browser doesn\'t support web workers.');
-}
+  });*/
 
-document.getElementById("testing").addEventListener("click", function (e) {
-  let test = "non connecté";
-  if (navigator.onLine) {
-      test = "connecté";
-  }
-  console.log(test);
-})
+let test = new Test();
+test.eventListener();
+first.addEventListener('change', function(e) {
+  test.change(e.target.value);
+});
