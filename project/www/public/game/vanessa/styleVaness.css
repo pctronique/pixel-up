@@ -1,24 +1,24 @@
 #screenGame{
-    width:700px;
-    height: 50vh;
     position: relative;
+    width: 700px;
+    height: 50vh;
     bottom: 0;
     right: 0;
 }
 #canvas{
     position: absolute;
+    left: 0;
+    margin-left: 20px;
 }
 #ecran_joueur{
- 
     border:1px solid #000000; 
     background:#017472
 }
 div.scroll {
     width: 600px;
-    height: 150px;
+    height: 50px;
     overflow-x: hidden;
     overflow-y: auto;
     text-align: center;
     padding: 20px;
 }
-/*jouer sur le margin top scroll bar*/
