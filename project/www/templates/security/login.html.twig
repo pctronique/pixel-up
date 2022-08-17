@@ -21,8 +21,12 @@
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+           value="{{ csrf_token('authenticate') }}">
+
+    
+
+
+    
 
     
        {# Décommentez cette section et ajoutez une option Remember_me sous votre pare-feu pour activer la fonctionnalité Se souvenir de moi.
@@ -30,13 +34,16 @@
 
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" name="_remember_me"> Remember me
+                <input type="checkbox" name="_remember_me"> Se rappeler de moi 
             </label>
         </div>
-   
+
+  
 
     <button class="btn btn-lg btn-primary" type="submit">
         Connexion
-    </button>
+    </button> 
+    
 </form>
+<a href="{{ path('app_register') }}">Inscription</a>
 {% endblock %}
