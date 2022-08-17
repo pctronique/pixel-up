@@ -273,7 +273,7 @@ class Joueur extends Personnage {
         let enumCollision = this.getEnumCollision();
         if (enumCollision[0] != EnumCollision.NULL) {
           console.log(enumCollision[0]);
-          break;
+          //break;
         }
       }
     } else if (eventKey == "ArrowLeft") {
@@ -287,7 +287,7 @@ class Joueur extends Personnage {
         let enumCollision = this.getEnumCollision();
         if (enumCollision[0] != EnumCollision.NULL) {
           console.log(enumCollision[0]);
-          break;
+          //break;
         }
       }
     //} else if (eventKey == "ArrowDown") {
