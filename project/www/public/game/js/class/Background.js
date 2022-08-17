@@ -58,9 +58,15 @@ class Background {
     }
 
     screenBottom(posBas){
+        let taille = new Taille(0,20);
+        let pos = new Position(0, this.taille.y-startHauteur+20);
+        let platforme = new Plateforme(taille);
+        platforme.setPosition(pos);
+        platforme.setBackground(this);
+    }
+    scrollBarBottom(pos){
 
     }
-
     getPlateformes() {
         return this.plateformes;
     }
@@ -85,6 +91,7 @@ class Background {
             this.joueur.setCanvasBackground(this.idBackground);
             this.joueur.afficher();
         }
+        //placer la barre du bas
     }
 
 }
