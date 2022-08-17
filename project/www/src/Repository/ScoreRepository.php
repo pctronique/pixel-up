@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Score;
-use App\Repository\ScoreRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 

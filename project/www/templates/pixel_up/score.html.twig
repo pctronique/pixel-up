@@ -20,7 +20,22 @@
 </section>
 
 <section id="classement">
-
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ score.id }}</td>
+            </tr>
+            <tr>
+                <th>Score</th>
+                <td>{{ score.score }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 {% endblock %}
