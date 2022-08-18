@@ -16,8 +16,9 @@ class ScoreController extends AbstractController
     #[Route('/', name: 'app_score_index', methods: ['GET'])]
     public function index(ScoreRepository $scoreRepository): Response
     {
-        return $this->render('score/index.html.twig', [
+        return $this->render('pixel_up/score.html.twig', [
             'scores' => $scoreRepository->findBy([],['score' => 'DESC'])
         ]);
     }
 }
+
