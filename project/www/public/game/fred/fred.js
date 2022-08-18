@@ -2,7 +2,6 @@
 let screenGame = document.getElementById("screenGame");
 let ajouter = document.getElementById("ajouter");
 let nombre = 0;
-let scrollChangement = 0;
 	
 function ajouterBackground() {
 	// permet d'ajouter un nouveau canvas tout en définissant sa taille
@@ -29,19 +28,17 @@ function ajouterBackground() {
 	}
 	ctx.fillRect(0, 0, 700, 1000);
 
-	// si le nombre est supérieur à 2 on supprime le dernier enfant
+	// si le nombre est supérieur à 2 on supprime le dernier enfant dans screenGame
 	if (screenGame.childElementCount > 2) {
 		screenGame.removeChild(screenGame.lastChild);
 	}
 	nombre++;
 }
-
+//fonction mathématique écoute évènement au scroll par rapport à la taille de screenGame 
 screenGame.addEventListener(
   "scroll",
   function () {
-    let scrollHaut =
-      screenGame.scrollHeight / screenGame.childElementCount -
-      screenGame.offsetHeight;
+    let scrollHaut = screenGame.scrollHeight / screenGame.childElementCount -screenGame.offsetHeight;
     if (screenGame.scrollTop < scrollHaut) {
 		ajouterBackground();
     }

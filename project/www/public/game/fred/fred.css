@@ -1,4 +1,6 @@
 #screenGame{
+    display: flex;
+    flex-direction: column;
     max-width: 700px;
     max-height: 500px;
     overflow-x: hidden;
