@@ -8,6 +8,7 @@ header{
 
 body{
     background:  center no-repeat url("../media/PixelUpBackground.png");
+    background-size: cover;
 }
 
 *{
