@@ -1,6 +1,6 @@
 class Images {
     constructor(src) {
-        
+
     }
    select() {
        
@@ -9,4 +9,5 @@ class Images {
     cust(x, y){
     
     }
+    
 }

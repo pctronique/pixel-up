@@ -9,6 +9,7 @@ class Background {
         this.plateformes = [];
         this.plateformesCollision = [];
         this.screen_bottom = undefined;
+        this.widthBottom = 0;
     }
 
     creerPlatforme() {
@@ -58,13 +59,30 @@ class Background {
 
     }
 
-    screenBottom(posBas){
-        let taille = new Taille(0,20);
-        let pos = new Position(0, this.taille.y-startHauteur+20);
-        let platforme = new Plateforme(taille);
-        platforme.setPosition(pos);
-        platforme.setBackground(this);
+    creerPlatformeBottom(){                               
+        let taille = new Taille(100,20);
+        let pos = new Position(0, this.taille.y-20);
+        this.screen_bottom = new Plateforme(taille);
+        this.screen_bottom.setPosition(pos);
+        this.screen_bottom.setBackground(this);
     }
+
+    screenBottom(posBas){
+        console.log(posBas);
+     
+        if (this.widthBottom <= 700) {                     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
+            let posBasScroll = -1 * posBas;
+            this.widthBottom = 100 * (posBasScroll / 10);
+            let taille = new Taille(this.widthBottom,20);
+            this.screen_bottom.setTaille(taille);
+          
+        }
+        let pos = new Position(0, this.taille.y+posBas+5);
+        this.screen_bottom.setPosition(pos);    
+        console.log(this.screen_bottom.pos);
+        console.log(this.screen_bottom.taille);
+    }
+
     scrollBarBottom(pos){
 
     }
@@ -78,6 +96,7 @@ class Background {
 
     afficher() {
         this.creerPlatforme();
+        //this.creerPlatformeBottom();
         let background = document.getElementById(this.idBackground);
         let ctx = background.getContext('2d');
         ctx.fillStyle = '#EBDEF0';
@@ -93,7 +112,11 @@ class Background {
             this.joueur.setCanvasBackground(this.idBackground);
             this.joueur.afficher();
         }
-        //placer la barre du bas
+        if(this.screen_bottom != undefined) {
+            this.screen_bottom.setCanvasBackground(this.idBackground);
+            this.screen_bottom.afficher();
+        }
+       //placer la barre du bas
     }
-
+        
 }
