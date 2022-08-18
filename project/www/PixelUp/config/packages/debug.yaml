@@ -1,5 +1,0 @@
-when@dev:
-    debug:
-        # Transfère les clones de données VarDumper vers un serveur centralisé permettant d'inspecter les vidages sur CLI ou dans votre navigateur.
-        # Voir la commande "server:dump" pour démarrer un nouveau serveur.
-        dump_destination: "tcp://%env(VAR_DUMPER_SERVER)%"
