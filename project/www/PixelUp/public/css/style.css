@@ -8,6 +8,7 @@ header{
 
 body{
     background:  center no-repeat url("../media/PixelUpBackground.png");
+    background-size: cover;
 }
 
 *{
@@ -240,4 +241,28 @@ input[type="submit"]:hover{
 
 .scoreMenu a{
   color: white;
+}
+
+#classement, #score, .table{
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+.table{
+  border: 2px solid white;
+  border-spacing: 25px;
+}
+
+td{
+  border: 1px solid white;
+  padding: 5px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgb(100, 100, 100);
+}
+
+tbody tr:nth-child(even) {
+  background-color: silver;
 }

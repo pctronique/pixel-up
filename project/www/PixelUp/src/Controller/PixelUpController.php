@@ -39,14 +39,4 @@ class PixelUpController extends AbstractController
             'controller_name' => 'PixelUpController',
         ]);
     }
-
-    /**
-     * @Route("/score", name="app_score")
-     */
-    public function score(): Response
-    {
-        return $this->render('pixel_up/score.html.twig', [
-            'controller_name' => 'PixelUpController',
-        ]);
-    }
 }

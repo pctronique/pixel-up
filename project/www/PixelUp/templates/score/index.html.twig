@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Score index{% endblock %}
+
+{% block body %}
+
+
+<section id="classement">
+
+    <h1>Classement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in scores %}
+            <tr>
+                <td>{{ score.id }}</td>
+                <td>{{ score.score }}</td>
+                <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun score</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+{% endblock %}
