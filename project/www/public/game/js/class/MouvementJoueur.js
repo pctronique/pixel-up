@@ -64,7 +64,7 @@ class MouvementJoueur {
     let idPosY = this.joueur.idPosY;
     let sauter = true;
     let sauter0 = this.sauter0;
-    this.workerJoueurSauter.onmessage = function (e) {
+    this.workerJoueurTomber.onmessage = function (e) {
       if (sauter) {
         if (document.getElementById(idPosY) != undefined) {
           document.getElementById(idPosY).value = e.data[0];
@@ -98,9 +98,9 @@ class MouvementJoueur {
   tomber() {
     if (!this.sauter0) {
       this.sauter0 = true;
-      this.workerJoueurSauter = new Worker("./../js/worker/workerJoueurTomber.js");
+      this.workerJoueurTomber = new Worker("./../js/worker/workerJoueurTomber.js");
       this.eventTomber();
-      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
+      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
     }
   }
 
@@ -205,19 +205,7 @@ class MouvementJoueur {
       if (enumCollision[0] == EnumCollision.HAUT) {
         let pos = new Position(x, y - 1);
         this.joueur.setPosition(pos);
-      } /* else if (enumCollision[0] == EnumCollision.BAS) {
-          let pos = new Position(x, y+1);
-          this.setPosition(pos);
-          this.movPosDev();
-        } else if (enumCollision[0] == EnumCollision.DROITE) {
-          let pos = new Position(x+1, y);
-          this.setPosition(pos);
-          this.movPosDev();
-        } else if (enumCollision[0] == EnumCollision.GAUCHE) {
-          let pos = new Position(x-1, y);
-          this.setPosition(pos);
-          this.movPosDev();
-        }*/
+      }
       if (this.joueur.background != undefined) {
         this.joueur.background.afficher();
       }
@@ -266,11 +254,9 @@ class MouvementJoueur {
         }
         let enumCollision = this.joueur.getEnumCollision();
         console.log(enumCollision[0]);
-        if (enumCollision[0] != EnumCollision.NULL) {
-          if(enumCollision[0] != EnumCollision.HAUT) {
+        if (enumCollision[0] == EnumCollision.NULL) {
             console.log("0024");
-            this.tomber();
-          }
+            this.tomber(); 
           //break;
         }
       }
@@ -284,60 +270,12 @@ class MouvementJoueur {
         }
         let enumCollision = this.joueur.getEnumCollision();
         console.log(enumCollision[0]);
-        if (enumCollision[0] != EnumCollision.NULL) {
-          if(enumCollision[0] != EnumCollision.HAUT) {
+        if (enumCollision[0] == EnumCollision.NULL) {
             console.log("0025");
             this.tomber();
-          }
           //break;
         }
       }
-      //} else if (eventKey == "ArrowDown") {
-      //this.mouvement(EnumMouvement.BAS);
-      /*for (let index = 0; index < 10; index++) {
-          let pos = new Position(x, y + index);
-          this.setPosition(pos);
-          if (this.background != undefined) {
-            this.background.afficher();
-          }
-          let enumCollision = this.setEnumCollision();
-          if (enumCollision[0] != EnumCollision.NULL) {
-            console.log(enumCollision[0]);
-            break;
-          }
-        }*/
-      //} else if (eventKey == "ArrowUp") {
-      //this.mouvement(EnumMouvement.HAUT);
-      /*for (let index = 0; index < 10; index++) {
-          let pos = new Position(x, y - index);
-          this.setPosition(pos);
-          if (this.background != undefined) {
-            this.background.afficher();
-          }
-          let enumCollision = this.setEnumCollision();
-          if (enumCollision[0] != EnumCollision.NULL) {
-            console.log(enumCollision[0]);
-            break;
-          }
-        }*/
-      //} else if (eventKey == " ") {
-      //this.mouvement(EnumMouvement.SAUTER);
-      /*for (let index = 0; index < 120; index++) {
-          y -= 1;
-          this.pos = new Position(x, y);
-          if (this.background != undefined) {
-            this.background.afficher();
-          }
-        }
-        let number = 0;
-        while (this.collisionHaut() || number == 120) {
-          y += 1;
-          this.pos = new Position(x, y);
-          if (this.background != undefined) {
-            this.background.afficher();
-          }
-          number++;
-        }*/
     }
   }
 }
