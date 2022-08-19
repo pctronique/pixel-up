@@ -65,4 +65,16 @@ class Score
         return $this;
     }
 
+    /*public function getMyEntityWithRelatedEntity($parameter) 
+{
+    $query = $this->createQueryBuilder('score')
+        ->addSelect('user') //to make Doctrine actually use the join
+        ->leftJoin('e.relatedEntity', 'r')
+        ->where('score.user_id = :parameter')
+        ->setParameter('parameter', $parameter)
+        ->getQuery();
+
+    return $query->getResult();
+}*/
+
 }

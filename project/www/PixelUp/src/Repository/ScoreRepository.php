@@ -39,6 +39,14 @@ class ScoreRepository extends ServiceEntityRepository
         }
     }
 
+    public function getUserScore(){
+        $query = $this->createQueryBuilder('s')
+            ->innerJoin('s.user', 'u')
+            ->select('u.username, s.score, s.date');
+        $query->orderBy('s.score', 'DESC');
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Score[] Returns an array of Score objects
 //     */

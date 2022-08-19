@@ -17,8 +17,24 @@ class ScoreController extends AbstractController
     public function index(ScoreRepository $scoreRepository): Response
     {
         return $this->render('pixel_up/score.html.twig', [
-            'scores' => $scoreRepository->findBy([],['score' => 'DESC'])
+            //'scores' => $scoreRepository->findBy([],['score' => 'DESC']),
+            'scores' => $scoreRepository->getUserScore()
         ]);
     }
+
+    /*public function getUserScore($user)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->innerJoin('s.user', 'u');
+        $query->andWhere('u = :user')
+            ->setParameter(':user', $user);
+        $query->orderBy('s.created_at')
+            ->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit)
+        ;
+        $query->orderBy('p.created_at', 'DESC');
+        return $query->getQuery()->getResult();
+    }*/
+
 }
 

@@ -260,9 +260,13 @@ td{
 }
 
 tbody tr:nth-child(odd) {
-  background-color: rgb(100, 100, 100);
+  background-color: silver;
 }
 
 tbody tr:nth-child(even) {
-  background-color: silver;
+  background-color: rgb(100, 100, 100);
+}
+
+#tbodyscore iconify-icon{
+  font-size: 3em;
 }
