@@ -23,6 +23,12 @@
     </head>
     <body>
 
+     {% if app.request.get('_route') != 'app_pixel_up' %}
+
+     <a href="{{ path('app_pixel_up') }}" id="homeButton"><iconify-icon icon="flat-color-icons:home" style="color: #ff8400;" width="30" height="30"></iconify-icon></a>
+
+     {% endif %}
+
         <header>
             <span class="iconify" data-icon="icon-park-outline:game-console" style="color: white; font-size: 100px;"></span>
             <h1>Pixel UP</h1>

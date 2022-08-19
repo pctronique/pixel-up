@@ -37,12 +37,15 @@ bodyTable.querySelectorAll("tr").forEach(element => {
 
 // Afficher / Masquer les modal pour score perso / classement 
 
+let bestScore = document.getElementById("bestScore");
+let ranked = document.getElementById("ranked");
+
 function showBestScore() {
-    document.getElementById("bestScore").style.display = "block";
-    document.getElementById("ranked").style.display = "none";
+    bestScore.style.display = "block";
+    ranked.style.display = "none";
 }
 
 function showRanked() {
-    document.getElementById("ranked").style.display = "block";
-    document.getElementById("bestScore").style.display = "none";
+    ranked.style.display = "block";
+    bestScore.style.display = "none";
 }
