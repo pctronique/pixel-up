@@ -15,7 +15,10 @@ feu.setPosition(new Position(0, 1350));
 feu.setCanvasBackground("background");
 feu.afficher();
 
-
+let pierre = new PlateformePierre(new Taille(100, 150));
+pierre.setPosition(new Position(0, 150));
+pierre.setCanvasBackground("background");
+pierre.afficher();
 
 
 
