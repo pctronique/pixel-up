@@ -16,21 +16,26 @@
     <section>
 
         <div class="btn">
-            <div class="arrow"></div>
+        <!--Rajouté qui est connecté après le bienvenue sinon laisser bienvenue si pas de connexion-->
+            <div class="arrow"><p>Bienvenue !<p></div>
         </div>
 
         <ul id="menu">
+            
             <a href="#"><li>Lancer la partie</li></a>
             {% if app.user %}
+                
                 <a href="{{ path('app_score') }}"><li>Score / Classement</li></a>
                 <a href="{{ path('app_profil') }}"><li>Profil</li></a>
                 <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
             {% else %}
+            <p>Bienvenue !<p>
                 <a href="{{ path('app_score') }}"><li>Classement</li></a>
                 <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
             {% endif %}
         </ul>
         
+
     </section>
 
 {% endblock %}
