@@ -7,8 +7,8 @@ class Images {
         this.pos = pos;
         this.taille = taille;
     }
-    afficher(idGame) {
-        let monCanvas = document.getElementById(idGame);
+    afficher(idBackground) {
+        let monCanvas = document.getElementById(idBackground);
         //if (monCanvas.getContext) {
         let ctx = monCanvas.getContext('2d');
         /* nouvelle image */

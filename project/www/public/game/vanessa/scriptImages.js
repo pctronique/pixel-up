@@ -1,4 +1,4 @@
-let image = new Images("feu.png", new Position(-20, 320), new Taille(1100, 200));
+/*let image = new Images("feu.png", new Position(-20, 320), new Taille(1100, 200));
 image.afficher("images");
 let image1= new Images("oiseau.png", new Position(150, 110), new Taille(50,50));
 image1.afficher("images");
@@ -6,8 +6,14 @@ let image2= new Images("nuage bis.png", new Position(850, 110), new Taille(150,1
 image2.afficher("images");
 
 let feu = new Images("feu.png", new Position(-20, 320), new Taille(1100, 200)); 
-feu.afficher();
+feu.afficher();*/
 
+
+let feu = new PlateformeFeu(new Taille(1500, 170));
+feu.setPosition(new Position(0, 1350));
+feu.setImage("feu.png");
+feu.setCanvasBackground("background");
+feu.afficher();
 
 
 
