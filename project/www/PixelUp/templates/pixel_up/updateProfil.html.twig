@@ -4,10 +4,10 @@
 
 {% block body %}
 
-    
+ 
 
-    <form action="/modifProfil" method="post" id="profilForm">
-        <label for="pseudo">&nbsp;:</label>
+    <form id="profilForm">
+        <label for="pseudo">&nbsp;Utilisateur:</label>
         <div class="flexForm">
             <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
             <input type="text" id="pseudo" name="pseudo" autocomplete="off" />
@@ -32,12 +32,13 @@
         </div>
         <input type="submit" value="Valider">
 
-        <label for="delete">Supprimer le profil :</label>
+        <label for="delete">Effacer le profil :</label>
         <div class="flexForm">
             <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
-            <input type="text" id="delete" name="delete" autocomplete="off" />
+            
         </div>
-        <input type="submit" value="Valider">
+        <input type="submit" value="Supprimer">
+       
     </form>
 
 {% endblock %}
