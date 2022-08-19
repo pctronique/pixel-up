@@ -1,2 +1,2 @@
-let sousTerre = new BackgroundSousTerre("background",new Taille(1500, 170));
+let sousTerre = new BackgroundSousTerre("background",new Taille(700, 1000));
  sousTerre.afficher();
