@@ -11,7 +11,7 @@ feu.afficher();*/
 
 let feu = new PlateformeFeu(new Taille(1500, 170));
 feu.setPosition(new Position(0, 1350));
-feu.setImage("feu.png");
+//feu.imageSrc("feu.png");
 feu.setCanvasBackground("background");
 feu.afficher();
 
