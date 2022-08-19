@@ -6,7 +6,7 @@ onmessage = function (e) {
     postMessage([y, false, true]);
   }
   let number = 0;
-  while (number < 200) {
+  while (number < e.data[1]) {
     y += 1;
     postMessage([y, true, true]);
     number+=1;
