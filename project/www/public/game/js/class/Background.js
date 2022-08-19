@@ -10,6 +10,7 @@ class Background {
     this.screen_bottom = undefined;
     this.creerPlatforme();
     this.imageSource = undefined;
+    this.pos = new Position(0,0);
     }
     imageSrc(src) {
         this.imageSource = src;
@@ -49,7 +50,7 @@ class Background {
     while (startHauteur < this.taille.y) {
       let nombreDeLignes = 0;
       let posPlateforme = 0;
-      console.log("************");
+      //console.log("************");
       while (posPlateforme < this.taille.x) {
         let objRndPos = new RndPos(posPlateforme, 0);
         let taille = new Taille(50, 10);
@@ -65,7 +66,7 @@ class Background {
 
         let pos = new Position(posPlateforme, this.taille.y - startHauteur);
 
-        console.log(posPlateforme);
+        //console.log(posPlateforme);
         plateforme.setPosition(pos);
         plateforme.setBackground(this);
         let posArete = plateforme.getAreteRectangle();

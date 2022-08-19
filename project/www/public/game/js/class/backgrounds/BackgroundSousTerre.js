@@ -6,9 +6,10 @@ class BackgroundSousTerre extends Background {
         super(idBackground, taille, imgBack, imgBas)
         
     }
+
     afficher() {
         this.imageSrc("volcan.jpg");
-        let sousTerre = new Images(this.img, this.pos, this.taille);
+        let sousTerre = new Images(this.imageSource, this.pos, this.taille);
         sousTerre.afficher(this.idBackground);
     }
 
