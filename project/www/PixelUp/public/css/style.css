@@ -15,6 +15,15 @@ body{
   font-family: 'Silkscreen', cursive; 
 }
 
+#homeButton{
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid white;
+  background: white;
+  width: 32px;
+  height: 32px;
+}
 
 header h1{
     color: white;
@@ -267,10 +276,16 @@ input[type="submit"]:hover, button:hover{
   color: white;
 }
 
-#classement, #score, .table{
+#classement, #score, .table, #succes{
   margin: auto;
   text-align: center;
   color: white;
+  background: rgb(255,255,255,0.1);
+}
+
+#tbodySucces td, #tbodySucces tr{
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  border: none;
 }
 
 .table{

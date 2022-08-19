@@ -39,4 +39,14 @@ class PixelUpController extends AbstractController
             'controller_name' => 'PixelUpController',
         ]);
     }
+
+    /**
+     * @Route("/succes", name="app_succes")
+     */
+    public function succes(): Response
+    {
+        return $this->render('pixel_up/succes.html.twig', [
+            'controller_name' => 'PixelUpController',
+        ]);
+    }
 }
