@@ -40,23 +40,3 @@ class EnumTypeDeath {
     }
 }
 
-let typeDeath = new EnumTypeDeath();
-console.log(typeDeath.enum.TOMBER);
-console.log(typeDeath.findEnumId(3));
-console.log(typeDeath.findEnumKey("REQUIN"));
-console.log(typeDeath.findEnumName("avion"));
-
-let avion = typeDeath.enum.AVION;
-let requin = typeDeath.enum.REQUIN;
-
-if(typeDeath.enum.AVION === avion) {
-    console.log("true");
-} else {
-    console.log("false");
-}
-
-if(typeDeath.enum.AVION === requin) {
-    console.log("true");
-} else {
-    console.log("false");
-}

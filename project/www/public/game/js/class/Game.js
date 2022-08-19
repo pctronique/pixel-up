@@ -28,8 +28,6 @@ class Game {
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
     let background = new Background(this.idBackground, new Taille(tailleX, tailleY));
     this.backgrounds.push(background);
-    this.createBackground();
-    this.deleteBackground(screenGame);
   }
 
   createBackground() {
@@ -55,6 +53,10 @@ class Game {
     this.joueur.setPosition(new Position(posX, posY));
   }
 
+  getJoueur() {
+    return this.joueur;
+  }
+
   afficher() {
     for (let index = 0; index < this.backgrounds.length; index++) {
       const element = this.backgrounds[index];
@@ -76,8 +78,20 @@ class Game {
           if(event.key == " ") {
             this.joueur.sauter();
           }
-          this.joueur.move(event.key);
+          this.joueur.choixMouvement(event.key)
+          //this.joueur.move(event.key);
         });
       }
+  }
+
+  startDev() {
+    if (this.joueur != undefined) {
+      document.body.addEventListener("keydown", (event) => {
+        this.joueur.moveDev(event.key);
+      });
+    }
+}
+  screenBottom(pos){
+    this.backgrounds[0].screenBottom(pos);
   }
 }

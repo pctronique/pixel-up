@@ -38,8 +38,3 @@ screenGame.addEventListener("scroll", function () {
     }
     lastScrollTop = st <= 0 ? 0 : st;
 }, false);
-
-
-
-
-
