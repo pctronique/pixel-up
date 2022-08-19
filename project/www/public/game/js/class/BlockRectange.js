@@ -69,7 +69,7 @@ class BlockRectange extends Pause {
     return this.pos;
   }
 
-  setImage(src) {
+  imageSrc(src) {
     this.img = src;
   }
 

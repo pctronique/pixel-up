@@ -11,11 +11,14 @@ feu.afficher();*/
 
 let feu = new PlateformeFeu(new Taille(1500, 170));
 feu.setPosition(new Position(0, 1350));
-feu.setImage("feu.png");
+//feu.imageSrc("feu.png");
 feu.setCanvasBackground("background");
 feu.afficher();
 
-
+let pierre = new PlateformePierre(new Taille(100, 150));
+pierre.setPosition(new Position(0, 150));
+pierre.setCanvasBackground("background");
+pierre.afficher();
 
 
 
