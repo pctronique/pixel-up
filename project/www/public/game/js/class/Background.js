@@ -9,7 +9,11 @@ class Background {
     this.plateformesCollision = [];
     this.screen_bottom = undefined;
     this.creerPlatforme();
-  }
+    this.imageSource = undefined;
+    }
+    imageSrc(src) {
+        this.imageSource = src;
+    }
 
   idSreenValue(idScreen) {
     this.idScreen = idScreen;
