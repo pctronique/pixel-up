@@ -9,6 +9,8 @@ bodyTable.querySelectorAll("tr").forEach(element => {
 
     element.insertCell(0);
 
+    // 3 Conditions pour afficher les trophées OR/SILVER/BRONZE, sinon afficher 4/5/6/7
+
     if( nombre == 1 ) {
 
         element.querySelector("td").innerHTML = "<iconify-icon icon='emojione-monotone:trophy' style='color: gold;'></iconify-icon>";
@@ -31,3 +33,16 @@ bodyTable.querySelectorAll("tr").forEach(element => {
 
     
 });
+
+
+// Afficher / Masquer les modal pour score perso / classement 
+
+function showBestScore() {
+    document.getElementById("bestScore").style.display = "block";
+    document.getElementById("ranked").style.display = "none";
+}
+
+function showRanked() {
+    document.getElementById("ranked").style.display = "block";
+    document.getElementById("bestScore").style.display = "none";
+}

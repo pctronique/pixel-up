@@ -4,8 +4,23 @@
 
 {% block body %}
 
+<div class="flex">
+    <button onclick="showBestScore()">Meilleur score</button>
+    <button onclick="showRanked()">Classement</button>
+</div>
 
-<section id="classement">
+<section id="bestScore">
+
+    <h1>Meilleur score</h1>
+    <figure>
+        <iconify-icon icon="emojione-v1:trophy" style="color: #ff8400; width="200" height="200""></iconify-icon>
+        <figcaption>
+            SCORE -- LIAISON BDD A FAIRE
+        </figcaption>
+    </figure>
+</section>
+
+<section id="ranked">
 
     <h1>Classement</h1>
 
@@ -34,4 +49,6 @@
     </table>
 
 </section>
+
+
 {% endblock %}

@@ -41,6 +41,10 @@ header{
     width: 20px;
 }
 
+.flex{
+  display: flex;
+}
+
 /* FLECHE ROUGE DECO */
 
 .btn {
@@ -193,7 +197,7 @@ header{
     margin : 35px 0;
 }
 
-input[type="submit"]{
+input[type="submit"], button{
     width: 50%;
     margin: 25px 100px !important;
     font-family: 'Silkscreen', cursive;
@@ -205,7 +209,7 @@ input[type="submit"]{
     box-shadow: -5px 5px 10px rgb(0 0 0 / 50%);
 }
 
-input[type="submit"]:hover{
+input[type="submit"]:hover, button:hover{
   transform: scale(1.05);
   box-shadow: -10px 15px 10px rgba(0, 0, 0, 0.5);
   
@@ -230,6 +234,26 @@ input[type="submit"]:hover{
 }
 
 /* SCORE / CLASSEMENT */
+
+#bestScore h1, #ranked h1{
+  margin: auto;
+  color: white;
+  width: fit-content;
+  margin-bottom: 50px;
+}
+
+#bestScore figure{
+  width: fit-content;
+  margin: auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bestScore figcaption{
+  margin-top: 50px;
+}
 
 .scoreMenu{
   display: flex;
@@ -269,4 +293,8 @@ tbody tr:nth-child(even) {
 
 #tbodyscore iconify-icon{
   font-size: 3em;
+}
+
+#ranked{
+  display: none;
 }
