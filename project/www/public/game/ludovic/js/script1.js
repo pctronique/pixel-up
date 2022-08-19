@@ -8,7 +8,7 @@ if (window.Worker) {
     let screenGame = document.getElementById("screenGame");
     screenGame.scrollTop = screenGame.scrollHeight;
 
-    //game.start();
+    game.start();
 
 } else {
     console.log("Your browser doesn't support web workers.");
