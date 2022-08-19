@@ -14,7 +14,8 @@ class Game {
 
   addBackground(tailleX, tailleY) {
     let background = new Background(this.idBackground, new Taille(tailleX, tailleY));
-    this.backgrounds.push(background);
+    background.creerPlatformeBottom();
+    this.backgrounds.push(background); 
   }
 
   createBackground() {
@@ -69,4 +70,7 @@ class Game {
       });
     }
 }
+  screenBottom(pos){
+    this.backgrounds[0].screenBottom(pos);
+  }
 }
