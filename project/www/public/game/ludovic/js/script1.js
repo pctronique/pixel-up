@@ -1,5 +1,5 @@
 if (window.Worker) {
-    let game = new Game();
+    let game = new Game("screenGame");
     game.setJoueur(350,948, 20,50);
     game.addBackground(700,1000);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");

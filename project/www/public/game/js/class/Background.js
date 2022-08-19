@@ -9,6 +9,7 @@ class Background {
         this.plateformes = [];
         this.plateformesCollision = [];
         this.screen_bottom = undefined;
+        this.creerPlatforme();
     }
 
     creerPlatforme() {
@@ -118,7 +119,6 @@ class Background {
     }
 
     afficher() {
-        this.creerPlatforme();
         let background = document.getElementById(this.idBackground);
         let ctx = background.getContext('2d');
         ctx.fillStyle = '#EBDEF0';
