@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion!{% endblock %}
+{% block title %} Connexion !{% endblock %}
 
 {% block body %}
 
 <form method="post" id="profilForm">
 
-<h1>Connecter-vous !</h1>
+<h1>Connectez-vous !</h1>
 
     {% if error %}
         <div class="flexForm">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -39,14 +39,14 @@
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+        See https://symfony.com/doc/current/security/remember_me.html#}
 
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" name="_remember_me"> Remember me
             </label>
         </div>
-    #}
+    
 
     
     <div class="flexForm"> 

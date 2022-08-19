@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Mon Profil !{% endblock %}
 
 {% block body %}
 
@@ -21,7 +21,7 @@
         </div>
 
         <ul id="menu">
-            <a href="#"><li>Modifier le profil</li></a>
+            <a href="{{ path('app_modif_profil') }}"><li>Modifier le profil</li></a>
             <a href="#"><li>Scores</li></a>
             <a href="#"><li>Succès</li></a>
         </ul>
