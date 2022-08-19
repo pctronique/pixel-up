@@ -276,10 +276,16 @@ input[type="submit"]:hover, button:hover{
   color: white;
 }
 
-#classement, #score, .table{
+#classement, #score, .table, #succes{
   margin: auto;
   text-align: center;
   color: white;
+  background: rgb(255,255,255,0.1);
+}
+
+#tbodySucces td, #tbodySucces tr{
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  border: none;
 }
 
 .table{
