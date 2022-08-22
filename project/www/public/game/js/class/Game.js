@@ -72,13 +72,22 @@ class Game {
 
   }
 
+  eventKey(keyPress) {
+    if (this.joueur != undefined) {
+      if(keyPress == " ") {
+        this.joueur.sauter();
+      }
+      this.joueur.choixMouvement(keyPress);
+    }
+  }
+
   start() {
       if (this.joueur != undefined) {
         document.body.addEventListener("keydown", (event) => {
           if(event.key == " ") {
             this.joueur.sauter();
           }
-          this.joueur.choixMouvement(event.key)
+          this.joueur.choixMouvement(event.key);
           //this.joueur.move(event.key);
         });
       }

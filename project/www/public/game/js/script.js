@@ -1,3 +1,5 @@
+let folderWorker = "./js/worker/";
+
 if (window.Worker) {
     /*let score = new Score("score");
     score.start();*/
@@ -33,6 +35,19 @@ if (window.Worker) {
             score.stop();
         }
     })*/
+    
+    document.querySelector('#button_up').addEventListener("click", function (e) {
+        console.log("0001");
+        game.eventKey(' ');
+    });
+    document.querySelector('#button_left').addEventListener("click", function (e) {
+        console.log("0002");
+        game.eventKey('ArrowLeft');
+    });
+    document.querySelector('#button_right').addEventListener("click", function (e) {
+        console.log("0003");
+        game.eventKey('ArrowRight');
+    });
 
 } else {
     console.log("Your browser doesn't support web workers.");
