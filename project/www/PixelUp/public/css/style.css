@@ -313,3 +313,9 @@ tbody tr:nth-child(even) {
 #ranked{
   display: none;
 }
+
+#search_score, #search_score_mots, #search_score_Rechercher, #ranked form{
+  text-align: center;
+  width: fit-content;
+  margin: 15px auto !important;
+}

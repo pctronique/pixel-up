@@ -32,6 +32,9 @@ when@prod:
             result_cache_driver:
                 type: pool
                 pool: doctrine.result_cache_pool
+            dql:
+                string_functions:
+                    MATCH_AGAINST: App\Extensions\Doctrine\MatchAgainst
 
     framework:
         cache:

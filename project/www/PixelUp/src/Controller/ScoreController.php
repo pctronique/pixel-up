@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Score;
 use App\Form\ScoreType;
+use App\Form\SearchScoreType;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,29 +16,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ScoreController extends AbstractController
 {
     #[Route('/', name: 'app_score_index', methods: ['GET'])]
-    public function index(ScoreRepository $scoreRepository, ScoreRepository $personnalScoreRepository, UserRepository $user ): Response
+    public function index(ScoreRepository $scoreRepository, UserRepository $user, Request $request ): Response
     {
+        $scores = $scoreRepository->getUserScore();
+        $form = $this->createForm(SearchScoreType::class);
+        $search = $form->handleRequest($request);
         $user = $this->getUser();
+
+        
+
+        
+
+        if($form->isSubmitted() && $form->isValid()){
+            // On recherche les scores correspondant au joueur
+            $scores = $scoreRepository->search($search->get('mots')->getData());
+        }
+
         return $this->render('pixel_up/score.html.twig', [
-            //'scores' => $scoreRepository->findBy([],['score' => 'DESC']),
-            'scores' => $scoreRepository->getUserScore(),
-            'personnalScores' => $personnalScoreRepository->getPersonnalScore($user)
+            'scores' => $scores,
+            'personnalScores' => $scoreRepository->getPersonnalScore($user),
+            'form' => $form->createView()
         ]);
     }
-
-    /*public function getUserScore($user)
-    {
-        $query = $this->createQueryBuilder('s')
-            ->innerJoin('s.user', 'u');
-        $query->andWhere('u = :user')
-            ->setParameter(':user', $user);
-        $query->orderBy('s.created_at')
-            ->setFirstResult(($page * $limit) - $limit)
-            ->setMaxResults($limit)
-        ;
-        $query->orderBy('p.created_at', 'DESC');
-        return $query->getQuery()->getResult();
-    }*/
 
 }
 

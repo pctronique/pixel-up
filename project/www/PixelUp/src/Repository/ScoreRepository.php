@@ -56,6 +56,18 @@ class ScoreRepository extends ServiceEntityRepository
         $query->orderBy('s.score', 'DESC');
         return $query->getQuery()->getResult();
     }
+
+    public function search($mots){
+
+        $query = $this->createQueryBuilder('u');
+        if($mots != null) {
+            $query->where('MATCH_AGAINST(u.username) AGAINST(:mots boolean)>0')
+            ->setParameter('mots', $mots);
+        }
+        return $query->getQuery()->getResult();
+
+    }
+
 //    /**
 //     * @return Score[] Returns an array of Score objects
 //     */
