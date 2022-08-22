@@ -8,6 +8,7 @@ class Background {
     this.plateformes = [];
     this.plateformesCollision = [];
     this.screen_bottom = undefined;
+    this.tenue = undefined;
     this.imageSource = undefined;
     this.pos = new Position(0, 0);
     this.widthBottom = 0;
@@ -18,6 +19,7 @@ class Background {
     this.creerPlatforme();
     this.creerPlatformeBottom(new Plateforme());
     this.creerPlatformeBottom(new PlateformeFeu());
+    //this.creerPlateformeTenue();
   }
   imageSrc(src) {
     this.imageSource = src;
@@ -37,7 +39,16 @@ class Background {
       this.screen_bottom.setBackground(this);
     }
   }
-
+  /*creerPlateformeTenue(){
+    let taille = new Taille(20, 20);
+    let pos = new Position(0, this.taille.y - taille.y);
+    this.tenue = new Tenue();
+    if(this.tenue != undefined) {
+      this.tenue.setTaille(taille);
+      this.tenue.setPosition(pos);
+      this.tenue.setBackground(this);
+    }
+  }*/
   creerPlatforme() {
     let defaultHauteur = 70;
     let startHauteur = defaultHauteur;
@@ -80,7 +91,7 @@ class Background {
     plateforme.setBackground(this);
     this.plateformes.push(plateforme);
   }
-
+  
   getTaille() {
     return this.taille;
   }
@@ -141,6 +152,10 @@ class Background {
       this.screen_bottom.setCanvasBackground(this.idBackground);
       this.screen_bottom.afficher();
     }
+   /* if (this.tenue != undefined) {
+      this.tenue.setCanvasBackground(this.idBackground);
+      this.tenue.afficher();
+    }*/
     if (this.joueur != undefined) {
       this.joueur.setCanvasBackground(this.idBackground);
       this.joueur.afficher();

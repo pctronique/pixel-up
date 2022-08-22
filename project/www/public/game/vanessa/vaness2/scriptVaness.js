@@ -21,7 +21,7 @@ ctx.fillRect(0, 0, 0, 20);
 
 let widthBottom = 0;
 
-var lastScrollTop = 0;
+/*var lastScrollTop = 0;
 screenGame.scrollTop = screenGame.scrollHeight;
 screenGame.addEventListener("scroll", function () {
     let st = -1 * ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
@@ -38,3 +38,4 @@ screenGame.addEventListener("scroll", function () {
     }
     lastScrollTop = st <= 0 ? 0 : st;
 }, false);
+*/
