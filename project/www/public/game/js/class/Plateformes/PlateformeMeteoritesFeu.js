@@ -5,6 +5,7 @@ class PlateformeMeteoritesFeu extends Plateforme{
 
     afficher(){
         //this.img;
+        this.imageSrc('./img/meteoriteFeu.png');
         let meteoritesFeu = new Images(this.img, this.pos, this.taille);
         meteoritesFeu.afficher(this.idBackground);
     }

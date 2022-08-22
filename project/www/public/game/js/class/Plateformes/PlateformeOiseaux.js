@@ -5,6 +5,7 @@ class PlateformeOiseaux extends Plateforme{
 
     afficher(){
         //this.img;
+        this.imageSrc('./img/oiseau.png');
         let oiseaux = new Images(this.img, this.pos, this.taille);
         oiseaux.afficher(this.idBackground);
     }
