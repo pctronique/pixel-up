@@ -1,5 +1,5 @@
 class Background {
-  constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
+  constructor(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
     this.taille = taille;
     this.imgBack = imgBack;
     this.imgBas = imgBas;
@@ -8,49 +8,42 @@ class Background {
     this.plateformes = [];
     this.plateformesCollision = [];
     this.screen_bottom = undefined;
-    this.creerPlatforme();
     this.imageSource = undefined;
-    this.pos = new Position(0,0);
+    this.pos = new Position(0, 0);
+    this.widthBottom = 0;
+    this.scrollMove = scrollMove;
+    if(this.scrollMove != undefined) {
+      this.scrollMove.setBackground(this);
     }
-    imageSrc(src) {
-        this.imageSource = src;
-    }
+    this.creerPlatforme();
+    this.creerPlatformeBottom(new Plateforme());
+    this.creerPlatformeBottom(new PlateformeFeu());
+  }
+  imageSrc(src) {
+    this.imageSource = src;
+  }
 
   idSreenValue(idScreen) {
     this.idScreen = idScreen;
   }
 
+  creerPlatformeBottom(screen_bottom) {
+    let taille = new Taille(0, 200);
+    let pos = new Position(0, this.taille.y - taille.y);
+    this.screen_bottom = screen_bottom;
+    if(this.screen_bottom != undefined) {
+      this.screen_bottom.setTaille(taille);
+      this.screen_bottom.setPosition(pos);
+      this.screen_bottom.setBackground(this);
+    }
+  }
+
   creerPlatforme() {
-    // let positions = [[0, 100, 200, 300, 400, 500, 600], [50, 150, 250, 350, 450, 550, 650]]
     let defaultHauteur = 70;
     let startHauteur = defaultHauteur;
-    // while(startHauteur < this.taille.y) {
-    //     positions.forEach(element => {
-    //         element.forEach(element2 => {
-    //             let taille = new Taille(50,10);
-    //             let pos = new Position(element2, this.taille.y-startHauteur);
-    //             let platforme = new Plateforme(taille);
-    //             platforme.setPosition(pos);
-    //             platforme.setBackground(this);
-    //             let posArete = platforme.getAreteRectangle();
-    //             this.plateformesCollision.push({
-    //                 id:this.plateformes.length,
-    //                 haut:posArete.haut(),
-    //                 bas:posArete.bas(),
-    //                 gauche:posArete.gauche(),
-    //                 droite:posArete.droite(),
-    //             });
-    //             this.plateformes.push(platforme);
-
-    //         });
-    //         startHauteur += defaultHauteur;
-    //     });
-    // }
-
     while (startHauteur < this.taille.y) {
       let nombreDeLignes = 0;
       let posPlateforme = 0;
-      //console.log("************");
       while (posPlateforme < this.taille.x) {
         let objRndPos = new RndPos(posPlateforme, 0);
         let taille = new Taille(50, 10);
@@ -63,10 +56,7 @@ class Background {
           posPlateforme += objRndPos.getX();
           posPlateforme += taille.getX();
         }
-
         let pos = new Position(posPlateforme, this.taille.y - startHauteur);
-
-        //console.log(posPlateforme);
         plateforme.setPosition(pos);
         plateforme.setBackground(this);
         let posArete = plateforme.getAreteRectangle();
@@ -77,15 +67,11 @@ class Background {
           gauche: posArete.gauche(),
           droite: posArete.droite(),
         });
-          this.plateformes.push(plateforme);
-          nombreDeLignes++;
+        this.plateformes.push(plateforme);
+        nombreDeLignes++;
       }
       startHauteur += defaultHauteur;
     }
-
-    // let objRndPos = new RndPos(0,0);
-    // objRndPos.minMax(1, 100);
-    // console.log(objRndPos.getX());
 
     let pos = new Position(0, this.taille.y - 1);
     let taille = new Taille(this.taille.x, 10);
@@ -105,7 +91,19 @@ class Background {
 
   deplacement() {}
 
-  screenBottom(posBas) {}
+  screenBottom(posBas) {
+    let posBasScroll = -1 * posBas;
+    this.widthBottom = 100 * (posBasScroll / 20);
+    if(Math.round(this.widthBottom) > this.taille.x) {
+      this.widthBottom = this.taille.x;
+    }
+    //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
+      let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
+      this.screen_bottom.setTaille(taille);
+    //}
+    let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y)+20);
+    this.screen_bottom.setPosition(pos);
+  }
 
   getPlateformes() {
     return this.plateformes;
@@ -113,6 +111,19 @@ class Background {
 
   getPlateformesCollision() {
     return this.plateformesCollision;
+  }
+
+  posPersonnage(pos, taille) {
+    if(this.scrollMove != undefined) {
+      /*console.log(this.scrollMove.calculMillieu());
+      console.log(pos);
+      console.log(taille);*/
+      if(pos.y < (this.taille.y-150)) {
+        console.log('#######################');
+        this.scrollMove.monter(((this.taille.y-pos.y)/(this.taille.y*2))*100);
+      }
+      //console.log(pos.y-pos.y/this.scrollMove.taillePixel());
+    }
   }
 
   afficher() {
@@ -126,6 +137,10 @@ class Background {
         element.afficher();
       }
     });
+    if (this.screen_bottom != undefined) {
+      this.screen_bottom.setCanvasBackground(this.idBackground);
+      this.screen_bottom.afficher();
+    }
     if (this.joueur != undefined) {
       this.joueur.setCanvasBackground(this.idBackground);
       this.joueur.afficher();
