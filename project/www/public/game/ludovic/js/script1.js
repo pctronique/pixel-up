@@ -1,8 +1,8 @@
 if (window.Worker) {
-    /*let score = new Score("score");
-    score.start();*/
+    let score = new Score("score");
+    score.start();
     let game = new Game("screenGame");
-    let backgroundTaille = new Taille(700, 2000);
+    let backgroundTaille = new Taille(1000, 5000);
     game.setJoueur(backgroundTaille.x/2,backgroundTaille.y-49, 47,48);
     game.addBackground(backgroundTaille.x,backgroundTaille.y);
     game.addBackground(backgroundTaille.x,backgroundTaille.y);
