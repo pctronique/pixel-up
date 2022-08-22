@@ -1,4 +1,7 @@
+let folderWorker = "./../js/worker/";
+
 if (window.Worker) {
+    
     let score = new Score("score");
     score.start();
     let game = new Game("screenGame");

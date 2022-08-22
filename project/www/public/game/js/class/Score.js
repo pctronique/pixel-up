@@ -18,8 +18,12 @@ class Score extends Pause {
     }
 
     start() {
+        let folderWorker0 = folderWorker;
+        if(folderWorker0 == undefined) {
+            folderWorker0 = "./js/worker/";
+        }
         this.isStop = false;
-        this.workerJoueurTomber = new Worker("./../js/worker/workerScore.js");
+        this.workerJoueurTomber = new Worker(folderWorker0+"workerScore.js");
         this.eventScore();
         this.workerJoueurTomber.postMessage(this.milliseconde);
     }

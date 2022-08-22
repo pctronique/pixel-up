@@ -35,3 +35,18 @@ body {
     margin-top:1980px;
     position: absolute;
 }
+#buttonMove button {
+    padding: 25px;
+    border-radius: 50px;
+}
+#buttonMove {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#button_left {
+    right: 0;
+}
+#button_right {
+    right: 0;
+}

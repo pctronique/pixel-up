@@ -1,5 +1,9 @@
 class MouvementJoueur {
   constructor(joueur) {
+    this.folderWorker0 = folderWorker;
+    if(this.folderWorker0 == undefined) {
+        this.folderWorker0 = "./js/worker/";
+    }
     this.joueur = joueur;
     this.workerJoueurSauter = undefined;
     this.workerJoueurTomber = undefined;
@@ -51,7 +55,7 @@ class MouvementJoueur {
   sauter() {
     if (!this.sauter0) {
       this.sauter0 = true;
-      this.workerJoueurSauter = new Worker("./../js/worker/workerJoueurSauter.js");
+      this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
       this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
     }
@@ -94,13 +98,11 @@ class MouvementJoueur {
   tomber() {
     if (!this.sauter0) {
       this.sauter0 = true;
-      this.workerJoueurTomber = new Worker("./../js/worker/workerJoueurTomber.js");
+      this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
       this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
     }
   }
-
-
 
   eventMove() {
     let classJoueur = this;
@@ -120,13 +122,6 @@ class MouvementJoueur {
         }*/
     });
   }
-
-  move(eventKey) {
-    if (eventKey == "ArrowRight" || eventKey == "ArrowLeft") {
-      this.workerJoueurMove.postMessage([this.joueur.mouvement(eventKey), this.joueur.pos.x]);
-    }
-  }
-
   startWorker() {
     if (this.joueur.background != undefined) {
         this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
@@ -144,6 +139,13 @@ class MouvementJoueur {
       }
     });
   }
+
+  move(eventKey) {
+    if (eventKey == "ArrowRight" || eventKey == "ArrowLeft") {
+      this.workerJoueurMove.postMessage([this.joueur.mouvement(eventKey), this.joueur.pos.x]);
+    }
+  }
+
 
   mouvement(enumMouvement) {
     let mouvem = "";
