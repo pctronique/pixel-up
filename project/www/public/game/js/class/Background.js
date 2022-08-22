@@ -38,28 +38,34 @@ class Background {
     }
   }
 
+  /**
+   * creation et placement des plateformes position x et y en aleatoire (lien avec la class RndPos.js) avec definition ecart de la hauteur entre plateformes y et definition largeur espacement des plateformes x entre elle.
+   */
   creerPlatforme() {
-    let defaultHauteur = 70;
+    let defaultHauteur = 70; //hauteur espacement initiale interligne y entre 2 plateformes 
     let startHauteur = defaultHauteur;
     while (startHauteur < this.taille.y) {
       let nombreDeLignes = 0;
       let posPlateforme = 0;
       while (posPlateforme < this.taille.x) {
-        let objRndPos = new RndPos(posPlateforme, 0);
+        let objRndPos = new RndPos(posPlateforme, 0); //creation aleatoire position de la nouvelle platemeforme en x
         let taille = new Taille(50, 10);
         let plateforme = new Plateforme(taille);
         if (nombreDeLignes == 0) {
-          objRndPos.minMax(2, 52);
+          objRndPos.minMaxX(2, 52);
           posPlateforme += objRndPos.getX();
         } else {
-          objRndPos.minMax(70, 102);
+          objRndPos.minMaxX(70, 102);
           posPlateforme += objRndPos.getX();
           posPlateforme += taille.getX();
         }
-        let pos = new Position(posPlateforme, this.taille.y - startHauteur);
+
+        objRndPos.minMaxY(10, 70); // position y en aleatoire
+        let posPlateformeY = objRndPos.getY();
+        let pos = new Position(posPlateforme, this.taille.y - (startHauteur + posPlateformeY));
         plateforme.setPosition(pos);
         plateforme.setBackground(this);
-        let posArete = plateforme.getAreteRectangle();
+        let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
         this.plateformesCollision.push({
           id: this.plateformes.length,
           haut: posArete.haut(),
