@@ -47,6 +47,15 @@ class ScoreRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function getPersonnalScore($user){
+        $query = $this->createQueryBuilder('s')
+        ->select('s.score','u.username')
+        ->innerJoin('s.user', 'u')
+        ->where('u = :user')
+        ->setParameter(':user', $user);
+        $query->orderBy('s.score', 'DESC');
+        return $query->getQuery()->getResult();
+    }
 //    /**
 //     * @return Score[] Returns an array of Score objects
 //     */
