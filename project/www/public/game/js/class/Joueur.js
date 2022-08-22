@@ -3,11 +3,14 @@ class Joueur extends Personnage {
     super(taille);
     this.mouvementJoueur = new MouvementJoueur(this);
     this.imageSrc('img/personnage-1.png');
+    this.couleur = "#24AE1D";
   }
   
   coucou() {}
 
-  changementTenue() {}
+  changementTenue(couleur) {
+    this.couleur = couleur;
+  }
 
   sauter() {
     this.mouvementJoueur.sauter();
@@ -28,15 +31,15 @@ class Joueur extends Personnage {
   afficher() {
     let background = document.getElementById(this.idBackground);
     let ctx = background.getContext("2d");
-    ctx.fillStyle = "#24AE1D";
-    ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, 1);
+    ctx.fillStyle = this.couleur;
+    ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
 
 
-    this.imageSrc('img/personnage-1.png');
+    /*this.imageSrc('img/personnage-1.png');
     let feu = new Images(this.img, this.pos, this.taille);
     feu.select(1);
     feu.colorTransparance("#ffffff");
-    feu.afficher(this.idBackground);
+    feu.afficher(this.idBackground);*/
   }
 
   collisionHaut() {
