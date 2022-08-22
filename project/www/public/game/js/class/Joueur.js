@@ -2,6 +2,7 @@ class Joueur extends Personnage {
   constructor(taille = undefined) {
     super(taille);
     this.mouvementJoueur = new MouvementJoueur(this);
+    this.imageSrc('img/personnage-1.png');
   }
   
   coucou() {}
@@ -28,7 +29,14 @@ class Joueur extends Personnage {
     let background = document.getElementById(this.idBackground);
     let ctx = background.getContext("2d");
     ctx.fillStyle = "#24AE1D";
-    ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
+    ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, 1);
+
+
+    this.imageSrc('img/personnage-1.png');
+    let feu = new Images(this.img, this.pos, this.taille);
+    feu.select(1);
+    feu.colorTransparance("#ffffff");
+    feu.afficher(this.idBackground);
   }
 
   collisionHaut() {
@@ -46,4 +54,5 @@ class Joueur extends Personnage {
   choixMouvement(eventKey) {
     this.mouvementJoueur.choixMouvement(eventKey);
   }
+
 }

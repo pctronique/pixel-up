@@ -66,7 +66,11 @@ class BlockRectange extends Pause {
   }
 
   getTaille() {
-    return this.pos;
+    return this.taille;
+  }
+  
+  setTaille(taille){
+      this.taille = taille;
   }
 
   imageSrc(src) {
