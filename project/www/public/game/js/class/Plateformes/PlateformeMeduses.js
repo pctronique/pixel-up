@@ -1,6 +1,6 @@
 class PlateformeMeduses extends Plateforme{
     constructor(taille = undefined, collisionHautStable = true) {
-        super(taille);
+        super(taille, collisionHautStable);
     }
 
     afficher(){
