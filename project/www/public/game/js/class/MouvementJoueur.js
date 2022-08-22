@@ -3,13 +3,16 @@ class MouvementJoueur {
     this.joueur = joueur;
     this.workerJoueurSauter = undefined;
     this.workerJoueurTomber = undefined;
-    this.idPosX = undefined;
-    this.idPosY = undefined;
     this.sauter0 = false;
   }
 
   finSauter() {
     this.sauter0 = false;
+    if(this.workerJoueurSauter != undefined) {
+      this.workerJoueurSauter.terminate();
+      this.workerJoueurSauter = undefined;
+    }
+    this.joueur.posBackground();
   }
 
   eventSauter() {
@@ -20,17 +23,13 @@ class MouvementJoueur {
     let sauter0 = this.sauter0;
     this.workerJoueurSauter.onmessage = function (e) {
       if (sauter) {
-        if (document.getElementById(idPosY) != undefined) {
-          document.getElementById(idPosY).value = e.data[0];
-          document.getElementById(idPosY).dispatchEvent(new Event("change"));
-        }
         classJoueur.setPositionY(e.data[0]);
         if (classJoueur.background != undefined) {
           classJoueur.background.afficher();
         }
         let enumCollision = classJoueur.getEnumCollision();
         if (enumCollision[0] != EnumCollision.NULL && e.data[1]) {
-          console.log(enumCollision[0]);
+          //console.log(enumCollision[0]);
           if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
             sauter = false;
             sauter0 = false;
@@ -40,11 +39,11 @@ class MouvementJoueur {
       }
       if (sauter0) {
         sauter0 = e.data[2];
-      }
-      if (!sauter0 && this.workerJoueurSauter != undefined) {
-        classMovJoueur.finSauter();
-        this.workerJoueurSauter.terminate();
-        this.workerJoueurSauter = undefined;
+        sauter = e.data[2];
+        //console.log(sauter0);
+        if (!sauter0) {
+          classMovJoueur.finSauter();
+        }
       }
     };
   }
@@ -66,17 +65,13 @@ class MouvementJoueur {
     let sauter0 = this.sauter0;
     this.workerJoueurTomber.onmessage = function (e) {
       if (sauter) {
-        if (document.getElementById(idPosY) != undefined) {
-          document.getElementById(idPosY).value = e.data[0];
-          document.getElementById(idPosY).dispatchEvent(new Event("change"));
-        }
         classJoueur.setPositionY(e.data[0]);
         if (classJoueur.background != undefined) {
           classJoueur.background.afficher();
         }
         let enumCollision = classJoueur.getEnumCollision();
         if (enumCollision[0] != EnumCollision.NULL && e.data[1]) {
-          console.log(enumCollision[0]);
+          //console.log(enumCollision[0]);
           if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
             sauter = false;
             sauter0 = false;
@@ -91,6 +86,7 @@ class MouvementJoueur {
         classMovJoueur.finSauter();
         this.workerJoueurSauter.terminate();
         this.workerJoueurSauter = undefined;
+        classJoueur.posBackground();
       }
     };
   }
@@ -253,9 +249,9 @@ class MouvementJoueur {
             this.joueur.background.afficher();
         }
         let enumCollision = this.joueur.getEnumCollision();
-        console.log(enumCollision[0]);
+        //console.log(enumCollision[0]);
         if (enumCollision[0] == EnumCollision.NULL) {
-            console.log("0024");
+            //console.log("0024");
             this.tomber(); 
           //break;
         }
@@ -269,9 +265,9 @@ class MouvementJoueur {
             this.joueur.background.afficher();
         }
         let enumCollision = this.joueur.getEnumCollision();
-        console.log(enumCollision[0]);
+        //console.log(enumCollision[0]);
         if (enumCollision[0] == EnumCollision.NULL) {
-            console.log("0025");
+            //console.log("0025");
             this.tomber();
           //break;
         }

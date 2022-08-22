@@ -1,3 +1,7 @@
+let hauteurSaut = 200;
+
+
+
 onmessage = function (e) {
   let y = e.data[0];
   for (let index = 0; index < 200; index+=1) {

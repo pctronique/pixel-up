@@ -23,6 +23,12 @@ class Personnage extends BlockRectange // implements InterfaceGravite
         return [EnumCollision.NULL, undefined];
     }
 
+    posBackground() {
+        if(this.background != undefined) {
+            this.background.posPersonnage(this.pos, this.taille);
+        }
+    }
+
     mourir() {
 
     }

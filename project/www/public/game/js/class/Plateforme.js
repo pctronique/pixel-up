@@ -22,7 +22,4 @@ class Plateforme extends BlockRectange {
         }
         return EnumAction.NULL;
     }
-    setTaille(taille){
-        this.taille = taille;
-    }
 }
