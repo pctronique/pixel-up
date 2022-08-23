@@ -1,3 +1,5 @@
+let folderWorker = "./js/worker/";
+
 if (window.Worker) {
     /*let score = new Score("score");
     score.start();*/
@@ -7,7 +9,7 @@ if (window.Worker) {
     game.addBackground(backgroundTaille.x,backgroundTaille.y);
     game.addBackground(backgroundTaille.x,backgroundTaille.y);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
-    game.afficher();
+    //game.afficher();
 
     let screenGame = document.getElementById("screenGame");
     screenGame.scrollTop = screenGame.scrollHeight;
@@ -21,7 +23,7 @@ if (window.Worker) {
         let st = -1 * (game.backgrounds[0].scrollMove.placeBas()/game.backgrounds[0].scrollMove.taillePixel());
         console.log(calcul4);
          game.screenBottom(st);
-         game.afficher();
+         //game.afficher();
          let scrollHaut = game.backgrounds[0].scrollMove.changeBackground();
          if (screenGame.scrollTop < scrollHaut) {
             game.addBackground(backgroundTaille.x,backgroundTaille.y);
@@ -33,6 +35,16 @@ if (window.Worker) {
             score.stop();
         }
     })*/
+    
+    document.querySelector('#button_up').addEventListener("click", function (e) {
+        game.eventKey(' ');
+    });
+    document.querySelector('#button_left').addEventListener("click", function (e) {
+        game.eventKey('ArrowLeft');
+    });
+    document.querySelector('#button_right').addEventListener("click", function (e) {
+        game.eventKey('ArrowRight');
+    });
 
 } else {
     console.log("Your browser doesn't support web workers.");

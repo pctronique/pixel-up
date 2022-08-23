@@ -3,11 +3,11 @@ class PlateformeMobileRequin extends Plateforme{
         super(taille);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
         this.imageSrc('./img/requin.png');
         let requin = new Images(this.img, this.pos, this.taille);
-        requin.afficher(this.idBackground);
+        requin.afficher(canvas);
     }
    
 }

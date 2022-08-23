@@ -7,10 +7,11 @@ class BackgroundCielNuages extends Background {
         
     }
 
-    afficher() {
+    imgBackDisplay(canvas) {
         this.imageSrc("./img/cielNuage.png");
         let cielNuages = new Images(this.imageSource, this.pos, this.taille);
-        cielNuages.afficher(this.idBackground);
+        cielNuages.setBackground(this);
+        cielNuages.afficher(canvas);
     }
 
 

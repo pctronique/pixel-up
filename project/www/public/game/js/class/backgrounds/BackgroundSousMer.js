@@ -7,10 +7,11 @@ class BackgroundSousMer extends Background {
         
     }
 
-    afficher() {
+    imgBackDisplay(canvas) {
         this.imageSrc("./img/mer5.png");
         let sousMer = new Images(this.imageSource, this.pos, this.taille);
-        sousMer.afficher(this.idBackground);
+        sousMer.setBackground(this);
+        sousMer.afficher(canvas);
     }
 
 

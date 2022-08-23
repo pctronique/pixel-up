@@ -3,7 +3,7 @@ if (window.Worker) {
     game.setJoueur(350,948, 20,50);
     game.addBackground(700,1000);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
-    game.afficher();
+    //game.afficher();
 
     let screenGame = document.getElementById("screenGame");
     screenGame.scrollTop = screenGame.scrollHeight;
@@ -30,7 +30,7 @@ if (window.Worker) {
         }
         lastScrollTop = st <= 0 ? 0 : st;*/
         game.screenBottom(st);
-        game.afficher();
+        //game.afficher();
     }, false);
 } else {
     console.log("Your browser doesn't support web workers.");

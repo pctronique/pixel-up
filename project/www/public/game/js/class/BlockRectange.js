@@ -77,5 +77,5 @@ class BlockRectange extends Pause {
     this.img = src;
   }
 
-  afficher() {}
+  afficher(canvas) {}
 }

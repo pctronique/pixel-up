@@ -3,10 +3,11 @@ class PlateformeOiseaux extends Plateforme{
         super(taille, collisionHautStable);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
+        this.imageSrc('./img/oiseau.png');
         let oiseaux = new Images(this.img, this.pos, this.taille);
-        oiseaux.afficher(this.idBackground);
+        oiseaux.afficher(canvas);
     }
    
 }

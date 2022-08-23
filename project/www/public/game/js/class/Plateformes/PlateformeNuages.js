@@ -3,10 +3,11 @@ class PlateformeNuages extends Plateforme{
         super(taille, collisionHautStable);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
+        this.imageSrc('./img/nuage3.png');
         let nuages = new Images(this.img, this.pos, this.taille);
-        nuages.afficher(this.idBackground);
+        nuages.afficher(canvas);
     }
    
 }

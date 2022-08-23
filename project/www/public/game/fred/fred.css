@@ -1,7 +1,7 @@
 #screenGame{
     display: flex;
     flex-direction: column;
-    max-width: 700px;
+    max-width: 5000px;
     max-height: 500px;
     overflow-x: hidden;
     overflow-y: auto;

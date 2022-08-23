@@ -24,7 +24,7 @@ class Game {
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = new Background(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    let background = new TestBackgroundPlanete(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
@@ -72,16 +72,36 @@ class Game {
 
   }
 
+  eventKey(keyPress) {
+    if (this.joueur != undefined) {
+      if(keyPress == " ") {
+        this.joueur.sauter();
+      }
+      this.joueur.choixMouvement(keyPress);
+    }
+  }
+
   start() {
       if (this.joueur != undefined) {
         document.body.addEventListener("keydown", (event) => {
           if(event.key == " ") {
             this.joueur.sauter();
           }
-          this.joueur.choixMouvement(event.key)
+          this.joueur.choixMouvement(event.key);
           //this.joueur.move(event.key);
         });
       }
+
+      let folderWorker0 = folderWorker;
+      if(folderWorker0 == undefined) {
+          folderWorker0 = "./js/worker/";
+      }
+      let workerGame = new Worker(folderWorker0+"workerScore.js");
+      let classGame = this;
+      workerGame.onmessage = function (e) {
+        classGame.afficher();
+      }
+      workerGame.postMessage(40);
   }
 
   startDev() {

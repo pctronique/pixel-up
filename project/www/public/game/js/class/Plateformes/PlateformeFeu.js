@@ -3,13 +3,13 @@ class PlateformeFeu extends Plateforme{
         super(taille, collisionHautStable);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
 
         this.imageSrc('./img/flamme.png');
 
         let feu = new Images(this.img, this.pos, this.taille);
-        feu.afficher(this.idBackground);
+        feu.afficher(canvas);
     }
    
 }

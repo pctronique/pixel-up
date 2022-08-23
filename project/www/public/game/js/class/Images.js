@@ -10,14 +10,17 @@ class Images {
         this.isGif = false;
         this.isCut = false;
         this.color = undefined;
+        this.background = undefined;
+    }
+    setBackground(background) {
+        this.background = background;
     }
     typeGif() {
         this.isGif = true;
     }
-    afficher(idBackground) {
-        let monCanvas = document.getElementById(idBackground);
+    afficher(canvas) {
         //if (monCanvas.getContext) {
-        let ctx = monCanvas.getContext('2d');
+        let ctx = canvas.getContext('2d');
         /* nouvelle image */
         let img = new Image();
         /* définition de la source */
@@ -27,13 +30,15 @@ class Images {
         let classImgs = this;
         
         img.onload = function () {
-            //let img2 = classImgs.transpImg(ctx).data;
             if(classImgs.isCut) {
                 classImgs.selectImag(img.width, img.height, img, ctx);
             } else {
                 classImgs.uneImage(img, ctx);
             }
             classImgs.transpImg(ctx);
+            if(classImgs.background != undefined) {
+                classImgs.background.afficherContenue();
+            }
         }
 
     }

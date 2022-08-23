@@ -3,10 +3,11 @@ class PlateformeHelicopteres extends Plateforme{
         super(taille, collisionHautStable);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
+        this.imageSrc('./img/helicoptere.png');
         let helicopteres = new Images(this.img, this.pos, this.taille);
-        helicopteres.afficher(this.idBackground);
+        helicopteres.afficher(canvas);
     }
    
 }
