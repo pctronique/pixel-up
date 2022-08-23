@@ -1,27 +1,22 @@
-  <form id="profilForm" >
 
-    {{ form_start(registrationForm) }} 
+    class UserController extends AbstractController
+{
+    #[Route('/modif_profil', name: 'app_modif_profil', methods: ['GET'])]
+    public function index(UserRepository $userRepository): Response
+    {
+        return $this->render('pixel_up/updateProfil.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
 
-    <h1>Inscription</h1>
-
- 
-
-       <div class="flexForm" >  {{ form_row(registrationForm.username) }} </div>
-
-            <label for="Mot de passe">{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe :'}) }}</label>
-
-            
-         <div class="flexForm">   
+    <label for="pseudo">&nbsp;Utilisateur:</label>
+        <div class="flexForm">
             <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+            <input type="text" id="pseudo" name="pseudo" autocomplete="off" value="{{ user.username }}" />
         </div>
-
-        {{ form_row(registrationForm.Conditions) }}
-
-
         
-
-        <div class="flexForm">  
-            <button type="submit" class="btn">S'inscrire</button>
+        <label for="password"> Mot de passe&nbsp;:</label>
+        <div class="flexForm">
+            <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+            <input type="password" id="password" name="password" autocomplete="new-password"  value="{{ user.password }}"/>
         </div>
-    
-    </form {{ form_end(registrationForm) }}>

@@ -4,6 +4,8 @@
 
 {% block body %}
 
+
+{{dump()}}
     <div id ="pacman">
         
         <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
@@ -21,12 +23,14 @@
         </div>
 
         <ul id="menu">
+
+       
             
             <a href="#"><li>Lancer la partie</li></a>
             {% if app.user %}
                 
-                <a href="{{ path('app_score') }}"><li>Score / Classement</li></a>
-                <a href="{{ path('app_profil') }}"><li>Profil</li></a>
+                <a href=""><li>Score / Classement</li></a>
+                <a href="{{ path('app_profil') }}"><li>Profil de {{app.user.username}} </li></a>
                 <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
             {% else %}
                 <a href="{{ path('app_score') }}"><li>Classement</li></a>
@@ -36,5 +40,6 @@
         
 
     </section>
+    
 
 {% endblock %}

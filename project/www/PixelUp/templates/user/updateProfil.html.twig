@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil !{% endblock %}
+
+{% block body %}
+{{ dump() }}
+
+{{ form_start(form) }}
+ <div id="profilForm"> 
+    
+        <div class="flexForm">
+            <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+            {{ form_widget(form) }}
+            
+            
+        </div>
+
+        <div class="flexForm">
+           
+            
+            <button class="btn">{{ button_label|default('Modifier') }}</button>    
+                  
+        </div>
+
+      <div class="flexForm">
+            
+         
+
+    </div>
+
+
+</div>        
+{{ form_end(form) }}        
+        
+
+
+
+        
+
+
+
+   
+           
+           
+
+             
+  
+       
+
+
+{% endblock %}

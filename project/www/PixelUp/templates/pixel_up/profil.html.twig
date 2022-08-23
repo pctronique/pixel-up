@@ -4,10 +4,10 @@
 
 {% block body %}
 
-
+{{dump()}}
     <div id ="pacman">
         
-        <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
+      <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
         <div></div>
         <div></div>
         <div></div>
@@ -17,15 +17,21 @@
     <section>
     
         <div class="btn">
-            <div class="arrow"></div>
+              
+            <div class="arrow"><p>Hub de {{app.user.username}}<p></div>
         </div>
 
         <ul id="menu">
-            <a href="{{ path('app_modif_profil') }}"><li>Modifier le profil</li></a>
+            
             <a href="#"><li>Scores</li></a>
             <a href="#"><li>Succès</li></a>
+            <a href="">Modifier</a>
         </ul>
-        
-    </section>
 
+    
+            <a href="#"><li>Scores</li></a>
+            <a href="#"><li>Succès</li></a>
+
+        
+        </section>
 {% endblock %}
