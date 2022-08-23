@@ -24,7 +24,7 @@ class Game {
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = new TestBackgroundPlanete(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    let background = new Background(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
