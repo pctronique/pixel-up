@@ -1,8 +1,8 @@
 let folderWorker = "./js/worker/";
 
 if (window.Worker) {
-    /*let score = new Score("score");
-    score.start();*/
+    let score = new Score("score");
+    score.start();
     let game = new Game("screenGame");
     let backgroundTaille = new Taille(1000, 5000);
     game.setJoueur(backgroundTaille.x/2,backgroundTaille.y-49, 47,48);
