@@ -15,7 +15,7 @@ class BackgroundTerre extends Background {
     }
 
     choixPlateforme(taille){
-        return new PlateformeNacelle(taille);
+        return new PlateformeNacelles(taille);
     }
 
 

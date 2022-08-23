@@ -15,7 +15,7 @@ class BackgroundEspaceAsteroide extends Background {
     }
 
     choixPlateforme(taille){
-        return new PlateformeAsteroide(taille);
+        return new PlateformeMobileAsteroide(taille);
     }
 
 

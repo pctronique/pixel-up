@@ -20,10 +20,10 @@ class BackgroundSousMer extends Background {
         let random = Math.floor(Math.random() * (max - min)) + min; 
         console.log(random);
         if(random == 1){
-            return new PlateformePoisson(taille);
+            return new PlateformeMobilePoisson(taille);
         }
         else if (random == 2){
-            return new PlateformeRequin(taille);
+            return new PlateformeMobileRequin(taille);
         }
    
     }
