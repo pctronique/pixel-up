@@ -1,3 +1,5 @@
+let folderWorker = "./../js/worker/";
+
 //déclaration des variables que l'on a besoin
 let screenGame = document.getElementById("screenGame");
 let ajouter = document.getElementById("ajouter");
