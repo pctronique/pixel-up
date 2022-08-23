@@ -1,3 +1,5 @@
+let folderWorker = "./../js/worker/";
+
 if (window.Worker) {
     /*let score = new Score("score");
     score.start();*/
@@ -39,11 +41,11 @@ if (window.Worker) {
 }
 
 
-const audioContext = new AudioContext();
+/*const audioContext = new AudioContext();
 const element = document.querySelector(audio);
 const source = audioContext.createMediaElementSource(element);
 source.connect(audioContext.destination)
-audio.play();
+audio.play();*/
 /*var foo=new Sound("son/man-is-he-mega-glbml-22045.mp3",100,true);
 foo.start();
 foo.stop();

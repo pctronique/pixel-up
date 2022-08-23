@@ -1,3 +1,5 @@
+let folderWorker = "./../js/worker/";
+
 if (window.Worker) {
     let game = new Game();
     game.setJoueur(350,948, 20,50);
