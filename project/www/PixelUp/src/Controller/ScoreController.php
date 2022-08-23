@@ -26,10 +26,13 @@ class ScoreController extends AbstractController
 
         
 
-        if($form->isSubmitted() && $form->isValid()){
+        if(empty($search->get('mots'))) {
+            $scores = $ScoreService->getPaginatedScores();
+            echo"<h1> TEST OK </h1>";
+        }else if($form->isSubmitted() && $form->isValid()){
             // On recherche les scores correspondant au joueur
             $scores = $scoreRepository->search($search->get('mots')->getData());
-        }
+        } 
 
         return $this->render('pixel_up/score.html.twig', [
             'scores' => $scores,

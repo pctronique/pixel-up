@@ -5,8 +5,10 @@
 {% block body %}
 
 <div class="flex">
-    <button onclick="showBestScore()">Meilleur score</button>
+     
     <button onclick="showRanked()">Classement</button>
+    <button onclick="showBestScore()">Meilleur score</button>
+    
 </div>
 
 <section id="bestScore">
@@ -59,9 +61,14 @@
         {% endfor %}
         </tbody>
     </table>
-    
+
+                {% if 'mots' in app.request.uri %}
+
+                {% else %}
 
                 {{ knp_pagination_render(scores) }}
+
+                {% endif %}
 
 </section>
 

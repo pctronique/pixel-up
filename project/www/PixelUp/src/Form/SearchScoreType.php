@@ -16,6 +16,7 @@ class SearchScoreType extends AbstractType
         $builder
             ->add('mots', SearchType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Identifiant du joueur',
                 ]
