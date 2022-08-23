@@ -74,7 +74,7 @@ class MouvementJoueur {
       this.sauter0 = true;
       this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
-      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 200, 20]);
+      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 200, 5]);
     }
   }
   
@@ -88,16 +88,16 @@ class MouvementJoueur {
       if (tomber) {
         classJoueur.setPositionY(e.data[0]);
         if (classMovJoueur.collisionAction() != EnumAction.NULL) {
-          tomber = true;
+          tomber = false;
         }
       }
       console.log(tomber);
-      if (!tomber) {
+      if (tomber) {
         tomber = e.data[1];
       }
-      if (tomber) {
+      if (!tomber) {
       //if (!this.tomber0 && !sauter0 && this.workerJoueurSauter != undefined) {
-        classMovJoueur.finSauter();
+        classMovJoueur.finTomber();
       }
     };
   }
@@ -107,7 +107,7 @@ class MouvementJoueur {
       this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
-      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 20]);;
+      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 5]);;
     }
   }
 
@@ -245,7 +245,7 @@ class MouvementJoueur {
 
   choixMouvement(eventKey) {
     // private
-    if(!this.tomber0 && !this.sauter0 && !this.move0) {
+    
       if (this.joueur.background != undefined) {
           this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
           this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
@@ -257,8 +257,10 @@ class MouvementJoueur {
         for (let index = 0; index < 10; index++) {
           let pos = new Position(x + index, y);
           this.joueur.setPosition(pos);
-          if (this.collisionAction() == EnumAction.NULL) {
-              this.tomber(); 
+          if(!this.tomber0) {
+            if (this.collisionAction() == EnumAction.NULL) {
+                this.tomber(); 
+            }
           }
         }
       } else if (eventKey == "ArrowLeft") {
@@ -266,11 +268,12 @@ class MouvementJoueur {
         for (let index = 0; index < 10; index++) {
           let pos = new Position(x - index, y);
           this.joueur.setPosition(pos);
-          if (this.collisionAction() == EnumAction.NULL) {
-              this.tomber();
+          if(!this.tomber0) {
+            if (this.collisionAction() == EnumAction.NULL) {
+                this.tomber();
+            }
           }
         }
       }
-    }
   }
 }

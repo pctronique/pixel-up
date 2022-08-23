@@ -6,9 +6,9 @@ function sauter() {
   y += 1;
   count++;
   if(count == hauteurTomber) {
-    postMessage([y, true]);
-  } else {
     postMessage([y, false]);
+  } else {
+    postMessage([y, true]);
   }
 }
 
