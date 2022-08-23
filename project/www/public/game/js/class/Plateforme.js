@@ -21,6 +21,6 @@ class Plateforme extends BlockRectange {
         }
         return EnumAction.NULL;
     }
-
+    
     
 }
