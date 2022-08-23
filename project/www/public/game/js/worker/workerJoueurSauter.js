@@ -6,11 +6,10 @@ function sauter() {
   y -= 1;
   count++;
   if(count == hauteurSaut) {
-    postMessage([y, false, false]);
+    postMessage([y, true]);
   } else {
-    postMessage([y, false, true]);
+    postMessage([y, false]);
   }
-  
 }
 
 onmessage = function (e) {

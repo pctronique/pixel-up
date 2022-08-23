@@ -1,17 +1,19 @@
-let chute = false;
+let hauteurTomber = 200;
+let y = 0;
+let count = 0;
 
-function tomber() {
-  postMessage(true);
+function sauter() {
+  y += 1;
+  count++;
+  if(count == hauteurTomber) {
+    postMessage([y, true]);
+  } else {
+    postMessage([y, false]);
+  }
 }
 
 onmessage = function (e) {
-
-    let number = 0;
-    let y = e.data[0];
-    while (number < e.data[1]) {
-      y += 1;
-      postMessage([y, true, true]); 
-      number+=1;
-    }
-    postMessage([y, false, false]);
-  };
+  y = e.data[0];
+  hauteurTomber = e.data[2];
+  setInterval(function () {sauter()}, e.data[3]);
+};

@@ -19,6 +19,17 @@ class MouvementJoueur {
       this.workerJoueurSauter = undefined;
     }
     this.joueur.posBackground();
+    this.tomber();
+  }
+
+  finTomber() {
+    console.log("fin de tomber");
+    this.tomber0 = false;
+    if(this.workerJoueurTomber != undefined) {
+      this.workerJoueurTomber.terminate();
+      this.workerJoueurTomber = undefined;
+    }
+    this.joueur.posBackground();
   }
 
   eventSauter() {
@@ -36,13 +47,9 @@ class MouvementJoueur {
             classMovJoueur.finSauter();
         }
       }*/
-      if (sauter0) {
-        sauter0 = e.data[2];
-        sauter = e.data[2];
-        //console.log(sauter0);
-        if (!sauter0) {
-          classMovJoueur.finSauter();
-        }
+      sauter = e.data[1];
+      if (sauter) {
+        classMovJoueur.finSauter();
       }
     };
   }
@@ -75,25 +82,22 @@ class MouvementJoueur {
     let classJoueur = this.joueur;
     let classMovJoueur = this;
     let idPosY = this.joueur.idPosY;
-    let sauter = true;
+    let tomber = true;
     let sauter0 = this.sauter0;
     this.workerJoueurTomber.onmessage = function (e) {
-      if (sauter) {
+      if (tomber) {
         classJoueur.setPositionY(e.data[0]);
         if (classMovJoueur.collisionAction() != EnumAction.NULL) {
-            sauter = false;
-            sauter0 = false;
-            classMovJoueur.finSauter();
+          tomber = true;
         }
       }
-      if (sauter0) {
-        sauter0 = e.data[2];
+      console.log(tomber);
+      if (!tomber) {
+        tomber = e.data[1];
       }
-      if (!this.tomber0 && !sauter0 && this.workerJoueurSauter != undefined) {
+      if (tomber) {
+      //if (!this.tomber0 && !sauter0 && this.workerJoueurSauter != undefined) {
         classMovJoueur.finSauter();
-        this.workerJoueurSauter.terminate();
-        this.workerJoueurSauter = undefined;
-        classJoueur.posBackground();
       }
     };
   }
@@ -103,7 +107,7 @@ class MouvementJoueur {
       this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
-      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
+      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 20]);;
     }
   }
 
