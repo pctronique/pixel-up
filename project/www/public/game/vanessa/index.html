@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,16 @@
     <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
 </head>
+
 <body>
-    <audio src='son/man-is-he-mega-glbml-22045.mp3'></audio>
+    <div>
+        <audio id="audio">
+            <source src="son/man-is-he-mega-glbml-22045.mp3" type="audio/mp3">
+        </audio>
+        <button onclick="playPause(event)">Play</button>
+        <button onclick="stop(event)">Stop</button>
+    </div>
+
     <div id="game">
         <div id="joueur">
             <input type="hidden" id="joueur-pos-x" value="0" />
@@ -18,56 +27,28 @@
         <div id="screenGame">
         </div>
     </div>
-    <script src="./../js/class/enum/EnumAction.js"></script> 
+    <script src="./../js/class/enum/EnumAction.js"></script>
     <script src="./../js/class/enum/EnumCollision.js"></script>
     <script src="./../js/class/enum/EnumMouvement.js"></script>
     <script src="./../js/class/enum/EnumTypeMort.js"></script>
-    <script src="./../js/class/MouvementJoueur.js"></script> 
-    <script src="./../js/class/ScrollMove.js"></script> 
+    <script src="./../js/class/MouvementJoueur.js"></script>
+    <script src="./../js/class/ScrollMove.js"></script>
     <script src="./../js/class/Taille.js"></script>
-    <script src="./../js/class/ImageGif.js"></script> 
-    <script src="./../js/class/Images.js"></script> 
-    <script src="./../js/class/Pause.js"></script> 
-    <script src="./../js/class/Score.js"></script>   
-    <script src="./../js/class/BlockRectange.js"></script> 
-    <script src="./../js/class/Plateforme.js"></script>
-    <script src="./../js/class/tenues/Tenue.js"></script>
-    <script src="./../js/class/Background.js"></script> 
-    <script src="./../js/class/backgrounds/TestBackgroundPlanete.js"></script>
-    <script src="./../js/class/backgrounds/BackgroundSousTerre.js"></script>
+    <script src="./../js/class/Images.js"></script>
+    <script src="./../js/class/Pause.js"></script>
+    <script src="./../js/class/Score.js"></script>
+    <script src="./../js/class/BlockRectange.js"></script>
+    <script src="./../js/class/Background.js"></script>
     <script src="./../js/class/Collision.js"></script>
     <script src="./../js/class/Position.js"></script>
     <script src="./../js/class/RndPos.js"></script>
+    <script src="./../js/class/AreteRectangle.js"></script>
     <script src="./../js/class/AreteRectangleCote.js"></script>
     <script src="./../js/class/CollisionPlateforme.js"></script>
-    <script src="./../js/class/AreteRectangle.js"></script>
-    <script src="./../js/class/Personnage.js"></script>
-    <script src="./../js/class/Joueur.js"></script>
-    <script src="./../js/class/Game.js"></script>
-    <script src="./../js/class/Plateformes/PlateformeFeu.js"></script>
-    <script src="./../js/class/enum/EnumAction.js"></script> 
-    <script src="./../js/class/enum/EnumCollision.js"></script>
-    <script src="./../js/class/enum/EnumMouvement.js"></script>
-    <script src="./../js/class/enum/EnumTypeMort.js"></script>
-    <script src="./../js/class/MouvementJoueur.js"></script> 
-    <script src="./../js/class/ScrollMove.js"></script> 
-    <script src="./../js/class/Taille.js"></script>
-    <script src="./../js/class/Images.js"></script> 
-    <script src="./../js/class/Pause.js"></script> 
-    <script src="./../js/class/Score.js"></script>
-    <script src="./../js/class/tenues/Tenue.js"></script>  
-    <script src="./../js/class/BlockRectange.js"></script> 
-    <script src="./../js/class/Background.js"></script> 
-    <script src="./../js/class/Collision.js"></script>
-    <script src="./../js/class/Position.js"></script>
-    <script src="./../js/class/RndPos.js"></script>
-    <script src="./../js/class/AreteRectangle.js"></script>
     <script src="./../js/class/Personnage.js"></script>
     <script src="./../js/class/Joueur.js"></script>
     <script src="./../js/class/Game.js"></script>
     <script src="./../js/class/Plateforme.js"></script>
-    <script src="./../js/class/Plateformes/PlateformeFeu.js"></script>
-    <script src="./../js/class/Plateformes/PlateformeFeu.js"></script>
     <script src="./../js/class/Plateformes/PlateformeFeu.js"></script>
     <script src="./../js/class/Plateformes/PlateformePierre.js"></script>
     <script src="./../js/class/Plateformes/PlateformeMobileRequin.js"></script>
@@ -76,7 +57,9 @@
     <script src="./../js/class/Plateformes/PlateformeMobilePoisson.js"></script>
     <script src="./../js/class/backgrounds/BackgroundEspaceSatellite.js"></script>
     <script src="./../js/class/backgrounds/BackgroundEspaceAsteroide.js"></script>
+    <script src="./../js/class/tenues/Tenue.js"></script>
     <script src="./js/script.js"></script>
-    
+
 </body>
+
 </html>

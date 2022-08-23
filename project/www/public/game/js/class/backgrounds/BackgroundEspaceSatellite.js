@@ -14,6 +14,9 @@ class BackgroundEspaceSatellite extends Background {
         espaceSatellite.afficher(canvas);
     }
 
+    choixPlateforme(taille){
+        return new PlateformeSatellite(taille);
+    }
 
 
 

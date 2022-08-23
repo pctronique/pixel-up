@@ -14,6 +14,9 @@ class BackgroundTerre extends Background {
         Terre.afficher(canvas);
     }
 
+    choixPlateforme(taille){
+        return new PlateformeNacelle(taille);
+    }
 
 
 

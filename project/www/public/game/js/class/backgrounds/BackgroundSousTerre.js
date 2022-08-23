@@ -14,6 +14,9 @@ class BackgroundSousTerre extends Background {
         sousTerre.afficher(canvas);
     }
 
+    choixPlateforme(taille){
+        return new PlateformePierre(taille);
+    }
 
 
 
