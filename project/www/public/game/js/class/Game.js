@@ -18,8 +18,6 @@ class Game {
   }
 
   choixBackground(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
-    
-    console.log(this.nbBackground);
     switch (this.nbBackground) {
         case 0:
         return new BackgroundSousTerre(idBackground, taille, scrollMove, imgBack, imgBas);
@@ -63,7 +61,6 @@ class Game {
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
-    console.log(this.background);
   }
 
   createBackground() {
