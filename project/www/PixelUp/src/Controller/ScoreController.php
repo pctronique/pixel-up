@@ -5,13 +5,13 @@ namespace App\Controller;
 use App\Entity\Score;
 use App\Form\ScoreType;
 use App\Form\SearchScoreType;
-use App\Service\ScoreService;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\ScoreService;
 
 #[Route('/score')]
 class ScoreController extends AbstractController
@@ -23,8 +23,6 @@ class ScoreController extends AbstractController
         $form = $this->createForm(SearchScoreType::class);
         $search = $form->handleRequest($request);
         $user = $this->getUser();
-
-        
 
         
 

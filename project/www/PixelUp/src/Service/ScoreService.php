@@ -21,4 +21,15 @@ class ScoreService
 
         return $this->paginator->paginate($scoresQuery, $page, $limit);
     }
+
+    /*public function getPaginatedScoresSearch(){
+
+        $mots = $_GET["mots"];
+        $request = $this->requestStack->getMainRequest();
+        $page = $request->query->getInt('page',1);
+        $limit = 1;
+        $scoresQuery = $this->scoreRepo->search($mots);
+
+        return $this->paginator->paginate($scoresQuery, $page, $limit);
+    }*/
 }

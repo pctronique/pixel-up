@@ -321,3 +321,13 @@ tbody tr:nth-child(even) {
   margin: 15px auto !important;
   color: white;
 }
+
+/* PAGINATION */
+
+.pagination{
+  margin: 20px auto;
+  width: fit-content;
+  color: white;
+  background: rgb(255,255,255,0.5);
+
+}
