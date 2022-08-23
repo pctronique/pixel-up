@@ -32,6 +32,9 @@ class Joueur extends Personnage {
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
     ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
+    if (this.background != undefined) {
+      this.background.afficherContenue();
+    }
 
 
     /*this.imageSrc('./img/personnage-1.png');

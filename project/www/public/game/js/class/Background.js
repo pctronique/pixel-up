@@ -15,12 +15,14 @@ class Background {
     this.pos = new Position(0, 0);
     this.widthBottom = 0;
     this.scrollMove = scrollMove;
+    this.nbDisplayPlt = 0;
+    this.nbDisplayOther = 0;
+    this.stopDisplay = true;
     if(this.scrollMove != undefined) {
       this.scrollMove.setBackground(this);
     }
     this.creerPlatforme();
-    this.creerPlatformeBottom(new Plateforme());
-    this.creerPlatformeBottom(new Plateforme());
+    this.creerPlatformeBottom(new PlateformeFeu());
     this.creerPlateformeTenue();
   }
   imageSrc(src) {
@@ -82,13 +84,13 @@ class Background {
         plateforme.setPosition(pos);
         plateforme.setBackground(this);
         let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-        this.plateformesCollision.push(new CollisionPlateforme(this.plateformes.length, posArete.haut(), posArete.bas(), posArete.gauche(), posArete.droite()) /*{
-          id: this.plateformes.length,
-          haut: posArete.haut(),
-          bas: posArete.bas(),
-          gauche: posArete.gauche(),
-          droite: posArete.droite(),
-        }*/);
+        this.plateformesCollision.push(
+          new CollisionPlateforme(
+            this.plateformes.length, 
+            posArete.haut(), 
+            posArete.bas(), 
+            posArete.gauche(), 
+            posArete.droite()));
         this.plateformes.push(plateforme);
         nombreDeLignes++;
       }
@@ -111,6 +113,7 @@ class Background {
     this.joueur = joueur;
     if(this.tenue != undefined) {
       this.tenue.setJoueur(this.joueur);
+      this.joueur.setBackground(this);
     }
   }
 
@@ -163,32 +166,52 @@ class Background {
   }
 
   afficher() {
-    this.canvasBackground = document.createElement("canvas");
-    this.canvasBackground.id = this.idBackground;
-    this.canvasBackground.width = this.taille.x;
-    this.canvasBackground.height = this.taille.y;
-    this.imgBackDisplay(this.canvasBackground);
+    if(this.stopDisplay) {
+      this.stopDisplay = false;
+      this.nbDisplayPlt = 0;
+      this.nbDisplayOther = 0;
+      this.canvasBackground = document.createElement("canvas");
+      this.canvasBackground.id = this.idBackground;
+      this.canvasBackground.width = this.taille.x;
+      this.canvasBackground.height = this.taille.y;
+      this.imgBackDisplay(this.canvasBackground);
+    }
   }
 
   afficherContenue() {
-    for (let index = 0; index < this.plateformes.length; index++) {
-      const element = this.plateformes[index];
+    if(this.nbDisplayPlt < this.plateformes.length) {
+      const element = this.plateformes[this.nbDisplayPlt];
+      this.nbDisplayPlt++;
       if (element != undefined) {
         element.afficher(this.canvasBackground);
       }
-    };
-    if (this.screen_bottom != undefined) {
-      this.screen_bottom.afficher(this.canvasBackground);
+    } else if(this.nbDisplayOther == 0) {
+      this.nbDisplayOther++;
+      if (this.screen_bottom != undefined) {
+        this.screen_bottom.afficher(this.canvasBackground);
+      } else {
+        this.afficherContenue();
+      }
+    } else if(this.nbDisplayOther == 1) {
+      this.nbDisplayOther++;
+      if (this.tenue != undefined) {
+        this.tenue.afficher(this.canvasBackground);
+      } else {
+        this.afficherContenue();
+      }
+    } else if(this.nbDisplayOther == 2) {
+      this.nbDisplayOther++;
+      if (this.joueur != undefined) {
+        this.joueur.afficher(this.canvasBackground);
+      } else {
+        this.afficherContenue();
+      }
+    } else if(this.nbDisplayOther == 3) {
+      let backGroundOld = document.getElementById(this.idBackground);
+      let ctx = backGroundOld.getContext('2d');
+      ctx.clearRect(0, 0, this.taille.x, this.taille.y);
+      backGroundOld.parentNode.replaceChild(this.canvasBackground, backGroundOld);
+      this.stopDisplay = true;
     }
-    if (this.tenue != undefined) {
-      this.tenue.afficher(this.canvasBackground);
-    }
-    if (this.joueur != undefined) {
-      this.joueur.afficher(this.canvasBackground);
-    }
-    let backGroundOld = document.getElementById(this.idBackground);
-    let ctx = backGroundOld.getContext('2d');
-    ctx.clearRect(0, 0, this.taille.x, this.taille.y);
-    backGroundOld.parentNode.replaceChild(this.canvasBackground, backGroundOld);
   }
 }

@@ -7,6 +7,7 @@ class PlateformeMobileRequin extends Plateforme{
         //this.img;
         this.imageSrc('./img/requin.png');
         let requin = new Images(this.img, this.pos, this.taille);
+        requin.setBackground(this.background);
         requin.afficher(canvas);
     }
    

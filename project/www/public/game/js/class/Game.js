@@ -10,7 +10,7 @@ class Game {
     this.nbBackground = 0;
     this.idBackground = "background_game_0";
     this.idScreen = idScreen;
-    this.milliseconde = 100;
+    this.milliseconde = 40;
   }
 
   setMilliseconde(milliseconde) {
@@ -29,7 +29,7 @@ class Game {
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = new Background(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    let background = new TestBackgroundPlanete(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();

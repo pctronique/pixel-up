@@ -7,6 +7,7 @@ class PlateformeMobilePoisson extends Plateforme{
         //this.img;
         this.imageSrc('./img/posson.png');
         let poisson = new Images(this.img, this.pos, this.taille);
+        poisson.setBackground(this.background);
         poisson.afficher(canvas);
     }
    

@@ -7,6 +7,7 @@ class PlateformeNuages extends Plateforme{
         //this.img;
         this.imageSrc('./img/nuage3.png');
         let nuages = new Images(this.img, this.pos, this.taille);
+        nuages.setBackground(this.background);
         nuages.afficher(canvas);
     }
    
