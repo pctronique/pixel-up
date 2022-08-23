@@ -6,6 +6,7 @@ class PlateformePierre extends Plateforme{
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/pierre.png');
+        this.taille = new Taille(100,50);
         let pierre = new Images(this.img, this.pos, this.taille);
         pierre.afficher(canvas);
     }

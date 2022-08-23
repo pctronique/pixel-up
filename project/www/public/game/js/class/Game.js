@@ -131,7 +131,7 @@ class Game {
       workerGame.onmessage = function (e) {
         classGame.afficher();
       }
-      workerGame.postMessage(40);
+      workerGame.postMessage(1000);
   }
 
   startDev() {
