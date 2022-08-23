@@ -49,7 +49,7 @@
         <tbody id="tbodyscore">
         {% for score in scores %}
             <tr>
-                <td>{{ score.score }}</td>
+                <td>{{ score.max_score }}</td>
                 <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ score.username }}</td>
             </tr>
