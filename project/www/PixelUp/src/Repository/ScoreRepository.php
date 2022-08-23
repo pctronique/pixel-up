@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Score;
+use Doctrine\ORM\Query;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -41,6 +42,8 @@ class ScoreRepository extends ServiceEntityRepository
 
 
 
+    // Methode qui recherche le meilleur score de chaque joueur ( Classement )
+
     public function getUserScore(){
         $query = $this->createQueryBuilder('s')
             ->innerJoin('s.user', 'u')
@@ -50,13 +53,8 @@ class ScoreRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    /*public function getUserScore(){
-        $query = $this->createQueryBuilder('s')
-            ->innerJoin('s.user', 'u')
-            ->select('u.username, s.score, s.date');
-        $query->orderBy('s.score', 'DESC');
-        return $query->getQuery()->getResult();
-    }*/
+
+    // Methode qui recherche le meilleur score personnel de l'utilisateur connecté
 
     public function getPersonnalScore($user){
         $query = $this->createQueryBuilder('s')
@@ -67,6 +65,8 @@ class ScoreRepository extends ServiceEntityRepository
         $query->orderBy('s.score', 'DESC');
         return $query->getQuery()->getResult();
     }
+
+    // Methode qui recherche le meilleur score du joueur recherché par son identifiant
 
     public function search($mots){
 

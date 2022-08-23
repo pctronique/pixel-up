@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Score;
 use App\Form\ScoreType;
 use App\Form\SearchScoreType;
+use App\Service\ScoreService;
 use App\Repository\UserRepository;
 use App\Repository\ScoreRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,9 +17,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ScoreController extends AbstractController
 {
     #[Route('/', name: 'app_score_index', methods: ['GET'])]
-    public function index(ScoreRepository $scoreRepository, UserRepository $user, Request $request ): Response
+    public function index(ScoreRepository $scoreRepository, UserRepository $user, Request $request, ScoreService $ScoreService): Response
     {
-        $scores = $scoreRepository->getUserScore();
+        $scores = $ScoreService->getPaginatedScores();
         $form = $this->createForm(SearchScoreType::class);
         $search = $form->handleRequest($request);
         $user = $this->getUser();
