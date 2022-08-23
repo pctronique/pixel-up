@@ -9,6 +9,7 @@ class PlateformeFeu extends Plateforme{
         this.imageSrc('./img/flamme.png');
 
         let feu = new Images(this.img, this.pos, this.taille);
+        feu.setBackground(this.background);
         feu.afficher(canvas);
     }
    

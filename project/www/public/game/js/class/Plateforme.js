@@ -13,6 +13,9 @@ class Plateforme extends BlockRectange {
         let ctx = canvas.getContext('2d');
         ctx.fillStyle = 'blue';
         ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
+        if (this.background != undefined) {
+          this.background.afficherContenue();
+        }
     }
 
     action(enumCollision) {
