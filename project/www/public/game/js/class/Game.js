@@ -12,6 +12,35 @@ class Game {
     this.idScreen = idScreen;
   }
 
+  choixBackground(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
+    
+    console.log(this.nbBackground);
+    switch (this.nbBackground) {
+        case 0:
+        return new BackgroundSousTerre(idBackground, taille, scrollMove, imgBack, imgBas);
+          
+        case 1:
+        return new BackgroundSousMer(idBackground, taille, scrollMove, imgBack, imgBas);
+           
+        case 2:
+        return new BackgroundTerre(idBackground, taille, scrollMove, imgBack, imgBas);
+          
+        case 3:
+        return new BackgroundCielNuages(idBackground, taille, scrollMove, imgBack, imgBas);
+          
+        case 4:
+        return new BackgroundCielAvions(idBackground, taille, scrollMove, imgBack, imgBas);
+           
+        case 5:
+        return new BackgroundEspaceSatellite(idBackground, taille, scrollMove, imgBack, imgBas);
+           
+        default:
+        return new BackgroundEspaceAsteroide(idBackground, taille, scrollMove, imgBack, imgBas);
+          
+    }
+}
+
+
   addBackground(tailleX, tailleY) {
     let screenGame = document.getElementById(this.idScreen);
     // permet d'ajouter un nouveau canvas tout en définissant sa taille
@@ -24,10 +53,11 @@ class Game {
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = new Background(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    let background = this.choixBackground(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
+    console.log(this.background);
   }
 
   createBackground() {
