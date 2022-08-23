@@ -298,8 +298,9 @@ td{
   padding: 5px;
 }
 
-tbody tr:nth-child(odd) {
+tbody tr:nth-child(odd), #search_score_mots {
   background-color: silver;
+  color: black;
 }
 
 tbody tr:nth-child(even) {
@@ -314,8 +315,9 @@ tbody tr:nth-child(even) {
   display: none;
 }
 
-#search_score, #search_score_mots, #search_score_Rechercher, #ranked form{
+#search_score, #search_score_mots, #search_score_Rechercher, #ranked form, #bestScore p{
   text-align: center;
   width: fit-content;
   margin: 15px auto !important;
+  color: white;
 }

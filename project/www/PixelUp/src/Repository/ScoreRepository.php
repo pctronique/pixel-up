@@ -59,9 +59,11 @@ class ScoreRepository extends ServiceEntityRepository
 
     public function search($mots){
 
-        $query = $this->createQueryBuilder('u');
+        $query = $this->createQueryBuilder('s');
         if($mots != null) {
-            $query->where('MATCH_AGAINST(u.username) AGAINST(:mots boolean)>0')
+            $query->select('u.username','s.score, s.date')
+            ->innerJoin('s.user', 'u')
+            ->where('MATCH_AGAINST(u.username) AGAINST(:mots boolean)>0')
             ->setParameter('mots', $mots);
         }
         return $query->getQuery()->getResult();

@@ -12,14 +12,22 @@
 <section id="bestScore">
 
     <h1>Meilleur score</h1>
-    <figure>
-        <iconify-icon icon="emojione-v1:trophy" style="color: #ff8400; width="200" height="200""></iconify-icon>
-        <figcaption>
-        
-            {{ personnalScores[0].score }}
+    {% if app.user %}
+        <figure>
+            <iconify-icon icon="emojione-v1:trophy" style="color: #ff8400; width="200" height="200""></iconify-icon>
+            <figcaption>
 
-        </figcaption>
-    </figure>
+
+
+                {{ personnalScores[0].score }}
+
+            
+
+            </figcaption>
+        </figure>
+    {% else %}
+    <p> Connectez vous pour acceder à ces informations. </p>
+    {% endif %}
 </section>
 
 <section id="ranked">
