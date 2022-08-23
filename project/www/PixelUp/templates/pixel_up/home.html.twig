@@ -5,7 +5,7 @@
 {% block body %}
 
 
-{{dump()}}
+
     <div id ="pacman">
         
         <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
@@ -26,14 +26,15 @@
 
        
             
-            <a href="#"><li>Lancer la partie</li></a>
             {% if app.user %}
                 
+                <a href="#"><li>Lancer la partie</li></a>
                 <a href=""><li>Score / Classement</li></a>
                 <a href="{{ path('app_profil') }}"><li>Profil de {{app.user.username}} </li></a>
                 <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
             {% else %}
-                <a href="{{ path('app_score') }}"><li>Classement</li></a>
+                <a href="#"><li>Lancer la partie</li></a>
+                <a href=""><li>Classement</li></a>
                 <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
             {% endif %}
         </ul>

@@ -23,25 +23,17 @@ class PixelUpController extends AbstractController
     }
 
     
-     #[Route('/profil', name: 'app_profil', methods: ['GET'])]
+     #[Route('/profil', name: 'app_profil')]
      
 
-    public function profil(UserRepository $userRepository): Response
+    public function profil(): Response
     
     {
         return $this->render('pixel_up/profil.html.twig', [
-            'users' => $userRepository->findAll(),
+            
         ]);
     }
 
-    /**
-     * @Route("/updateProfil", name="app_modif_profil")
-     */
-    public function updateP(): Response
-    {
-        return $this->render('pixel_up/updateProfil.html.twig', [
-            'controller_name' => 'PixelUpController',
-        ]);
-    }
+    
 
 }

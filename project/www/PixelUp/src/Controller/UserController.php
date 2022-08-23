@@ -27,7 +27,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_pixel_up' , [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pixel_up/updateProfil.html.twig', [
+        return $this->renderForm('user/updateProfil.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
