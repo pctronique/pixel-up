@@ -14,6 +14,19 @@ class BackgroundCielNuages extends Background {
         cielNuages.afficher(canvas);
     }
 
+    choixPlateforme(taille){
+        let min=1; 
+        let max=2;  
+        let random = Math.floor(Math.random() * (max - min)) + min; 
+        console.log(random);
+        if(random == 1){
+            return new PlateformeOiseaux(taille);
+        }
+        else if (random == 2){
+            return new PlateformeNuages(taille);
+        }
+   
+    }
 
 
 

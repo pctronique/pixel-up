@@ -14,6 +14,9 @@ class BackgroundEspaceAsteroide extends Background {
         backgroundEspaceAsteroide.afficher(canvas);
     }
 
+    choixPlateforme(taille){
+        return new PlateformeAsteroide(taille);
+    }
 
 
 

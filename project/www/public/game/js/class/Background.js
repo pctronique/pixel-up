@@ -53,7 +53,9 @@ class Background {
       this.tabAutrePlateforme.push(this.tenue);
     }
   }
-
+  choixPlateforme(taille){
+    return new Plateforme(taille);
+  }
   /**
    * creation et placement des plateformes position x et y en aleatoire (lien avec la class RndPos.js) avec definition ecart de la hauteur entre plateformes y et definition largeur espacement des plateformes x entre elle.
    */
@@ -66,7 +68,7 @@ class Background {
       while (posPlateforme < this.taille.x) {
         let objRndPos = new RndPos(posPlateforme, 0); //creation aleatoire position de la nouvelle platemeforme en x
         let taille = new Taille(50, 10);
-        let plateforme = new Plateforme(taille);
+        let plateforme = this.choixPlateforme(taille);
         if (nombreDeLignes == 0) {
           objRndPos.minMaxX(2, 52);
           posPlateforme += objRndPos.getX();

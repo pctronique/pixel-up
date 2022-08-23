@@ -4,7 +4,7 @@ class BackgroundCielAvions extends Background {
 
     constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
         super(idBackground, taille, imgBack, imgBas)
-        
+
     }
 
     imgBackDisplay(canvas) {
@@ -14,7 +14,11 @@ class BackgroundCielAvions extends Background {
         cielAvions.afficher(canvas);
     }
 
+    choixPlateforme(taille) {
 
-
+        return new PlateformeAvions(taille);
+    }
 
 }
+
+
