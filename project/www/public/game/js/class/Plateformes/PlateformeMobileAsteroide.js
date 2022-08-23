@@ -3,11 +3,11 @@ class PlateformeMobileAsteroide extends Plateforme{
         super(taille);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
         this.imageSrc('./img/asteroide.png');
         let asteroide = new Images(this.img, this.pos, this.taille);
-        asteroide.afficher(this.idBackground);
+        asteroide.afficher(canvas);
     }
    
 }

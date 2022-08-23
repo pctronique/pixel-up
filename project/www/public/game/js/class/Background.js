@@ -6,10 +6,12 @@ class Background {
     this.joueur = undefined;
     this.idBackground = idBackground;
     this.plateformes = [];
+    this.tabAutrePlateforme = [];
     this.plateformesCollision = [];
     this.screen_bottom = undefined;
     this.tenue = undefined;
     this.imageSource = undefined;
+    this.canvasBackground = undefined;
     this.pos = new Position(0, 0);
     this.widthBottom = 0;
     this.scrollMove = scrollMove;
@@ -18,8 +20,8 @@ class Background {
     }
     this.creerPlatforme();
     this.creerPlatformeBottom(new Plateforme());
-    this.creerPlatformeBottom(new PlateformeFeu());
-    //this.creerPlateformeTenue();
+    this.creerPlatformeBottom(new Plateforme());
+    this.creerPlateformeTenue();
   }
   imageSrc(src) {
     this.imageSource = src;
@@ -30,25 +32,27 @@ class Background {
   }
 
   creerPlatformeBottom(screen_bottom) {
-    let taille = new Taille(0, 200);
+    let taille = new Taille(0, 20);
     let pos = new Position(0, this.taille.y - taille.y);
     this.screen_bottom = screen_bottom;
     if(this.screen_bottom != undefined) {
       this.screen_bottom.setTaille(taille);
       this.screen_bottom.setPosition(pos);
       this.screen_bottom.setBackground(this);
+      this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
-  /*creerPlateformeTenue(){
-    let taille = new Taille(20, 20);
+  creerPlateformeTenue(){
+    let taille = new Taille(40, 40);
     let pos = new Position(0, this.taille.y - taille.y);
     this.tenue = new Tenue();
     if(this.tenue != undefined) {
       this.tenue.setTaille(taille);
       this.tenue.setPosition(pos);
       this.tenue.setBackground(this);
+      this.tabAutrePlateforme.push(this.tenue);
     }
-  }*/
+  }
 
   /**
    * creation et placement des plateformes position x et y en aleatoire (lien avec la class RndPos.js) avec definition ecart de la hauteur entre plateformes y et definition largeur espacement des plateformes x entre elle.
@@ -78,13 +82,13 @@ class Background {
         plateforme.setPosition(pos);
         plateforme.setBackground(this);
         let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-        this.plateformesCollision.push({
+        this.plateformesCollision.push(new CollisionPlateforme(this.plateformes.length, posArete.haut(), posArete.bas(), posArete.gauche(), posArete.droite()) /*{
           id: this.plateformes.length,
           haut: posArete.haut(),
           bas: posArete.bas(),
           gauche: posArete.gauche(),
           droite: posArete.droite(),
-        });
+        }*/);
         this.plateformes.push(plateforme);
         nombreDeLignes++;
       }
@@ -105,6 +109,9 @@ class Background {
 
   setJoueur(joueur) {
     this.joueur = joueur;
+    if(this.tenue != undefined) {
+      this.tenue.setJoueur(this.joueur);
+    }
   }
 
   deplacement() {}
@@ -119,12 +126,16 @@ class Background {
       let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
       this.screen_bottom.setTaille(taille);
     //}
-    let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y)+20);
+    let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y));
     this.screen_bottom.setPosition(pos);
   }
 
   getPlateformes() {
     return this.plateformes;
+  }
+
+  getAutrePlateformes() {
+    return this.tabAutrePlateforme;
   }
 
   getPlateformesCollision() {
@@ -144,28 +155,38 @@ class Background {
     }
   }
 
-  afficher() {
-    let background = document.getElementById(this.idBackground);
-    let ctx = background.getContext("2d");
+  imgBackDisplay(canvas) {
+    let ctx = canvas.getContext("2d");
     ctx.fillStyle = "#EBDEF0";
     ctx.fillRect(0, 0, this.taille.x, this.taille.y);
-    this.plateformes.forEach((element) => {
+    this.afficherContenue();
+  }
+
+  afficher() {
+    this.canvasBackground = document.createElement("canvas");
+    this.canvasBackground.id = this.idBackground;
+    this.canvasBackground.width = this.taille.x;
+    this.canvasBackground.height = this.taille.y;
+    this.imgBackDisplay(this.canvasBackground);
+  }
+
+  afficherContenue() {
+    for (let index = 0; index < this.plateformes.length; index++) {
+      const element = this.plateformes[index];
       if (element != undefined) {
-        element.setCanvasBackground(this.idBackground);
-        element.afficher();
+        element.afficher(this.canvasBackground);
       }
-    });
+    };
     if (this.screen_bottom != undefined) {
-      this.screen_bottom.setCanvasBackground(this.idBackground);
-      this.screen_bottom.afficher();
+      this.screen_bottom.afficher(this.canvasBackground);
     }
-   /* if (this.tenue != undefined) {
-      this.tenue.setCanvasBackground(this.idBackground);
-      this.tenue.afficher();
-    }*/
+    if (this.tenue != undefined) {
+      this.tenue.afficher(this.canvasBackground);
+    }
     if (this.joueur != undefined) {
-      this.joueur.setCanvasBackground(this.idBackground);
-      this.joueur.afficher();
+      this.joueur.afficher(this.canvasBackground);
     }
+    let backGroundOld = document.getElementById(this.idBackground);
+    backGroundOld.parentNode.replaceChild(this.canvasBackground, backGroundOld);
   }
 }

@@ -7,10 +7,11 @@ class BackgroundSousTerre extends Background {
         
     }
 
-    afficher() {
+    imgBackDisplay(canvas) {
         this.imageSrc("./img/roche2.jpg");
         let sousTerre = new Images(this.imageSource, this.pos, this.taille);
-        sousTerre.afficher(this.idBackground);
+        sousTerre.setBackground(this);
+        sousTerre.afficher(canvas);
     }
 
 

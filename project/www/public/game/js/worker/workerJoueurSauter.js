@@ -1,6 +1,8 @@
 let hauteurSaut = 200;
 
-
+function timeGame() {
+  postMessage(true);
+}
 
 onmessage = function (e) {
   let y = e.data[0];

@@ -26,7 +26,7 @@ if (window.Worker) {
         let st = -1 * (screenGame.scrollHeight-screenGame.offsetHeight-screenGame.scrollTop);
         console.log(st);
          game.screenBottom(st);
-         game.afficher();
+         //game.afficher();
          let scrollHaut = screenGame.scrollHeight / screenGame.childElementCount -screenGame.offsetHeight;
          if (screenGame.scrollTop < scrollHaut) {
             game.addBackground(backgroundTaille.x,backgroundTaille.y);

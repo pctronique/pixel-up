@@ -28,17 +28,10 @@ class MouvementJoueur {
     this.workerJoueurSauter.onmessage = function (e) {
       if (sauter) {
         classJoueur.setPositionY(e.data[0]);
-        if (classJoueur.background != undefined) {
-          classJoueur.background.afficher();
-        }
-        let enumCollision = classJoueur.getEnumCollision();
-        if (enumCollision[0] != EnumCollision.NULL && e.data[1]) {
-          //console.log(enumCollision[0]);
-          if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
+        if (classMovJoueur.collisionAction() != EnumAction.NULL) {
             sauter = false;
             sauter0 = false;
             classMovJoueur.finSauter();
-          }
         }
       }
       if (sauter0) {
@@ -50,6 +43,21 @@ class MouvementJoueur {
         }
       }
     };
+  }
+
+  collisionAction() {
+    if (this.joueur.background != undefined) {
+        this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
+        this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
+    }
+    let enumCollision = this.joueur.getEnumCollision();
+    if (enumCollision[0] != EnumCollision.NULL) {
+      //console.log(enumCollision[0]);
+      if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP || enumCollision[1].action(enumCollision[0]) == EnumAction.MORT) {
+        return enumCollision[1].action(enumCollision[0]);
+      }
+    }
+    return EnumAction.NULL;
   }
 
   sauter() {
@@ -70,17 +78,10 @@ class MouvementJoueur {
     this.workerJoueurTomber.onmessage = function (e) {
       if (sauter) {
         classJoueur.setPositionY(e.data[0]);
-        if (classJoueur.background != undefined) {
-          classJoueur.background.afficher();
-        }
-        let enumCollision = classJoueur.getEnumCollision();
-        if (enumCollision[0] != EnumCollision.NULL && e.data[1]) {
-          //console.log(enumCollision[0]);
-          if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
+        if (classMovJoueur.collisionAction() != EnumAction.NULL) {
             sauter = false;
             sauter0 = false;
             classMovJoueur.finSauter();
-          }
         }
       }
       if (sauter0) {
@@ -125,14 +126,15 @@ class MouvementJoueur {
   startWorker() {
     if (this.joueur.background != undefined) {
         this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
+        this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
     }
     let classJoueur = this.joueur;
     this.workerJoueur.addEventListener("message", function (e) {
       let pos = new Position(e.data[0], e.data[1]);
       classJoueur.setPosition(pos);
-      if (classJoueur.background != undefined) {
+      /*if (classJoueur.background != undefined) {
         classJoueur.background.afficher();
-      }
+      }*/
       let enumCollision = classJoueur.getEnumCollision();
       if (enumCollision[0] != EnumCollision.NULL) {
         console.log(enumCollision[0]);
@@ -190,9 +192,9 @@ class MouvementJoueur {
   }
 
   movPosDev() {
-    if (this.joueur.background != undefined) {
+    /*if (this.joueur.background != undefined) {
         this.joueur.background.afficher();
-    }
+    }*/
     let enumCollision = this.joueur.getEnumCollision();
     if (enumCollision[0] != EnumCollision.NULL) {
       if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
@@ -204,9 +206,9 @@ class MouvementJoueur {
         let pos = new Position(x, y - 1);
         this.joueur.setPosition(pos);
       }
-      if (this.joueur.background != undefined) {
+      /*if (this.joueur.background != undefined) {
         this.joueur.background.afficher();
-      }
+      }*/
     }
   }
 
@@ -239,6 +241,7 @@ class MouvementJoueur {
     // private
     if (this.joueur.background != undefined) {
         this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
+        this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
     }
     let x = this.joueur.pos.x;
     let y = this.joueur.pos.y;
@@ -247,15 +250,8 @@ class MouvementJoueur {
       for (let index = 0; index < 10; index++) {
         let pos = new Position(x + index, y);
         this.joueur.setPosition(pos);
-        if (this.joueur.background != undefined) {
-            this.joueur.background.afficher();
-        }
-        let enumCollision = this.joueur.getEnumCollision();
-        //console.log(enumCollision[0]);
-        if (enumCollision[0] == EnumCollision.NULL) {
-            //console.log("0024");
+        if (this.collisionAction() == EnumAction.NULL) {
             this.tomber(); 
-          //break;
         }
       }
     } else if (eventKey == "ArrowLeft") {
@@ -263,15 +259,8 @@ class MouvementJoueur {
       for (let index = 0; index < 10; index++) {
         let pos = new Position(x - index, y);
         this.joueur.setPosition(pos);
-        if (this.joueur.background != undefined) {
-            this.joueur.background.afficher();
-        }
-        let enumCollision = this.joueur.getEnumCollision();
-        //console.log(enumCollision[0]);
-        if (enumCollision[0] == EnumCollision.NULL) {
-            //console.log("0025");
+        if (this.collisionAction() == EnumAction.NULL) {
             this.tomber();
-          //break;
         }
       }
     }

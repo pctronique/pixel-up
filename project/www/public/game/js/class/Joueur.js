@@ -28,18 +28,17 @@ class Joueur extends Personnage {
     this.mouvementJoueur.deplacerSauter(eventKey);
   }
 
-  afficher() {
-    let background = document.getElementById(this.idBackground);
-    let ctx = background.getContext("2d");
+  afficher(canvas) {
+    let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
     ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
 
 
-    /*this.imageSrc('img/personnage-1.png');
+    /*this.imageSrc('./img/personnage-1.png');
     let feu = new Images(this.img, this.pos, this.taille);
     feu.select(1);
     feu.colorTransparance("#ffffff");
-    feu.afficher(this.idBackground);*/
+    feu.afficher(canvas);*/
   }
 
   collisionHaut() {

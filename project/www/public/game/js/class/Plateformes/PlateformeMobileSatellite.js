@@ -3,11 +3,11 @@ class PlateformeMobileSatellite extends Plateforme{
         super(taille);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
         this.imageSrc('./img/satellite.png');
         let satellite = new Images(this.img, this.pos, this.taille);
-        satellite.afficher(this.idBackground);
+        satellite.afficher(canvas);
     }
    
 }

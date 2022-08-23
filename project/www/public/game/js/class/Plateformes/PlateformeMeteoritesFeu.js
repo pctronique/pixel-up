@@ -3,11 +3,11 @@ class PlateformeMeteoritesFeu extends Plateforme{
         super(taille, collisionHautStable);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
         this.imageSrc('./img/meteoriteFeu.png');
         let meteoritesFeu = new Images(this.img, this.pos, this.taille);
-        meteoritesFeu.afficher(this.idBackground);
+        meteoritesFeu.afficher(canvas);
     }
    
 }

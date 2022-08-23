@@ -3,11 +3,11 @@ class PlateformeNacelles extends Plateforme{
         super(taille, collisionHautStable);
     }
 
-    afficher(){
+    afficher(canvas){
         //this.img;
         this.imageSrc('./img/nacelle.png');
         let nacelles = new Images(this.img, this.pos, this.taille);
-        nacelles.afficher(this.idBackground);
+        nacelles.afficher(canvas);
     }
    
 }
