@@ -8,6 +8,8 @@ class MouvementJoueur {
     this.workerJoueurSauter = undefined;
     this.workerJoueurTomber = undefined;
     this.sauter0 = false;
+    this.tomber0 = false;
+    this.move0 = false;
   }
 
   finSauter() {
@@ -26,14 +28,14 @@ class MouvementJoueur {
     let sauter = true;
     let sauter0 = this.sauter0;
     this.workerJoueurSauter.onmessage = function (e) {
-      if (sauter) {
-        classJoueur.setPositionY(e.data[0]);
-        if (classMovJoueur.collisionAction() != EnumAction.NULL) {
+      //if (sauter) {
+      classJoueur.setPositionY(e.data[0]);
+        /*if (classMovJoueur.collisionAction() != EnumAction.NULL) {
             sauter = false;
             sauter0 = false;
             classMovJoueur.finSauter();
         }
-      }
+      }*/
       if (sauter0) {
         sauter0 = e.data[2];
         sauter = e.data[2];
@@ -61,11 +63,11 @@ class MouvementJoueur {
   }
 
   sauter() {
-    if (!this.sauter0) {
+    if(!this.tomber0 && !this.sauter0 && !this.move0) {
       this.sauter0 = true;
       this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
-      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
+      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 200, 20]);
     }
   }
   
@@ -87,7 +89,7 @@ class MouvementJoueur {
       if (sauter0) {
         sauter0 = e.data[2];
       }
-      if (!sauter0 && this.workerJoueurSauter != undefined) {
+      if (!this.tomber0 && !sauter0 && this.workerJoueurSauter != undefined) {
         classMovJoueur.finSauter();
         this.workerJoueurSauter.terminate();
         this.workerJoueurSauter = undefined;
@@ -97,8 +99,8 @@ class MouvementJoueur {
   }
 
   tomber() {
-    if (!this.sauter0) {
-      this.sauter0 = true;
+    if(!this.tomber0 && !this.sauter0 && !this.move0) {
+      this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
       this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y]);
@@ -239,28 +241,30 @@ class MouvementJoueur {
 
   choixMouvement(eventKey) {
     // private
-    if (this.joueur.background != undefined) {
-        this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
-        this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
-    }
-    let x = this.joueur.pos.x;
-    let y = this.joueur.pos.y;
-    if (eventKey == "ArrowRight") {
-        this.joueur.mouvement(EnumMouvement.DROITE);
-      for (let index = 0; index < 10; index++) {
-        let pos = new Position(x + index, y);
-        this.joueur.setPosition(pos);
-        if (this.collisionAction() == EnumAction.NULL) {
-            this.tomber(); 
-        }
+    if(!this.tomber0 && !this.sauter0 && !this.move0) {
+      if (this.joueur.background != undefined) {
+          this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
+          this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
       }
-    } else if (eventKey == "ArrowLeft") {
-        this.joueur.mouvement(EnumMouvement.GAUCHE);
-      for (let index = 0; index < 10; index++) {
-        let pos = new Position(x - index, y);
-        this.joueur.setPosition(pos);
-        if (this.collisionAction() == EnumAction.NULL) {
-            this.tomber();
+      let x = this.joueur.pos.x;
+      let y = this.joueur.pos.y;
+      if (eventKey == "ArrowRight") {
+          this.joueur.mouvement(EnumMouvement.DROITE);
+        for (let index = 0; index < 10; index++) {
+          let pos = new Position(x + index, y);
+          this.joueur.setPosition(pos);
+          if (this.collisionAction() == EnumAction.NULL) {
+              this.tomber(); 
+          }
+        }
+      } else if (eventKey == "ArrowLeft") {
+          this.joueur.mouvement(EnumMouvement.GAUCHE);
+        for (let index = 0; index < 10; index++) {
+          let pos = new Position(x - index, y);
+          this.joueur.setPosition(pos);
+          if (this.collisionAction() == EnumAction.NULL) {
+              this.tomber();
+          }
         }
       }
     }

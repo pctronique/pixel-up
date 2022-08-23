@@ -10,6 +10,11 @@ class Game {
     this.nbBackground = 0;
     this.idBackground = "background_game_0";
     this.idScreen = idScreen;
+    this.milliseconde = 100;
+  }
+
+  setMilliseconde(milliseconde) {
+    this.milliseconde = milliseconde;
   }
 
   addBackground(tailleX, tailleY) {
@@ -101,7 +106,7 @@ class Game {
       workerGame.onmessage = function (e) {
         classGame.afficher();
       }
-      workerGame.postMessage(40);
+      workerGame.postMessage(this.milliseconde);
   }
 
   startDev() {

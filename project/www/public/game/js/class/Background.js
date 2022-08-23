@@ -187,6 +187,8 @@ class Background {
       this.joueur.afficher(this.canvasBackground);
     }
     let backGroundOld = document.getElementById(this.idBackground);
+    let ctx = backGroundOld.getContext('2d');
+    ctx.clearRect(0, 0, this.taille.x, this.taille.y);
     backGroundOld.parentNode.replaceChild(this.canvasBackground, backGroundOld);
   }
 }

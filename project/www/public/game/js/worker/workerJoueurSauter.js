@@ -1,21 +1,20 @@
 let hauteurSaut = 200;
+let y = 0;
+let count = 0;
 
-function timeGame() {
-  postMessage(true);
+function sauter() {
+  y -= 1;
+  count++;
+  if(count == hauteurSaut) {
+    postMessage([y, false, false]);
+  } else {
+    postMessage([y, false, true]);
+  }
+  
 }
 
 onmessage = function (e) {
-  let y = e.data[0];
-  for (let index = 0; index < 200; index+=1) {
-    y -= 1;
-
-    postMessage([y, false, true]);
-  }
-  let number = 0;
-  while (number < e.data[1]) {
-    y += 1;
-    postMessage([y, true, true]);
-    number+=1;
-  }
-  postMessage([y, false, false]);
+  y = e.data[0];
+  hauteurSaut = e.data[2];
+  setInterval(function () {sauter()}, e.data[3]);
 };

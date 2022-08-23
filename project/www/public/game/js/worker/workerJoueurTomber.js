@@ -1,4 +1,11 @@
+let chute = false;
+
+function tomber() {
+  postMessage(true);
+}
+
 onmessage = function (e) {
+
     let number = 0;
     let y = e.data[0];
     while (number < e.data[1]) {
