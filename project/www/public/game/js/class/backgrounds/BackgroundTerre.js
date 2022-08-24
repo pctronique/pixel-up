@@ -4,6 +4,7 @@ class BackgroundTerre extends Background {
 
     constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
         super(idBackground, taille, imgBack, imgBas);
+        this.creerPlatforme(50, 300, 25, 80);
         this.creerPlatformeBottom(new PlateformeLave());
         this.creerPlateformeTenue(new TenueCiel());
         this.creerPlateformePourTenue(new PlateformeTenueCiel());
@@ -17,8 +18,8 @@ class BackgroundTerre extends Background {
         Terre.afficher(canvas);
     }
 
-    choixPlateforme(taille){
-        return new PlateformeNacelles(taille);
+    choixPlateforme(){
+        return new PlateformeNacelles();
     }
 
 

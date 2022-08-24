@@ -4,10 +4,11 @@ class BackgroundSousTerre extends Background {
 
     constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
         super(idBackground, taille, imgBack, imgBas);
+        this.creerPlatforme(50, 300, 25, 80);
         this.creerPlatformeBottom(new PlateformeFeu());
         this.creerPlateformeTenue(new TenueMer());
         this.creerPlateformePourTenue(new PlateformeTenueMer());
-      
+        
     }
 
     imgBackDisplay(canvas) {
@@ -20,5 +21,7 @@ class BackgroundSousTerre extends Background {
     choixPlateforme(){
         return new PlateformePierre();
     }
+
+
 
 }
