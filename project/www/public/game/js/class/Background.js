@@ -42,6 +42,9 @@ class Background {
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
+  
+
+
   creerPlateformeTenue(){
     let taille = new Taille(40, 40);
     let pos = new Position(0, this.taille.y - taille.y);
@@ -53,6 +56,7 @@ class Background {
       this.tabAutrePlateforme.push(this.tenue);
     }
   }
+
   choixPlateforme(taille){
     return new Plateforme(taille);
   }
