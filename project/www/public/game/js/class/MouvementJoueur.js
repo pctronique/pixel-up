@@ -11,6 +11,10 @@ class MouvementJoueur {
     this.sauter0 = false;
     this.tomber0 = false;
     this.move0 = false;
+    this.hauteurSaut = 200;
+    this.millisecondeSaut = 2;
+    this.millisecondeTomber = 2;
+    this.hauteurTomber = 1000;
   }
 
   stop() {
@@ -70,7 +74,7 @@ class MouvementJoueur {
       this.sauter0 = true;
       this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
-      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 200, 5]);
+      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 200, 2]);
     }
   }
   
@@ -103,7 +107,7 @@ class MouvementJoueur {
       this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
-      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 5]);;
+      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 2]);
     }
   }
 
@@ -198,8 +202,8 @@ class MouvementJoueur {
       if (eventKey == "ArrowRight") {
         this.mouvemeType = this.joueur.mouvement(EnumMouvement.DROITE);
         for (let index = 0; index < 10; index++) {
-          let pos = new Position(x + index, y);
-          this.joueur.setPosition(pos);
+          //let pos = new Position(x + index, y);
+          this.joueur.setPositionX(x + index);
           if(!this.tomber0) {
             if (this.collisionAction()[0]  == EnumAction.NULL) {
                 this.tomber(); 
@@ -209,8 +213,8 @@ class MouvementJoueur {
       } else if (eventKey == "ArrowLeft") {
         this.mouvemeType = this.joueur.mouvement(EnumMouvement.GAUCHE);
         for (let index = 0; index < 10; index++) {
-          let pos = new Position(x - index, y);
-          this.joueur.setPosition(pos);
+          //let pos = new Position(x - index, y);
+          this.joueur.setPositionX(x - index);
           if(!this.tomber0) {
             if (this.collisionAction()[0] == EnumAction.NULL) {
                 this.tomber();

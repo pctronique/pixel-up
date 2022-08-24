@@ -30,7 +30,7 @@ class Game {
     this.idTypeMort = idTypeMort;
   }
 
-  addBackground(tailleX, tailleY) {
+  addBackground(tailleX, tailleY, joueurTailleX, joueurTailleY) {
     let screenGame = document.getElementById(this.idScreen);
     // permet d'ajouter un nouveau canvas tout en définissant sa taille
     let newcanvas = document.createElement('canvas');
@@ -47,6 +47,8 @@ class Game {
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
+    
+    let addJoueur = this.setJoueur(tailleX/2, -tailleY, joueurTailleX, joueurTailleY);
   }
 
   createBackground() {
@@ -72,9 +74,10 @@ class Game {
   }
 
   setJoueur(posX, posY, tailleX, tailleY) {
-    this.joueur = new Joueur(new Taille(tailleX, tailleY));
-    this.joueur.setPosition(new Position(posX, posY));
-    this.joueur.setGame(this);
+    let joueur = new Joueur(new Taille(tailleX, tailleY));
+    joueur.setPosition(new Position(posX, posY));
+    joueur.setGame(this);
+    return joueur;
   }
 
   tuerJoueur(enumTypeMort) {

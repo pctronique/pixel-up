@@ -23,8 +23,13 @@ class Background {
     }
     this.creerPlatforme();
     this.creerPlatformeBottom(new PlateformePiegeHaut());
-    this.creerPlateformeTenue();
+    this.creerPlateformeTenue(undefined);
   }
+
+  typeClass() {
+    return "background";
+  }
+
   imageSrc(src) {
     this.imageSource = src;
   }
@@ -44,11 +49,11 @@ class Background {
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
-  creerPlateformeTenue(){
-    let taille = new Taille(40, 40);
-    let pos = new Position(0, this.taille.y - taille.y);
-    this.tenue = new Tenue();
-    if(this.tenue != undefined) {
+  creerPlateformeTenue(tenue){
+    if(tenue != undefined) {
+      let taille = new Taille(40, 40);
+      let pos = new Position(0, this.taille.y - taille.y);
+      this.tenue = tenue;
       this.tenue.setTaille(taille);
       this.tenue.setPosition(pos);
       this.tenue.setBackground(this);
@@ -111,9 +116,10 @@ class Background {
 
   setJoueur(joueur) {
     this.joueur = joueur;
+    this.joueur.setBackground(this);
+    this.joueur.setPosition(this.joueur.pos);
     if(this.tenue != undefined) {
       this.tenue.setJoueur(this.joueur);
-      this.joueur.setBackground(this);
     }
   }
 
