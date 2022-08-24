@@ -9,9 +9,11 @@ class Tenue extends Plateforme{
     }
     setJoueur(joueur){
         this.joueur = joueur;
+        
     }
     action(enumCollision) {
         if(enumCollision == EnumCollision.HAUT || enumCollision == EnumCollision.BAS || enumCollision == EnumCollision.GAUCHE|| enumCollision == EnumCollision.DROITE ) {
+            console.log(this);  
             this.joueur.changementTenue(this.tenue);
             return EnumAction.TENUE;
             

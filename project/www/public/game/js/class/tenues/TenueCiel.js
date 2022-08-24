@@ -1,14 +1,16 @@
 class TenueCiel extends Tenue{
     constructor(taille = undefined, collisionHautStable = true){
         super(taille, collisionHautStable);
+        this.setTenue("white");
 }
 afficher(canvas){
     //this.img;
 
-    /*this.imageSrc('./img/wingsuit.png');
+    this.imageSrc('./img/boiteWingsuit.png');
 
     let wingsuit= new Images(this.img, this.pos, this.taille);
-    wingsuit.afficher(canvas);*/
+    wingsuit.setBackground(this.background);
+    wingsuit.afficher(canvas);
 }
 
 }
