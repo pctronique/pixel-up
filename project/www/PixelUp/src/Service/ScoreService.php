@@ -16,7 +16,7 @@ class ScoreService
     public function getPaginatedScores(?Score $score = null){
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page',1);
-        $limit = 1;
+        $limit = 5;
         $scoresQuery = $this->scoreRepo->getUserScore();
 
         return $this->paginator->paginate($scoresQuery, $page, $limit);
