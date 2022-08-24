@@ -4,12 +4,18 @@ class MouvementJoueur {
     if(this.folderWorker0 == undefined) {
         this.folderWorker0 = "./js/worker/";
     }
+    this.mouvemeType = undefined;
     this.joueur = joueur;
     this.workerJoueurSauter = undefined;
     this.workerJoueurTomber = undefined;
     this.sauter0 = false;
     this.tomber0 = false;
     this.move0 = false;
+  }
+
+  stop() {
+    this.finSauter();
+    this.finTomber();
   }
 
   finSauter() {
@@ -23,7 +29,6 @@ class MouvementJoueur {
   }
 
   finTomber() {
-    console.log("fin de tomber");
     this.tomber0 = false;
     if(this.workerJoueurTomber != undefined) {
       this.workerJoueurTomber.terminate();
@@ -35,18 +40,9 @@ class MouvementJoueur {
   eventSauter() {
     let classJoueur = this.joueur;
     let classMovJoueur = this;
-    let idPosY = this.joueur.idPosY;
     let sauter = true;
-    let sauter0 = this.sauter0;
     this.workerJoueurSauter.onmessage = function (e) {
-      //if (sauter) {
       classJoueur.setPositionY(e.data[0]);
-        /*if (classMovJoueur.collisionAction() != EnumAction.NULL) {
-            sauter = false;
-            sauter0 = false;
-            classMovJoueur.finSauter();
-        }
-      }*/
       sauter = e.data[1];
       if (sauter) {
         classMovJoueur.finSauter();
@@ -61,12 +57,12 @@ class MouvementJoueur {
     }
     let enumCollision = this.joueur.getEnumCollision();
     if (enumCollision[0] != EnumCollision.NULL) {
-      //console.log(enumCollision[0]);
-      if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP || enumCollision[1].action(enumCollision[0]) == EnumAction.MORT) {
-        return enumCollision[1].action(enumCollision[0]);
+      let enumAction = enumCollision[1].action(enumCollision[0]);
+      if (enumAction == EnumAction.STOP || enumAction == EnumAction.MORT) {
+        return [enumAction, enumCollision[1]];
       }
     }
-    return EnumAction.NULL;
+    return [EnumAction.NULL, undefined];
   }
 
   sauter() {
@@ -79,6 +75,39 @@ class MouvementJoueur {
   }
   
   eventTomber() {
+    let classJoueur = this.joueur;
+    let classMovJoueur = this;
+    let tomber = true;
+    this.workerJoueurTomber.onmessage = function (e) {
+      if (tomber) {
+        classJoueur.setPositionY(e.data[0]);
+        let enumAction = classMovJoueur.collisionAction();
+        if (enumAction[0] != EnumAction.NULL) {
+          if(enumAction[0] == EnumAction.MORT) {
+            classJoueur.mourir(enumAction);
+          }
+          tomber = false;
+        }
+      }
+      if (tomber) {
+        tomber = e.data[1];
+      }
+      if (!tomber) {
+        classMovJoueur.finTomber();
+      }
+    };
+  }
+
+  tomber() {
+    if(!this.tomber0) {
+      this.tomber0 = true;
+      this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
+      this.eventTomber();
+      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 5]);;
+    }
+  }
+
+  eventMove() {
     let classJoueur = this.joueur;
     let classMovJoueur = this;
     let idPosY = this.joueur.idPosY;
@@ -96,64 +125,14 @@ class MouvementJoueur {
         tomber = e.data[1];
       }
       if (!tomber) {
-      //if (!this.tomber0 && !sauter0 && this.workerJoueurSauter != undefined) {
         classMovJoueur.finTomber();
       }
     };
   }
 
-  tomber() {
-    if(!this.tomber0 && !this.sauter0 && !this.move0) {
-      this.tomber0 = true;
-      this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
-      this.eventTomber();
-      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 5]);;
-    }
+  move() {
+    
   }
-
-  eventMove() {
-    let classJoueur = this;
-    let idPosX = this.idPosX;
-    this.workerJoueurMove.addEventListener("message", function (e) {
-      if (document.getElementById(idPosX) != undefined) {
-        document.getElementById(idPosX).value = e.data[0];
-        document.getElementById(idPosX).dispatchEvent(new Event("change"));
-      }
-      /*classJoueur.setPositionX(e.data[0]);
-        if (classJoueur.background != undefined) {
-          classJoueur.background.afficher();
-        }
-        let enumCollision = classJoueur.getEnumCollision();
-        if (enumCollision[0] != EnumCollision.NULL) {
-          console.log(enumCollision[0]);
-        }*/
-    });
-  }
-  startWorker() {
-    if (this.joueur.background != undefined) {
-        this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
-        this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
-    }
-    let classJoueur = this.joueur;
-    this.workerJoueur.addEventListener("message", function (e) {
-      let pos = new Position(e.data[0], e.data[1]);
-      classJoueur.setPosition(pos);
-      /*if (classJoueur.background != undefined) {
-        classJoueur.background.afficher();
-      }*/
-      let enumCollision = classJoueur.getEnumCollision();
-      if (enumCollision[0] != EnumCollision.NULL) {
-        console.log(enumCollision[0]);
-      }
-    });
-  }
-
-  move(eventKey) {
-    if (eventKey == "ArrowRight" || eventKey == "ArrowLeft") {
-      this.workerJoueurMove.postMessage([this.joueur.mouvement(eventKey), this.joueur.pos.x]);
-    }
-  }
-
 
   mouvement(enumMouvement) {
     let mouvem = "";
@@ -178,45 +157,9 @@ class MouvementJoueur {
         break;
     }
     return mouvem;
-    /*let plateformesCollision = undefined;
-      if (this.background != undefined) {
-        plateformesCollision = this.background.getPlateformesCollision();
-      }
-      this.workerJoueur.postMessage([mouvem, this.pos.x, this.pos.y, plateformesCollision, 0]);*/
   }
+
   coucou() {}
-
-  changementTenue() {}
-
-  deplacerSauter(eventKey) {
-    this.choixMouvement(eventKey);
-  }
-
-  collisionHaut() {
-    let enumCollision = this.joueur.getEnumCollision();
-    return enumCollision == EnumCollision.HAUT;
-  }
-
-  movPosDev() {
-    /*if (this.joueur.background != undefined) {
-        this.joueur.background.afficher();
-    }*/
-    let enumCollision = this.joueur.getEnumCollision();
-    if (enumCollision[0] != EnumCollision.NULL) {
-      if (enumCollision[1].action(enumCollision[0]) == EnumAction.STOP) {
-        console.log("stop");
-      }
-      let x = this.joueur.pos.x;
-      let y = this.joueur.pos.y;
-      if (enumCollision[0] == EnumCollision.HAUT) {
-        let pos = new Position(x, y - 1);
-        this.joueur.setPosition(pos);
-      }
-      /*if (this.joueur.background != undefined) {
-        this.joueur.background.afficher();
-      }*/
-    }
-  }
 
   moveDev(eventKey) {
     let x = this.joueur.pos.x;
@@ -253,23 +196,23 @@ class MouvementJoueur {
       let x = this.joueur.pos.x;
       let y = this.joueur.pos.y;
       if (eventKey == "ArrowRight") {
-          this.joueur.mouvement(EnumMouvement.DROITE);
+        this.mouvemeType = this.joueur.mouvement(EnumMouvement.DROITE);
         for (let index = 0; index < 10; index++) {
           let pos = new Position(x + index, y);
           this.joueur.setPosition(pos);
           if(!this.tomber0) {
-            if (this.collisionAction() == EnumAction.NULL) {
+            if (this.collisionAction()[0]  == EnumAction.NULL) {
                 this.tomber(); 
             }
           }
         }
       } else if (eventKey == "ArrowLeft") {
-          this.joueur.mouvement(EnumMouvement.GAUCHE);
+        this.mouvemeType = this.joueur.mouvement(EnumMouvement.GAUCHE);
         for (let index = 0; index < 10; index++) {
           let pos = new Position(x - index, y);
           this.joueur.setPosition(pos);
           if(!this.tomber0) {
-            if (this.collisionAction() == EnumAction.NULL) {
+            if (this.collisionAction()[0] == EnumAction.NULL) {
                 this.tomber();
             }
           }

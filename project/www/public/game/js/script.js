@@ -1,40 +1,55 @@
 let folderWorker = "./js/worker/";
 
 if (window.Worker) {
-    let score = new Score("score");
-    score.start();
     let game = new Game("screenGame");
+    game.scoreId("score");
+    game.setIdTypeMort("game_typeMort");
     let backgroundTaille = new Taille(1000, 5000);
+    game.setPosInitJoueur(backgroundTaille.x/2,backgroundTaille.y-49);
     game.setJoueur(backgroundTaille.x/2,backgroundTaille.y-49, 47,48);
     game.addBackground(backgroundTaille.x,backgroundTaille.y);
     game.addBackground(backgroundTaille.x,backgroundTaille.y);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
-    //game.afficher();
+    game.afficher();
 
     let screenGame = document.getElementById("screenGame");
-    screenGame.scrollTop = screenGame.scrollHeight;
+    //screenGame.scrollTop = screenGame.scrollHeight;
+
 
     game.start();
+    function startGame(e) {
+        game.start();
+    }
 
-    let scrollMove = new ScrollMove();
+    function stopGame(e) {
+        game.stop();
+    }
+
+    document.getElementById("start").addEventListener("click", startGame);
+    document.getElementById("stop").addEventListener("click", stopGame);
     screenGame.addEventListener("scroll", function () {
-        let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
-        let calcul4 = (screenGame.scrollHeight/2)/backgroundTaille.y;
-        let st = -1 * (game.backgrounds[0].scrollMove.placeBas()/game.backgrounds[0].scrollMove.taillePixel());
-        console.log(calcul4);
+        let st = -1 * (screenGame.scrollHeight-screenGame.offsetHeight-screenGame.scrollTop);
          game.screenBottom(st);
-         //game.afficher();
          let scrollHaut = game.backgrounds[0].scrollMove.changeBackground();
          if (screenGame.scrollTop < scrollHaut) {
             game.addBackground(backgroundTaille.x,backgroundTaille.y);
          }
      }, false);
-    /*let idScore = document.getElementById("score");
-    idScore.addEventListener("change", function (e) {
-        if(parseInt(idScore.innerHTML) == 100) {
-            score.stop();
-        }
-    })*/
+
+     document.getElementById("game_typeMort").addEventListener("change", function (e) {
+         let value = parseInt(document.getElementById("game_typeMort").value);
+         let message = "";
+         if(value == EnumTypeMort.TOMBER) {
+             message = "TOMBER";
+         } else if(value == EnumTypeMort.REQUIN) {
+             message = "REQUIN";
+         } else if(value == EnumTypeMort.AVION) {
+             message = "AVION";
+         } else if(value == EnumTypeMort.ASTEROIDE) {
+             message = "ASTEROIDE";
+         }
+         alert(message);
+     })
     
     document.querySelector('#button_up').addEventListener("click", function (e) {
         game.eventKey(' ');
@@ -45,6 +60,8 @@ if (window.Worker) {
     document.querySelector('#button_right').addEventListener("click", function (e) {
         game.eventKey('ArrowRight');
     });
+
+    screenGame.scrollTop = screenGame.scrollHeight;
 
 } else {
     console.log("Your browser doesn't support web workers.");

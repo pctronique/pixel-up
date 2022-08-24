@@ -4,6 +4,21 @@ class Joueur extends Personnage {
     this.mouvementJoueur = new MouvementJoueur(this);
     this.imageSrc('img/personnage-1.png');
     this.couleur = "#24AE1D";
+    this.game = undefined;
+  }
+
+  mourir(enumAction) {
+    if(!this.game != undefined) {
+      this.game.tuerJoueur(enumAction[1].typeMort());
+    }
+  }
+
+  setGame(game) {
+    this.game = game;
+  }
+
+  stop() {
+    this.mouvementJoueur.stop();
   }
   
   coucou() {}

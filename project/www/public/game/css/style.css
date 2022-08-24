@@ -58,3 +58,7 @@ body {
 #button_right {
     right: 0;
 }
+#info_Game {
+    position: absolute;
+    z-index: 2;
+}

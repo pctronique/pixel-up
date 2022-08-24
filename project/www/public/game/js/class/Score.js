@@ -9,7 +9,7 @@ class Score extends Pause {
 
     eventScore() {
         let score = this;
-        this.workerJoueurTomber.onmessage = function (e) {
+        this.workerScore.onmessage = function (e) {
             if(!score.isStop) {
                 document.getElementById(score.idScore).innerText = e.data;
                 document.getElementById(score.idScore).dispatchEvent(new Event("change"));
@@ -23,15 +23,16 @@ class Score extends Pause {
             folderWorker0 = "./js/worker/";
         }
         this.isStop = false;
-        this.workerJoueurTomber = new Worker(folderWorker0+"workerScore.js");
+        this.workerScore = new Worker(folderWorker0+"workerScore.js");
         this.eventScore();
-        this.workerJoueurTomber.postMessage(this.milliseconde);
+        this.workerScore.postMessage(this.milliseconde);
     }
 
     stop() {
         this.isStop = true;
         if(this.workerScore != undefined) {
             this.workerScore.terminate();
+            this.workerScore = undefined;
         }
     }
     

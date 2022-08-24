@@ -42,7 +42,7 @@ class Personnage extends BlockRectange // implements InterfaceGravite
         }
     }
 
-    mourir() {
+    mourir(enumAction) {
 
     }
 

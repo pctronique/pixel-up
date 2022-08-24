@@ -22,7 +22,7 @@ class Background {
       this.scrollMove.setBackground(this);
     }
     this.creerPlatforme();
-    this.creerPlatformeBottom(new PlateformeFeu());
+    this.creerPlatformeBottom(new PlateformePiegeHaut());
     this.creerPlateformeTenue();
   }
   imageSrc(src) {
@@ -38,7 +38,7 @@ class Background {
     let pos = new Position(0, this.taille.y - taille.y);
     this.screen_bottom = screen_bottom;
     if(this.screen_bottom != undefined) {
-      this.screen_bottom.setTaille(taille);
+      //this.screen_bottom.setTaille(taille);
       this.screen_bottom.setPosition(pos);
       this.screen_bottom.setBackground(this);
       this.tabAutrePlateforme.push(this.screen_bottom);

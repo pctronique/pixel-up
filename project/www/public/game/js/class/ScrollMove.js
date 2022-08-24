@@ -2,6 +2,11 @@ class ScrollMove {
     constructor(idGame) {
         this.game = document.getElementById(idGame);
         this.background = undefined;
+        this.calculOld = screenGame.scrollTop;
+    }
+
+    debut() {
+        this.game.scrollTop = this.game.scrollHeight;
     }
 
     setBackground(background) {
@@ -13,6 +18,10 @@ class ScrollMove {
     }
 
     monter(nb) {
+        if(this.calculOld == 0) {
+            this.calculOld = screenGame.scrollTop;
+        }
+        console.log(this.calculOld);
         let calcul0 = screenGame.scrollHeight - screenGame.offsetHeight;
         let calcul01 = calcul0 - ((calcul0/100)*nb);
         let mult = screenGame.scrollHeight / screenGame.offsetHeight;
@@ -25,8 +34,14 @@ class ScrollMove {
         console.log("nb : " + nb);
         console.log("calcul0 : " + calcul0);
         console.log("calcul01 : " + calcul01);
-        screenGame.scrollTop = calcul01+170;
+        if(this.calculOld > calcul01+170) {
+            this.calculOld = calcul01+170;
+        }
+        screenGame.scrollTop = this.calculOld;
         console.log("scrollTop (new) : " + screenGame.scrollTop);
+        /*if(this.background != undefined) {
+            this.background.screenBottom(this.placeBas());
+        }*/
     }
 
     calculMilieu() {

@@ -42,7 +42,6 @@ class ImageGif {
         /* tracé uniquement quand l'image sera chargée
         (quand l'événement onLoad sera déclenché, exécuter ctx.drawImage() */
         let classImgs = this;
-        
         img.onload = function () {
             if(classImgs.isCut) {
                 classImgs.selectImag(img.width, img.height, img, ctx);
