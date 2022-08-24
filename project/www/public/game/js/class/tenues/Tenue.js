@@ -18,6 +18,7 @@ class Tenue extends Plateforme{
         }
         return EnumAction.NULL;
     }
+   
     afficher(canvas) {
         let ctx = canvas.getContext('2d');
         ctx.fillStyle = 'sienna';
