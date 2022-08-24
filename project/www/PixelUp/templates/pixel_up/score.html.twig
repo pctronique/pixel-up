@@ -6,9 +6,15 @@
 
 <div class="flex">
      
-    <button onclick="showRanked()">Classement</button>
+    <button onclick=
+        {% if 'mots' in app.request.uri %}
+            "location.href='{{path('app_score_index')}}'"
+        {% else %}
+            "showRanked()"
+        {% endif %}
+        >Classement
+    </button>
     <button onclick="showBestScore()">Meilleur score</button>
-    
 </div>
 
 <section id="bestScore">

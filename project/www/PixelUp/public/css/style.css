@@ -19,10 +19,19 @@ body{
   position: absolute;
   right: 0;
   top: 0;
-  border: 1px solid white;
-  background: white;
-  width: 32px;
-  height: 32px;
+  border: 8px solid white;
+  background: black;
+  padding: 10px;
+  height: 65px;
+
+}
+
+#homeButton iconify-icon{
+  transition: 0.2s;
+}
+
+#homeButton:hover iconify-icon{
+transform: scale(1.2);
 }
 
 header h1{

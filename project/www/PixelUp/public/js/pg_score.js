@@ -46,8 +46,6 @@ function showBestScore() {
 }
 
 function showRanked() {
-
     ranked.style.display = "block";
     bestScore.style.display = "none";
-
 }
