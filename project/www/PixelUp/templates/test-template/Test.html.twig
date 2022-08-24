@@ -9,6 +9,16 @@
         ]);
     }
 
+
+
+ #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    public function show(User $user): Response
+    {
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+    
     <label for="pseudo">&nbsp;Utilisateur:</label>
         <div class="flexForm">
             <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>

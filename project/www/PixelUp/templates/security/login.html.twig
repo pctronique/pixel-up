@@ -4,9 +4,10 @@
 
 {% block body %}
 
+
 <form method="post" id="profilForm">
 
-<h1>Connectez-vous !</h1>
+<h1> Connectez-vous !</h1>
 
     {% if error %}
         <div class="flexForm">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

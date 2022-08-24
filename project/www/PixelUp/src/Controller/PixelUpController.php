@@ -23,16 +23,7 @@ class PixelUpController extends AbstractController
     }
 
     
-     #[Route('/profil', name: 'app_profil')]
-     
 
-    public function profil(): Response
-    
-    {
-        return $this->render('pixel_up/profil.html.twig', [
-            
-        ]);
-    }
 
     
 
