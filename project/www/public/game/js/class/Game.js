@@ -10,11 +10,14 @@ class Game {
     this.nbBackground = 0;
     this.idBackground = "background_game_0";
     this.idScreen = idScreen;
+    this.milliseconde = 40;
+  }
+
+  setMilliseconde(milliseconde) {
+    this.milliseconde = milliseconde;
   }
 
   choixBackground(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
-    
-    console.log(this.nbBackground);
     switch (this.nbBackground) {
         case 0:
         return new BackgroundSousTerre(idBackground, taille, scrollMove, imgBack, imgBas);
@@ -41,6 +44,7 @@ class Game {
 }
 
 
+
   addBackground(tailleX, tailleY) {
     let screenGame = document.getElementById(this.idScreen);
     // permet d'ajouter un nouveau canvas tout en définissant sa taille
@@ -57,7 +61,6 @@ class Game {
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
-    console.log(this.background);
   }
 
   createBackground() {
@@ -131,7 +134,7 @@ class Game {
       workerGame.onmessage = function (e) {
         classGame.afficher();
       }
-      workerGame.postMessage(40);
+      workerGame.postMessage(this.milliseconde);
   }
 
   startDev() {

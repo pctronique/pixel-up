@@ -18,10 +18,14 @@ class Tenue extends Plateforme{
         }
         return EnumAction.NULL;
     }
+   
     afficher(canvas) {
         let ctx = canvas.getContext('2d');
         ctx.fillStyle = 'sienna';
         ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
+        if (this.background != undefined) {
+          this.background.afficherContenue();
+        }
     }
 
 }

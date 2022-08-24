@@ -6,7 +6,9 @@ class PlateformeNacelles extends Plateforme{
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/nacelle.png');
+        this.taille = new Taille(100,70);
         let nacelles = new Images(this.img, this.pos, this.taille);
+        nacelles.setBackground(this.background);
         nacelles.afficher(canvas);
     }
    

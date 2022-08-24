@@ -15,7 +15,7 @@ class BackgroundEspaceSatellite extends Background {
     }
 
     choixPlateforme(taille){
-        return new PlateformeSatellite(taille);
+        return new PlateformeMobileSatellite(taille);
     }
 
 

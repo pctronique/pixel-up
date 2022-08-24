@@ -7,6 +7,7 @@ class PlateformeHelicopteres extends Plateforme{
         //this.img;
         this.imageSrc('./img/helicoptere.png');
         let helicopteres = new Images(this.img, this.pos, this.taille);
+        helicopteres.setBackground(this.background);
         helicopteres.afficher(canvas);
     }
    
