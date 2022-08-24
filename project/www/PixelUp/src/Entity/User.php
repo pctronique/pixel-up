@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mort::class, orphanRemoval: true)]
     private Collection $morts;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Succes $succes = null;
+
     public function __construct()
     {
         $this->scores = new ArrayCollection();
@@ -175,6 +178,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $mort->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSucces(): ?Succes
+    {
+        return $this->succes;
+    }
+
+    public function setSucces(Succes $succes): self
+    {
+        // set the owning side of the relation if necessary
+        if ($succes->getUser() !== $this) {
+            $succes->setUser($this);
+        }
+
+        $this->succes = $succes;
 
         return $this;
     }
