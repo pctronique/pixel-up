@@ -340,3 +340,9 @@ tbody tr:nth-child(even) {
   background: rgb(255,255,255,0.5);
 
 }
+
+/* SCORE ET SUCCES */
+
+tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
+  display: none;
+}
