@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Score;
+use Doctrine\ORM\Query;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,12 +40,47 @@ class ScoreRepository extends ServiceEntityRepository
         }
     }
 
+
+
+    // Methode qui recherche le meilleur score de chaque joueur ( Classement )
+
     public function getUserScore(){
         $query = $this->createQueryBuilder('s')
             ->innerJoin('s.user', 'u')
-            ->select('u.username, s.score, s.date');
+            ->select('u.username, MAX(s.score) AS max_score, s.date');
+        $query->groupBy('s.user');
+        $query->orderBy('max_score', 'DESC');
+        return $query->getQuery()->getResult();
+    }
+
+
+    // Methode qui recherche le meilleur score personnel de l'utilisateur connecté
+
+    public function getPersonnalScore($user){
+        $query = $this->createQueryBuilder('s')
+        ->select('s.score','u.username')
+        ->innerJoin('s.user', 'u')
+        ->where('u = :user')
+        ->setParameter(':user', $user);
         $query->orderBy('s.score', 'DESC');
         return $query->getQuery()->getResult();
+    }
+
+    // Methode qui recherche le meilleur score du joueur recherché par son identifiant
+
+    public function search($mots){
+
+        $query = $this->createQueryBuilder('s');
+        if($mots != null) {
+            $query->select('u.username', 'MAX(s.score) AS max_score', 's.date')
+            ->innerJoin('s.user', 'u')
+            ->where('MATCH_AGAINST(u.username) AGAINST(:mots boolean)>0')
+            ->setParameter('mots', $mots);
+            $query->groupBy('s.user');
+            $query->orderBy('max_score', 'DESC');
+        }
+        return $query->getQuery()->getResult();
+
     }
 
 //    /**

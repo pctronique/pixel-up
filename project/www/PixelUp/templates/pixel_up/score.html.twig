@@ -5,24 +5,44 @@
 {% block body %}
 
 <div class="flex">
+     
+    <button onclick=
+        {% if 'mots' in app.request.uri %}
+            "location.href='{{path('app_score_index')}}'"
+        {% else %}
+            "showRanked()"
+        {% endif %}
+        >Classement
+    </button>
     <button onclick="showBestScore()">Meilleur score</button>
-    <button onclick="showRanked()">Classement</button>
 </div>
 
 <section id="bestScore">
 
     <h1>Meilleur score</h1>
-    <figure>
-        <iconify-icon icon="emojione-v1:trophy" style="color: #ff8400; width="200" height="200""></iconify-icon>
-        <figcaption>
-            SCORE -- LIAISON BDD A FAIRE
-        </figcaption>
-    </figure>
+    {% if app.user %}
+        <figure>
+            <iconify-icon icon="emojione-v1:trophy" style="color: #ff8400; width="200" height="200""></iconify-icon>
+            <figcaption>
+
+
+
+                {{ personnalScores[0].score }}
+
+            
+
+            </figcaption>
+        </figure>
+    {% else %}
+    <p> Connectez vous pour acceder à ces informations. </p>
+    {% endif %}
 </section>
 
 <section id="ranked">
 
     <h1>Classement</h1>
+
+    {{ form(form) }}
 
     <table class="table">
         <thead>
@@ -36,7 +56,7 @@
         <tbody id="tbodyscore">
         {% for score in scores %}
             <tr>
-                <td>{{ score.score }}</td>
+                <td>{{ score.max_score }}</td>
                 <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ score.username }}</td>
             </tr>
@@ -47,6 +67,14 @@
         {% endfor %}
         </tbody>
     </table>
+
+                {% if 'mots' in app.request.uri %}
+
+                {% else %}
+
+                {{ knp_pagination_render(scores) }}
+
+                {% endif %}
 
 </section>
 
