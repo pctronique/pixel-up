@@ -2,7 +2,7 @@ class PlateformeTenueEspace extends Plateforme{
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
 
-        this.taille = new Taille(150,50);
+        this.taille = new Taille(150,60);
     }
 
     afficher(canvas){
