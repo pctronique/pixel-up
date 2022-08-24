@@ -36,9 +36,12 @@ class Game {
            
         case 5:
         return new BackgroundEspaceSatellite(idBackground, taille, scrollMove, imgBack, imgBas);
+      
+        case 6:
+        return new BackgroundEspaceAsteroide(idBackground, taille, scrollMove, imgBack, imgBas);
            
         default:
-        return new BackgroundEspaceAsteroide(idBackground, taille, scrollMove, imgBack, imgBas);
+        return new BackgroundEspaceVaisseau(idBackground, taille, scrollMove, imgBack, imgBas);
           
     }
 }

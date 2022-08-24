@@ -1,12 +1,11 @@
 #screenGame{
     display: flex;
     flex-direction: column;
+    position: relative;
     max-width: 5000px;
-    max-height: 500px;
+    height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
     
 }
-#background{
-    background-color: #4fb2f8;
-}
+

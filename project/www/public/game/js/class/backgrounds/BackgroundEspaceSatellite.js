@@ -3,7 +3,8 @@ class BackgroundEspaceSatellite extends Background {
 
 
     constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille, imgBack, imgBas)
+        super(idBackground, taille, imgBack, imgBas);
+        this.creerPlatforme(50, 300, 25, 80);
         
     }
 
@@ -14,8 +15,8 @@ class BackgroundEspaceSatellite extends Background {
         espaceSatellite.afficher(canvas);
     }
 
-    choixPlateforme(taille){
-        return new PlateformeMobileSatellite(taille);
+    choixPlateforme(){
+        return new PlateformeMobileSatellite();
     }
 
 

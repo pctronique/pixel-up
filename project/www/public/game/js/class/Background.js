@@ -18,12 +18,17 @@ class Background {
     this.nbDisplayPlt = 0;
     this.nbDisplayOther = 0;
     this.stopDisplay = true;
+    this.minX = 70;
+    this.maxX = 102;
+    this.minY = 10;
+    this.maxY = 70;
     if(this.scrollMove != undefined) {
       this.scrollMove.setBackground(this);
     }
-    this.creerPlatforme();
+    this.creerPlatforme(50, 300, 25, 80);
     this.creerPlatformeBottom(new PlateformeFeu());
     this.creerPlateformeTenue();
+    
   }
   imageSrc(src) {
     this.imageSource = src;
@@ -59,45 +64,57 @@ class Background {
     }
   }
 
-  choixPlateforme(taille){
-    return new Plateforme(taille);
+  choixPlateforme(){
+    return new Plateforme();
   }
+
+  
   /**
    * creation et placement des plateformes position x et y en aleatoire (lien avec la class RndPos.js) avec definition ecart de la hauteur entre plateformes y et definition largeur espacement des plateformes x entre elle.
    */
-  creerPlatforme() {
-    let defaultHauteur = 70; //hauteur espacement initiale interligne y entre 2 plateformes 
+  creerPlatforme(minX, maxX, minY, maxY) {
+    
+    this.minX = minX;
+    this.maxX = maxX;
+    this.minY = minY;
+    this.maxY = maxY;
+    this.plateformes = [];
+    this.plateformesCollision = [];
+    let defaultHauteur = this.maxY; //hauteur espacement initiale interligne y entre 2 plateformes 
     let startHauteur = defaultHauteur;
     while (startHauteur < this.taille.y) {
       let nombreDeLignes = 0;
       let posPlateforme = 0;
       while (posPlateforme < this.taille.x) {
         let objRndPos = new RndPos(posPlateforme, 0); //creation aleatoire position de la nouvelle platemeforme en x
-        let taille = new Taille(50, 10);
-        let plateforme = this.choixPlateforme(taille);
+        // let taille = new Taille(50, 10);
+        let plateforme = this.choixPlateforme();
         if (nombreDeLignes == 0) {
-          objRndPos.minMaxX(2, 52);
+          objRndPos.minMaxX(0, this.maxX - this.minX);
           posPlateforme += objRndPos.getX();
         } else {
-          objRndPos.minMaxX(70, 102);
+          objRndPos.minMaxX(this.minX, this.maxX);
           posPlateforme += objRndPos.getX();
-          posPlateforme += taille.getX();
+          posPlateforme += plateforme.taille.getX();
         }
 
-        objRndPos.minMaxY(10, 70); // position y en aleatoire
+        objRndPos.minMaxY(this.minY, this.maxY); // position y en aleatoire
         let posPlateformeY = objRndPos.getY();
+        let calculPosY = this.taille.y - (startHauteur + posPlateformeY);
+        if (calculPosY > 20) {
         let pos = new Position(posPlateforme, this.taille.y - (startHauteur + posPlateformeY));
         plateforme.setPosition(pos);
         plateforme.setBackground(this);
         let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
         this.plateformesCollision.push(
           new CollisionPlateforme(
-            this.plateformes.length, 
-            posArete.haut(), 
-            posArete.bas(), 
-            posArete.gauche(), 
+            this.plateformes.length,
+            posArete.haut(),
+            posArete.bas(),
+            posArete.gauche(),
             posArete.droite()));
         this.plateformes.push(plateforme);
+      }
         nombreDeLignes++;
       }
       startHauteur += defaultHauteur;

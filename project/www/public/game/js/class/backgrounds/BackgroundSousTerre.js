@@ -3,7 +3,8 @@ class BackgroundSousTerre extends Background {
 
 
     constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille, imgBack, imgBas)
+        super(idBackground, taille, imgBack, imgBas);
+        this.creerPlatforme(50, 300, 25, 80);
         
     }
 
@@ -14,10 +15,9 @@ class BackgroundSousTerre extends Background {
         sousTerre.afficher(canvas);
     }
 
-    choixPlateforme(taille){
-        return new PlateformePierre(taille);
+    choixPlateforme(){
+        return new PlateformePierre();
     }
 
-
-
+    
 }
