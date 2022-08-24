@@ -8,6 +8,7 @@ class PlateformeMobileAsteroide extends Plateforme{
         this.imageSrc('./img/asteroide.png');
         this.taille = new Taille(100,50);
         let asteroide = new Images(this.img, this.pos, this.taille);
+        asteroide.setBackground(this.background);
         asteroide.afficher(canvas);
     }
    

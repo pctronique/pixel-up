@@ -18,7 +18,6 @@ class BackgroundCielNuages extends Background {
         let min=1; 
         let max=3;  
         let random = Math.floor(Math.random() * (max - min)) + min; 
-        console.log(random);
         if(random == 1){
             return new PlateformeOiseaux(taille);
         }

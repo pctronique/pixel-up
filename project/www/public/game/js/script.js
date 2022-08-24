@@ -21,7 +21,7 @@ if (window.Worker) {
         let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
         let calcul4 = (screenGame.scrollHeight/2)/backgroundTaille.y;
         let st = -1 * (game.backgrounds[0].scrollMove.placeBas()/game.backgrounds[0].scrollMove.taillePixel());
-        console.log(calcul4);
+        //console.log(calcul4);
          game.screenBottom(st);
          //game.afficher();
          let scrollHaut = game.backgrounds[0].scrollMove.changeBackground();
