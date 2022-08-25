@@ -1,7 +1,7 @@
 class TenueEspace extends Tenue{
     constructor(taille = undefined, collisionHautStable = true){
         super(taille, collisionHautStable);
-        this.setTenue("pink");
+        this.setTenue(EnumTenues.ESPACE);
     }
     afficher(canvas){
         //this.img;

@@ -219,21 +219,21 @@ class Background {
       if (element != undefined) {
         element.afficher(this.canvasBackground);
       }
-    } else if (this.nbDisplayOther == 0) {
+    } else if (this.nbDisplayOther == 2) {
       this.nbDisplayOther++;
       if (this.screen_bottom != undefined) {
         this.screen_bottom.afficher(this.canvasBackground);
       } else {
         this.afficherContenue();
       }
-    } else if (this.nbDisplayOther == 2) {
+    } else if (this.nbDisplayOther == 1) {
       this.nbDisplayOther++;
       if (this.tenue != undefined) {
         this.tenue.afficher(this.canvasBackground);
       } else {
         this.afficherContenue();
       }
-    }  else if (this.nbDisplayOther == 1) {
+    }  else if (this.nbDisplayOther == 0) {
       this.nbDisplayOther++;
       if (this.plateformePourTenue != undefined) {
         this.plateformePourTenue.afficher(this.canvasBackground);

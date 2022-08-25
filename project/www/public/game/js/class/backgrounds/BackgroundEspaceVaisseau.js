@@ -5,6 +5,7 @@ class BackgroundEspaceVaisseau extends Background {
     constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
         super(idBackground, taille, imgBack, imgBas);
         this.creerPlatforme(50, 300, 25, 80);
+        this.creerPlatformeBottom(new PlateformeMeteoritesFeu());
         
     }
 

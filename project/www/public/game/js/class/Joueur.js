@@ -3,13 +3,17 @@ class Joueur extends Personnage {
     super(taille);
     this.mouvementJoueur = new MouvementJoueur(this);
     this.imageSrc('img/personnage-1.png');
-    this.couleur = "#24AE1D";
+    this.tenue = undefined;
+    this.image = undefined;
+    this.imageTenue = new ImageTenue();
+    this.couleur = undefined;
   }
   
   coucou() {}
 
-  changementTenue(couleur) {
-    this.couleur = couleur;
+  changementTenue(tenue) {
+    this.couleur = this.imageTenue.recupTenue(tenue); 
+    this.tenue = tenue;
   }
 
   sauter() {
