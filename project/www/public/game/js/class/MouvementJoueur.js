@@ -115,6 +115,8 @@ class MouvementJoueur {
       if (tomber) {
         classJoueur.game.setJoueurPositionY(e.data[0]);
         let enumAction = classMovJoueur.collisionAction();
+
+        console.log(enumAction);
         if (enumAction.collision.enumCollision != EnumAction.NULL) {
           if(enumAction.collision.enumAction == EnumAction.MORT) {
             classJoueur.mourir(enumAction);

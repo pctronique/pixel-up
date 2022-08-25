@@ -21,11 +21,11 @@ class ScrollMove {
         if(this.calculOld == 0) {
             this.calculOld = this.game.scrollTop;
         }
-        console.log(this.calculOld);
+        //console.log(this.calculOld);
         let calcul0 = this.game.scrollHeight - this.game.offsetHeight;
         let calcul01 = calcul0 - ((calcul0/100)*nb);
         let mult = this.game.scrollHeight / this.game.offsetHeight;
-        console.log("scrollTop : " + this.game.scrollTop);
+        /*console.log("scrollTop : " + this.game.scrollTop);
         console.log("scrollHeight : " + this.game.scrollHeight);
         console.log("scrollWidth : " + this.game.scrollWidth);
         console.log("offsetHeight : " + this.game.offsetHeight);
@@ -33,7 +33,7 @@ class ScrollMove {
         console.log("mult : " + mult);
         console.log("nb : " + nb);
         console.log("calcul0 : " + calcul0);
-        console.log("calcul01 : " + calcul01);
+        console.log("calcul01 : " + calcul01);*/
         if(this.calculOld > calcul01+170) {
             this.calculOld = calcul01+170;
         }

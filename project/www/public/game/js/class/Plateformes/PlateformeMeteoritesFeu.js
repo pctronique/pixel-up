@@ -1,6 +1,10 @@
-class PlateformeMeteoritesFeu extends Plateforme{
+class PlateformeMeteoritesFeu extends PlateformePiegeHaut {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
+    }
+
+    typeMort() {
+        return EnumTypeMort.TOMBER;
     }
 
     afficher(canvas){

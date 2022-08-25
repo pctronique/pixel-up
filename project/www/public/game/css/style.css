@@ -13,7 +13,7 @@ body {
     right: 0;
     margin: 10px
 }
-#screenGame {
+.screenGame {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
-#screenGame canvas {
+.screenGame canvas {
     display: flex;
 }
 #utilisateur {

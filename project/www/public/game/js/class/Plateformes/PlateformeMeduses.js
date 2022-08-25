@@ -1,7 +1,11 @@
-class PlateformeMeduses extends Plateforme{
+class PlateformeMeduses extends PlateformePiegeHaut {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         //this.taille = new Taille(0, 80);
+    }
+
+    typeMort() {
+        return EnumTypeMort.TOMBER;
     }
 
     afficher(canvas){

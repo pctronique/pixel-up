@@ -1,8 +1,15 @@
-class PlateformeMobilePoisson extends Plateforme{
+class PlateformeMobilePoisson extends PlateformeMobile {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         this.taille = new Taille(100,50);
 
+    }
+
+    action(enumCollision) {
+        if (enumCollision == EnumCollision.HAUT) {
+            return EnumAction.STOP;
+        }
+        return EnumAction.NULL;
     }
 
     afficher(canvas){

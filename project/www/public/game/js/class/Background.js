@@ -28,7 +28,7 @@ class Background {
     }
     this.creerPlatforme(50, 300, 25, 80);
     this.creerPlatforme();
-    this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
+    //this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
     this.creerPlateformeTenue(undefined);
   }
 
@@ -45,8 +45,6 @@ class Background {
   }
 
   creerPlateformePourTenue(plateformePourTenue){
-
-    
     this.plateformePourTenue = plateformePourTenue;
     let pos = new Position(this.taille.x - this.plateformePourTenue.taille.x, this.plateformePourTenue.taille.y);
     if (this.plateformePourTenue != undefined) {
@@ -55,6 +53,7 @@ class Background {
       this.tabAutrePlateforme.push(this.plateformePourTenue);
     }
   }
+
   creerPlatformeBottom(screen_bottom) {
     let taille = new Taille(0, 20);
     let pos = new Position(0, this.taille.y - taille.y);
@@ -69,7 +68,7 @@ class Background {
   creerPlateformeTenue(tenue){
     if(tenue != undefined) {
       let taille = new Taille(40, 40);
-      let pos = new Position(0, this.taille.y - taille.y);
+      let pos = new Position(this.taille.x - taille.x - 60, taille.y - 10);
       this.tenue = tenue;
       this.tenue.setTaille(taille);
       this.tenue.setPosition(pos);

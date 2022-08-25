@@ -27,7 +27,9 @@ class Game {
   remove() {
     for (let index = 0; index < this.backgrounds.length; index++) {
       const element = this.backgrounds[index];
-      document.getElementById(element.idBackground).remove();
+      if(document.getElementById(element.idBackground) != undefined) {
+        document.getElementById(element.idBackground).remove();
+      }
     }
   }
 
@@ -129,14 +131,11 @@ class Game {
   }
 
   setJoueurStopTomber() {
-    console.log(this.backgrounds);
-      console.log('***********************');
-      const element = this.backgrounds[0];
-      //element.joueur.finTomber();
-      if(element.joueur.pos.y < (element.taille.y-150)) {
-        console.log('#######################');
-        element.scrollMove.monter(((element.taille.y-element.joueur.pos.y)/(element.taille.y*2))*100);
-      }
+    const element = this.backgrounds[0];
+    //element.joueur.finTomber();
+    if(element.joueur.pos.y < (element.taille.y-150)) {
+      element.scrollMove.monter(((element.taille.y-element.joueur.pos.y)/(element.taille.y*2))*100);
+    }
   }
 
   setJoueurPosition(pos) {

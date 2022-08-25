@@ -1,8 +1,12 @@
-class PlateformeMobileRequin extends Plateforme{
+class PlateformeMobileRequin extends PlateformeMobile {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         this.taille = new Taille(100,50);
 
+    }
+
+    typeMort() {
+        return EnumTypeMort.TOMBER;
     }
 
     afficher(canvas){

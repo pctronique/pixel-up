@@ -1,4 +1,4 @@
-class PlateformeFeu extends Plateforme{
+class PlateformeFeu extends PlateformePiegeHaut {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         this.taille = new Taille(0, 100);
@@ -11,6 +11,10 @@ class PlateformeFeu extends Plateforme{
             this.taille
           );
           this.imgGif.start();
+    }
+
+    typeMort() {
+        return EnumTypeMort.TOMBER;
     }
 
     stop() {

@@ -1,8 +1,15 @@
-class PlateformeNuages extends Plateforme{
+class PlateformeNuages extends PlateformeMobile{
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         this.taille = new Taille(100,90);
 
+    }
+
+    action(enumCollision) {
+        if (enumCollision == EnumCollision.HAUT) {
+            return EnumAction.STOP;
+        }
+        return EnumAction.NULL;
     }
 
     afficher(canvas){
