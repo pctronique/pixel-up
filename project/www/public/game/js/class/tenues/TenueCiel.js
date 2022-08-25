@@ -1,7 +1,7 @@
 class TenueCiel extends Tenue{
     constructor(taille = undefined, collisionHautStable = true){
         super(taille, collisionHautStable);
-        this.setTenue("white");
+        this.setTenue(EnumTenues.CIEL);
 }
 afficher(canvas){
     //this.img;
