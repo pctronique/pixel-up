@@ -18,7 +18,7 @@
     <section>
 
         <div class="btn">
-            <!--Rajouté H1 SI Admin-->
+            <!--Rajouté H1 si Admin-->
             {% if is_granted('ROLE_ADMIN') %}
                         {# Si l'utilisateur est authentifié et qu'il est admin #}
                         <h1>Accueil Admin</h1>
@@ -27,24 +27,27 @@
             {% endif %}
         </div>
 
-        <ul id="menu">
-
-       
+        <ul id="menu"> 
             
             {% if app.user %}
                 
                 <a href="#"><li>Lancer la partie</li></a>
                 <a href=""><li>Score / Classement</li></a>
+
                  {% if is_granted('ROLE_ADMIN') %}
                         {# Si l'utilisateur est authentifié et qu'il est admin #}
                         <a href="{{ path('app_admin') }}"><li>Page admin</li></a>
                 {% endif %}
+
                 <a href="{{ path('app_profil') }}"><li>Profil de {{app.user.username}} </li></a>
                 <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
+                
             {% else %}
+
                 <a href="#"><li>Lancer la partie</li></a>
                 <a href=""><li>Classement</li></a>
                 <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
+
             {% endif %}
         </ul>
         

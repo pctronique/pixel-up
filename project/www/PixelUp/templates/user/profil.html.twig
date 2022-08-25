@@ -18,14 +18,17 @@
         <div class="btn">
               
             <div class="arrow"><p>Hub de {{app.user.getUsername}}<p></div>
-        </div>
+       
+       </div>
 
         <ul id="menu">
             
             <a href="#"><li>Scores</li></a>
+            
             <a href="#"><li>Succès</li></a>
     
             <a href="{{ path('app_modif_profil', {'id': app.user.id}) }}"><li>Modifier le profil</li></a>
+             
              {{ include('user/_delete_form.html.twig') }} 
         </ul>
 

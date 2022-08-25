@@ -18,6 +18,16 @@
             'user' => $user,
         ]);
     }
+
+
+
+
+ return $this->render('login/index.html.twig', [
+             'last_username' => $lastUsername,
+             'error'         => $error,
+          ]);
+      }
+
     
     <label for="pseudo">&nbsp;Utilisateur:</label>
         <div class="flexForm">

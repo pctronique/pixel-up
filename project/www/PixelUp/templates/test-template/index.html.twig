@@ -35,3 +35,22 @@
     </table>
 
 {% endblock %}
+
+
+ <h1>Utilisateur</h1>
+{% for user in users %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <th>Identifiant</th>
+                <th>Role</th>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+               
+            </tr>
+        </tbody>
+    </table>
+
+        {{ include('user/_delete_form.html.twig') }}
