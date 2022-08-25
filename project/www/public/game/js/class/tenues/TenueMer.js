@@ -1,7 +1,7 @@
 class TenueMer extends Tenue{
     constructor(taille = undefined, collisionHautStable = true){
         super(taille, collisionHautStable);
-        this.setTenue("blue");
+        this.setTenue(EnumTenues.MER);
     }
 
     afficher(canvas){
