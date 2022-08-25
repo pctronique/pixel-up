@@ -3,10 +3,25 @@ class Joueur extends Personnage {
     super(taille);
     this.mouvementJoueur = new MouvementJoueur(this);
     this.imageSrc('img/personnage-1.png');
-    this.tenue = undefined;
+    this.couleur = "#24AE1D";
+    this.game = undefined;this.tenue = undefined;
     this.image = undefined;
     this.imageTenue = new ImageTenue();
     this.couleur = undefined;
+  }
+
+  mourir(enumAction) {
+    if(!this.game != undefined) {
+      this.game.tuerJoueur(enumAction[1].typeMort());
+    }
+  }
+
+  setGame(game) {
+    this.game = game;
+  }
+
+  stop() {
+    this.mouvementJoueur.stop();
   }
   
   coucou() {}
@@ -14,6 +29,14 @@ class Joueur extends Personnage {
   changementTenue(tenue) {
     this.couleur = this.imageTenue.recupTenue(tenue); 
     this.tenue = tenue;
+  }
+
+  keyGame(keySaut = ' ', keyGauche = 'ArrowLeft', keyDroite = 'ArrowRight', keyCoucou = 'c') {
+    this.mouvementJoueur.keyGame(keySaut, keyGauche, keyDroite, keyCoucou);
+  }
+
+  keyGameDev(keyHaut = 'ArrowUp', keyBas = 'ArrowDown') {
+    this.mouvementJoueur.keyGameDev(keyHaut, keyBas);
   }
 
   sauter() {
@@ -35,6 +58,8 @@ class Joueur extends Personnage {
   afficher(canvas) {
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
+    ctx.fillRect(this.posLeft.x, this.posLeft.y, this.taille.x, this.taille.y);
+    ctx.fillRect(this.posRight.x, this.posRight.y, this.taille.x, this.taille.y);
     ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
     if (this.background != undefined) {
       this.background.afficherContenue();
@@ -53,16 +78,16 @@ class Joueur extends Personnage {
     return this.mouvementJoueur.collisionHaut();
   }
 
-  movPosDev() {
-    this.mouvementJoueur.movPosDev();
-  }
-
   moveDev(eventKey) {
     this.mouvementJoueur.moveDev(eventKey);
   }
 
   choixMouvement(eventKey) {
     this.mouvementJoueur.choixMouvement(eventKey);
+  }
+
+  finTomber() {
+    this.mouvementJoueur.finTomber();
   }
 
 }

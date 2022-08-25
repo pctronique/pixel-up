@@ -1,10 +1,19 @@
 let result = 0;
+let isLoad = false;
+let myInterval = undefined;
 
 function addScore() {
-  result++;
-  postMessage(result);
+  if(isLoad) {
+    result++;
+    postMessage(result);
+  }
 }
 
 onmessage = function(e) {
-  setInterval(function () {addScore()}, e.data);
+  isLoad = e.data[1];
+  if(isLoad) {
+    myInterval = setInterval(function () {addScore()}, e.data[0]);
+  } else if(myInterval != undefined) {
+    clearInterval(myInterval);
+  }
 }

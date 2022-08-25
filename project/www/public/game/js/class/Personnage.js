@@ -21,7 +21,7 @@ class Personnage extends BlockRectange // implements InterfaceGravite
             collision.setPlateforme(element);
             let enumCollision = collision.getEnumCollision();
             if(enumCollision != EnumCollision.NULL && element.action(enumCollision) != EnumAction.TENUE) {
-                return [enumCollision, element];
+                return [enumCollision, index];
             }
         };
         for (let index = 0; index < this.tabPlateforme.length; index++) {
@@ -29,20 +29,30 @@ class Personnage extends BlockRectange // implements InterfaceGravite
             let collision = new Collision(this);
             collision.setPlateforme(element);
             let enumCollision = collision.getEnumCollision();
+            //console.log(enumCollision);
             if(enumCollision != EnumCollision.NULL) {
-                return [enumCollision, element];
+                let enumAction = collision.plateforme.action(enumCollision);
+                if (enumAction == EnumAction.STOP || enumAction == EnumAction.MORT) {
+                    return {enumCollision:enumCollision, enumAction:enumAction, index:index};
+                }
+                /*let enumAction = enumCollision[1].action(enumCollision[0]);
+                    if (enumAction == EnumAction.STOP || enumAction == EnumAction.MORT) {
+                      return [enumAction, enumCollision[1]];
+                    }
+                  }
+                  return [EnumAction.NULL, undefined];*/
             }
         };
-        return [EnumCollision.NULL, undefined];
+        return {enumCollision:EnumCollision.NULL, enumAction:EnumAction.NULL, index:-1};
     }
 
     posBackground() {
-        if(this.background != undefined) {
+        /*if(this.background != undefined) {
             this.background.posPersonnage(this.pos, this.taille);
-        }
+        }*/
     }
 
-    mourir() {
+    mourir(enumAction) {
 
     }
 

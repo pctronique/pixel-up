@@ -28,9 +28,14 @@ class Background {
     }
     this.creerPlatforme(50, 300, 25, 80);
     this.creerPlatforme();
-    this.creerPlatformeBottom(new Plateforme());
-    //this.creerPlateformeTenue(new Tenue());
+    this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
+    this.creerPlateformeTenue(undefined);
   }
+
+  typeClass() {
+    return "background";
+  }
+
   imageSrc(src) {
     this.imageSource = src;
   }
@@ -54,18 +59,17 @@ class Background {
     let taille = new Taille(0, 20);
     let pos = new Position(0, this.taille.y - taille.y);
     this.screen_bottom = screen_bottom;
-    if (this.screen_bottom != undefined) {
+    if(this.screen_bottom != undefined) {
       //this.screen_bottom.setTaille(taille);
       this.screen_bottom.setPosition(pos);
       this.screen_bottom.setBackground(this);
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
-
-  creerPlateformeTenue(tenue) {
-    if (tenue != undefined) {
+  creerPlateformeTenue(tenue){
+    if(tenue != undefined) {
       let taille = new Taille(40, 40);
-      let pos = new Position(this.taille.x - taille.x - 60, taille.y - 10);
+      let pos = new Position(0, this.taille.y - taille.y);
       this.tenue = tenue;
       this.tenue.setTaille(taille);
       this.tenue.setPosition(pos);
@@ -145,26 +149,45 @@ class Background {
 
   setJoueur(joueur) {
     this.joueur = joueur;
-    if (this.tenue != undefined) {
+    this.joueur.setBackground(this);
+    this.joueur.setPosition(this.joueur.pos);
+    this.joueur.setTabPlateforme(this.plateformes);
+    this.joueur.setAutrePlateforme(this.tabAutrePlateforme)
+    if(this.tenue != undefined) {
       this.tenue.setJoueur(this.joueur);
-      this.joueur.setBackground(this);
     }
   }
 
-  deplacement() { }
+  stop() {
+    this.joueur.stop();
+    if(this.tenue != undefined) {
+      this.tenue.stop();
+    }
+    if(this.screen_bottom != undefined) {
+      this.screen_bottom.stop();
+    }
+    for (let index = 0; index < this.plateformes.length; index++) {
+      const element = this.plateformes[index];
+      element.stop();
+    }
+  }
+
+  deplacement() {}
 
   screenBottom(posBas) {
-    let posBasScroll = -1 * posBas;
-    this.widthBottom = 100 * (posBasScroll / 20);
-    if (Math.round(this.widthBottom) > this.taille.x) {
-      this.widthBottom = this.taille.x;
+    if(this.screen_bottom != undefined) {
+      let posBasScroll = -1 * posBas;
+      this.widthBottom = 100 * (posBasScroll / 20);
+      if(Math.round(this.widthBottom) > this.taille.x) {
+        this.widthBottom = this.taille.x;
+      }
+      //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
+        let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
+        this.screen_bottom.setTaille(taille);
+      //}
+      let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y));
+      this.screen_bottom.setPosition(pos);
     }
-    //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
-    let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
-    this.screen_bottom.setTaille(taille);
-    //}
-    let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y));
-    this.screen_bottom.setPosition(pos);
   }
 
   getPlateformes() {
@@ -184,10 +207,7 @@ class Background {
       /*console.log(this.scrollMove.calculMillieu());
       console.log(pos);
       console.log(taille);*/
-      if (pos.y < (this.taille.y - 150)) {
-        console.log('#######################');
-        this.scrollMove.monter(((this.taille.y - pos.y) / (this.taille.y * 2)) * 100);
-      }
+      
       //console.log(pos.y-pos.y/this.scrollMove.taillePixel());
     }
   }
