@@ -6,6 +6,8 @@
 
 
 
+
+
     <div id ="pacman">
         
         <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
@@ -28,8 +30,15 @@
         </div>
 
         <ul id="menu"> 
-        
-            <a href="#"><li>Lancer la partie</li></a>
+ 
+     
+      
+            
+          
+
+            <!--<audio autoplay onplay="handleFirstPlay(event)" src="./son_menu/Touche.mp3"></audio>-->
+            
+            <a href="{{ path('app_jeux')}}"><li>Lancer la partie</li></a>
             <a href="{{ path('app_score_index')}}"><li>Classement</li></a>
             {% if app.user %}
                 
@@ -48,6 +57,9 @@
                 <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
                 
             {% endif %}
+            <a href="{{ path('app_options')}}"><li>Options</li></a>
+
+            
         </ul>
         
 
@@ -55,5 +67,5 @@
 
     
     
-
+    <script src="{{ asset('./js/son.js') }}"></script>
 {% endblock %}

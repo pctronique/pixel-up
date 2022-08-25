@@ -39,41 +39,43 @@ class MortRepository extends ServiceEntityRepository
         }
     }
 
-    
-    public function checkMort(/*$user*/){
+
+    public function checkMort(/*$user*/)
+    {
 
         $query = $this->createQueryBuilder('m')
-        ->select('u.username', 'm.compteur', 'c.nom')
-        ->innerJoin('m.user', 'u')
-        ->innerJoin('m.cat_mort', 'c');
+            ->select('u.username', 'm.compteur', 'c.nom')
+            ->innerJoin('m.user', 'u')
+            ->innerJoin('m.cat_mort', 'c');
         //->where('u = :user')
         //->setParameter(':user', $user);
         return $query->getQuery()->getResult();
-
     }
 
-//    /**
-//     * @return Mort[] Returns an array of Mort objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Mort
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+  
+    //    /**
+    //     * @return Mort[] Returns an array of Mort objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('m')
+    //            ->andWhere('m.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('m.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Mort
+    //    {
+    //        return $this->createQueryBuilder('m')
+    //            ->andWhere('m.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

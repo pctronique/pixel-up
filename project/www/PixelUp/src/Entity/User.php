@@ -162,7 +162,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function addMort(Mort $mort): self
     {
         if (!$this->morts->contains($mort)) {
-            $this->morts->add($mort);
+        $this->morts->add($mort);
             $mort->setUser($this);
         }
 
