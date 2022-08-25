@@ -28,12 +28,12 @@
         </div>
 
         <ul id="menu"> 
-            
+        
+            <a href="#"><li>Lancer la partie</li></a>
+            <a href="{{ path('app_score_index')}}"><li>Classement</li></a>
             {% if app.user %}
                 
-                <a href="#"><li>Lancer la partie</li></a>
-                <a href=""><li>Score / Classement</li></a>
-
+                
                  {% if is_granted('ROLE_ADMIN') %}
                         {# Si l'utilisateur est authentifié et qu'il est admin #}
                         <a href="{{ path('app_admin') }}"><li>Page admin</li></a>
@@ -44,10 +44,9 @@
                 
             {% else %}
 
-                <a href="#"><li>Lancer la partie</li></a>
-                <a href=""><li>Classement</li></a>
+               
                 <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
-
+                
             {% endif %}
         </ul>
         
