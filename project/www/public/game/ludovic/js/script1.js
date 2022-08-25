@@ -56,12 +56,14 @@ if (window.Worker) {
 
   game = createGame(game);
   game.start();
+  //game.startDev();
 
   //game.keyGame("k");
 
   function startGame(e) {
     game = createGame(game);
     game.start();
+    //game.startDev();
   }
 
   function stopGame(e) {

@@ -58,6 +58,7 @@ class MouvementJoueur {
       this.workerJoueurTomber.terminate();
       this.workerJoueurTomber = undefined;
     }
+    this.joueur.game.setJoueurStopTomber();
     this.joueur.posBackground();
   }
 
@@ -74,19 +75,27 @@ class MouvementJoueur {
     };
   }
 
+  infoColision(enumCollision) {
+    let tabColl = enumCollision.collision;
+    let enumCollision0 = tabColl.enumCollision;
+    let enumAction = tabColl.enumAction;
+    let index = tabColl.index;
+  }
+
   collisionAction() {
     if (this.joueur.background != undefined) {
         this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
         this.joueur.tabAutrePlateforme = this.joueur.background.getAutrePlateformes();
     }
     let enumCollision = this.joueur.game.getEnumCollision();
-    if (enumCollision[0] != EnumCollision.NULL) {
-      let enumAction = enumCollision[1].action(enumCollision[0]);
-      if (enumAction == EnumAction.STOP || enumAction == EnumAction.MORT) {
-        return [enumAction, enumCollision[1]];
+    let valueCollision = enumCollision.collision;
+    this.infoColision(enumCollision);
+    if (valueCollision.enumCollision != EnumCollision.NULL) {
+      if (valueCollision.enumAction == EnumAction.STOP || valueCollision.enumAction == EnumAction.MORT) {
+        return enumCollision;
       }
     }
-    return [EnumAction.NULL, undefined];
+    return enumCollision;
   }
 
   sauter() {
@@ -106,8 +115,8 @@ class MouvementJoueur {
       if (tomber) {
         classJoueur.game.setJoueurPositionY(e.data[0]);
         let enumAction = classMovJoueur.collisionAction();
-        if (enumAction[0] != EnumAction.NULL) {
-          if(enumAction[0] == EnumAction.MORT) {
+        if (enumAction.collision.enumCollision != EnumAction.NULL) {
+          if(enumAction.collision.enumAction == EnumAction.MORT) {
             classJoueur.mourir(enumAction);
           }
           tomber = false;
@@ -140,7 +149,8 @@ class MouvementJoueur {
     this.workerJoueurTomber.onmessage = function (e) {
       if (tomber) {
         classJoueur.setPositionY(e.data[0]);
-        if (classMovJoueur.collisionAction() != EnumAction.NULL) {
+        let collision = classMovJoueur.collisionAction();
+        if (collision.collision.enumCollision != EnumAction.NULL) {
           tomber = false;
         }
       }
@@ -192,22 +202,23 @@ class MouvementJoueur {
     if (enumMouvement == EnumMouvement.DROITE) {
       let pos = new Position(x + 1, y);
       this.joueur.setPosition(pos);
-      this.joueur.movPosDev();
+      let enumAction = this.collisionAction();
+      console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.GAUCHE) {
       let pos = new Position(x - 1, y);
       this.joueur.setPosition(pos);
-      this.joueur.movPosDev();
-      this.joueur.movPosDev();
+      let enumAction = this.collisionAction();
+      console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.BAS) {
       let pos = new Position(x, y + 1);
       this.joueur.setPosition(pos);
-      this.joueur.movPosDev();
-      this.joueur.movPosDev();
+      let enumAction = this.collisionAction();
+      console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.HAUT) {
       let pos = new Position(x, y - 1);
       this.joueur.setPosition(pos);
-      this.joueur.movPosDev();
-      this.joueur.movPosDev();
+      let enumAction = this.collisionAction();
+      console.log(enumAction);
     }
   }
   
@@ -248,7 +259,8 @@ class MouvementJoueur {
             //let pos = new Position(x + index, y);
             this.joueur.game.setJoueurPositionX(x + index);
             if(!this.tomber0) {
-              if (this.collisionAction()[0]  == EnumAction.NULL) {
+              let collision = this.collisionAction();
+              if (collision.collision.enumCollision  == EnumAction.NULL) {
                   this.tomber(); 
               }
             }
@@ -259,7 +271,8 @@ class MouvementJoueur {
             //let pos = new Position(x - index, y);
             this.joueur.game.setJoueurPositionX(x - index);
             if(!this.tomber0) {
-              if (this.collisionAction()[0] == EnumAction.NULL) {
+              let collision = this.collisionAction();
+              if (collision.collision.enumCollision == EnumAction.NULL) {
                   this.tomber();
               }
             }

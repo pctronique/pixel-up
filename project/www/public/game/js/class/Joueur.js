@@ -73,10 +73,6 @@ class Joueur extends Personnage {
     return this.mouvementJoueur.collisionHaut();
   }
 
-  movPosDev() {
-    this.mouvementJoueur.movPosDev();
-  }
-
   moveDev(eventKey) {
     this.mouvementJoueur.moveDev(eventKey);
   }

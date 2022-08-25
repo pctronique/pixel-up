@@ -21,6 +21,9 @@ class Game {
 
   }
 
+  posCroll() {
+  }
+
   remove() {
     for (let index = 0; index < this.backgrounds.length; index++) {
       const element = this.backgrounds[index];
@@ -89,6 +92,7 @@ class Game {
     let screenGame = document.getElementById(this.idScreen);
     // console.log(screenGame);
     if (screenGame.childElementCount > 2) {
+      //this.scrollMove.debut();
       screenGame.removeChild(screenGame.lastChild);
       this.backgrounds.splice(0, 1);
     }
@@ -96,10 +100,14 @@ class Game {
   }
 
   setJoueurStopTomber() {
-    for (let index = 0; index < this.backgrounds.length; index++) {
-      const element = this.backgrounds[index];
-      element.joueur.finTomber();
-    }
+    console.log(this.backgrounds);
+      console.log('***********************');
+      const element = this.backgrounds[0];
+      //element.joueur.finTomber();
+      if(element.joueur.pos.y < (element.taille.y-150)) {
+        console.log('#######################');
+        element.scrollMove.monter(((element.taille.y-element.joueur.pos.y)/(element.taille.y*2))*100);
+      }
   }
 
   setJoueurPosition(pos) {
@@ -119,20 +127,18 @@ class Game {
   setJoueurPositionY(posY) {
     this.backgrounds[0].joueur.setPositionY(posY);
     this.backgrounds[1].joueur.setPositionY(posY+this.backgrounds[1].taille.y);
-    console.log(this.backgrounds[0].joueur);
-    console.log(this.backgrounds[1].joueur);
   }
 
   getEnumCollision() {
     let enumCollision = this.backgrounds[0].joueur.getEnumCollision();
-    if (enumCollision[0] != EnumCollision.NULL) {
-      return enumCollision;
+    if (enumCollision.enumCollision != EnumCollision.NULL) {
+      return {collision : enumCollision, background : 0};
     }
     enumCollision = this.backgrounds[1].joueur.getEnumCollision();
-    if (enumCollision[0] != EnumCollision.NULL) {
-      return enumCollision;
+    if (enumCollision.enumCollision != EnumCollision.NULL) {
+      return {collision : enumCollision, background : 1};
     }
-    return EnumCollision.NULL;
+    return {collision : enumCollision, background : -1};
   }
 
   setPosInitJoueur(posX, posY) {
@@ -167,7 +173,6 @@ class Game {
   }
 
   eventKey(keyPress) {
-
     if (this.backgrounds[0].joueur != undefined) {
       if(keyPress == " ") {
         this.backgrounds[0].joueur.sauter();
@@ -216,9 +221,20 @@ class Game {
   startDev() {
     if (this.backgrounds[0] != undefined) {
       document.body.addEventListener("keydown", (event) => {
-        this.joueur.moveDev(event.key);
-      });this.backgrounds[0]
+        this.backgrounds[0].joueur.moveDev(event.key);
+      });
     }
+
+    let folderWorker0 = folderWorker;
+    if(folderWorker0 == undefined) {
+        folderWorker0 = "./js/worker/";
+    }
+    this.workerGame = new Worker(folderWorker0+"workerScore.js");
+    let classGame = this;
+    this.workerGame.onmessage = function (e) {
+      classGame.afficher();
+    }
+    this.workerGame.postMessage([this.milliseconde, true]);
 }
   screenBottom(pos){
     this.backgrounds[0].screenBottom(pos);

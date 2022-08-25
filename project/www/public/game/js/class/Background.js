@@ -118,6 +118,8 @@ class Background {
     this.joueur = joueur;
     this.joueur.setBackground(this);
     this.joueur.setPosition(this.joueur.pos);
+    this.joueur.setTabPlateforme(this.plateformes);
+    this.joueur.setAutrePlateforme(this.tabAutrePlateforme)
     if(this.tenue != undefined) {
       this.tenue.setJoueur(this.joueur);
     }
@@ -172,10 +174,7 @@ class Background {
       /*console.log(this.scrollMove.calculMillieu());
       console.log(pos);
       console.log(taille);*/
-      if(pos.y < (this.taille.y-150)) {
-        console.log('#######################');
-        this.scrollMove.monter(((this.taille.y-pos.y)/(this.taille.y*2))*100);
-      }
+      
       //console.log(pos.y-pos.y/this.scrollMove.taillePixel());
     }
   }
