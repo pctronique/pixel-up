@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Score;
-use App\Repository\ScoreRepository;
+
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,23 +22,9 @@ class PixelUpController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/profil", name="app_profil")
-     */
-    public function profil(): Response
-    {
-        return $this->render('pixel_up/profil.html.twig', [
-            'controller_name' => 'PixelUpController',
-        ]);
-    }
+    
 
-    /**
-     * @Route("/updateProfil", name="app_modif_profil")
-     */
-    public function updateP(): Response
-    {
-        return $this->render('pixel_up/updateProfil.html.twig', [
-            'controller_name' => 'PixelUpController',
-        ]);
-    }
+
+    
+
 }

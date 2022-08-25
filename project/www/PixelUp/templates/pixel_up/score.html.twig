@@ -26,10 +26,17 @@
             <figcaption>
 
 
+            {% if personnalScores[0] is defined %}
 
-                {{ personnalScores[0].score }}
+                {{ personnalScores[0].score}}
 
+                {% else %}
+
+                <p>Lancer une partie pour voir votre premier score !</p>
+
+            {% endif %}
             
+
 
             </figcaption>
         </figure>

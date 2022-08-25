@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,6 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
         flags: ["fulltext"])
 ]
 
+#[UniqueEntity(fields: ['username'], message: 'Il existe déjà un compte avec cette utilisateur')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -29,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $username = null;
 
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -42,9 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Mort::class, orphanRemoval: true)]
     private Collection $morts;
-
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Succes $succes = null;
 
     public function __construct()
     {
@@ -178,23 +177,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $mort->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getSucces(): ?Succes
-    {
-        return $this->succes;
-    }
-
-    public function setSucces(Succes $succes): self
-    {
-        // set the owning side of the relation if necessary
-        if ($succes->getUser() !== $this) {
-            $succes->setUser($this);
-        }
-
-        $this->succes = $succes;
 
         return $this;
     }

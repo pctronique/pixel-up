@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PixelUpController!{% endblock %}
+{% block title %} Accueil !{% endblock %}
 
 {% block body %}
+
+
 
     <div id ="pacman">
         
@@ -16,21 +18,42 @@
     <section>
 
         <div class="btn">
-            <div class="arrow"></div>
+            <!--Rajouté H1 si Admin-->
+            {% if is_granted('ROLE_ADMIN') %}
+                        {# Si l'utilisateur est authentifié et qu'il est admin #}
+                        <h1>Accueil Admin</h1>
+                {% else %}
+            <div class="arrow"><p>Bienvenue !<p></div>
+            {% endif %}
         </div>
 
-        <ul id="menu">
+        <ul id="menu"> 
+        
             <a href="#"><li>Lancer la partie</li></a>
+            <a href="{{ path('app_score_index')}}"><li>Classement</li></a>
             {% if app.user %}
-                <a href="#"><li>Score / Classement</li></a>
-                <a href="{{ path('app_profil') }}"><li>Profil</li></a>
-                <a href="#"><li>Déconnexion</li></a>
+                
+                
+                 {% if is_granted('ROLE_ADMIN') %}
+                        {# Si l'utilisateur est authentifié et qu'il est admin #}
+                        <a href="{{ path('app_admin') }}"><li>Page admin</li></a>
+                {% endif %}
+
+                <a href="{{ path('app_profil') }}"><li>Profil de {{app.user.username}} </li></a>
+                <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
+                
             {% else %}
-                <a href="#"><li>Classement</li></a>
-                <a href="#"><li>Connexion/Inscription</li></a>
+
+               
+                <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
+                
             {% endif %}
         </ul>
         
+
     </section>
+
+    
+    
 
 {% endblock %}

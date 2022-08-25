@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Administration {% endblock %}
+
+{% block body %}
+
+    <div id ="pacman">
+        
+      <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
+        <div></div>
+        <div></div>
+        <div></div>
+
+    </div>
+
+<div class="btn">
+            <h1>Administration</h1>
+</div>
+    <section>
+    
+        <div class="btn">
+              
+            <div class="arrow"><p>Bienvenue {{app.user.getUsername}}<p></div>
+        </div>
+
+        <ul id="menu">
+
+            <a href="{#{{ path('app_user_show', {'id': app.user.id}) }}#}"><li>Profil des Joueurs</li></a>
+
+            <a href="{{ path('app_score_index') }}"><li>Vérification Scores</li></a>
+
+            <a href="#"><li>Ajout De Succès</li></a>
+
+            
+            <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
+            
+
+
+       
+        </ul>
+
+        
+        
+    </section>
+
+{% endblock %}
