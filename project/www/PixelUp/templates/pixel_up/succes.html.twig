@@ -13,13 +13,14 @@
     <table class="table" border="1">
         <thead>
             <tr>
-                <th>Percuter 350 astéroïdes</th>
                 <th>Se faire manger 250 fois par un requin</th>
                 <th>Mourrir 500 fois d'une chute</th>
+                <th>Percuter 350 astéroïdes</th>
             </tr>
         </thead>
         <tbody id="tbodySucces">
             <tr>
+
 
             {% for i in 0..2 %}
 
@@ -28,6 +29,7 @@
                 {% else %}
                     <td><iconify-icon icon="emojione-v1:cross-mark" style="color: green;" width="30" height="30"></iconify-icon></td>
                 {% endif %}
+
 
             {% endfor %}
 
@@ -42,18 +44,17 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Utilisateur</th>
                 <th>Nom de la mort</th>
                 <th>Compteur</th>
                 <th>Nombre total de morts</th>
-                
             </tr>
         </thead>
         <tbody>
 
+        {{ dump(morts) }}
+
         {% for mort in morts %}
             <tr>
-                <td>{{ mort.username }}</td>
                 <td>{{ mort.nom }}</td>
                 <td>{{ mort.compteur }}</td>
                 <td class="dnone" ROWSPAN="3">{{ totalMorts }}</td>

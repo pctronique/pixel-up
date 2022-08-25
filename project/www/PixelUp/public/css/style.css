@@ -77,7 +77,6 @@ header{
   }
 
 .btn .arrow {
-    margin-right: 1em;
     height: 0.2em;
     width: 20em;
     position: relative;
@@ -429,4 +428,16 @@ tbody tr:nth-child(even) {
 
 tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
   display: none;
+}
+
+/* BOUTON DELETE PROFIL */
+
+.btn-delete{
+
+    margin: 15px 0 !important;
+    padding: 5px;
+    width: 100%;
+    border: 2px solid black;
+    transition: 0.2s;
+    font-family: 'Silkscreen', cursive;
 }
