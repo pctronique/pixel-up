@@ -25,12 +25,13 @@ class Score extends Pause {
         this.isStop = false;
         this.workerScore = new Worker(folderWorker0+"workerScore.js");
         this.eventScore();
-        this.workerScore.postMessage(this.milliseconde);
+        this.workerScore.postMessage([this.milliseconde, true]);
     }
 
     stop() {
         this.isStop = true;
         if(this.workerScore != undefined) {
+            this.workerScore.postMessage([0, false]);
             this.workerScore.terminate();
             this.workerScore = undefined;
         }

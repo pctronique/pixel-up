@@ -5,4 +5,5 @@ class EnumMouvement {
   static GAUCHE = 2;
   static DROITE = 3;
   static SAUTER = 4;
+  static COUCOU = 5;
 }

@@ -10,7 +10,11 @@ class PlateformeFeu extends Plateforme{
             this.pos,
             this.taille
           );
-          this.imgGif.startGif();
+          this.imgGif.start();
+    }
+
+    stop() {
+      this.imgGif.stop();
     }
 
     afficher(canvas){

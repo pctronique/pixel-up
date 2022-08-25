@@ -1,17 +1,26 @@
 let result = 0;
 let nbFrame = 0;
+let isLoad = false;
+let myInterval = undefined;
 
 function addScore() {
-  result++;
-  if (nbFrame == result) {
-    result = 0;
+  if(isLoad) {
+    result++;
+    if (nbFrame == result) {
+      result = 0;
+    }
+    postMessage(result);
   }
-  postMessage(result);
 }
 
 onmessage = function (e) {
-  nbFrame = e.data[1];
-  setInterval(function () {
-    addScore();
-  }, e.data[0]);
+  isLoad = e.data[2];
+  if(isLoad) {
+    nbFrame = e.data[1];
+    setInterval(function () {
+      addScore();
+    }, e.data[0]);
+  } else if(myInterval != undefined) {
+    clearInterval(myInterval);
+  }
 };

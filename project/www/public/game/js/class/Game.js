@@ -5,7 +5,6 @@ class Game {
       this.classPause = new Pause();
     }
     this.backgroundDeb = undefined;
-    this.joueur = undefined;
     this.backgrounds = [];
     this.nbBackground = 0;
     this.idBackground = "background_game_0";
@@ -16,6 +15,31 @@ class Game {
     this.workerGame = undefined;
     this.posInitJoueur = new Position();
     this.idTypeMort = undefined;
+  }
+
+  changementTenueJoueur(tenue) {
+
+  }
+
+  remove() {
+    for (let index = 0; index < this.backgrounds.length; index++) {
+      const element = this.backgrounds[index];
+      document.getElementById(element.idBackground).remove();
+    }
+  }
+
+  keyGame(keySaut = ' ', keyGauche = 'ArrowLeft', keyDroite = 'ArrowRight', keyCoucou = 'c') {
+    for (let index = 0; index < this.backgrounds.length; index++) {
+      const element = this.backgrounds[index];
+      element.joueur.keyGame(keySaut, keyGauche, keyDroite, keyCoucou);
+    }
+  }
+
+  keyGameDev(keyHaut = 'ArrowUp', keyBas = 'ArrowDown') {
+    for (let index = 0; index < this.backgrounds.length; index++) {
+      const element = this.backgrounds[index];
+      element.joueur.keyGameDev(keyHaut, keyBas);
+    }
   }
 
   setMilliseconde(milliseconde) {
@@ -43,20 +67,22 @@ class Game {
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = new Background(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    let background = new TestBackgroundPlanete(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    
+    // ludovic (debut) : pour ajouter le joueur
+    let addJoueur = this.setJoueur(tailleX/2, -tailleY, joueurTailleX, joueurTailleY);
+    addJoueur.setBackground(background);
+    background.setJoueur(addJoueur);
+    // ludovic (fin) : pour ajouter le joueur
+
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
-    
-    let addJoueur = this.setJoueur(tailleX/2, -tailleY, joueurTailleX, joueurTailleY);
   }
 
   createBackground() {
     this.nbBackground++;
     this.idBackground = "background_game_"+this.nbBackground;
-    
-    // la suite du code :
-
   }
 
   deleteBackground() {
@@ -69,8 +95,48 @@ class Game {
 
   }
 
+  setJoueurStopTomber() {
+    for (let index = 0; index < this.backgrounds.length; index++) {
+      const element = this.backgrounds[index];
+      element.joueur.finTomber();
+    }
+  }
+
+  setJoueurPosition(pos) {
+    this.setJoueurPositionXY(pos.x, pos.y);
+  }
+
+  setJoueurPositionXY(posX, posY) {
+    this.backgrounds[0].joueur.setPositionXY(posX, posY);
+    this.backgrounds[1].joueur.setPositionXY(posX, posY+this.backgrounds[1].taille.y);
+  }
+
+  setJoueurPositionX(posX) {
+    this.backgrounds[0].joueur.setPositionX(posX);
+    this.backgrounds[1].joueur.setPositionX(posX);
+  }
+
+  setJoueurPositionY(posY) {
+    this.backgrounds[0].joueur.setPositionY(posY);
+    this.backgrounds[1].joueur.setPositionY(posY+this.backgrounds[1].taille.y);
+    console.log(this.backgrounds[0].joueur);
+    console.log(this.backgrounds[1].joueur);
+  }
+
+  getEnumCollision() {
+    let enumCollision = this.backgrounds[0].joueur.getEnumCollision();
+    if (enumCollision[0] != EnumCollision.NULL) {
+      return enumCollision;
+    }
+    enumCollision = this.backgrounds[1].joueur.getEnumCollision();
+    if (enumCollision[0] != EnumCollision.NULL) {
+      return enumCollision;
+    }
+    return EnumCollision.NULL;
+  }
+
   setPosInitJoueur(posX, posY) {
-    this.posInitJoueur = new Position(posX, posY);
+    this.backgrounds[0].joueur.setPositionXY(posX, posY);
   }
 
   setJoueur(posX, posY, tailleX, tailleY) {
@@ -95,41 +161,30 @@ class Game {
   afficher() {
     for (let index = 0; index < this.backgrounds.length; index++) {
       const element = this.backgrounds[index];
-      if (element != undefined && this.joueur != undefined && index == 0) {
-        this.joueur.setBackground(element);
-        element.setJoueur(this.joueur);
-        element.afficher();
-      } else if (element != undefined) {
-        // this.creerPlatforme();
-        element.afficher();
-      }
+      element.afficher();
     }
 
   }
 
   eventKey(keyPress) {
-    if (this.joueur != undefined) {
+
+    if (this.backgrounds[0].joueur != undefined) {
       if(keyPress == " ") {
-        this.joueur.sauter();
+        this.backgrounds[0].joueur.sauter();
       }
-      this.joueur.choixMouvement(keyPress);
+      this.backgrounds[0].joueur.choixMouvement(keyPress);
     }
   }
 
   start() {
     this.isTtop = false;
     this.score.start();
-      if (this.joueur != undefined) {
-        //this.joueur.setPosition(this.posInitJoueur);
+      if (this.backgrounds[0].joueur != undefined) {
         let classGame = this;
         document.body.addEventListener("keydown", (event) => {
           if(!classGame.isTtop) {
-            if(event.key == " ") {
-              this.joueur.sauter();
-            }
-            this.joueur.choixMouvement(event.key);
+            this.backgrounds[0].joueur.choixMouvement(event.key);
           }
-          //this.joueur.move(event.key);
         });
       }
 
@@ -142,26 +197,27 @@ class Game {
       this.workerGame.onmessage = function (e) {
         classGame.afficher();
       }
-      this.workerGame.postMessage(this.milliseconde);
+      this.workerGame.postMessage([this.milliseconde, true]);
   }
 
   stop() {
     this.isTtop = true;
     this.score.stop();
-    if (this.joueur != undefined) {
-      this.joueur.stop();
+    if (this.backgrounds[0] != undefined) {
+      this.backgrounds[0].stop();
     }
     if(this.workerGame != undefined) {
+      this.workerGame.postMessage([0, false]);
       this.workerGame.terminate();
       this.workerGame = undefined;
     }
   }
 
   startDev() {
-    if (this.joueur != undefined) {
+    if (this.backgrounds[0] != undefined) {
       document.body.addEventListener("keydown", (event) => {
         this.joueur.moveDev(event.key);
-      });
+      });this.backgrounds[0]
     }
 }
   screenBottom(pos){

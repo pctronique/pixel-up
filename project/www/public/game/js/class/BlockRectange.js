@@ -26,6 +26,8 @@ class BlockRectange extends Pause {
     this.idBackground = undefined;
   }
 
+  stop() {}
+
   setGame(game) {
     this.game = game;
   }

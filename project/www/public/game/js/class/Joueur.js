@@ -27,6 +27,14 @@ class Joueur extends Personnage {
     this.couleur = couleur;
   }
 
+  keyGame(keySaut = ' ', keyGauche = 'ArrowLeft', keyDroite = 'ArrowRight', keyCoucou = 'c') {
+    this.mouvementJoueur.keyGame(keySaut, keyGauche, keyDroite, keyCoucou);
+  }
+
+  keyGameDev(keyHaut = 'ArrowUp', keyBas = 'ArrowDown') {
+    this.mouvementJoueur.keyGameDev(keyHaut, keyBas);
+  }
+
   sauter() {
     this.mouvementJoueur.sauter();
   }
@@ -75,6 +83,10 @@ class Joueur extends Personnage {
 
   choixMouvement(eventKey) {
     this.mouvementJoueur.choixMouvement(eventKey);
+  }
+
+  finTomber() {
+    this.mouvementJoueur.finTomber();
   }
 
 }

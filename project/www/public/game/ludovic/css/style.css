@@ -14,16 +14,16 @@ body {
     margin: 10px;
     margin-right: 20px;
 }
-#screenGame {
-    /*display: flex;
-    flex-direction: column;*/
+.screenGame {
+    display: flex;
+    flex-direction: column;
     position: relative;
     height: 100vh;
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
 }
-#screenGame canvas {
+.screenGame canvas {
     display: flex;
 }
 #utilisateur {

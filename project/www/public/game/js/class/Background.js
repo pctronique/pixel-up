@@ -22,7 +22,7 @@ class Background {
       this.scrollMove.setBackground(this);
     }
     this.creerPlatforme();
-    this.creerPlatformeBottom(new PlateformePiegeHaut());
+    this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
     this.creerPlateformeTenue(undefined);
   }
 
@@ -123,20 +123,36 @@ class Background {
     }
   }
 
+  stop() {
+    this.joueur.stop();
+    if(this.tenue != undefined) {
+      this.tenue.stop();
+    }
+    if(this.screen_bottom != undefined) {
+      this.screen_bottom.stop();
+    }
+    for (let index = 0; index < this.plateformes.length; index++) {
+      const element = this.plateformes[index];
+      element.stop();
+    }
+  }
+
   deplacement() {}
 
   screenBottom(posBas) {
-    let posBasScroll = -1 * posBas;
-    this.widthBottom = 100 * (posBasScroll / 20);
-    if(Math.round(this.widthBottom) > this.taille.x) {
-      this.widthBottom = this.taille.x;
+    if(this.screen_bottom != undefined) {
+      let posBasScroll = -1 * posBas;
+      this.widthBottom = 100 * (posBasScroll / 20);
+      if(Math.round(this.widthBottom) > this.taille.x) {
+        this.widthBottom = this.taille.x;
+      }
+      //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
+        let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
+        this.screen_bottom.setTaille(taille);
+      //}
+      let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y));
+      this.screen_bottom.setPosition(pos);
     }
-    //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
-      let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
-      this.screen_bottom.setTaille(taille);
-    //}
-    let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y));
-    this.screen_bottom.setPosition(pos);
   }
 
   getPlateformes() {
