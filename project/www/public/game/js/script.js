@@ -1,14 +1,13 @@
 let folderWorker = "./js/worker/";
 
 if (window.Worker) {
+    let backgroundTaille = new Taille(1000, 5000);
     let game = new Game("screenGame");
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
-    let backgroundTaille = new Taille(1000, 5000);
-    game.setPosInitJoueur(backgroundTaille.x/2,backgroundTaille.y-49);
-    game.setJoueur(backgroundTaille.x/2,backgroundTaille.y-49, 47,48);
-    game.addBackground(backgroundTaille.x,backgroundTaille.y);
-    game.addBackground(backgroundTaille.x,backgroundTaille.y);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 47, 48);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 47, 48);
+    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 49);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
     game.afficher();
 

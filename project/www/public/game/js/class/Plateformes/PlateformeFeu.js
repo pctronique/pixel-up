@@ -21,7 +21,6 @@ class PlateformeFeu extends Plateforme{
         this.imgGif.setBackground(this.background);
         this.imgGif.pos = this.pos;
         this.imgGif.taille = this.taille;
-        console.log(this.taille);
         this.imgGif.afficher(canvas);
         //this.img;
 

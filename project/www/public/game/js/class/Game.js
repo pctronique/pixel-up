@@ -86,7 +86,7 @@ class Game {
     }
 }
   
-  addBackground(tailleX, tailleY) {
+  addBackground(tailleX, tailleY, joueurTailleX, joueurTailleY) {
     let screenGame = document.getElementById(this.idScreen);
     // permet d'ajouter un nouveau canvas tout en définissant sa taille
     let newcanvas = document.createElement('canvas');
@@ -99,7 +99,7 @@ class Game {
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = new TestBackgroundPlanete(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
+    let background = this.choixBackground(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
 
     // ludovic (debut) : pour ajouter le joueur
     let addJoueur = this.setJoueur(tailleX/2, -tailleY, joueurTailleX, joueurTailleY);
