@@ -12,9 +12,9 @@ if (window.Worker) {
       delete game;
       game = undefined;
     }
-    let idScreen = "screenGame_" + nbGame;
-    console.log(idScreen);
-    game = new Game("screenGame_" + nbGame);
+    /*let idScreen = "screenGame_" + nbGame;
+    console.log(idScreen);*/
+    game = new Game("screenGame_0");
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
     game.addBackground(backgroundTaille.x, backgroundTaille.y, 47, 48);
