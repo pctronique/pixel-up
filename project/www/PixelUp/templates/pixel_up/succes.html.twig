@@ -51,8 +51,6 @@
         </thead>
         <tbody>
 
-        {{ dump(trueOrFalseSuccess) }}
-
         {% for mort in morts %}
             <tr>
                 <td>{{ mort.username }}</td>
@@ -66,10 +64,6 @@
                 <td>Aucune stats trouvées</td>
             </tr>
         {% endfor %}
-
-
-        {{ dump(morts) }}
-        {{ dump(totalMorts) }}
 
 
         </tbody>
