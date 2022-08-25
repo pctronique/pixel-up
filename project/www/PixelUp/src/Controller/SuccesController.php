@@ -17,22 +17,22 @@ class SuccesController extends AbstractController
         $user = $this->getUser();
         $morts = $mortRepository->checkMort($user);
         $trueOrFalseSuccess = [
-            0 => false, // Asteroides
+            0 => false, // Requins
             1 => false, // Requins
             2 => false // Chutes
         ];
 
 
 
-            if($morts[0]['compteur'] >= 350){ // Asteroides
+            if($morts[2]['compteur'] >= 350){ // Astéroides
                 $trueOrFalseSuccess[0] = true;
             }
 
-            if($morts[1]['compteur'] >= 200){ // Requins
+            if($morts[1]['compteur'] >= 600){ // Chutes
                 $trueOrFalseSuccess[1] = true;
             }
 
-            if($morts[2]['compteur'] >= 500){ // Chutes
+            if($morts[0]['compteur'] >= 250){ // Requins
                 $trueOrFalseSuccess[2] = true;
             }
         
