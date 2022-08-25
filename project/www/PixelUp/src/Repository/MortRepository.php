@@ -39,6 +39,19 @@ class MortRepository extends ServiceEntityRepository
         }
     }
 
+    
+    public function checkMort(/*$user*/){
+
+        $query = $this->createQueryBuilder('m')
+        ->select('u.username', 'm.compteur', 'c.nom')
+        ->innerJoin('m.user', 'u')
+        ->innerJoin('m.cat_mort', 'c');
+        //->where('u = :user')
+        //->setParameter(':user', $user);
+        return $query->getQuery()->getResult();
+
+    }
+
 //    /**
 //     * @return Mort[] Returns an array of Mort objects
 //     */

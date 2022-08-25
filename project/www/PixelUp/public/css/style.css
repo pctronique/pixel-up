@@ -15,6 +15,24 @@ body{
   font-family: 'Silkscreen', cursive; 
 }
 
+#homeButton{
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 8px solid white;
+  background: black;
+  padding: 10px;
+  height: 65px;
+
+}
+
+#homeButton iconify-icon{
+  transition: 0.2s;
+}
+
+#homeButton:hover iconify-icon{
+transform: scale(1.2);
+}
 
 header h1{
     color: white;
@@ -39,6 +57,10 @@ header{
     background-color: white;
     height: 20px;
     width: 20px;
+}
+
+.flex{
+  display: flex;
 }
 
 /* FLECHE ROUGE DECO */
@@ -205,7 +227,7 @@ header{
     margin : 35px 0;
 }
 
-input[type="submit"]{
+input[type="submit"], button{
     width: 50%;
     margin: 25px 100px !important;
     font-family: 'Silkscreen', cursive;
@@ -217,7 +239,7 @@ input[type="submit"]{
     box-shadow: -5px 5px 10px rgb(0 0 0 / 50%);
 }
 
-input[type="submit"]:hover{
+input[type="submit"]:hover, button:hover{
   transform: scale(1.05);
   box-shadow: -10px 15px 10px rgba(0, 0, 0, 0.5);
   
@@ -315,6 +337,26 @@ bottom: -5px;
 
 /* SCORE / CLASSEMENT */
 
+#bestScore h1, #ranked h1{
+  margin: auto;
+  color: white;
+  width: fit-content;
+  margin-bottom: 50px;
+}
+
+#bestScore figure{
+  width: fit-content;
+  margin: auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bestScore figcaption{
+  margin-top: 50px;
+}
+
 .scoreMenu{
   display: flex;
   color: white;
@@ -325,4 +367,66 @@ bottom: -5px;
 
 .scoreMenu a{
   color: white;
+}
+
+#classement, #score, .table, #succes{
+  margin: auto;
+  text-align: center;
+  color: white;
+  background: rgb(255,255,255,0.1);
+}
+
+#tbodySucces td, #tbodySucces tr{
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  border: none;
+}
+
+.table{
+  border: 2px solid white;
+  border-spacing: 25px;
+}
+
+td{
+  border: 1px solid white;
+  padding: 5px;
+}
+
+tbody tr:nth-child(odd), #search_score_mots {
+  background-color: silver;
+  color: black;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(100, 100, 100);
+}
+
+#tbodyscore iconify-icon{
+  font-size: 3em;
+}
+
+#bestScore{
+  display: none;
+}
+
+#search_score, #search_score_mots, #search_score_Rechercher, #ranked form, #bestScore p{
+  text-align: center;
+  width: fit-content;
+  margin: 15px auto !important;
+  color: white;
+}
+
+/* PAGINATION */
+
+.pagination{
+  margin: 20px auto;
+  width: fit-content;
+  color: white;
+  background: rgb(255,255,255,0.5);
+
+}
+
+/* SCORE ET SUCCES */
+
+tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
+  display: none;
 }
