@@ -23,7 +23,7 @@ if (window.Worker) {
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
     game.afficher();
 
-    let screenGame = document.getElementById(idScreen);
+    let screenGame = document.getElementById("screenGame_0");
 
     screenGame.addEventListener("scroll", function () {
         let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
