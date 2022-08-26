@@ -20,13 +20,16 @@ class BackgroundSousMer extends Background {
 
     choixPlateforme(){
         let min=1; 
-        let max=3;  
+        let max=4;  
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
             return new PlateformeMobilePoisson();
         }
         else if (random == 2){
             return new PlateformeMobileRequin();
+        }
+        else if (random == 3) {
+            return new PlateformePiegesRadFish();
         }
    
     }

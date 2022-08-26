@@ -7,7 +7,7 @@ class PlateformeMobilePoisson extends PlateformeMobile {
 
     action(enumCollision) {
         if (enumCollision == EnumCollision.HAUT) {
-            return EnumAction.STOP;
+            return EnumAction.NULL;
         }
         return EnumAction.NULL;
     }

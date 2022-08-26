@@ -19,7 +19,7 @@ class BackgroundCielNuages extends Background {
 
     choixPlateforme(){
         let min=1; 
-        let max=3;  
+        let max=4;  
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
             return new PlateformeOiseaux();
@@ -27,7 +27,9 @@ class BackgroundCielNuages extends Background {
         else if (random == 2){
             return new PlateformeNuages();
         }
-   
+        else if (random == 3) {
+            return new PlateformePiegesNuages();
+        }
     }
 
 
