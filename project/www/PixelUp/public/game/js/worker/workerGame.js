@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let isLoad = false;
 let myInterval = undefined;
 
@@ -15,12 +14,4 @@ onmessage = function(e) {
   } else if(myInterval != undefined) {
     clearInterval(myInterval);
   }
-=======
-function timeGame() {
-  postMessage(true);
-}
-
-onmessage = function(e) {
-  setInterval(function () {timeGame()}, e.data);
->>>>>>> devSymfony
 }

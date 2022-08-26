@@ -8,17 +8,13 @@ class BlockRectange extends Pause {
     this.taille = taille;
     this.img = undefined;
     this.pos = undefined;
-<<<<<<< HEAD
     this.posLeft = undefined;
     this.posRight = undefined;
-=======
->>>>>>> devSymfony
     if (this.taille === undefined) {
       this.taille = new Taille();
     }
     if (this.pos === undefined) {
       this.pos = new Position();
-<<<<<<< HEAD
       this.posLeft = new Position();
       this.posLeft = new Position();
     }
@@ -81,12 +77,6 @@ class BlockRectange extends Pause {
   imgRighttVisible() {
     return (this.posRight.x > 0 && this.posRight.x < this.background.taille.x || 
       (this.posRight.x+this.taille.x) > 0 && (this.posRight.x+this.taille.x) < this.background.taille.x);
-=======
-    }
-    this.areteRectangle = new AreteRectangle(this.pos, this.taille);
-    this.background = undefined;
-    this.idBackground = undefined;
->>>>>>> devSymfony
   }
 
   setBackground(background) {
@@ -102,7 +92,6 @@ class BlockRectange extends Pause {
     if (this.pos === undefined) {
       this.pos = new Position();
     }
-<<<<<<< HEAD
     if(this.background != undefined && this.background.taille != undefined) {
       this.posLeft = new Position(this.pos.x - this.background.taille.x, this.pos.y);
       this.posRight = new Position(this.pos.x + this.background.taille.x, this.pos.y);
@@ -111,9 +100,6 @@ class BlockRectange extends Pause {
     this.areteRectangleLeft = new AreteRectangle(this.posLeft, this.taille);
     this.areteRectangleRight = new AreteRectangle(this.posRight, this.taille);
     this.visibleGame();
-=======
-    this.areteRectangle = new AreteRectangle(this.pos, this.taille);
->>>>>>> devSymfony
   }
 
   setPositionXY(posX, posY) {
@@ -121,7 +107,6 @@ class BlockRectange extends Pause {
     if (this.pos === undefined) {
       this.pos = new Position();
     }
-<<<<<<< HEAD
       if(this.background == undefined && this.background.taille != undefined) {
         this.posLeft = new Position(this.pos.x - this.background.taille.x, this.pos.y);
         this.posRight = new Position(this.pos.x + this.background.taille.x, this.pos.y);
@@ -130,15 +115,11 @@ class BlockRectange extends Pause {
     this.areteRectangleLeft = new AreteRectangle(this.posLeft, this.taille);
     this.areteRectangleRight = new AreteRectangle(this.posRight, this.taille);
     this.visibleGame();
-=======
-    this.areteRectangle = new AreteRectangle(this.pos, this.taille);
->>>>>>> devSymfony
   }
 
   setPositionX(posX) {
     if(this.pos != undefined && posX != undefined) {
       this.pos.x = posX;
-<<<<<<< HEAD
       this.posLeft.x = this.pos.x - this.background.taille.x;
       this.posRight.x = this.pos.x + this.background.taille.x;
       this.areteRectangle = new AreteRectangle(this.pos, this.taille);
@@ -150,10 +131,6 @@ class BlockRectange extends Pause {
 
   positionValide() {
 
-=======
-      this.areteRectangle = new AreteRectangle(this.pos, this.taille);
-    }
->>>>>>> devSymfony
   }
 
   setPositionY(posY) {
@@ -161,10 +138,7 @@ class BlockRectange extends Pause {
       this.pos.y = posY;
       this.areteRectangle = new AreteRectangle(this.pos, this.taille);
     }
-<<<<<<< HEAD
     this.visibleGame();
-=======
->>>>>>> devSymfony
   }
 
   getAreteRectangle() {

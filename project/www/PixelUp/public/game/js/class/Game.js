@@ -5,16 +5,11 @@ class Game {
       this.classPause = new Pause();
     }
     this.backgroundDeb = undefined;
-<<<<<<< HEAD
-=======
-    this.joueur = undefined;
->>>>>>> devSymfony
     this.backgrounds = [];
     this.nbBackground = 0;
     this.idBackground = "background_game_0";
     this.idScreen = idScreen;
     this.milliseconde = 40;
-<<<<<<< HEAD
     this.scoreMilliseconde = 500;
     this.score = undefined;
     this.isTtop = true;
@@ -98,14 +93,6 @@ class Game {
     this.idTypeMort = idTypeMort;
   }
 
-=======
-  }
-
-  setMilliseconde(milliseconde) {
-    this.milliseconde = milliseconde;
-  }
-
->>>>>>> devSymfony
   choixBackground(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
     switch (this.nbBackground) {
         case 0:
@@ -134,15 +121,8 @@ class Game {
           
     }
 }
-<<<<<<< HEAD
   
   addBackground(tailleX, tailleY, joueurTailleX, joueurTailleY) {
-=======
-
-
-
-  addBackground(tailleX, tailleY) {
->>>>>>> devSymfony
     let screenGame = document.getElementById(this.idScreen);
     // permet d'ajouter un nouveau canvas tout en définissant sa taille
     let newcanvas = document.createElement('canvas');
@@ -150,16 +130,12 @@ class Game {
     newcanvas.height = tailleY;
     newcanvas.id = this.idBackground;
     let scrollMove = new ScrollMove(this.idScreen);
-<<<<<<< HEAD
     scrollMove.debut();
-=======
->>>>>>> devSymfony
     //retourne l'objet contexte de dessin du canvas
     let ctx = newcanvas.getContext("2d");
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
     let background = this.choixBackground(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
-<<<<<<< HEAD
     if(this.projectDev) {
       background.setProjectDev();
     }
@@ -173,8 +149,6 @@ class Game {
 
     // ludovic (fin) : pour ajouter le joueur
 
-=======
->>>>>>> devSymfony
     this.backgrounds.push(background);
     this.createBackground();
     this.deleteBackground();
@@ -183,29 +157,19 @@ class Game {
   createBackground() {
     this.nbBackground++;
     this.idBackground = "background_game_"+this.nbBackground;
-<<<<<<< HEAD
-=======
-    
-    // la suite du code :
-
->>>>>>> devSymfony
   }
 
   deleteBackground() {
     let screenGame = document.getElementById(this.idScreen);
     // console.log(screenGame);
     if (screenGame.childElementCount > 2) {
-<<<<<<< HEAD
       //this.scrollMove.debut();
-=======
->>>>>>> devSymfony
       screenGame.removeChild(screenGame.lastChild);
       this.backgrounds.splice(0, 1);
     }
 
   }
 
-<<<<<<< HEAD
   setJoueurStopTomber() {
     const element = this.backgrounds[0];
     //element.joueur.finTomber();
@@ -265,11 +229,6 @@ class Game {
       document.getElementById(this.idTypeMort).dispatchEvent(new Event("change"));
     }
     this.stop();
-=======
-  setJoueur(posX, posY, tailleX, tailleY) {
-    this.joueur = new Joueur(new Taille(tailleX, tailleY));
-    this.joueur.setPosition(new Position(posX, posY));
->>>>>>> devSymfony
   }
 
   getJoueur() {
@@ -292,24 +251,15 @@ class Game {
   }
 
   eventKey(keyPress) {
-<<<<<<< HEAD
     if (this.backgrounds[0].joueur != undefined) {
       if(keyPress == " ") {
         this.backgrounds[0].joueur.sauter();
       }
       this.backgrounds[0].joueur.choixMouvement(keyPress);
-=======
-    if (this.joueur != undefined) {
-      if(keyPress == " ") {
-        this.joueur.sauter();
-      }
-      this.joueur.choixMouvement(keyPress);
->>>>>>> devSymfony
     }
   }
 
   start() {
-<<<<<<< HEAD
     this.isTtop = false;
     this.score.start();
       if (this.backgrounds[0].joueur != undefined) {
@@ -318,15 +268,6 @@ class Game {
           if(!classGame.isTtop) {
             this.backgrounds[0].joueur.choixMouvement(event.key);
           }
-=======
-      if (this.joueur != undefined) {
-        document.body.addEventListener("keydown", (event) => {
-          if(event.key == " ") {
-            this.joueur.sauter();
-          }
-          this.joueur.choixMouvement(event.key);
-          //this.joueur.move(event.key);
->>>>>>> devSymfony
         });
       }
 
@@ -334,7 +275,6 @@ class Game {
       if(folderWorker0 == undefined) {
           folderWorker0 = "./js/worker/";
       }
-<<<<<<< HEAD
       this.workerGame = new Worker(folderWorker0+"workerScore.js");
       let classGame = this;
       this.workerGame.onmessage = function (e) {
@@ -373,22 +313,6 @@ class Game {
       classGame.afficher();
     }
     this.workerGame.postMessage([this.milliseconde, true]);
-=======
-      let workerGame = new Worker(folderWorker0+"workerScore.js");
-      let classGame = this;
-      workerGame.onmessage = function (e) {
-        classGame.afficher();
-      }
-      workerGame.postMessage(this.milliseconde);
-  }
-
-  startDev() {
-    if (this.joueur != undefined) {
-      document.body.addEventListener("keydown", (event) => {
-        this.joueur.moveDev(event.key);
-      });
-    }
->>>>>>> devSymfony
 }
   screenBottom(pos){
     this.backgrounds[0].screenBottom(pos);

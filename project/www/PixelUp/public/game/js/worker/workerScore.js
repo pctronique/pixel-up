@@ -1,5 +1,4 @@
 let result = 0;
-<<<<<<< HEAD
 let isLoad = false;
 let myInterval = undefined;
 
@@ -17,14 +16,4 @@ onmessage = function(e) {
   } else if(myInterval != undefined) {
     clearInterval(myInterval);
   }
-=======
-
-function addScore() {
-  result++;
-  postMessage(result);
-}
-
-onmessage = function(e) {
-  setInterval(function () {addScore()}, e.data);
->>>>>>> devSymfony
 }
