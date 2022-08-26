@@ -1,0 +1,11 @@
+#screenGame{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 5000px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+}
+

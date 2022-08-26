@@ -1,0 +1,30 @@
+body {
+    margin : 0;
+    padding : 0;
+    /*background-color: black;*/
+}
+#score {
+    position: absolute;
+    padding: 10px;
+    z-index: 2;
+    margin-top: 2px;
+    background-color: rgba(255, 255, 255, 0.815);
+    border-radius: 10px;
+}
+#screenGame {
+    /*display: flex;
+    flex-direction: column;*/
+    position: relative;
+    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#screenGame canvas {
+    display: flex;
+}
+#utilisateur {
+    position: absolute;
+    margin-left: -335px;
+    margin-top: 950px;
+}
