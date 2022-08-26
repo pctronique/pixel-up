@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SuccesController extends AbstractController
 {
-    #[Route('/succes', name: 'app_succes')]
+    #[Route('/user/succes', name: 'app_succes')]
     public function index(MortRepository $mortRepository,/*UserRepository $user*/): Response
     {
 
@@ -43,7 +43,7 @@ class SuccesController extends AbstractController
 
 
         
-        return $this->render('pixel_up/succes.html.twig', [
+        return $this->render('user/succes.html.twig', [
             'morts' => $morts,
             'trueOrFalseSuccess' => $trueOrFalseSuccess,
             'totalMorts' => array_multisum($morts),

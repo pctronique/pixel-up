@@ -34,6 +34,7 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/user, roles: ROLE_USER }
          
+         
          # permet de rendre la route connexion/inscription pour les utilisateurs anonymes (non connecté)
          - { path: ^/connexion/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
