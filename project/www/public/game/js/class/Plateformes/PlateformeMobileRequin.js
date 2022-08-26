@@ -6,7 +6,7 @@ class PlateformeMobileRequin extends PlateformePiegeCote {
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.REQUIN;
     }
 
     afficher(canvas){

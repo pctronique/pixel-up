@@ -6,7 +6,7 @@ class PlateformeMobileAsteroide extends PlateformeMobile {
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.ASTEROIDE;
     }
 
     afficher(canvas){

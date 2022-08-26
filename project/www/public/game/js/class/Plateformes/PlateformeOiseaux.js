@@ -11,6 +11,9 @@ class PlateformeOiseaux extends PlateformeMobile{
         }
         return EnumAction.NULL;
     }
+    typeMort() {
+        return EnumTypeMort.OISEAU;
+    }
 
     afficher(canvas){
         this.deplacement();

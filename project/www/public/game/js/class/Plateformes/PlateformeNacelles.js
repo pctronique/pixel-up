@@ -4,6 +4,9 @@ class PlateformeNacelles extends Plateforme{
         this.taille = new Taille(100,70);
 
     }
+    typeMort() {
+        return EnumTypeMort.NACELLE;
+    }
 
     afficher(canvas){
         //this.img;
