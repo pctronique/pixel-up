@@ -22,7 +22,6 @@ class SuccesController extends AbstractController
             2 => false // Chutes
         ];
 
-        if(isset($_SESSION['id'])){
 
             if($morts[2]['compteur'] >= 350){ // Astéroides
                 $trueOrFalseSuccess[0] = true;
@@ -36,7 +35,6 @@ class SuccesController extends AbstractController
                 $trueOrFalseSuccess[2] = true;
             }
 
-        }
 
 
         function array_multisum(array $arr): float { //Fonction pour calculer le total des morts
