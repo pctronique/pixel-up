@@ -8,7 +8,7 @@ class PlateformeTenueTerre extends Plateforme{
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/nenuphar3.png');
-  
+        this.createBorder(canvas);
         let nenuphare = new Images(this.img, this.pos, this.taille);
         nenuphare.setBackground(this.background);
         nenuphare.afficher(canvas);
