@@ -12,7 +12,8 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class ScoresFixtures extends Fixture implements DependentFixtureInterface
 {
     public const USER_REFERENCE = 'user-robin';
-    
+
+    // POUR AJOUTER UN SEUL SCORE 
     /*public function load(ObjectManager $manager): void
     {
         $score = new Score();
@@ -23,6 +24,7 @@ class ScoresFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }*/
 
+    // POUR AJOUTER PLUSIEURS SCORE ( GERER LE NOMBRE DE BOUCLES )
     public function load(ObjectManager $manager): void
     {
         for ($count = 0; $count < 200; $count++) {
