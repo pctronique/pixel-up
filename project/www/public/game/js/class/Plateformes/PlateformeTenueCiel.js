@@ -8,7 +8,7 @@ class PlateformeTenueCiel extends Plateforme{
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/nacelleTenue.png');
-
+        this.createBorder(canvas);
         let nacelle = new Images(this.img, this.pos, this.taille);
         nacelle.setBackground(this.background);
         nacelle.afficher(canvas);

@@ -9,12 +9,12 @@
 </head>
 <body>
     <div id="game">
-        <div id="joueur">
-            <input type="hidden" id="joueur-pos-x" value="0" />
-            <input type="hidden" id="joueur-pos-y" value="0" />
+        <div id="info_Game">
+            <button id="start">Start</button>
         </div>
+        <input type="hidden" id="game_typeMort" value="-1">
         <div id="score">0</div>
-        <div id="screenGame">
+        <div class="screenGame" id="screenGame_0">
         </div>
     </div>
     <div class="buttonMove" id="buttonMoveLeft">
@@ -23,30 +23,36 @@
     <div class="buttonMove" id="buttonMoveRight">
         <button id="button_left">left</button><button id="button_right">right</button>
     </div>
-    <script src="./js/class/enum/EnumAction.js"></script>
+    <script src="./js/class/enum/EnumAction.js"></script> 
     <script src="./js/class/enum/EnumCollision.js"></script>
     <script src="./js/class/enum/EnumMouvement.js"></script>
     <script src="./js/class/enum/EnumTypeMort.js"></script>
-    <script src="./js/class/MouvementJoueur.js"></script>
-    <script src="./js/class/ScrollMove.js"></script>
+    <script src="./js/class/enum/EnumTenues.js"></script>
+    <script src="./js/class/MouvementJoueur.js"></script> 
+    <script src="./js/class/ScrollMove.js"></script> 
     <script src="./js/class/Taille.js"></script>
-    <script src="./js/class/Images.js"></script>
-    <script src="./js/class/ImageGif.js"></script>
-    <script src="./js/class/Pause.js"></script>
-    <script src="./js/class/Score.js"></script>
-    <script src="./js/class/BlockRectange.js"></script>
+    <script src="./js/class/Images.js"></script> 
+    <script src="./js/class/ImageGif.js"></script> 
+    <script src="./js/class/ImageTenue.js"></script>
+    <script src="./js/class/Pause.js"></script> 
+    <script src="./js/class/Score.js"></script>   
+    <script src="./js/class/BlockRectange.js"></script> 
     <script src="./js/class/Background.js"></script>
     <script src="./js/class/Collision.js"></script>
     <script src="./js/class/Position.js"></script>
     <script src="./js/class/RndPos.js"></script>
-    <script src="./js/class/AreteRectangle.js"></script>
     <script src="./js/class/AreteRectangleCote.js"></script>
     <script src="./js/class/CollisionPlateforme.js"></script>
+    <script src="./js/class/AreteRectangle.js"></script>
     <script src="./js/class/Personnage.js"></script>
     <script src="./js/class/Joueur.js"></script>
     <script src="./js/class/Game.js"></script>
     <script src="./js/class/Plateforme.js"></script>
+    <script src="./js/class/PlateformePiegeHaut.js"></script>
+    <script src="./js/class/PlateformeMobile.js"></script>
+    <script src="./js/class/PlateformePiegeCote.js"></script>
     <script src="./js/class/Plateformes/PlateformeFeu.js"></script>
+    <script src="./js/class/Plateformes/PlateformeLave.js"></script>
     <script src="./js/class/Plateformes/PlateformePierre.js"></script>
     <script src="./js/class/Plateformes/PlateformeMobileRequin.js"></script>
     <script src="./js/class/Plateformes/PlateformeMobileSatellite.js"></script>
@@ -59,14 +65,17 @@
     <script src="./js/class/Plateformes/PlateformeNuages.js"></script>
     <script src="./js/class/Plateformes/PlateformeAvions.js"></script>
     <script src="./js/class/Plateformes/PlateformeHelicopteres.js"></script>
+    <script src="./js/class/Plateformes/PlateformeVaisseau.js"></script>
+    <script src="./js/class/Plateformes/PlateformeVaisseauJaune.js"></script>
     <script src="./js/class/backgrounds/BackgroundSousTerre.js"></script>
     <script src="./js/class/backgrounds/BackgroundSousMer.js"></script>
     <script src="./js/class/backgrounds/BackgroundTerre.js"></script>
     <script src="./js/class/backgrounds/BackgroundCielNuages.js"></script>
     <script src="./js/class/backgrounds/BackgroundCielAvions.js"></script>
     <script src="./js/class/backgrounds/BackgroundEspaceSatellite.js"></script>
-    <script src="./js/class/backgrounds/BackgroundEspaceAsteroide.js"></script>
-    <script src="./js/class/tenues/Tenue.js"></script>
+    <script src="./js/class/backgrounds/BackgroundEspaceAsteroide.js"></script> 
+    <script src="./js/class/backgrounds/BackgroundEspaceVaisseau.js"></script>
+    <script src="./js/class/Tenue.js"></script>
     <script src="./js/class/tenues/TenueMer.js"></script>
     <script src="./js/class/tenues/TenueTerre.js"></script>
     <script src="./js/class/tenues/TenueCiel.js"></script>
@@ -76,6 +85,8 @@
     <script src="./js/class/Plateformes/PlateformeTenueCiel.js"></script>
     <script src="./js/class/Plateformes/PlateformeTenueEspace.js"></script>
     <script src="./js/class/backgrounds/TestBackgroundPlanete.js"></script>
+    <script src="./js/configGame.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/finDePartie.js"></script>
 </body>
 </html>

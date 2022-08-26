@@ -13,7 +13,7 @@ body {
     right: 0;
     margin: 10px
 }
-#screenGame {
+.screenGame {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -22,7 +22,7 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
-#screenGame canvas {
+.screenGame canvas {
     display: flex;
 }
 #utilisateur {
@@ -37,7 +37,7 @@ body {
     margin-top:1980px;
     position: absolute;
 }
-.buttonMove button {
+.buttonMove button, #start {
     padding: 25px;
     margin: 5px;
     border-radius: 50px;
@@ -57,4 +57,8 @@ body {
 }
 #button_right {
     right: 0;
+}
+#info_Game {
+    position: absolute;
+    z-index: 2;
 }

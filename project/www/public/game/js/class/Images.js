@@ -1,5 +1,5 @@
 class Images {
-    constructor(src, pos, taille) {
+    constructor(src, pos, taille, tailleImg = undefined) {
 
         this.src = src;
         this.x = 0;
@@ -7,13 +7,21 @@ class Images {
         this.nbr = 0;
         this.pos = pos;
         this.taille = taille;
+        this.tailleImg = tailleImg;
+        if(tailleImg == undefined) {
+            this.tailleImg = this.taille;
+        }
         this.isGif = false;
         this.isCut = false;
         this.color = undefined;
         this.background = undefined;
+        this.objet = undefined;
     }
     setBackground(background) {
         this.background = background;
+    }
+    setObjetDuplique(objet) {
+        this.objet = objet;
     }
     typeGif() {
         this.isGif = true;
@@ -47,22 +55,30 @@ class Images {
     }
 
     uneImage(img, ctx) {
+        if(this.objet != undefined) {
+            if(this.objet.imgLeftVisible()){
+                ctx.drawImage(img, this.objet.posLeft.x, this.objet.posLeft.y, this.taille.x, this.taille.y);
+            }
+            if(this.objet.imgRighttVisible()){
+                ctx.drawImage(img, this.objet.posLeft.x, this.objet.posLeft.y, this.taille.x, this.taille.y);
+            }
+        }
         return ctx.drawImage(img, this.pos.x, this.pos.y, this.taille.x, this.taille.y);
     }
 
     selectImag(width, height, img, ctx) {
         let imgPos = this.posSect(width, height);
-        return ctx.drawImage(img, imgPos.x, imgPos.y, this.taille.x, this.taille.y, this.pos.x, this.pos.y, this.taille.x, this.taille.y);
+        return ctx.drawImage(img, imgPos.x, imgPos.y, this.tailleImg.x, this.tailleImg.y, this.pos.x, this.pos.y, this.taille.x, this.taille.y);
     }
 
     posSect(width, height) {
-            let nbX = width / this.taille.x;
-            let nbY = height / this.taille.y;
+            let nbX = width / this.tailleImg.x;
+            let nbY = height / this.tailleImg.y;
             let compter = 0;
             for (let indexY = 0; indexY < nbY; indexY++) {
                 for (let indexX = 0; indexX < nbX; indexX++) {
                     if(compter == this.nbr) {
-                        return new Position(indexX*this.taille.x, indexY*this.taille.y);
+                        return new Position(indexX*this.tailleImg.x, indexY*this.tailleImg.y);
                     }
                     compter++;
                 }

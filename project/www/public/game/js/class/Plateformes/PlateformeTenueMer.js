@@ -7,7 +7,7 @@ class PlateformeTenueMer extends Plateforme{
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/pierreTenue2.png');
-        
+        this.createBorder(canvas);
         let pierre = new Images(this.img, this.pos, this.taille);
         pierre.setBackground(this.background);
         pierre.afficher(canvas);

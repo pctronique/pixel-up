@@ -8,7 +8,7 @@ class PlateformeTenueEspace extends Plateforme{
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/arcenciel.png');
-
+        this.createBorder(canvas);
         let arcEnCiel = new Images(this.img, this.pos, this.taille);
         arcEnCiel.setBackground(this.background);
         arcEnCiel.afficher(canvas);
