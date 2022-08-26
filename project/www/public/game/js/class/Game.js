@@ -10,15 +10,41 @@ class Game {
     this.idBackground = "background_game_0";
     this.idScreen = idScreen;
     this.milliseconde = 40;
+    this.scoreMilliseconde = 500;
     this.score = undefined;
     this.isTtop = true;
     this.workerGame = undefined;
     this.posInitJoueur = new Position();
     this.idTypeMort = undefined;
+    this.tenueJoueur = EnumTenues.NORMAL;
+    this.projectDev = false;
+    this.hauteurSaut = 200;
+    this.millisecondeSaut = 2;
+    this.millisecondeTomber = 2;
+    this.keySaut = ' ';
+    this.keyGauche = 'ArrowLeft';
+    this.keyDroite = 'ArrowRight';
+    this.keyCoucou = 'c';
+    this.keyHaut = 'ArrowUp';
+    this.keyBas = 'ArrowDown';
+  }
+
+  setProjectDev() {
+    this.projectDev = true;
+  }
+
+
+  mourir(enumAction) {
+    if(!this.game != undefined) {
+      console.log(this.backgrounds[enumAction.background].plateformes[enumAction.collision.index]);
+      this.backgrounds[enumAction.background].joueur.mourir(this.backgrounds[enumAction.background].plateformes[enumAction.collision.index]);
+    }
   }
 
   changementTenueJoueur(tenue) {
-
+    this.tenueJoueur = tenue;
+    this.backgrounds[0].joueur.modifTenue(tenue);
+    this.backgrounds[1].joueur.modifTenue(tenue);
   }
 
   posCroll() {
@@ -34,25 +60,33 @@ class Game {
   }
 
   keyGame(keySaut = ' ', keyGauche = 'ArrowLeft', keyDroite = 'ArrowRight', keyCoucou = 'c') {
-    for (let index = 0; index < this.backgrounds.length; index++) {
-      const element = this.backgrounds[index];
-      element.joueur.keyGame(keySaut, keyGauche, keyDroite, keyCoucou);
-    }
+    this.keySaut = keySaut;
+    this.keyGauche = keyGauche;
+    this.keyDroite = keyDroite;
+    this.keyCoucou = keyCoucou;
   }
 
   keyGameDev(keyHaut = 'ArrowUp', keyBas = 'ArrowDown') {
-    for (let index = 0; index < this.backgrounds.length; index++) {
-      const element = this.backgrounds[index];
-      element.joueur.keyGameDev(keyHaut, keyBas);
-    }
+    this.keyHaut = keyHaut;
+    this.keyBas = keyBas;
   }
 
-  setMilliseconde(milliseconde) {
+  configSaut(hauteurSaut = 200, millisecondeSaut = 2, millisecondeTomber = 2) {
+    this.hauteurSaut = hauteurSaut;
+    this.millisecondeSaut = millisecondeSaut;
+    this.millisecondeTomber = millisecondeTomber;
+  }
+
+  setMilliseconde(milliseconde = 500) {
+    this.scoreMilliseconde = milliseconde;
+  }
+
+  setMilliseconde(milliseconde = 40) {
     this.milliseconde = milliseconde;
   }
 
   scoreId(idScore) {
-    this.score = new Score(idScore);
+    this.score = new Score(idScore, this.scoreMilliseconde);
   }
 
   setIdTypeMort(idTypeMort) {
@@ -102,11 +136,17 @@ class Game {
     //insère avant un nouveau canva et retourne le premier élément dans le screenGame
     screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
     let background = this.choixBackground(this.idBackground, new Taille(tailleX, tailleY), scrollMove);
-
+    if(this.projectDev) {
+      background.setProjectDev();
+    }
     // ludovic (debut) : pour ajouter le joueur
     let addJoueur = this.setJoueur(tailleX/2, -tailleY, joueurTailleX, joueurTailleY);
+    addJoueur.keyGame(this.keySaut, this.keyGauche, this.keyDroite, this.keyCoucou);
+    addJoueur.keyGameDev(this.keyHaut, this.keyBas);
+    addJoueur.configSaut(this.hauteurSaut, this.millisecondeSaut, this.millisecondeTomber);
     addJoueur.setBackground(background);
     background.setJoueur(addJoueur);
+
     // ludovic (fin) : pour ajouter le joueur
 
     this.backgrounds.push(background);
@@ -160,12 +200,15 @@ class Game {
   getEnumCollision() {
     let enumCollision = this.backgrounds[0].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
+      console.log({collision : enumCollision, background : 0});
       return {collision : enumCollision, background : 0};
     }
     enumCollision = this.backgrounds[1].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
+      console.log({collision : enumCollision, background : 1});
       return {collision : enumCollision, background : 1};
     }
+    console.log({collision : enumCollision, background : -1});
     return {collision : enumCollision, background : -1};
   }
 

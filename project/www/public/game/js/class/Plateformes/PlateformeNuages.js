@@ -13,9 +13,12 @@ class PlateformeNuages extends PlateformeMobile{
     }
 
     afficher(canvas){
+        this.deplacement();
         //this.img;
         this.imageSrc('./img/nuage3.png');
+        this.createBorder(canvas);
         let nuages = new Images(this.img, this.pos, this.taille);
+        nuages.setObjetDuplique(this);
         nuages.setBackground(this.background);
         nuages.afficher(canvas);
     }

@@ -37,7 +37,7 @@ body {
     margin-top:1980px;
     position: absolute;
 }
-.buttonMove button {
+.buttonMove button, #start {
     padding: 25px;
     margin: 5px;
     border-radius: 50px;

@@ -1,4 +1,4 @@
-class PlateformePiegeCote extends Plateforme{
+class PlateformePiegeCote extends PlateformeMobile{
     /**
      * 
      * @param {*} taille sa taille

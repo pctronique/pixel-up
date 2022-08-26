@@ -14,13 +14,19 @@ class MouvementJoueur {
     this.hauteurSaut = 200;
     this.millisecondeSaut = 2;
     this.millisecondeTomber = 2;
-    this.hauteurTomber = 1000;
+    this.hauteurTomber = 10000;//joueur.background.taille.y;
     this.keySaut = ' ';
     this.keyGauche = 'ArrowLeft';
     this.keyDroite = 'ArrowRight';
     this.keyHaut = 'ArrowUp';
     this.keyBas = 'ArrowDown';
     this.keyCoucou = 'c';
+  }
+
+  configSaut(hauteurSaut = 200, millisecondeSaut = 2, millisecondeTomber = 2) {
+    this.hauteurSaut = hauteurSaut;
+    this.millisecondeSaut = millisecondeSaut;
+    this.millisecondeTomber = millisecondeTomber;
   }
 
   keyGame(keySaut = ' ', keyGauche = 'ArrowLeft', keyDroite = 'ArrowRight', keyCoucou = 'c') {
@@ -103,7 +109,7 @@ class MouvementJoueur {
       this.sauter0 = true;
       this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
-      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 200, 2, true]);
+      this.workerJoueurSauter.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, this.hauteurSaut, this.millisecondeSaut, true]);
     }
   }
   
@@ -117,11 +123,13 @@ class MouvementJoueur {
         let enumAction = classMovJoueur.collisionAction();
 
         console.log(enumAction);
-        if (enumAction.collision.enumCollision != EnumAction.NULL) {
-          if(enumAction.collision.enumAction == EnumAction.MORT) {
-            classJoueur.mourir(enumAction);
+        if (enumAction.collision.enumCollision != EnumCollision.NULL) {
+          if(enumAction.collision.enumAction == EnumAction.MORT || enumAction.collision.enumAction == EnumAction.STOP) {
+            tomber = false;
           }
-          tomber = false;
+          if(enumAction.collision.enumAction == EnumAction.MORT) {
+            classJoueur.game.mourir(enumAction);
+          }
         }
       }
       if (tomber) {
@@ -138,7 +146,7 @@ class MouvementJoueur {
       this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
-      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, 1000, 2, true]);
+      this.workerJoueurTomber.postMessage([this.joueur.pos.y, this.joueur.background.taille.y, this.hauteurTomber, this.millisecondeTomber, true]);
     }
   }
 
@@ -152,8 +160,11 @@ class MouvementJoueur {
       if (tomber) {
         classJoueur.setPositionY(e.data[0]);
         let collision = classMovJoueur.collisionAction();
-        if (collision.collision.enumCollision != EnumAction.NULL) {
+        if (collision.collision.enumCollision  === EnumCollision.HAUT) {
           tomber = false;
+          if(collision.collision.enumAction === EnumAction.MORT) {
+            this.joueur.game.mourir(collision);
+          }
         }
       }
       console.log(tomber);
@@ -262,7 +273,12 @@ class MouvementJoueur {
             this.joueur.game.setJoueurPositionX(x + index);
             if(!this.tomber0) {
               let collision = this.collisionAction();
-              if (collision.collision.enumCollision  == EnumAction.NULL) {
+              if (collision.collision.enumCollision  === EnumCollision.GAUCHE) {
+                if(collision.collision.enumAction === EnumAction.MORT) {
+                  this.joueur.game.mourir(collision);
+                }
+              }
+              if (collision.collision.enumCollision  === EnumAction.NULL) {
                   this.tomber(); 
               }
             }
@@ -274,7 +290,12 @@ class MouvementJoueur {
             this.joueur.game.setJoueurPositionX(x - index);
             if(!this.tomber0) {
               let collision = this.collisionAction();
-              if (collision.collision.enumCollision == EnumAction.NULL) {
+              if (collision.collision.enumCollision  === EnumCollision.DROITE) {
+                if(collision.collision.enumAction === EnumAction.MORT) {
+                  this.joueur.game.mourir(collision);
+                }
+              }
+              if (collision.collision.enumCollision === EnumAction.NULL) {
                   this.tomber();
               }
             }

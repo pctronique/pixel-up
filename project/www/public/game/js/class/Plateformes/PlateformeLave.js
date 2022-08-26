@@ -18,6 +18,7 @@ class PlateformeLave extends PlateformePiegeHaut {
     }
 
     afficher(canvas){
+        this.createBorder(canvas);
         this.imgGif.setBackground(this.background);
         this.imgGif.pos = this.pos;
         this.imgGif.taille = this.taille;

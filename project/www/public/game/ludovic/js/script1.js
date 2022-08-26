@@ -5,26 +5,25 @@ if (window.Worker) {
   let game = undefined;
   let nbGame = 0;
 
-  function createGame(game) {
-    nbGame++;
     let divGame = document.getElementById("game");
-    if (game != undefined) {
+    /*if (game != undefined) {
       divGame.removeChild(divGame.lastChild);
       game.remove();
       delete game;
       game = undefined;
-    }
-    let idScreen = "screenGame_" + nbGame;
-    let newDiv = document.createElement('div');
+    }*/
+    let idScreen = "screenGame_0";
+    /*let newDiv = document.createElement('div');
     newDiv.classList.add("screenGame");
     newDiv.id = idScreen;
-    divGame.appendChild(newDiv);
-    game = new Game("screenGame_" + nbGame);
+    divGame.appendChild(newDiv);*/
+    game = new Game("screenGame_0");
+    //game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 47, 48);
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 47, 48);
-    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 49);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
+    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 101);
     //game.setJoueur(backgroundTaille.x/2,backgroundTaille.y-49, 47,48);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
     game.afficher();
@@ -46,44 +45,23 @@ if (window.Worker) {
 
     screenGame.scrollTop = screenGame.scrollHeight;
 
-    return game;
-  }
 
-  game = createGame(game);
   game.start();
   //game.startDev();
 
   //game.keyGame("k");
 
   function startGame(e) {
-    game.remove();
-    game = createGame(game);
     game.start();
     //game.startDev();
   }
 
-  function stopGame(e) {
+  /*function stopGame(e) {
     game.stop();
-  }
+  }*/
   document.getElementById("start").addEventListener("click", startGame);
-  document.getElementById("stop").addEventListener("click", stopGame);
+  //document.getElementById("stop").addEventListener("click", stopGame);
 
-  document
-    .getElementById("game_typeMort")
-    .addEventListener("change", function (e) {
-      let value = parseInt(document.getElementById("game_typeMort").value);
-      let message = "";
-      if (value == EnumTypeMort.TOMBER) {
-        message = "TOMBER";
-      } else if (value == EnumTypeMort.REQUIN) {
-        message = "REQUIN";
-      } else if (value == EnumTypeMort.AVION) {
-        message = "AVION";
-      } else if (value == EnumTypeMort.ASTEROIDE) {
-        message = "ASTEROIDE";
-      }
-      alert(message);
-    });
 
 } else {
   console.log("Your browser doesn't support web workers.");

@@ -10,9 +10,12 @@ class PlateformeMobileSatellite extends PlateformeMobile {
     }
 
     afficher(canvas){
+        this.deplacement();
         //this.img;
         this.imageSrc('./img/satellite.png');
+        this.createBorder(canvas);
         let satellite = new Images(this.img, this.pos, this.taille);
+        satellite.setObjetDuplique(this);
         satellite.setBackground(this.background);
         satellite.afficher(canvas);
     }

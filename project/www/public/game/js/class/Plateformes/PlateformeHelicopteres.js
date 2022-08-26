@@ -10,6 +10,7 @@ class PlateformeHelicopteres extends PlateformePiegeHaut {
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/helico2.png');
+        this.createBorder(canvas);
         let helicopteres = new Images(this.img, this.pos, this.taille);
         helicopteres.setBackground(this.background);
         helicopteres.afficher(canvas);

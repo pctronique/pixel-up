@@ -16,7 +16,7 @@ class BlockRectange extends Pause {
     if (this.pos === undefined) {
       this.pos = new Position();
       this.posLeft = new Position();
-      this.posRight = new Position();
+      this.posLeft = new Position();
     }
     this.game = undefined;
     this.areteRectangle = new AreteRectangle(this.pos, this.taille);
@@ -24,6 +24,22 @@ class BlockRectange extends Pause {
     this.areteRectangleRight = new AreteRectangle(this.pos, this.taille);
     this.background = undefined;
     this.idBackground = undefined;
+    this.projectDev = false;
+  }
+
+  setProjectDev() {
+    this.projectDev = true;
+  }
+
+  createBorder(canvas) {
+    if(this.projectDev) {
+      let ctx = canvas.getContext("2d");
+      ctx.fillStyle = "black";
+      ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, 1);
+      ctx.fillRect(this.pos.x, this.pos.y+this.taille.y, this.taille.x, 1);
+      ctx.fillRect(this.pos.x, this.pos.y, 1, this.taille.y);
+      ctx.fillRect(this.pos.x+this.taille.x, this.pos.y, 1, this.taille.y);
+    }
   }
 
   stop() {}

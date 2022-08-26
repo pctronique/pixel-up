@@ -10,9 +10,12 @@ class PlateformeVaisseau extends PlateformeMobile{
     }
 
     afficher(canvas){
+        this.deplacement();
         //this.img;
         this.imageSrc('./img/vaisseau2.png');
+        this.createBorder(canvas);
         let vaisseau = new Images(this.img, this.pos, this.taille);
+        vaisseau.setObjetDuplique(this);
         vaisseau.setBackground(this.background);
         vaisseau.afficher(canvas);
     }

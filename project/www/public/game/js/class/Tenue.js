@@ -12,10 +12,11 @@ class Tenue extends Plateforme{
         
     }
     action(enumCollision) {
+        console.log("06548");
         if(enumCollision == EnumCollision.HAUT || enumCollision == EnumCollision.BAS || enumCollision == EnumCollision.GAUCHE|| enumCollision == EnumCollision.DROITE ) {
-            console.log(this);  
+            console.log("06547");  
             this.joueur.changementTenue(this.tenue);
-            return EnumAction.TENUE;
+            return EnumAction.NULL;
             
         }
         return EnumAction.NULL;

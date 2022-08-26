@@ -6,17 +6,17 @@ class ImageTenue {
         this.tabTenue = [];
         this.tabImage = [];
         this.tabTenue.push(EnumTenues.NULL);
-        this.tabImage.push('black');
+        this.tabImage.push('');
         this.tabTenue.push(EnumTenues.NORMAL);
-        this.tabImage.push('yellow');
+        this.tabImage.push('MINEUR.png');
         this.tabTenue.push(EnumTenues.MER);
-        this.tabImage.push('green');
+        this.tabImage.push('PLONGEUR.png');
         this.tabTenue.push(EnumTenues.TERRE);
-        this.tabImage.push('blue');
+        this.tabImage.push('JOUEUR_NORMAL.png');
         this.tabTenue.push(EnumTenues.CIEL);
-        this.tabImage.push('red');
+        this.tabImage.push('HOMME_VOLANT.png');
         this.tabTenue.push(EnumTenues.ESPACE);
-        this.tabImage.push('pink');
+        this.tabImage.push('COSMONAUTE.png');
 
     }
 

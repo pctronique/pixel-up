@@ -19,6 +19,7 @@ class Background {
     this.nbDisplayPlt = 0;
     this.nbDisplayOther = 0;
     this.stopDisplay = true;
+    this.projectDev = false;
     this.minX = 70;
     this.maxX = 102;
     this.minY = 10;
@@ -30,6 +31,18 @@ class Background {
     this.creerPlatforme();
     //this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
     this.creerPlateformeTenue(undefined);
+  }
+
+  setProjectDev() {
+    this.projectDev = true;
+    for (let index = 0; index < this.tabAutrePlateforme.length; index++) {
+      const element = this.tabAutrePlateforme[index];
+      element.setProjectDev();
+    }
+    for (let index = 0; index < this.plateformes.length; index++) {
+      const element = this.plateformes[index];
+      element.setProjectDev();
+    }
   }
 
   typeClass() {
@@ -48,8 +61,11 @@ class Background {
     this.plateformePourTenue = plateformePourTenue;
     let pos = new Position(this.taille.x - this.plateformePourTenue.taille.x, this.plateformePourTenue.taille.y);
     if (this.plateformePourTenue != undefined) {
-      this.plateformePourTenue.setPosition(pos);
       this.plateformePourTenue.setBackground(this);
+      this.plateformePourTenue.setPosition(pos);
+      if(this.projectDev) {
+        this.plateformePourTenue.setProjectDev();
+      }
       this.tabAutrePlateforme.push(this.plateformePourTenue);
     }
   }
@@ -60,8 +76,11 @@ class Background {
     this.screen_bottom = screen_bottom;
     if(this.screen_bottom != undefined) {
       //this.screen_bottom.setTaille(taille);
-      this.screen_bottom.setPosition(pos);
       this.screen_bottom.setBackground(this);
+      this.screen_bottom.setPosition(pos);
+      if(this.projectDev) {
+        this.screen_bottom.setProjectDev();
+      }
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
@@ -69,10 +88,14 @@ class Background {
     if(tenue != undefined) {
       let taille = new Taille(40, 40);
       let pos = new Position(this.taille.x - taille.x - 60, taille.y - 10);
+      //let pos = new Position(0, this.taille.y - 40);
       this.tenue = tenue;
       this.tenue.setTaille(taille);
-      this.tenue.setPosition(pos);
       this.tenue.setBackground(this);
+      this.tenue.setPosition(pos);
+      if(this.projectDev) {
+        this.tenue.setProjectDev();
+      }
       this.tabAutrePlateforme.push(this.tenue);
 
     }
@@ -117,8 +140,11 @@ class Background {
         let calculPosY = this.taille.y - (startHauteur + posPlateformeY);
         if (calculPosY > 20) {
         let pos = new Position(posPlateforme, this.taille.y - (startHauteur + posPlateformeY));
-        plateforme.setPosition(pos);
         plateforme.setBackground(this);
+        plateforme.setPosition(pos);
+        if(this.projectDev) {
+          plateforme.setProjectDev();
+        }
         let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
         this.plateformesCollision.push(
           new CollisionPlateforme(
@@ -133,13 +159,6 @@ class Background {
       }
       startHauteur += defaultHauteur;
     }
-
-    let pos = new Position(0, this.taille.y - 1);
-    let taille = new Taille(this.taille.x, 10);
-    let plateforme = new Plateforme(taille);
-    plateforme.setPosition(pos);
-    plateforme.setBackground(this);
-    this.plateformes.push(plateforme);
   }
 
   getTaille() {
@@ -151,7 +170,10 @@ class Background {
     this.joueur.setBackground(this);
     this.joueur.setPosition(this.joueur.pos);
     this.joueur.setTabPlateforme(this.plateformes);
-    this.joueur.setAutrePlateforme(this.tabAutrePlateforme)
+    this.joueur.setAutrePlateforme(this.tabAutrePlateforme);
+    if(this.projectDev) {
+      this.joueur.setProjectDev();
+    }
     if(this.tenue != undefined) {
       this.tenue.setJoueur(this.joueur);
     }
