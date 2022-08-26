@@ -7,8 +7,10 @@ header{
 }
 
 body{
-    background:  center no-repeat url("../media/PixelUpBackground.png");
+    background:  center repeat url("../media/PixelUpBackground.png");
     background-size: cover;
+    -webkit-animation: background 20s linear infinite;
+    animation: background 20s linear infinite;
 }
 
 *{
@@ -114,15 +116,15 @@ header{
   }
 
   #menu a:first-of-type li{
-    background-color: #C23028;
+    background-color: #C23028ce;
   }
 
   #menu a:nth-of-type(2) li{
-    background: #F6B339;
+    background: #F6B339ce;
   }
 
   #menu a:nth-of-type(3) li{
-    background: #0594D0;
+    background: #0594D0ce;
   }
 
 
@@ -143,6 +145,7 @@ header{
     border: 2px solid black;
     transition: 0.2s;
     font-family: 'Silkscreen', cursive;
+    border-radius: 10px;
   }
 
   #menu li:hover{
@@ -450,3 +453,66 @@ tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
   margin: 100px auto;
   width: fit-content;
 }
+
+/* LOADER HOME */
+
+.loader {
+
+  position : fixed;
+  z-index: 9999;
+  background : url('icon-loader.gif') 50% 50% no-repeat, black;
+  top : 0px;
+  left : 0px;
+  height : 100%;
+  width : 100%;
+  cursor : wait;
+  }
+
+  @-webkit-keyframes slide-fwd-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+    }
+  }
+  @keyframes slide-fwd-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+    }
+  }
+
+  
+  @-webkit-keyframes background {
+    0% { background-position-x:   0; }
+    100% { background-position-x: 100vw; }
+  }
+  @keyframes background {
+    0% { background-position-x:   0; }
+    100% { background-position-x: 100vw; }
+  }
+
+.loader img { 
+
+  height : 20%;
+  width : 20%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-left: -150px;
+  -webkit-animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+  
+  }
+
+
+
+/* LOADER GAME */
