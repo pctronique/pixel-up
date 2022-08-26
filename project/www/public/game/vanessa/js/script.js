@@ -3,20 +3,22 @@ let folderWorker = "./../js/worker/";
 if (window.Worker) {
     /*let score = new Score("score");
     score.start();*/
-    let game = new Game("screenGame");
+    let game = new Game("screenGame_0");
     let backgroundTaille = new Taille(1000, 5000);
-    game.setJoueur(backgroundTaille.x / 2, backgroundTaille.y - 49, 47, 48);
-    game.addBackground(backgroundTaille.x, backgroundTaille.y);
-    game.addBackground(backgroundTaille.x, backgroundTaille.y);
+    game.scoreId("score");
+    game.setIdTypeMort("game_typeMort");
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
+    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 101);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
-    //game.afficher();
+    game.afficher();
 
-    let screenGame = document.getElementById("screenGame");
+    let screenGame = document.getElementById("screenGame_0");
     screenGame.scrollTop = screenGame.scrollHeight;
 
-    game.start();
+    //game.start();
 
-    let scrollMove = new ScrollMove();
+
     screenGame.addEventListener("scroll", function () {
         let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
         let calcul4 = (screenGame.scrollHeight / 2) / backgroundTaille.y;
@@ -35,16 +37,32 @@ if (window.Worker) {
             score.stop();
         }
     })*/
-
+    function startGame(e) {
+        
+        let musique=new Musique("son/man-is-he-mega-glbml-22045.mp3",100,true);
+        musique.start();
+        //musique.stop();
+        //musique.start();
+        //musique.init(100,false);
+        //musique.remove();
+        game.start();
+        //game.startDev();
+      }
 } else {
     console.log("Your browser doesn't support web workers.");
 }
 
+
+  /*function stopGame(e) {
+    game.stop();
+  }*/
+  document.getElementById("start").addEventListener("click", startGame);
+  //document.getElementById("stop").addEventListener("click", stopGame);
 /*
 Pour intégrer musique
 */
 
-var audio = document.getElementById('audio');
+/*var audio = document.getElementById('audio');
             var count = 1;
             audio.loop = true;
             audio.volume = 0.5;
@@ -66,7 +84,7 @@ function stop() {
                     audio.currentTime = 0;
 
                 }
-
+*/
 
 
 /* pour class Musique si besoin

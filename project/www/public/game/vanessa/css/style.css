@@ -10,16 +10,19 @@ body {
     margin-top: 2px;
     background-color: rgba(255, 255, 255, 0.815);
     border-radius: 10px;
+    right: 0;
+    margin: 10px
 }
-#screenGame {
+.screenGame {
     display: flex;
     flex-direction: column;
     position: relative;
     height: 100vh;
+    position: relative;
     overflow-x: hidden;
     overflow-y: auto;
 }
-#screenGame canvas {
+.screenGame canvas {
     display: flex;
 }
 #utilisateur {
@@ -34,7 +37,28 @@ body {
     margin-top:1980px;
     position: absolute;
 }
-#imageTest{
-    background-color: black;
+.buttonMove button, #start {
+    padding: 25px;
+    margin: 5px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgba(249, 255, 196, 0.685);
+    border: rgba(128, 128, 128, 0.767) 2px solid;
 }
-    
+.buttonMove {
+    position: absolute;
+    bottom: 0;
+}
+#buttonMoveRight {
+    right: 0;
+}
+#button_left {
+    right: 0;
+}
+#button_right {
+    right: 0;
+}
+#info_Game {
+    position: absolute;
+    z-index: 2;
+}
