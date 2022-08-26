@@ -4,7 +4,7 @@ class PlateformeHelicopteres extends PlateformePiegeHaut {
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.HELICOPTERE;
     }
 
     afficher(canvas){

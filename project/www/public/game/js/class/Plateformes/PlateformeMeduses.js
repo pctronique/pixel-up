@@ -5,7 +5,7 @@ class PlateformeMeduses extends PlateformePiegeHaut {
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.MEDUSE;
     }
 
     afficher(canvas){

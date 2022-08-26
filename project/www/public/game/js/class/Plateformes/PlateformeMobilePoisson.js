@@ -11,7 +11,9 @@ class PlateformeMobilePoisson extends PlateformeMobile {
         }
         return EnumAction.NULL;
     }
-
+    typeMort() {
+        return EnumTypeMort.POISSON;
+    }
     afficher(canvas){
         this.deplacement();
         //this.img;

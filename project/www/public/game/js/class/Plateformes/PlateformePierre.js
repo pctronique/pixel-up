@@ -3,6 +3,9 @@ class PlateformePierre extends Plateforme {
         super(taille, collisionHautStable);
         this.taille = new Taille(120,50);
     }
+    typeMort() {
+        return EnumTypeMort.PIERRE;
+    }
 
     afficher(canvas){
         //this.img;

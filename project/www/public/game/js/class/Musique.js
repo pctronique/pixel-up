@@ -4,7 +4,7 @@ class Musique {
 
     }
 
-let musique=new Sound("son/man-is-he-mega-glbml-22045.mp3",100,true);
+/*let musique=new Sound("son/man-is-he-mega-glbml-22045.mp3",100,true);
 musique.start();
 musique.stop();
 musique.start();
@@ -46,5 +46,5 @@ function Sound(source,volume,loop)
         this.loop=loop;
     }
 
-}
+}*/
 }

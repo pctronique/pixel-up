@@ -6,7 +6,7 @@ class PlateformeAvions extends PlateformePiegeCote {
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.AVION;
     }
 
     afficher(canvas){

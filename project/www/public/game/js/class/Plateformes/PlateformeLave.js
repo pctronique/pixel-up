@@ -14,7 +14,7 @@ class PlateformeLave extends PlateformePiegeHaut {
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.LAVE;
     }
 
     afficher(canvas){

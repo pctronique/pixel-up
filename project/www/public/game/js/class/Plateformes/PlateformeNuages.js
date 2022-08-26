@@ -11,6 +11,9 @@ class PlateformeNuages extends PlateformeMobile{
         }
         return EnumAction.NULL;
     }
+    typeMort() {
+        return EnumTypeMort.NUAGE;
+    }
 
     afficher(canvas){
         this.deplacement();

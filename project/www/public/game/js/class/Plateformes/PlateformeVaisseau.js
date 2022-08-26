@@ -6,7 +6,7 @@ class PlateformeVaisseau extends PlateformeMobile{
     }
 
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.VAISSEAU;
     }
 
     afficher(canvas){
