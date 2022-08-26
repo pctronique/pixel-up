@@ -12,6 +12,7 @@ class PlateformeMeteoritesFeu extends PlateformePiegeHaut {
         this.imageSrc('./img/meteorite2.png');
         this.createBorder(canvas);
         let meteoritesFeu = new Images(this.img, this.pos, this.taille);
+        meteoritesFeu.setIsRepeat(true);
         meteoritesFeu.setBackground(this.background);
         meteoritesFeu.afficher(canvas);
     }

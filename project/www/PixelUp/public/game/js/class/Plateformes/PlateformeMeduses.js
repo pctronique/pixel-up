@@ -10,9 +10,10 @@ class PlateformeMeduses extends PlateformePiegeHaut {
 
     afficher(canvas){
         //this.img;
-        this.imageSrc('./img/meduse2.png');
+        this.imageSrc('./img/meduse2.png');    
         this.createBorder(canvas);
         let meduses = new Images(this.img, this.pos, this.taille);
+        meduses.setIsRepeat(true);
         meduses.setBackground(this.background);
         meduses.afficher(canvas);
     }

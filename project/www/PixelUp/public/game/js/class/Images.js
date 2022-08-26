@@ -16,7 +16,14 @@ class Images {
         this.color = undefined;
         this.background = undefined;
         this.objet = undefined;
+        this.imageObj = undefined;
+        this.isRepeat = false;
     }
+
+    setIsRepeat(isRepeat){
+        this.isRepeat = isRepeat;
+    }
+
     setBackground(background) {
         this.background = background;
     }
@@ -38,7 +45,9 @@ class Images {
         let classImgs = this;
         
         img.onload = function () {
-            if(classImgs.isCut) {
+            if(classImgs.isRepeat){
+                classImgs.repeatImage(ctx, img);
+            }else if(classImgs.isCut) {
                 classImgs.selectImag(img.width, img.height, img, ctx);
             } else {
                 classImgs.uneImage(img, ctx);
@@ -50,7 +59,13 @@ class Images {
         }
 
     }
-
+    repeatImage(ctx, imageObj){
+        for (let i = 0; i < 1; i++) {
+            for (let j = 0; j < 22; j++) {
+            ctx.drawImage(imageObj, j * imageObj.width, this.pos.y-imageObj.height, imageObj.width, imageObj.height);
+            }
+     }   
+    }
     imgGif(src) {
     }
 

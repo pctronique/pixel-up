@@ -4,7 +4,9 @@ class PlateformePiegesNacelles extends PlateformePiegeHaut{
         this.taille = new Taille(100,70);
 
     }
-
+    typeMort() {
+        return EnumTypeMort.NACELLECASSEE;
+    }
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/nacelle_piege.png');
