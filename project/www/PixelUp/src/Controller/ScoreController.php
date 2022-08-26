@@ -24,6 +24,19 @@ class ScoreController extends AbstractController
         $search = $form->handleRequest($request);
         $user = $this->getUser();
 
+
+
+        /* TEST NOUVELLE METHODE POUR REMPLACER LE SCORE ACTUEL PAR LE NOUVEAU S'IL EST MEILLEUR 
+
+        $nouveauScore = ;
+        $score = $entityManager->getRepository(Score::class)->find($id);
+        if($nouveauScore > $personnalScores){
+            $score->setCompteur($nouveauScore);
+            $entityManager->flush();
+        };
+        
+        */
+
         
 
         if($form->isSubmitted() && $form->isValid() && empty($search->get('mots')->getData())) {

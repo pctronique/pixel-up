@@ -9,8 +9,8 @@ header{
 body{
     background:  center repeat url("../media/PixelUpBackground.png");
     background-size: cover;
-    -webkit-animation: background 20s linear infinite;
-    animation: background 20s linear infinite;
+    -webkit-animation: background 50s linear infinite;
+    animation: background 50s linear infinite;
 }
 
 *{

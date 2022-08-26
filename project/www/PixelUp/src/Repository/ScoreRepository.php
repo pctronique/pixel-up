@@ -83,6 +83,25 @@ class ScoreRepository extends ServiceEntityRepository
 
     }
 
+    // TEST METHODES POUR CLASSER LES SCORES 
+
+    //public function classmentBDD($user){
+
+    //$subquery = $this->createQueryBuilder('s')
+    //        ->select('s.compteur')
+    //        ->andWhere('s.user > :user')
+    //        ->setParameter('user', $user)
+    //    ;
+
+    //     return $this->createQueryBuilder('s')
+    //        ->select('1 + count(*) AS rank')
+    //        ->andWhere('f.points > :subquery')
+    //        ->setParameter('subquery', $subquery)
+    //        ->getQuery()
+    //       ->getOneOrNullResult()
+    //   ;
+    //}
+
 //    /**
 //     * @return Score[] Returns an array of Score objects
 //     */
