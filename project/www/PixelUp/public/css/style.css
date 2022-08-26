@@ -442,3 +442,11 @@ tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
     transition: 0.2s;
     font-family: 'Silkscreen', cursive;
 }
+
+/* MESSAGE D'ACCES IMPOSSIBLE */
+
+.goToLogin{
+  color:white;
+  margin: 100px auto;
+  width: fit-content;
+}

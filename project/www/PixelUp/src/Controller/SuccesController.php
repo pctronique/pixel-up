@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SuccesController extends AbstractController
 {
-    #[Route('/succes', name: 'app_succes')]
+    #[Route('/user/succes', name: 'app_succes')]
     public function index(MortRepository $mortRepository,UserRepository $user): Response
     {
 
@@ -22,7 +22,7 @@ class SuccesController extends AbstractController
             2 => false // Chutes
         ];
 
-
+        if(isset($_SESSION['id'])){
 
             if($morts[2]['compteur'] >= 350){ // Astéroides
                 $trueOrFalseSuccess[0] = true;
@@ -35,7 +35,8 @@ class SuccesController extends AbstractController
             if($morts[0]['compteur'] >= 250){ // Requins
                 $trueOrFalseSuccess[2] = true;
             }
-        
+
+        }
 
 
         function array_multisum(array $arr): float { //Fonction pour calculer le total des morts
@@ -48,7 +49,7 @@ class SuccesController extends AbstractController
 
 
         
-        return $this->render('pixel_up/succes.html.twig', [
+        return $this->render('/user/succes.html.twig', [
             'morts' => $morts,
             'trueOrFalseSuccess' => $trueOrFalseSuccess,
             'totalMorts' => array_multisum($morts),
