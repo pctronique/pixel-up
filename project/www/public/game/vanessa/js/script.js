@@ -71,13 +71,13 @@ function stop() {
 
 /* pour class Musique si besoin
 
-var foo=new Sound("son/man-is-he-mega-glbml-22045.mp3",100,true);
-foo.start();
-foo.stop();
-foo.start();
-foo.init(100,false);
-foo.remove();
-//Here you you cannot start foo any more
+var musique=new Sound("son/man-is-he-mega-glbml-22045.mp3",100,true);
+musique.start();
+musique.stop();
+musique.start();
+musique.init(100,false);
+musique.remove();
+//Here you you cannot start musique any more
 function Sound(source,volume,loop)
 {
     this.source=source;
