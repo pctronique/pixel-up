@@ -52,6 +52,8 @@ class UserController extends AbstractController
 
             $userRepository->remove($user, true);
         }
+        
+
         $this->addFlash('success', 'Suppresion du profil effectuer');
         return $this->redirectToRoute('app_pixel_up', [], Response::HTTP_SEE_OTHER);
     }
