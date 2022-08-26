@@ -8,12 +8,16 @@ class MouvementJoueur {
     this.joueur = joueur;
     this.workerJoueurSauter = undefined;
     this.workerJoueurTomber = undefined;
+    this.workerJoueurDeplacement = undefined;
     this.sauter0 = false;
     this.tomber0 = false;
+    this.deplacement0 = false;
     this.move0 = false;
     this.hauteurSaut = 200;
     this.millisecondeSaut = 2;
     this.millisecondeTomber = 2;
+    this.millisecondeDeplacement = 2;
+    this.nbDeplacement = 1;
     this.hauteurTomber = 10000;//joueur.background.taille.y;
     this.keySaut = ' ';
     this.keyGauche = 'ArrowLeft';
@@ -39,6 +43,10 @@ class MouvementJoueur {
   keyGameDev(keyHaut = 'ArrowUp', keyBas = 'ArrowDown') {
     this.keyHaut = keyHaut;
     this.keyBas = keyBas;
+  }
+
+  deplacement(nbDeplacement, millisecondeDeplacement) {
+
   }
 
   stop() {
