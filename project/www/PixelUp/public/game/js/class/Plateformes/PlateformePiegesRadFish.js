@@ -11,7 +11,7 @@ class PlateformePiegesRadFish extends PlateformeMobile{
         return EnumAction.NULL;
     }
     typeMort() {
-        return EnumTypeMort.TOMBER;
+        return EnumTypeMort.RADFISH;
     }
 
     afficher(canvas) {

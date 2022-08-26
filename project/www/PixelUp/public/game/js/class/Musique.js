@@ -15,14 +15,16 @@ class Musique {
     }
     start()
     {
-        if(this.finish)return false;
+      
         this.son=document.createElement("embed");
         this.son.setAttribute("src",this.source);
         this.son.setAttribute("hidden","true");
         this.son.setAttribute("volume",this.volume);
         this.son.setAttribute("autostart","true");
         this.son.setAttribute("loop",this.loop);
+        this.son.setAttribute("loopEnd",31);
         document.body.appendChild(this.son);
+        
     }
     remove()
     {
