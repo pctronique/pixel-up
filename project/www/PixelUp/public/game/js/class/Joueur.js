@@ -2,14 +2,19 @@ class Joueur extends Personnage {
   constructor(taille = undefined) {
     super(taille);
     this.mouvementJoueur = new MouvementJoueur(this);
+<<<<<<< HEAD
     this.imageSrc("./img/tenues_personnage/MINEUR.png");
     this.couleur = "#24AE1D";
     this.game = undefined;
+=======
+    this.imageSrc('img/personnage-1.png');
+>>>>>>> devSymfony
     this.tenue = undefined;
     this.image = undefined;
     this.imageTenue = new ImageTenue();
     this.couleur = undefined;
   }
+<<<<<<< HEAD
 
   mourir(enumAction) {
     if (this.game != undefined) {
@@ -56,6 +61,16 @@ class Joueur extends Personnage {
     this.mouvementJoueur.configSaut(hauteurSaut, millisecondeSaut, millisecondeTomber);
   }
 
+=======
+  
+  coucou() {}
+
+  changementTenue(tenue) {
+    this.couleur = this.imageTenue.recupTenue(tenue); 
+    this.tenue = tenue;
+  }
+
+>>>>>>> devSymfony
   sauter() {
     this.mouvementJoueur.sauter();
   }
@@ -73,6 +88,7 @@ class Joueur extends Personnage {
   }
 
   afficher(canvas) {
+<<<<<<< HEAD
     /*let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
     ctx.fillRect(this.posLeft.x, this.posLeft.y, this.taille.x, this.taille.y);
@@ -94,12 +110,35 @@ class Joueur extends Personnage {
     imgJoueur.setBackground(this.background);
     imgJoueur.colorTransparance("#ffffff");
     imgJoueur.afficher(canvas);
+=======
+    let ctx = canvas.getContext("2d");
+    ctx.fillStyle = this.couleur;
+    ctx.fillRect(this.pos.x, this.pos.y, this.taille.x, this.taille.y);
+    if (this.background != undefined) {
+      this.background.afficherContenue();
+    }
+
+
+    /*this.imageSrc('./img/personnage-1.png');
+    let feu = new Images(this.img, this.pos, this.taille);
+    feu.select(1);
+    feu.setBackground(this.background);
+    feu.colorTransparance("#ffffff");
+    feu.afficher(canvas);*/
+>>>>>>> devSymfony
   }
 
   collisionHaut() {
     return this.mouvementJoueur.collisionHaut();
   }
 
+<<<<<<< HEAD
+=======
+  movPosDev() {
+    this.mouvementJoueur.movPosDev();
+  }
+
+>>>>>>> devSymfony
   moveDev(eventKey) {
     this.mouvementJoueur.moveDev(eventKey);
   }
@@ -108,7 +147,10 @@ class Joueur extends Personnage {
     this.mouvementJoueur.choixMouvement(eventKey);
   }
 
+<<<<<<< HEAD
   finTomber() {
     this.mouvementJoueur.finTomber();
   }
+=======
+>>>>>>> devSymfony
 }

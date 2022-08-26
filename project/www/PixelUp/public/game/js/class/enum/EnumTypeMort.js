@@ -4,6 +4,7 @@ class EnumTypeMort {
   static REQUIN = 1; // Vous avez été mangé par un requin.
   static AVION = 2; // Vous avez été percuté par un avion.
   static ASTEROIDE = 3; // Vous avez été percuté par un astéroïde.
+<<<<<<< HEAD
   static FEU = 4; //Vous avez été brûlé par le feu.
   static HELICOPTERE = 5; //Vous avez été percuté par un hélicoptère.
   static LAVE = 6; // Vous avez été brûlé par la lave.
@@ -17,4 +18,6 @@ class EnumTypeMort {
   static PIERRE = 14; // Vous avez percuté une pierre.
   static VAISSEAU = 15; // Vous avez été percuté par un vaisseau.
   static VAISSEAUJAUNE = 16; //Vous avez été percuté par un vaisseau.
+=======
+>>>>>>> devSymfony
 }
