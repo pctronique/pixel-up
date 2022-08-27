@@ -7,7 +7,7 @@ class BackgroundSousMer extends Background {
         this.creerPlatforme(50, 300, 25, 80);
         this.creerPlatformeBottom(new PlateformeMeduses());
         this.creerPlateformeTenue(new TenueTerre());
-        this.creerPlateformePourTenue(new PlateformeTenueTerre());
+        this.creerPlateformePourTenue(new PlateformeTenueTerre(), new Position(-20,36));
         
     }
 

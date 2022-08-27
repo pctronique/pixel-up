@@ -1,7 +1,7 @@
 class PlateformeOiseaux extends PlateformeMobile{
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
-        this.taille = new Taille(100,50);
+        this.taille = new Taille(50,10);
         this.deplacementImg = 1;
     }
 
@@ -12,7 +12,7 @@ class PlateformeOiseaux extends PlateformeMobile{
         return EnumAction.NULL;
     }
     typeMort() {
-        return EnumTypeMort.OISEAU;
+        return EnumTypeMort.NULL;
     }
 
     afficher(canvas){
@@ -20,7 +20,7 @@ class PlateformeOiseaux extends PlateformeMobile{
         //this.img;
         this.imageSrc('./img/oiseau.png');
         this.createBorder(canvas);
-        let oiseaux = new Images(this.img, this.pos, this.taille);
+        let oiseaux = new Images(this.img, new Position(this.pos.x-25, this.pos.y-38), new Taille(100,50));
         oiseaux.setObjetDuplique(this);
         oiseaux.setBackground(this.background);
         oiseaux.afficher(canvas);

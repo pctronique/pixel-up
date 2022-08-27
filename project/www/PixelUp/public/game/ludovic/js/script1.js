@@ -1,5 +1,6 @@
 let folderWorker = "./../js/worker/";
 
+
 if (window.Worker) {
   let backgroundTaille = new Taille(1000, 1000);
   let game = undefined;
@@ -18,12 +19,15 @@ if (window.Worker) {
     newDiv.id = idScreen;
     divGame.appendChild(newDiv);*/
     game = new Game("screenGame_0");
-    //game.setProjectDev();
+    game.keyGame(tabConfig.key.keySaut, tabConfig.key.keyGauche, tabConfig.key.keyDroite, tabConfig.key.keyCoucou);
+    game.keyGameDev(tabConfig.key.keyHaut, tabConfig.key.keyBas);
+    game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
+    game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
-    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 101);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 18, 60);
+    game.addBackground(backgroundTaille.x, backgroundTaille.y, 18, 60);
+    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 61);
     //game.setJoueur(backgroundTaille.x/2,backgroundTaille.y-49, 47,48);
     //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
     game.afficher();

@@ -2,13 +2,15 @@ class Joueur extends Personnage {
   constructor(taille = undefined) {
     super(taille);
     this.mouvementJoueur = new MouvementJoueur(this);
-    this.imageSrc("./img/tenues_personnage/MINEUR.png");
     this.couleur = "#24AE1D";
     this.game = undefined;
     this.tenue = undefined;
     this.image = undefined;
-    this.imageTenue = new ImageTenue();
     this.couleur = undefined;
+    //this.imageSrc("./img/tenues_personnage/MINEUR.png");
+    //this.posImg = new Position(-43, -20);
+    this.tailleImg = new Taille(100, 100);
+    this.modifTenue(EnumTenues.NORMAL);
   }
 
   mourir(enumAction) {
@@ -33,7 +35,8 @@ class Joueur extends Personnage {
   }
 
   modifTenue(tenue) {
-    this.imageSrc('./img/tenues_personnage/'+this.imageTenue.recupTenue(tenue));
+    this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
+    this.posImg = ImageTenue.recupPos(tenue);
     this.tenue = tenue;
   }
 
@@ -85,8 +88,8 @@ class Joueur extends Personnage {
     this.createBorder(canvas);
     let imgJoueur = new Images(
       this.img,
-      this.pos,
-      this.taille,
+      new Position(this.pos.x+this.posImg.x, this.pos.y+this.posImg.y),
+      this.tailleImg,
       new Position(32, 32)
     );
     imgJoueur.setObjetDuplique(this);

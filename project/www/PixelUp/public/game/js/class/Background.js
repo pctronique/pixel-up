@@ -27,10 +27,11 @@ class Background {
     if(this.scrollMove != undefined) {
       this.scrollMove.setBackground(this);
     }
+
     this.creerPlatforme(50, 300, 25, 80);
     this.creerPlatforme();
     //this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
-    this.creerPlateformeTenue(undefined);
+    this.creerPlateformeTenue(undefined, undefined);
   }
 
   setProjectDev() {
@@ -57,9 +58,9 @@ class Background {
     this.idScreen = idScreen;
   }
 
-  creerPlateformePourTenue(plateformePourTenue){
+  creerPlateformePourTenue(plateformePourTenue, posPlateforme = new Position(0,0)){
     this.plateformePourTenue = plateformePourTenue;
-    let pos = new Position(this.taille.x - this.plateformePourTenue.taille.x, this.plateformePourTenue.taille.y);
+    let pos = new Position(this.taille.x - this.plateformePourTenue.taille.x + posPlateforme.x, this.plateformePourTenue.taille.y + posPlateforme.y);
     if (this.plateformePourTenue != undefined) {
       this.plateformePourTenue.setBackground(this);
       this.plateformePourTenue.setPosition(pos);
@@ -198,6 +199,8 @@ class Background {
   screenBottom(posBas) {
     if(this.screen_bottom != undefined) {
       let posBasScroll = -1 * posBas;
+      let positionHaut = this.taille.x - (posBasScroll+this.screen_bottom.taille.y);
+      console.log(positionHaut);
       this.widthBottom = 100 * (posBasScroll / 20);
       if(Math.round(this.widthBottom) > this.taille.x) {
         this.widthBottom = this.taille.x;
@@ -288,12 +291,23 @@ class Background {
       } else {
         this.afficherContenue();
       }
-    }else if (this.nbDisplayOther == 4) {
+    } else if (this.nbDisplayOther == 4){
+      /*this.nbDisplayOther++;
+      let platTest = new PlateformePiegesNuages();
+      platTest.setBackground(this)
+      platTest.setProjectDev();
+      platTest.setPosition(new Position(0, this.taille.y-200));
+      platTest.afficher(this.canvasBackground);
+      //this.afficherContenue();
+    } else if (this.nbDisplayOther == 5) {*/
       let backGroundOld = document.getElementById(this.idBackground);
       let ctx = backGroundOld.getContext('2d');
       ctx.clearRect(0, 0, this.taille.x, this.taille.y);
       backGroundOld.parentNode.replaceChild(this.canvasBackground, backGroundOld);
       this.stopDisplay = true;
     }
+
+    
+
   }
 }

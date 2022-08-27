@@ -7,7 +7,7 @@ class BackgroundCielAvions extends Background {
         this.creerPlatforme(50, 300, 25, 80);
         this.creerPlatformeBottom(new PlateformeHelicopteres());
         this.creerPlateformeTenue(new TenueEspace());
-        this.creerPlateformePourTenue(new PlateformeTenueEspace());
+        this.creerPlateformePourTenue(new PlateformeTenueEspace(), new Position(-25,39));
 
     }
 

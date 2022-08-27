@@ -1,7 +1,7 @@
 class PlateformeMobileSatellite extends PlateformeMobile {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
-        this.taille = new Taille(100,100);
+        this.taille = new Taille(76,12);
         
     }
 
@@ -14,7 +14,7 @@ class PlateformeMobileSatellite extends PlateformeMobile {
         //this.img;
         this.imageSrc('./img/satellite.png');
         this.createBorder(canvas);
-        let satellite = new Images(this.img, this.pos, this.taille);
+        let satellite = new Images(this.img, new Position(this.pos.x-10, this.pos.y-41), new Taille(100,100));
         satellite.setObjetDuplique(this);
         satellite.setBackground(this.background);
         satellite.afficher(canvas);

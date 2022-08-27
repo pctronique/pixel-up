@@ -7,7 +7,7 @@ class BackgroundTerre extends Background {
         this.creerPlatforme(50, 300, 25, 80);
         this.creerPlatformeBottom(new PlateformeLave());
         this.creerPlateformeTenue(new TenueCiel());
-        this.creerPlateformePourTenue(new PlateformeTenueCiel());
+        this.creerPlateformePourTenue(new PlateformeTenueCiel(), new Position(-25,53));
         
     }
 

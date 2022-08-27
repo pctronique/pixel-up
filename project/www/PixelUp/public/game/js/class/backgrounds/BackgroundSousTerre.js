@@ -5,7 +5,7 @@ class BackgroundSousTerre extends Background {
         this.creerPlatforme(50, 300, 25, 80);
         this.creerPlatformeBottom(new PlateformeFeu());
         this.creerPlateformeTenue(new TenueMer());
-        this.creerPlateformePourTenue(new PlateformeTenueMer());
+        this.creerPlateformePourTenue(new PlateformeTenueMer(), new Position(-30,36));
 
         let pos = new Position(0, this.taille.y - 1);
         let taille0 = new Taille(this.taille.x, 10);
