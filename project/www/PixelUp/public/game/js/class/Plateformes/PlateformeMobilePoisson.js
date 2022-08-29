@@ -2,12 +2,11 @@ class PlateformeMobilePoisson extends PlateformeMobile {
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         this.taille = new Taille(70,25);
-
     }
 
     action(enumCollision) {
         if (enumCollision == EnumCollision.HAUT) {
-            return EnumAction.NULL;
+            return EnumAction.STOP;
         }
         return EnumAction.NULL;
     }

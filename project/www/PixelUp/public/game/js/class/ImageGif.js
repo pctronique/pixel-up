@@ -1,10 +1,14 @@
 class ImageGif extends Images {
-    constructor(srcs, pos, taille, milliseconde = 500) {
-        super(srcs, pos, taille);
+    constructor(srcs, pos, taille, tailleImg = undefined, milliseconde = 500) {
+        super(srcs, pos, taille, tailleImg);
         this.srcs = srcs;
         this.src = srcs[0];
         this.milliseconde = milliseconde;
         this.workerGif = undefined;
+    }
+    setTaille(taille) {
+        this.taille = taille;
+        this.tailleImg = taille;
     }
     start() {
         let folderWorker0 = folderWorker;

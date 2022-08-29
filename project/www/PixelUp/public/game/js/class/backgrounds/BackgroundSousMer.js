@@ -2,13 +2,17 @@ class BackgroundSousMer extends Background {
 
 
 
-    constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille, imgBack, imgBas);
-        this.creerPlatforme(50, 300, 25, 80);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+        if(tabConfig == undefined) {
+            this.creerPlatforme(50, 300, 25, 80);
+        } else {
+            this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
+        }
         this.creerPlatformeBottom(new PlateformeMeduses());
         this.creerPlateformeTenue(new TenueTerre());
         this.creerPlateformePourTenue(new PlateformeTenueTerre(), new Position(-20,36));
-        
+        this.setTenueBackground(EnumTenues.MER);
     }
 
     imgBackDisplay(canvas) {
@@ -18,7 +22,12 @@ class BackgroundSousMer extends Background {
         sousMer.afficher(canvas);
     }
 
+    typeMortTenue() {
+      return EnumTypeMort.TENUE_MER;
+    }
+
     choixPlateforme(){
+        //return new PlateformeMobilePoisson();
         let min=1; 
         let max=4;  
         let random = Math.floor(Math.random() * (max - min)) + min; 

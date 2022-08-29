@@ -2,13 +2,21 @@ class BackgroundCielAvions extends Background {
 
 
 
-    constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille, imgBack, imgBas);
-        this.creerPlatforme(50, 300, 25, 80);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+        if(tabConfig == undefined) {
+            this.creerPlatforme(50, 300, 25, 80);
+        } else {
+            this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
+        }
         this.creerPlatformeBottom(new PlateformeHelicopteres());
         this.creerPlateformeTenue(new TenueEspace());
         this.creerPlateformePourTenue(new PlateformeTenueEspace(), new Position(-25,39));
+        this.setTenueBackground(EnumTenues.CIEL);
+    }
 
+    typeMortTenue() {
+      return EnumTypeMort.TENUE_CIEL;
     }
 
     imgBackDisplay(canvas) {

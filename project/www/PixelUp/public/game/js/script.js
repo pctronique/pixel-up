@@ -4,7 +4,7 @@ if (window.Worker) {
   let backgroundTaille = new Taille(1000, 5000);
   let game = undefined;
 
-  game = new Game("screenGame_0");
+  game = new Game("screenGame_0", tabConfigBackground);
   game.keyGame(tabConfig.key.keySaut, tabConfig.key.keyGauche, tabConfig.key.keyDroite, tabConfig.key.keyCoucou);
   game.keyGameDev(tabConfig.key.keyHaut, tabConfig.key.keyBas);
   game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);

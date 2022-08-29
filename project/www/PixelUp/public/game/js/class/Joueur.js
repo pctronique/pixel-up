@@ -5,12 +5,17 @@ class Joueur extends Personnage {
     this.couleur = "#24AE1D";
     this.game = undefined;
     this.tenue = undefined;
+    this.tenueOld = undefined;
     this.image = undefined;
     this.couleur = undefined;
-    //this.imageSrc("./img/tenues_personnage/MINEUR.png");
-    //this.posImg = new Position(-43, -20);
+    this.nmDepl = 2;
     this.tailleImg = new Taille(100, 100);
+    //this.tailleImg = new Taille(47, 47);
     this.modifTenue(EnumTenues.NORMAL);
+  }
+
+  nmDeplacement(num) {
+    this.nmDepl = num;
   }
 
   mourir(enumAction) {
@@ -35,7 +40,9 @@ class Joueur extends Personnage {
   }
 
   modifTenue(tenue) {
+    this.tenueOld = this.tenue;
     this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
+    //this.imageSrc('./img/personnage-1.png');
     this.posImg = ImageTenue.recupPos(tenue);
     this.tenue = tenue;
   }
@@ -57,6 +64,14 @@ class Joueur extends Personnage {
 
   configSaut(hauteurSaut = 200, millisecondeSaut = 2, millisecondeTomber = 2) {
     this.mouvementJoueur.configSaut(hauteurSaut, millisecondeSaut, millisecondeTomber);
+  }
+
+  configDeplacement(largeurDeplacement = 1, millisecondeDeplacement = 2) {
+    this.mouvementJoueur.configDeplacement(largeurDeplacement, millisecondeDeplacement);
+  }
+
+  configCoucou(largeurCoucou = 1, millisecondeCoucou = 2) {
+    this.mouvementJoueur.configCoucou(largeurCoucou, millisecondeCoucou);
   }
 
   sauter() {
@@ -93,10 +108,26 @@ class Joueur extends Personnage {
       new Position(32, 32)
     );
     imgJoueur.setObjetDuplique(this);
-    imgJoueur.select(2);
+    imgJoueur.select(this.nmDepl);
     imgJoueur.setBackground(this.background);
     imgJoueur.colorTransparance("#ffffff");
     imgJoueur.afficher(canvas);
+  }
+
+  visibleGame() {
+    if(this.background != undefined && this.background.taille != undefined) {
+      console.log("0001V");
+      console.log(this.background);
+      console.log("imgVisible : "+this.imgVisible());
+      console.log("imgLeftVisible : "+this.imgLeftVisible());
+      console.log("imgRighttVisible : "+this.imgRighttVisible());
+      super.visibleGame();
+      console.log("0002V");
+      console.log("imgVisible2 : "+this.imgVisible());
+      console.log("imgLeftVisible2 : "+this.imgLeftVisible());
+      console.log("imgRighttVisible2 : "+this.imgRighttVisible());
+      console.log(this.background);
+    }
   }
 
   collisionHaut() {
