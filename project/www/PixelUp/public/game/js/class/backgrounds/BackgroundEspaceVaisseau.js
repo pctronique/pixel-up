@@ -2,11 +2,15 @@ class BackgroundEspaceVaisseau extends Background {
 
 
 
-    constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille, imgBack, imgBas);
-        this.creerPlatforme(50, 300, 25, 80);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+        if(tabConfig == undefined) {
+            this.creerPlatforme(50, 300, 25, 80);
+        } else {
+            this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
+        }
         this.creerPlatformeBottom(new PlateformeMeteoritesFeu());
-        
+        this.setTenueBackground(EnumTenues.ESPACE);
     }
 
     imgBackDisplay(canvas) {
@@ -14,6 +18,10 @@ class BackgroundEspaceVaisseau extends Background {
         let BackgroundEspaceVaisseau = new Images(this.imageSource, this.pos, this.taille);
         BackgroundEspaceVaisseau.setBackground(this);
         BackgroundEspaceVaisseau.afficher(canvas);
+    }
+
+    typeMortTenue() {
+      return EnumTypeMort.TENUE_ESPACE;
     }
 
     choixPlateforme(taille) {
