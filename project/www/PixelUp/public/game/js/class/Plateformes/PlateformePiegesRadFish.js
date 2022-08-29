@@ -6,6 +6,7 @@ class PlateformePiegesRadFish extends PlateformeMobile{
     }
     action(enumCollision) {
         if (enumCollision == EnumCollision.HAUT) {
+    
             return EnumAction.MORT;
         }
         return EnumAction.NULL;
