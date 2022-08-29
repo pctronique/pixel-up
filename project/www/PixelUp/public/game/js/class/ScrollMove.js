@@ -1,12 +1,16 @@
 class ScrollMove {
-    constructor(idGame) {
-        this.game = document.getElementById(idGame);
+    constructor(idGame, game) {
+        this.gameElement = document.getElementById(idGame);
         this.background = undefined;
-        this.calculOld = this.game.scrollTop;
+        this.calculOld = this.gameElement.scrollTop;
+        this.game = game;
+        this.posScrollOld = undefined;
+        this.posScrollSous = 0;
+        this.posScroll = 0;
     }
 
     debut() {
-        this.game.scrollTop = this.game.scrollHeight;
+        this.gameElement.scrollTop = this.gameElement.scrollHeight;
     }
 
     setBackground(background) {
@@ -14,46 +18,51 @@ class ScrollMove {
     }
 
     taillePixel() {
-        return (this.game.scrollHeight/this.game.childElementCount)/this.background.taille.y;
+        return (this.gameElement.scrollHeight/this.gameElement.childElementCount)/this.background.taille.y;
     }
 
-    monter(nb) {
-        if(this.calculOld == 0) {
-            this.calculOld = this.game.scrollTop;
+    monter() {
+        const element = this.game.backgrounds[0];
+        console.log("scrollTop : " + this.gameElement.scrollTop);
+        console.log("scrollHeight : " + this.gameElement.scrollHeight);
+        console.log("scrollWidth : " + this.gameElement.scrollWidth);
+        console.log("offsetHeight : " + this.gameElement.offsetHeight);
+        console.log("offsetWidth : " + this.gameElement.offsetWidth);
+        let divEcran = this.gameElement.scrollHeight/this.gameElement.offsetHeight;
+        let ecranGame = (element.taille.y*2)/divEcran;
+        let posEcranGame = ecranGame-element.joueur.pos.y;
+        let posScrollSous = posEcranGame*this.taillePixel();
+        this.posScroll = (this.gameElement.scrollHeight-this.gameElement.offsetHeight)-posScrollSous;
+        if(this.posScrollOld > this.posScroll) {
+            this.gameElement.scrollTop = this.posScroll;
         }
-        //console.log(this.calculOld);
-        let calcul0 = this.game.scrollHeight - this.game.offsetHeight;
-        let calcul01 = calcul0 - ((calcul0/100)*nb);
-        let mult = this.game.scrollHeight / this.game.offsetHeight;
-        /*console.log("scrollTop : " + this.game.scrollTop);
-        console.log("scrollHeight : " + this.game.scrollHeight);
-        console.log("scrollWidth : " + this.game.scrollWidth);
-        console.log("offsetHeight : " + this.game.offsetHeight);
-        console.log("offsetWidth : " + this.game.offsetWidth);
-        console.log("mult : " + mult);
-        console.log("nb : " + nb);
-        console.log("calcul0 : " + calcul0);
-        console.log("calcul01 : " + calcul01);*/
-        if(this.calculOld > calcul01+170) {
-            this.calculOld = calcul01+170;
-        }
-        this.game.scrollTop = this.calculOld;
-        console.log("scrollTop (new) : " + this.game.scrollTop);
-        /*if(this.background != undefined) {
-            this.background.screenBottom(this.placeBas());
-        }*/
     }
 
     calculMilieu() {
         let taillePixel = this.taillePixel();
-        return (this.background.taille.y-this.game.offsetHeight/2)/this.taillePixel();
+        return (this.background.taille.y-this.gameElement.offsetHeight/2)/this.taillePixel();
     }
 
     placeBas() {
-        return ((this.game.scrollHeight - this.game.scrollWidth) + (this.game.scrollWidth - this.game.offsetHeight) - this.game.scrollTop);
+        return ((this.gameElement.scrollHeight - this.gameElement.scrollWidth) + (this.gameElement.scrollWidth - this.gameElement.offsetHeight) - this.gameElement.scrollTop);
+    }
+
+    bottom() {
+        if(this.posScrollOld == undefined) {
+            this.posScrollOld = (this.gameElement.scrollHeight-this.gameElement.offsetHeight);
+        }
+        if(this.posScrollOld > this.posScroll) {
+            this.posScrollOld = this.posScroll;
+        }
+        let st = -1 * (this.placeBas() / this.taillePixel());
+        this.game.screenBottom(st);
     }
 
     changeBackground() {
-        return this.game.scrollHeight / this.game.childElementCount - this.game.offsetHeight;
+        let scrollHaut = this.gameElement.scrollHeight / this.gameElement.childElementCount - this.gameElement.offsetHeight;
+        if (this.gameElement.scrollTop < scrollHaut) {
+            this.game.addBackground();
+        }
     }
+
 }

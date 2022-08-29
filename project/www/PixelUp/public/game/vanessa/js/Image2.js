@@ -1,4 +1,4 @@
-class Images2 {
+class Image2 {
     constructor(src, pos, taille) {
 
         this.src = src;
@@ -11,6 +11,12 @@ class Images2 {
         this.isCut = false;
         this.color = undefined;
         this.background = undefined;
+        this.imageObj = undefined;
+        this.isRepeat = false;
+    }
+
+    setIsRepeat(isRepeat){
+        this.isRepeat = isRepeat;
     }
     setBackground(background) {
         this.background = background;
@@ -30,7 +36,10 @@ class Images2 {
         let classImgs = this;
         
         img.onload = function () {
-            if(classImgs.isCut) {
+          
+            if(classImgs.isRepeat){
+                classImgs.repeatImage(ctx, img);
+            }else if(classImgs.isCut) {
                 classImgs.selectImag(img.width, img.height, img, ctx);
             } else {
                 classImgs.uneImage(img, ctx);
@@ -39,6 +48,7 @@ class Images2 {
             if(classImgs.background != undefined) {
                 classImgs.background.afficherContenue();
             }
+            
         }
 
     }
@@ -69,6 +79,13 @@ class Images2 {
             }
         return new Position(0, 0);
     }
+    repeatImage(ctx, imageObj){
+        for (let i = 0; i < 1; i++) {
+            for (let j = 0; j < 22; j++) {
+            ctx.drawImage(imageObj, j * imageObj.width, i * imageObj.height, imageObj.width, imageObj.height);
+            }
+     }   
+}
 
     colorTransparance(color) {
         this.color = color;

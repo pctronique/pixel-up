@@ -14,6 +14,7 @@ class PlateformeFeu extends PlateformePiegeHaut {
     }
 
     typeMort() {
+      console.log("00258");
         return EnumTypeMort.FEU;
     }
 
