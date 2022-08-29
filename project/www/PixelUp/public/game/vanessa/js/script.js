@@ -3,15 +3,27 @@ let folderWorker = "./../js/worker/";
 if (window.Worker) {
     /*let score = new Score("score");
     score.start();*/
-    let game = new Game("screenGame_0");
     let backgroundTaille = new Taille(1000, 5000);
-    game.scoreId("score");
-    game.setIdTypeMort("game_typeMort");
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
-    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 101);
-    //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
-    game.afficher();
+    let game = undefined;
+  
+    let heightJoueur = 60;
+      //let heightJoueur = 47;
+      game = new Game("screenGame_0", tabConfigBackground);
+      game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
+      game.setTailleJoueur(18, heightJoueur);
+      //game.setTailleJoueur(47, heightJoueur);
+      game.keyGame(tabConfig.key.keySaut, tabConfig.key.keyGauche, tabConfig.key.keyDroite, tabConfig.key.keyCoucou);
+      game.keyGameDev(tabConfig.key.keyHaut, tabConfig.key.keyBas);
+      game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
+      game.configDeplacement(tabConfig.deplacement.largeurDeplacement, tabConfig.deplacement.millisecondeDeplacement);
+      game.configCoucou(tabConfig.coucou.largeurCoucou, tabConfig.coucou.millisecondeCoucou);
+      //game.setProjectDev();
+      game.scoreId("score");
+      game.setIdTypeMort("game_typeMort");
+      game.addBackground();
+      game.addBackground();
+      game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - heightJoueur - 1);
+      game.afficher();
 
     let screenGame = document.getElementById("screenGame_0");
     screenGame.scrollTop = screenGame.scrollHeight;
@@ -39,8 +51,8 @@ if (window.Worker) {
     })*/
     function startGame(e) {
         
-        let musique=new Musique("son/man-is-he-mega-glbml-22045.mp3",100,true);
-        musique.start();
+        /*let musique=new Musique("son/man-is-he-mega-glbml-22045.mp3",100,true);
+        musique.start();*/
         //musique.stop();
         //musique.start();
         //musique.init(100,false);
@@ -58,6 +70,8 @@ if (window.Worker) {
   }*/
   document.getElementById("start").addEventListener("click", startGame);
   //document.getElementById("stop").addEventListener("click", stopGame);
+  
+  
 /*
 Pour intégrer musique
 */
