@@ -17,6 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     
+
+    
     #[Route('/profil', name: 'app_profil')]
 
 
