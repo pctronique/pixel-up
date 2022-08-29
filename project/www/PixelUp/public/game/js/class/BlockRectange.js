@@ -84,14 +84,16 @@ class BlockRectange extends Pause {
   imgLeftVisible() {
     /*return ((this.posLeft.x > 0 && this.posLeft.x < this.background.taille.x || 
       (this.posLeft.x+this.taille.x) > 0 && (this.posLeft.x+this.taille.x) < this.background.taille.x) || (this.imgVisible() && this.pos.x < 0));*/
-      return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && this.pos.x+this.taille.x < this.background.taille.x));
+      return ((this.pos.x > 0 && this.pos.x < this.background.taille.x && 
+        this.pos.x+this.taille.x > this.background.taille.x) || !this.imgVisible() && this.pos.x > 0);
 
   }
 
   imgRighttVisible() {
     /*return ((this.posRight.x > 0 && this.posRight.x < this.background.taille.x || 
       (this.posRight.x+this.taille.x) > 0 && (this.posRight.x+this.taille.x) < this.background.taille.x) || (this.imgVisible() && this.pos.x > this.background.taille.x));*/
-      return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && this.pos.x+this.taille.x < this.background.taille.x))
+      return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && 
+        this.pos.x+this.taille.x < this.background.taille.x) || !this.imgVisible() && this.pos.x < 0);
   }
 
   setBackground(background) {

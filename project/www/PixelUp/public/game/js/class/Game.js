@@ -263,8 +263,8 @@ class Game {
   }
 
   moveScrollAvecJoueur() {
-    const element = this.backgrounds[0];
-    element.scrollMove.monter();
+    /*const element = this.backgrounds[0];
+    element.scrollMove.monter();*/
   }
 
   setJoueurPosition(pos) {
