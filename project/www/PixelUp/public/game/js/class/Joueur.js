@@ -14,13 +14,18 @@ class Joueur extends Personnage {
     this.modifTenue(EnumTenues.NORMAL);
   }
 
+  /*visibleGame() {
+    visibleGame();
+    console.log("visibleGame");
+    console.log(this);
+  }*/
+
   nmDeplacement(num) {
     this.nmDepl = num;
   }
 
   mourir(enumAction) {
     if (this.game != undefined) {
-      console.log(enumAction);
       this.game.tuerJoueur(enumAction.typeMort());
     }
   }

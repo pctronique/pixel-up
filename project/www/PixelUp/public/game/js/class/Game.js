@@ -274,19 +274,19 @@ class Game {
   setJoueurPositionXY(posX, posY) {
     this.backgrounds[0].joueur.setPositionXY(posX, posY);
     this.backgrounds[1].joueur.setPositionXY(posX, posY+this.backgrounds[1].taille.y);
-    this.moveScrollAvecJoueur();
+    //this.moveScrollAvecJoueur();
   }
 
   setJoueurPositionX(posX) {
     this.backgrounds[0].joueur.setPositionX(posX);
     this.backgrounds[1].joueur.setPositionX(posX);
-    this.moveScrollAvecJoueur();
+    //this.moveScrollAvecJoueur();
   }
 
   setJoueurPositionY(posY) {
     this.backgrounds[0].joueur.setPositionY(posY);
     this.backgrounds[1].joueur.setPositionY(posY+this.backgrounds[1].taille.y);
-    this.moveScrollAvecJoueur();
+    //this.moveScrollAvecJoueur();
   }
 
   getEnumCollision() {

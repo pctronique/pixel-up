@@ -260,22 +260,22 @@ class MouvementJoueur {
     let enumMouvement = this.enumMouvement(eventKey);
     if (enumMouvement == EnumMouvement.DROITE) {
       let pos = new Position(x + 1, y);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionX(x+1);
       let enumAction = this.collisionAction();
       console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.GAUCHE) {
       let pos = new Position(x - 1, y);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionX(x-1);
       let enumAction = this.collisionAction();
       console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.BAS) {
       let pos = new Position(x, y + 1);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionY(y+1);
       let enumAction = this.collisionAction();
       console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.HAUT) {
       let pos = new Position(x, y - 1);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionY(y-1);
       let enumAction = this.collisionAction();
       console.log(enumAction);
     }
