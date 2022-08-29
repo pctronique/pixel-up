@@ -54,6 +54,7 @@ if (window.Worker) {
   function startGame(e) {
     document.getElementById("start").style.display = "none";
     game.start();
+    play();
   }
 
   document.getElementById("start").addEventListener("click", startGame);

@@ -1,23 +1,36 @@
 let folderWorker = "./../js/worker/";
 if (window.Worker) {
     //déclaration des variables que l'on a besoin
-    let screenGame = document.getElementById("screenGame_0");
-    let ajouter = document.getElementById("ajouter");
-    let nombre = 0;
-    let game = new Game("screenGame_0");
     let backgroundTaille = new Taille(1000, 5000);
+    let game = undefined;
+    let nbGame = 0;
+
+    let divGame = document.getElementById("game");
+    let idScreen = "screenGame_0";
+    let heightJoueur = 60;
+    //let heightJoueur = 47;
+    game = new Game("screenGame_0", tabConfigBackground);
+    game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
+    game.setTailleJoueur(18, heightJoueur);
+    //game.setTailleJoueur(47, heightJoueur);
+    game.keyGame(tabConfig.key.keySaut, tabConfig.key.keyGauche, tabConfig.key.keyDroite, tabConfig.key.keyCoucou);
+    game.keyGameDev(tabConfig.key.keyHaut, tabConfig.key.keyBas);
+    game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
+    game.configDeplacement(tabConfig.deplacement.largeurDeplacement, tabConfig.deplacement.millisecondeDeplacement);
+    game.configCoucou(tabConfig.coucou.largeurCoucou, tabConfig.coucou.millisecondeCoucou);
+    //game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
-    game.addBackground(backgroundTaille.x, backgroundTaille.y, 100, 100);
-    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - 101);
-    //game.getJoueur().addListenerPos("joueur-pos-x", "joueur-pos-y");
+    game.addBackground();
+    game.addBackground();
+    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - heightJoueur - 1);
     game.afficher();
 
-    
+    let screenGame = document.getElementById("screenGame_0");
     screenGame.scrollTop = screenGame.scrollHeight;
 
-    // game.start();
+    //  game.start();
+   
 
     // fonction mathématique écoute évènement au scroll par rapport à la taille de screenGame 
     screenGame.addEventListener("scroll", function () {
@@ -35,147 +48,23 @@ if (window.Worker) {
 
     // getRandom();
     // screenGame.scrollTop = screenGame.scrollHeight;
-
-     function startGame(e) {
-        /************************************************************************************** */
-            let musique=new Musique("son/man-is-he-mega-glbml-22045.mp3",100,true);
-            musique.start();
-            //musique.stop();
-            //musique.start();
-            //musique.init(100,false);
-            //musique.remove();
-            game.start();
-            //game.startDev();
-          }
+   let loadSound = true;
+    function changer() {
+        if (loadSound) {
+            play();
+            document.getElementById("son_jeu").src = "img/haut_parleur_son_ouvert.png";
+            loadSound = false;
         } else {
-        console.log("Your browser doesn't support web workers.");
+            stop();
+            document.getElementById("son_jeu").src = "img/haut_parleur_son_coupe.png";
+            loadSound = true;
+            
         }
+    }
+    function startGame(e) {
+        changer();
+        game.start();
+    }
 
-
-        /*function stopGame(e) {
-        game.stop();
-        }*/
-        document.getElementById("start").addEventListener("click", startGame);
-
-        /***************************************************************************************************** */
-        // var fileUrl = './son/man-is-he-mega-glbml-22045.mp3';
-
-        // window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        // var audioContext = null;
-        // var audioSource = null;
-
-        // var loopTime = 31;
-
-        // function play() {
-  
-        //     //Create Audio context
-        //     if (!audioContext) {
-        //         audioContext = new AudioContext();
-        //     }
-  
-  
-        //     //Create Buffer source and connect it to "standard" audio destination ("speaker")
-        //     audioSource = audioContext.createBufferSource();
-        //     audioSource.connect(audioContext.destination);
-  
-
-        //     //Load file
-        //     var request = new XMLHttpRequest();
-        //     request.open('GET', fileUrl, true);
-        //     request.responseType = 'arraybuffer';
-        //     request.onload = function () {
-        //         //Decode arrayBuffer as AudioData
-        //         audioContext.decodeAudioData(request.response, function (audioData) {
-        //             audioSource.buffer = audioData;
-        //             audioSource.loop = true;
-        //             audioSource.loopEnd = loopTime;
-        //             //Play "file"
-        //             audioSource.start(0);
-        //         }, function () { console.error('The request failed.'); });
-        //     }
-        //     request.send();
-        // }
-
-        // function stop() {
-        //     audioSource.stop(0);
-        // }
-    
-
-
-
-    //document.getElementById("stop").addEventListener("click", stopGame);
-    /*
-    Pour intégrer musique
-    */
-
-    /*var audio = document.getElementById('audio');
-                var count = 1;
-                audio.loop = true;
-                audio.volume = 0.5;
-    
-    
-    function playPause() {
-                        if(count == 0){
-                            count = 1;
-                            audio.play();
-                        }else{
-                            count = 0;
-                            audio.pause();
-                        }
-                    }
-    
-    function stop() {
-                        playPause()
-                        audio.pause();
-                        audio.currentTime = 0;
-    
-                    }
-    */
-
-
-    /* pour class Musique si besoin
-    
-    var musique=new Sound("son/man-is-he-mega-glbml-22045.mp3",100,true);
-    musique.start();
-    musique.stop();
-    musique.start();
-    musique.init(100,false);
-    musique.remove();
-    //Here you you cannot start musique any more
-    function Sound(source,volume,loop)
-    {
-        this.source=source;
-        this.volume=volume;
-        this.loop=loop;
-        var son;
-        this.son=son;
-        this.finish=false;
-        this.stop=function()
-        {
-            document.body.removeChild(this.son);
-        }
-        this.start=function()
-        {
-            if(this.finish)return false;
-            this.son=document.createElement("embed");
-            this.son.setAttribute("src",this.source);
-            this.son.setAttribute("hidden","true");
-            this.son.setAttribute("volume",this.volume);
-            this.son.setAttribute("autostart","true");
-            this.son.setAttribute("loop",this.loop);
-            document.body.appendChild(this.son);
-        }
-        this.remove=function()
-        {
-            document.body.removeChild(this.son);
-            this.finish=true;
-        }
-        this.init=function(volume,loop)
-        {
-            this.finish=false;
-            this.volume=volume;
-            this.loop=loop;
-        }
-    }*/
-
-
+ }
+document.getElementById("start").addEventListener("click", startGame);
