@@ -53,8 +53,8 @@ if (window.Worker) {
     screenGame.scrollTop = screenGame.scrollHeight;
 
 
-  game.start();
-  //game.startDev();
+  //game.start();
+  game.startDev();
 
   //game.keyGame("k");
 
