@@ -5,6 +5,7 @@ class PlateformePiegesNacelles extends PlateformePiegeHaut{
 
     }
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.NACELLECASSEE;
     }
     afficher(canvas){

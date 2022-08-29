@@ -6,6 +6,7 @@ class PlateformeMobileRequin extends PlateformePiegeCote {
     }
 
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.REQUIN;
     }
 

@@ -6,6 +6,7 @@ class PlateformeVaisseau extends PlateformeMobile{
     }
 
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.VAISSEAU;
     }
 

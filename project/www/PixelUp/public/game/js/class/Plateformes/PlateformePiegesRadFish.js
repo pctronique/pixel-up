@@ -12,6 +12,7 @@ class PlateformePiegesRadFish extends PlateformeMobile{
         return EnumAction.NULL;
     }
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.RADFISH;
     }
 

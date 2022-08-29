@@ -253,6 +253,7 @@ class Game {
     this.nbscroll++;
     const element = this.backgrounds[0];
     if(!element.valideTenue() && !this.isTtop) {
+      this.effetGameOver();
       this.tuerJoueur(element.typeMortTenue());
     }
     if(!this.isTtop) {
