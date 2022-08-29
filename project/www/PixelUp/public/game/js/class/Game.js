@@ -305,6 +305,7 @@ class Game {
   }
 
   setPosInitJoueur(posX, posY) {
+    console.log(this.backgrounds[0]);
     this.backgrounds[0].joueur.setPositionXY(posX, posY);
   }
 

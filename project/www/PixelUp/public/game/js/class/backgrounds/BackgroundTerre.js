@@ -16,7 +16,7 @@ class BackgroundTerre extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/immeuble2.png");
+        this.imageSrc("./img/pixil-frame-0 (3).png");
         let Terre = new Images(this.imageSource, this.pos, this.taille);
         Terre.setBackground(this);
         Terre.afficher(canvas);

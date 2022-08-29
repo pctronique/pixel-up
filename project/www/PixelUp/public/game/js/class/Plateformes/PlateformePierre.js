@@ -8,6 +8,14 @@ class PlateformePierre extends Plateforme {
         return EnumTypeMort.NULL;
     }
 
+    action(enumCollision) {
+        if(enumCollision == EnumCollision.HAUT) {
+            this.effetPas();
+            return EnumAction.STOP;
+        }
+        return EnumAction.NULL;
+    }
+
     afficher(canvas){
         //this.img;
         this.imageSrc('./img/pierreBackground.png');

@@ -7,6 +7,7 @@ class PlateformeNuages extends PlateformeMobile{
 
     action(enumCollision) {
         if (enumCollision == EnumCollision.HAUT) {
+            this.effetPas();
             return EnumAction.STOP;
         }
         return EnumAction.NULL;
