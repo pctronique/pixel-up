@@ -8,7 +8,7 @@ let tabConfig = {
         keyBas : 'ArrowDown',
     },
     sautTomber : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
     },

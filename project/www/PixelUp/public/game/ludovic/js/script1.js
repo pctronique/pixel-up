@@ -11,7 +11,7 @@ if (window.Worker) {
     let heightJoueur = 60;
     //let heightJoueur = 47;
     game = new Game("screenGame_0", tabConfigBackground);
-    game.setTailleBackground(1000, 1000);
+    game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
     game.setTailleJoueur(18, heightJoueur);
     //game.setTailleJoueur(47, heightJoueur);
     game.keyGame(tabConfig.key.keySaut, tabConfig.key.keyGauche, tabConfig.key.keyDroite, tabConfig.key.keyCoucou);
