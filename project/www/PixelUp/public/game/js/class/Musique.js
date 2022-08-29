@@ -22,7 +22,6 @@ class Musique {
         this.son.setAttribute("volume",this.volume);
         this.son.setAttribute("autostart","true");
         this.son.setAttribute("loop",this.loop);
-        this.son.setAttribute("loopEnd",31);
         document.body.appendChild(this.son);
         
     }
