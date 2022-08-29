@@ -68,3 +68,4 @@ if (window.Worker) {
 
  }
 document.getElementById("start").addEventListener("click", startGame);
+document.getElementById("son_jeu").addEventListener("click", changer);

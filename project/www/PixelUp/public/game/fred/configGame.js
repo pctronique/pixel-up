@@ -1,6 +1,6 @@
 let tabConfig = {
     key : {
-        keySaut : ' ',
+        keySaut : 'k',
         keyGauche : 'ArrowLeft',
         keyDroite : 'ArrowRight',
         keyCoucou : 'c',
