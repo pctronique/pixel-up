@@ -1,5 +1,12 @@
 class Background {
-  constructor(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
+  constructor(
+    idBackground,
+    taille,
+    scrollMove = undefined,
+    tabConfig = undefined,
+    imgBack = undefined,
+    imgBas = undefined
+  ) {
     this.taille = taille;
     this.imgBack = imgBack;
     this.imgBas = imgBas;
@@ -24,13 +31,31 @@ class Background {
     this.maxX = 102;
     this.minY = 10;
     this.maxY = 70;
-    if(this.scrollMove != undefined) {
+    this.tenueBackground = undefined;
+    if (this.scrollMove != undefined) {
       this.scrollMove.setBackground(this);
     }
-    this.creerPlatforme(50, 300, 25, 80);
+    if(tabConfig == undefined) {
+      this.creerPlatforme(50, 300, 25, 80);
+    } else {
+        this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
+    }
     this.creerPlatforme();
     //this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
-    this.creerPlateformeTenue(undefined);
+    this.creerPlateformeTenue(undefined, undefined);
+  }
+
+  setTenueBackground(tenue) {
+    this.tenueBackground = tenue;
+  }
+
+  valideTenue() {
+    return true;
+    //return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
+  }
+
+  typeMortTenue() {
+    return EnumTypeMort.NULL;
   }
 
   setProjectDev() {
@@ -57,13 +82,19 @@ class Background {
     this.idScreen = idScreen;
   }
 
-  creerPlateformePourTenue(plateformePourTenue){
+  creerPlateformePourTenue(
+    plateformePourTenue,
+    posPlateforme = new Position(0, 0)
+  ) {
     this.plateformePourTenue = plateformePourTenue;
-    let pos = new Position(this.taille.x - this.plateformePourTenue.taille.x, this.plateformePourTenue.taille.y);
+    let pos = new Position(
+      this.taille.x - this.plateformePourTenue.taille.x + posPlateforme.x,
+      this.plateformePourTenue.taille.y + posPlateforme.y
+    );
     if (this.plateformePourTenue != undefined) {
       this.plateformePourTenue.setBackground(this);
       this.plateformePourTenue.setPosition(pos);
-      if(this.projectDev) {
+      if (this.projectDev) {
         this.plateformePourTenue.setProjectDev();
       }
       this.tabAutrePlateforme.push(this.plateformePourTenue);
@@ -74,18 +105,18 @@ class Background {
     let taille = new Taille(0, 20);
     let pos = new Position(0, this.taille.y - taille.y);
     this.screen_bottom = screen_bottom;
-    if(this.screen_bottom != undefined) {
+    if (this.screen_bottom != undefined) {
       //this.screen_bottom.setTaille(taille);
       this.screen_bottom.setBackground(this);
       this.screen_bottom.setPosition(pos);
-      if(this.projectDev) {
+      if (this.projectDev) {
         this.screen_bottom.setProjectDev();
       }
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
-  creerPlateformeTenue(tenue){
-    if(tenue != undefined) {
+  creerPlateformeTenue(tenue) {
+    if (tenue != undefined) {
       let taille = new Taille(40, 40);
       let pos = new Position(this.taille.x - taille.x - 60, taille.y - 10);
       //let pos = new Position(0, this.taille.y - 40);
@@ -93,31 +124,28 @@ class Background {
       this.tenue.setTaille(taille);
       this.tenue.setBackground(this);
       this.tenue.setPosition(pos);
-      if(this.projectDev) {
+      if (this.projectDev) {
         this.tenue.setProjectDev();
       }
       this.tabAutrePlateforme.push(this.tenue);
-
     }
   }
 
-  choixPlateforme(){
+  choixPlateforme() {
     return new Plateforme();
   }
 
-  
   /**
    * creation et placement des plateformes position x et y en aleatoire (lien avec la class RndPos.js) avec definition ecart de la hauteur entre plateformes y et definition largeur espacement des plateformes x entre elle.
    */
   creerPlatforme(minX, maxX, minY, maxY) {
-    
     this.minX = minX;
     this.maxX = maxX;
     this.minY = minY;
     this.maxY = maxY;
     this.plateformes = [];
     this.plateformesCollision = [];
-    let defaultHauteur = this.maxY; //hauteur espacement initiale interligne y entre 2 plateformes 
+    let defaultHauteur = this.maxY; //hauteur espacement initiale interligne y entre 2 plateformes
     let startHauteur = defaultHauteur;
     while (startHauteur < this.taille.y) {
       let nombreDeLignes = 0;
@@ -139,22 +167,27 @@ class Background {
         let posPlateformeY = objRndPos.getY();
         let calculPosY = this.taille.y - (startHauteur + posPlateformeY);
         if (calculPosY > 20) {
-        let pos = new Position(posPlateforme, this.taille.y - (startHauteur + posPlateformeY));
-        plateforme.setBackground(this);
-        plateforme.setPosition(pos);
-        if(this.projectDev) {
-          plateforme.setProjectDev();
+          let pos = new Position(
+            posPlateforme,
+            this.taille.y - (startHauteur + posPlateformeY)
+          );
+          plateforme.setBackground(this);
+          plateforme.setPosition(pos);
+          if (this.projectDev) {
+            plateforme.setProjectDev();
+          }
+          let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
+          this.plateformesCollision.push(
+            new CollisionPlateforme(
+              this.plateformes.length,
+              posArete.haut(),
+              posArete.bas(),
+              posArete.gauche(),
+              posArete.droite()
+            )
+          );
+          this.plateformes.push(plateforme);
         }
-        let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-        this.plateformesCollision.push(
-          new CollisionPlateforme(
-            this.plateformes.length,
-            posArete.haut(),
-            posArete.bas(),
-            posArete.gauche(),
-            posArete.droite()));
-        this.plateformes.push(plateforme);
-      }
         nombreDeLignes++;
       }
       startHauteur += defaultHauteur;
@@ -171,20 +204,20 @@ class Background {
     this.joueur.setPosition(this.joueur.pos);
     this.joueur.setTabPlateforme(this.plateformes);
     this.joueur.setAutrePlateforme(this.tabAutrePlateforme);
-    if(this.projectDev) {
+    if (this.projectDev) {
       this.joueur.setProjectDev();
     }
-    if(this.tenue != undefined) {
+    if (this.tenue != undefined) {
       this.tenue.setJoueur(this.joueur);
     }
   }
 
   stop() {
     this.joueur.stop();
-    if(this.tenue != undefined) {
+    if (this.tenue != undefined) {
       this.tenue.stop();
     }
-    if(this.screen_bottom != undefined) {
+    if (this.screen_bottom != undefined) {
       this.screen_bottom.stop();
     }
     for (let index = 0; index < this.plateformes.length; index++) {
@@ -196,18 +229,26 @@ class Background {
   deplacement() {}
 
   screenBottom(posBas) {
-    if(this.screen_bottom != undefined) {
+    if (this.screen_bottom != undefined) {
       let posBasScroll = -1 * posBas;
-      this.widthBottom = 100 * (posBasScroll / 20);
-      if(Math.round(this.widthBottom) > this.taille.x) {
-        this.widthBottom = this.taille.x;
-      }
-      //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
+      let positionHaut =
+        this.taille.x - (posBasScroll + this.screen_bottom.taille.y);
+      console.log(positionHaut);
+      if(positionHaut >= 0) {
+        this.widthBottom = 100 * (posBasScroll / 20);
+        if (Math.round(this.widthBottom) > this.taille.x) {
+          this.widthBottom = this.taille.x;
+        }
+        //if (this.widthBottom <= this.taille.x) {     //pour augmenter en largeur progressivement le feu selon la hauteur du scroll
         let taille = new Taille(this.widthBottom, this.screen_bottom.taille.y);
         this.screen_bottom.setTaille(taille);
-      //}
-      let pos = new Position(0, (this.taille.y + posBas - this.screen_bottom.taille.y));
-      this.screen_bottom.setPosition(pos);
+        //}
+        let pos = new Position(
+          0,
+          this.taille.y + posBas - this.screen_bottom.taille.y
+        );
+        this.screen_bottom.setPosition(pos);
+      }
     }
   }
 
@@ -228,7 +269,6 @@ class Background {
       /*console.log(this.scrollMove.calculMillieu());
       console.log(pos);
       console.log(taille);*/
-      
       //console.log(pos.y-pos.y/this.scrollMove.taillePixel());
     }
   }
@@ -274,7 +314,7 @@ class Background {
       } else {
         this.afficherContenue();
       }
-    }  else if (this.nbDisplayOther == 0) {
+    } else if (this.nbDisplayOther == 0) {
       this.nbDisplayOther++;
       if (this.plateformePourTenue != undefined) {
         this.plateformePourTenue.afficher(this.canvasBackground);
@@ -288,11 +328,22 @@ class Background {
       } else {
         this.afficherContenue();
       }
-    }else if (this.nbDisplayOther == 4) {
+    } else if (this.nbDisplayOther == 4) {
+      /*this.nbDisplayOther++;
+      let platTest = new PlateformePiegesNuages();
+      platTest.setBackground(this)
+      platTest.setProjectDev();
+      platTest.setPosition(new Position(0, this.taille.y-200));
+      platTest.afficher(this.canvasBackground);
+      //this.afficherContenue();
+    } else if (this.nbDisplayOther == 5) {*/
       let backGroundOld = document.getElementById(this.idBackground);
-      let ctx = backGroundOld.getContext('2d');
+      let ctx = backGroundOld.getContext("2d");
       ctx.clearRect(0, 0, this.taille.x, this.taille.y);
-      backGroundOld.parentNode.replaceChild(this.canvasBackground, backGroundOld);
+      backGroundOld.parentNode.replaceChild(
+        this.canvasBackground,
+        backGroundOld
+      );
       this.stopDisplay = true;
     }
   }

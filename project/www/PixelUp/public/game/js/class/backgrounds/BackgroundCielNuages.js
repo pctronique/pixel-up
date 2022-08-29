@@ -2,12 +2,16 @@ class BackgroundCielNuages extends Background {
 
 
 
-    constructor(idBackground, taille, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille, imgBack, imgBas);
-        this.creerPlatforme(50, 300, 25, 80);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+        if(tabConfig == undefined) {
+            this.creerPlatforme(50, 300, 25, 80);
+        } else {
+            this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
+        }
         this.creerPlatformeBottom(new PlateformeHelicopteres());
         this.creerPlateformeTenue(undefined);
-        
+        this.setTenueBackground(EnumTenues.CIEL);
     }
 
     imgBackDisplay(canvas) {
@@ -17,7 +21,12 @@ class BackgroundCielNuages extends Background {
         cielNuages.afficher(canvas);
     }
 
+    typeMortTenue() {
+      return EnumTypeMort.TENUE_CIEL;
+    }
+
     choixPlateforme(){
+        //return new PlateformeOiseaux();
         let min=1; 
         let max=4;  
         let random = Math.floor(Math.random() * (max - min)) + min; 
