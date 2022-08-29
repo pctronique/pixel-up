@@ -20,4 +20,9 @@ class EnumTypeMort {
   static RADFISH = 17; // Vous avez été tué par un poisson radioactif.
   static NUAGEGRIS = 18; // Vous avez été tué par un nuage orageux.
   static NACELLECASSEE = 19; // Vous êtes tombé dans le vide.
+  static TENUE_NORMAL = 20;
+  static TENUE_MER = 21;
+  static TENUE_TERRE = 22;
+  static TENUE_CIEL = 23;
+  static TENUE_ESPACE = 24;
 }

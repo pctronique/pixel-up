@@ -16,7 +16,7 @@ class BlockRectange extends Pause {
     if (this.pos === undefined) {
       this.pos = new Position();
       this.posLeft = new Position();
-      this.posLeft = new Position();
+      this.posRight = new Position();
     }
     this.game = undefined;
     this.areteRectangle = new AreteRectangle(this.pos, this.taille);
@@ -31,6 +31,10 @@ class BlockRectange extends Pause {
     this.projectDev = true;
   }
 
+  test() {
+      return false;
+  }
+
   createBorder(canvas) {
     if(this.projectDev) {
       let ctx = canvas.getContext("2d");
@@ -39,6 +43,14 @@ class BlockRectange extends Pause {
       ctx.fillRect(this.pos.x, this.pos.y+this.taille.y, this.taille.x, 1);
       ctx.fillRect(this.pos.x, this.pos.y, 1, this.taille.y);
       ctx.fillRect(this.pos.x+this.taille.x, this.pos.y, 1, this.taille.y);
+      ctx.fillRect(this.posLeft.x, this.posLeft.y, this.taille.x, 1);
+      ctx.fillRect(this.posLeft.x, this.posLeft.y+this.taille.y, this.taille.x, 1);
+      ctx.fillRect(this.posLeft.x, this.posLeft.y, 1, this.taille.y);
+      ctx.fillRect(this.posLeft.x+this.taille.x, this.posLeft.y, 1, this.taille.y);
+      ctx.fillRect(this.posRight.x, this.posRight.y, this.taille.x, 1);
+      ctx.fillRect(this.posRight.x, this.posRight.y+this.taille.y, this.taille.x, 1);
+      ctx.fillRect(this.posRight.x, this.posRight.y, 1, this.taille.y);
+      ctx.fillRect(this.posRight.x+this.taille.x, this.posRight.y, 1, this.taille.y);
     }
   }
 
@@ -70,13 +82,16 @@ class BlockRectange extends Pause {
   }
 
   imgLeftVisible() {
-    return (this.posLeft.x > 0 && this.posLeft.x < this.background.taille.x || 
-      (this.posLeft.x+this.taille.x) > 0 && (this.posLeft.x+this.taille.x) < this.background.taille.x);
+    /*return ((this.posLeft.x > 0 && this.posLeft.x < this.background.taille.x || 
+      (this.posLeft.x+this.taille.x) > 0 && (this.posLeft.x+this.taille.x) < this.background.taille.x) || (this.imgVisible() && this.pos.x < 0));*/
+      return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && this.pos.x+this.taille.x < this.background.taille.x));
+
   }
 
   imgRighttVisible() {
-    return (this.posRight.x > 0 && this.posRight.x < this.background.taille.x || 
-      (this.posRight.x+this.taille.x) > 0 && (this.posRight.x+this.taille.x) < this.background.taille.x);
+    /*return ((this.posRight.x > 0 && this.posRight.x < this.background.taille.x || 
+      (this.posRight.x+this.taille.x) > 0 && (this.posRight.x+this.taille.x) < this.background.taille.x) || (this.imgVisible() && this.pos.x > this.background.taille.x));*/
+      return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && this.pos.x+this.taille.x < this.background.taille.x))
   }
 
   setBackground(background) {
