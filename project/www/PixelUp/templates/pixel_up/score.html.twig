@@ -63,7 +63,7 @@
         <tbody id="tbodyscore">
         {% for score in scores %}
             <tr>
-                <td>{{ score.max_score }}</td>
+                <td>{{ score.score }}</td>
                 <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ score.username }}</td>
             </tr>
@@ -74,6 +74,11 @@
         {% endfor %}
         </tbody>
     </table>
+
+    {{ dump(rank) }}
+    {{ dump(user) }}
+    {{ dump(user_rank) }}
+    {{ dump(score_rank) }}
 
                 {% if 'mots' in app.request.uri %}
 
