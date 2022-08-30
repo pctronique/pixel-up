@@ -189,13 +189,13 @@ document.getElementById("validerConfigGameMoveBackground").addEventListener("cli
     tabConfigMoveBackground.CIEL_AVIONS.hauteurSaut = document.getElementById("cielAvionHauteurSaut").value;
     tabConfigMoveBackground.CIEL_AVIONS.millisecondeSaut = document.getElementById("cielAvionMillisecondeSaut").value;
     tabConfigMoveBackground.CIEL_AVIONS.millisecondeTomber = document.getElementById("cielAvionMillisecondeTomber").value; 
-    tabConfigMoveBackground.CIEL_AVIONS.millisecondeDeplacementdocument.getElementById("cielAvionMillisecondeDeplacement").value;
+    tabConfigMoveBackground.CIEL_AVIONS.millisecondeDeplacement = document.getElementById("cielAvionMillisecondeDeplacement").value;
     tabConfigMoveBackground.CIEL_AVIONS.largeurDeplacement = document.getElementById("cielAvionLargeurDeplacement").value;
-    tabConfigMoveBackground.CIEL_AVIONS.millisecondeCoucoudocument.getElementById("cielAvionMillisecondeCoucou").value;
+    tabConfigMoveBackground.CIEL_AVIONS.millisecondeCoucou = document.getElementById("cielAvionMillisecondeCoucou").value;
     tabConfigMoveBackground.CIEL_AVIONS.largeurCoucou = document.getElementById("cielAvionLargeurCoucou").value;
     
     tabConfigMoveBackground.ESPACE_ASTEROIDE.hauteurSaut = document.getElementById("espaceAsteroideHauteurSaut").value;
-    tabConfigMoveBackground.ESPACE_ASTEROIDE.millisecondeSautdocument.getElementById("espaceAsteroideMillisecondeSaut").value;
+    tabConfigMoveBackground.ESPACE_ASTEROIDE.millisecondeSaut = document.getElementById("espaceAsteroideMillisecondeSaut").value;
     tabConfigMoveBackground.ESPACE_ASTEROIDE.millisecondeTomber = document.getElementById("espaceAsteroideMillisecondeTomber").value;
     tabConfigMoveBackground.ESPACE_ASTEROIDE.millisecondeDeplacement = document.getElementById("espaceAsteroideMillisecondeDeplacement").value;
     tabConfigMoveBackground.ESPACE_ASTEROIDE.largeurDeplacement = document.getElementById("espaceAsteroideLargeurDeplacement").value;
@@ -206,7 +206,7 @@ document.getElementById("validerConfigGameMoveBackground").addEventListener("cli
     tabConfigMoveBackground.ESPACE_SATELLITE.millisecondeSaut = document.getElementById("espaceSatelliteMillisecondeSaut").value;
     tabConfigMoveBackground.ESPACE_SATELLITE.millisecondeTomber = document.getElementById("espaceSatelliteMillisecondeTomber").value;
     tabConfigMoveBackground.ESPACE_SATELLITE.millisecondeDeplacement = document.getElementById("espaceSatelliteMillisecondeDeplacement").value;
-    tabConfigMoveBackground.ESPACE_SATELLITE.largeurDeplacement;document.getElementById("espaceSatelliteLargeurDeplacement").value;
+    tabConfigMoveBackground.ESPACE_SATELLITE.largeurDeplacement = document.getElementById("espaceSatelliteLargeurDeplacement").value;
     tabConfigMoveBackground.ESPACE_SATELLITE.millisecondeCoucou = document.getElementById("espaceSatelliteMillisecondeCoucou").value;
     tabConfigMoveBackground.ESPACE_SATELLITE.largeurCoucou = document.getElementById("espaceSatelliteLargeurCoucou").value;
 
