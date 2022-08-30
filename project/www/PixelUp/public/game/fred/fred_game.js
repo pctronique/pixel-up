@@ -30,6 +30,7 @@ if (window.Worker) {
     screenGame.scrollTop = screenGame.scrollHeight;
 
     //  game.start();
+    game.stop();
    
 
     // fonction mathématique écoute évènement au scroll par rapport à la taille de screenGame 

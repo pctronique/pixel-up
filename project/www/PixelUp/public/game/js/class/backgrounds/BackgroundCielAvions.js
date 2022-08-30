@@ -20,7 +20,7 @@ class BackgroundCielAvions extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/pixil-frame-0 (12).png");
+        this.imageSrc("./img/pixil-frame-0 (33).png");
         let cielAvions = new Images(this.imageSource, this.pos, this.taille);
         cielAvions.setBackground(this);
         cielAvions.afficher(canvas);
