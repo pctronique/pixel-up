@@ -19,7 +19,7 @@ if (window.Worker) {
     game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
     game.configDeplacement(tabConfig.deplacement.largeurDeplacement, tabConfig.deplacement.millisecondeDeplacement);
     game.configCoucou(tabConfig.coucou.largeurCoucou, tabConfig.coucou.millisecondeCoucou);
-    //game.setProjectDev();
+    game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
     game.addBackground();
@@ -44,10 +44,10 @@ if (window.Worker) {
         //game.backgrounds[0].scrollMove.changeBackground();
         //game.screenBottom(st);
         //game.afficher();
-        /*let scrollHaut = game.backgrounds[0].scrollMove.changeBackground();
+        let scrollHaut = screenGame.scrollHeight / screenGame.childElementCount - screenGame.offsetHeight;
         if (screenGame.scrollTop < scrollHaut) {
             game.addBackground(backgroundTaille.x, backgroundTaille.y, 18, 60);
-        }*/
+        }
     }, false);
 
     screenGame.scrollTop = screenGame.scrollHeight;
