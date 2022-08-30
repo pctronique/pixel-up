@@ -1,0 +1,77 @@
+
+pos_joueur : 800
+scrollTop : 1405.5555419921875
+scrollHeight : 2482
+scrollWidth : 1241
+offsetHeight : 1077
+offsetWidth : 1260
+divEcran : 2.3045496750232126
+ecranGame : 867.8485092667204
+posEcranGame : 67.84850926672038
+posScrollSous : 84.2
+this.posScroll : 1320.8
+
+pos_joueur : 800
+scrollTop : 2250
+scrollHeight : 3327
+scrollWidth : 1663
+offsetHeight : 1077
+offsetWidth : 1682
+divEcran : 3.0891364902506964
+ecranGame : 647.4301172227232
+posEcranGame : -152.5698827772768
+posScrollSous : -253.79999999999995
+this.posScroll : 2503.8
+
+pos_joueur : 800
+scrollTop : 834.4444580078125
+scrollHeight : 1911
+scrollWidth : 956
+offsetHeight : 1077
+offsetWidth : 974
+divEcran : 1.7743732590529249
+ecranGame : 1127.1585557299843
+posEcranGame : 327.1585557299843
+posScrollSous : 312.6
+this.posScroll : 521.4
+
+
+
+pos_joueur : 800
+ScrollMove.js:36 scrollTop : 718.888916015625
+ScrollMove.js:37 scrollHeight : 1796
+ScrollMove.js:38 scrollWidth : 898
+ScrollMove.js:39 offsetHeight : 1077
+ScrollMove.js:40 offsetWidth : 917
+ScrollMove.js:42 divEcran : 1.6675951717734447
+ScrollMove.js:44 ecranGame : 1199.3318485523384
+ScrollMove.js:46 posEcranGame : 399.33184855233844
+ScrollMove.js:48 posScrollSous : 358.5999999999999
+ScrollMove.js:50 this.posScroll : 360.4000000000001
+scrollTop01 : 595.5555419921875
+
+pos_joueur : 800
+ScrollMove.js:36 scrollTop : 1305.5555419921875
+ScrollMove.js:37 scrollHeight : 2382
+ScrollMove.js:38 scrollWidth : 1191
+ScrollMove.js:39 offsetHeight : 1077
+ScrollMove.js:40 offsetWidth : 1210
+ScrollMove.js:42 divEcran : 2.211699164345404
+ScrollMove.js:44 ecranGame : 904.2821158690176
+ScrollMove.js:46 posEcranGame : 104.28211586901762
+ScrollMove.js:48 posScrollSous : 124.19999999999999
+ScrollMove.js:50 this.posScroll : 1180.8
+scrollTop01 : 1138.888916015625
+
+pos_joueur : 800
+ScrollMove.js:36 scrollTop : 2416.666748046875
+ScrollMove.js:37 scrollHeight : 3493
+ScrollMove.js:38 scrollWidth : 1747
+ScrollMove.js:39 offsetHeight : 1077
+ScrollMove.js:40 offsetWidth : 1766
+ScrollMove.js:42 divEcran : 3.243268337975859
+ScrollMove.js:44 ecranGame : 616.6618952190095
+ScrollMove.js:46 posEcranGame : -183.33810478099053
+ScrollMove.js:48 posScrollSous : -320.19999999999993
+ScrollMove.js:50 this.posScroll : 2736.2
+scrollTop01 : 2173.33349609375

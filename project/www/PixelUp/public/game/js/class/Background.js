@@ -181,16 +181,6 @@ class Background {
           if (this.projectDev) {
             plateforme.setProjectDev();
           }
-          //let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-          /*this.plateformesCollision.push(
-            new CollisionPlateforme(
-              this.plateformes.length,
-              posArete.haut(),
-              posArete.bas(),
-              posArete.gauche(),
-              posArete.droite()
-            )
-          );*/
           this.plateformes.push(plateforme);
         }
         nombreDeLignes++;

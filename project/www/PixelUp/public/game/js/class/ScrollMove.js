@@ -32,16 +32,22 @@ class ScrollMove {
 
     monter() {
         const element = this.game.backgrounds[0];
+        console.log("pos_joueur : " + element.joueur.pos.y);
         console.log("scrollTop : " + this.gameElement.scrollTop);
         console.log("scrollHeight : " + this.gameElement.scrollHeight);
         console.log("scrollWidth : " + this.gameElement.scrollWidth);
         console.log("offsetHeight : " + this.gameElement.offsetHeight);
         console.log("offsetWidth : " + this.gameElement.offsetWidth);
         let divEcran = this.gameElement.scrollHeight/this.gameElement.offsetHeight;
+        console.log("divEcran : " + divEcran);
         let ecranGame = (element.taille.y*2)/divEcran;
+        console.log("ecranGame : " + ecranGame);
         let posEcranGame = ecranGame-element.joueur.pos.y;
+        console.log("posEcranGame : " + posEcranGame);
         let posScrollSous = posEcranGame*this.taillePixel();
+        console.log("posScrollSous : " + posScrollSous);
         this.posScroll = (this.gameElement.scrollHeight-this.gameElement.offsetHeight)-posScrollSous;
+        console.log("this.posScroll : " + this.posScroll);
         if(this.posScrollOld > this.posScroll) {
             this.gameElement.scrollTop = this.posScroll;
         }

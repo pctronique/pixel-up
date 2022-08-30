@@ -18,6 +18,13 @@ class BackgroundSousTerre extends Background {
         plateforme.setBackground(this);
         plateforme.setPosition(pos);
         this.plateformes.push(plateforme);
+
+        let taille3 = new Taille(0, 20);
+        let posTest = new Position(this.taille.x/2, this.taille.y - 140);
+        let plateformetest = new PlateformeTenueMer(taille3);
+        plateformetest.setBackground(this);
+        plateformetest.setPosition(posTest);
+        this.plateformes.push(plateformetest);
     }
 
     imgBackDisplay(canvas) {
