@@ -2,8 +2,8 @@ class BackgroundCielNuages extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
@@ -15,7 +15,7 @@ class BackgroundCielNuages extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/cielNuage.png");
+        this.imageSrc("./img/pixil-frame-0 (11).png");
         let cielNuages = new Images(this.imageSource, this.pos, this.taille);
         cielNuages.setBackground(this);
         cielNuages.afficher(canvas);
