@@ -4,9 +4,11 @@ class Background {
     taille,
     scrollMove = undefined,
     tabConfig = undefined,
+    configMoveUser = undefined,
     imgBack = undefined,
     imgBas = undefined
   ) {
+    this.configMoveUser = configMoveUser;
     this.taille = taille;
     this.imgBack = imgBack;
     this.imgBas = imgBas;
@@ -14,7 +16,7 @@ class Background {
     this.idBackground = idBackground;
     this.plateformes = [];
     this.tabAutrePlateforme = [];
-    this.plateformesCollision = [];
+    //this.plateformesCollision = [];
     this.screen_bottom = undefined;
     this.plateformePourTenue = undefined;
     this.tenue = undefined;
@@ -32,13 +34,15 @@ class Background {
     this.minY = 10;
     this.maxY = 70;
     this.tenueBackground = undefined;
-    if (this.scrollMove != undefined) {
-      this.scrollMove.setBackground(this);
-    }
-    if(tabConfig == undefined) {
+    if (tabConfig == undefined) {
       this.creerPlatforme(50, 300, 25, 80);
     } else {
-        this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
+      this.creerPlatforme(
+        tabConfig.minX,
+        tabConfig.maxX,
+        tabConfig.minY,
+        tabConfig.maxY
+      );
     }
     this.creerPlatforme();
     //this.creerPlatformeBottom(undefined);//new PlateformePiegeHaut());
@@ -176,8 +180,8 @@ class Background {
           if (this.projectDev) {
             plateforme.setProjectDev();
           }
-          let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-          this.plateformesCollision.push(
+          //let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
+          /*this.plateformesCollision.push(
             new CollisionPlateforme(
               this.plateformes.length,
               posArete.haut(),
@@ -185,7 +189,7 @@ class Background {
               posArete.gauche(),
               posArete.droite()
             )
-          );
+          );*/
           this.plateformes.push(plateforme);
         }
         nombreDeLignes++;
@@ -233,8 +237,8 @@ class Background {
       let posBasScroll = -1 * posBas;
       let positionHaut =
         this.taille.x - (posBasScroll + this.screen_bottom.taille.y);
-      console.log(positionHaut);
-      if(positionHaut >= 0) {
+      //console.log(positionHaut);
+      if (positionHaut >= 0) {
         this.widthBottom = 100 * (posBasScroll / 20);
         if (Math.round(this.widthBottom) > this.taille.x) {
           this.widthBottom = this.taille.x;
@@ -260,9 +264,9 @@ class Background {
     return this.tabAutrePlateforme;
   }
 
-  getPlateformesCollision() {
+  /*getPlateformesCollision() {
     return this.plateformesCollision;
-  }
+  }*/
 
   posPersonnage(pos, taille) {
     if (this.scrollMove != undefined) {

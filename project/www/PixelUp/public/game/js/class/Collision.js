@@ -8,15 +8,7 @@ class Collision {
         this.plateforme = plateforme;
     }
 
-    getEnumCollision() {
-        if(this.personnage == undefined) {
-            return EnumCollision.NULL;
-        }
-        if(this.plateforme == undefined) {
-            return EnumCollision.NULL;
-        }
-        let persoAreteRectangle = this.personnage.getAreteRectangle();
-        let ptfAreteRectangle = this.plateforme.getAreteRectangle();
+    testCollision(persoAreteRectangle, ptfAreteRectangle, test = false) {//private
         if(persoAreteRectangle.gauche().pos == ptfAreteRectangle.droite().pos || persoAreteRectangle.droite().pos == ptfAreteRectangle.gauche().pos) {
             if(
                 persoAreteRectangle.gauche().debut >= ptfAreteRectangle.gauche().debut && 
@@ -46,5 +38,40 @@ class Collision {
             }
         }
         return EnumCollision.NULL;
+    }
+
+    getEnumCollision() {
+        if(this.personnage == undefined) {
+            return EnumCollision.NULL;
+        }
+        if(this.plateforme == undefined) {
+            return EnumCollision.NULL;
+        }
+        let testCollision = this.testCollision(this.personnage.getAreteRectangle(), this.plateforme.getAreteRectangle(), this.plateforme.test());
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangle(), this.plateforme.getAreteRectangleLeft());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangle(), this.plateforme.getAreteRectangleRight());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangleLeft(), this.plateforme.getAreteRectangle());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangleLeft(), this.plateforme.getAreteRectangleLeft());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangleLeft(), this.plateforme.getAreteRectangleRight());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangleRight(), this.plateforme.getAreteRectangle());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangleRight(), this.plateforme.getAreteRectangleLeft());
+        }
+        if(testCollision == EnumCollision.NULL) {
+            testCollision = this.testCollision(this.personnage.getAreteRectangleRight(), this.plateforme.getAreteRectangleRight());
+        }
+        return testCollision;
     }
 }

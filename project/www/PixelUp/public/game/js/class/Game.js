@@ -1,10 +1,12 @@
 class Game {
-  constructor(idScreen, tabConfigBackground = undefined, pause = false) {
+  constructor(idScreen, tabConfigBackground = undefined, tabConfigMovBackground = undefined, pause = false) {
     this.nbscroll = 0;
     this.classPause = undefined;
     if (pause) {
       this.classPause = new Pause();
     }
+    this.tabConfigMovBackground = tabConfigMovBackground;
+    this.scrollMove = new ScrollMove(idScreen, this);
     this.tailleBackground = new Taille(0, 0);
     this.tailleJoueur = new Taille(0, 0);
     this.backgroundDeb = undefined;
@@ -29,17 +31,18 @@ class Game {
     this.largeurDeplacement = 1;
     this.millisecondeCoucou = 8;
     this.largeurCoucou = 1;
-    this.keySaut = ' ';
-    this.keyGauche = 'ArrowLeft';
-    this.keyDroite = 'ArrowRight';
-    this.keyCoucou = 'c';
-    this.keyHaut = 'ArrowUp';
-    this.keyBas = 'ArrowDown';
+    this.keySaut = " ";
+    this.keyGauche = "ArrowLeft";
+    this.keyDroite = "ArrowRight";
+    this.keyCoucou = "c";
+    this.keyHaut = "ArrowUp";
+    this.keyBas = "ArrowDown";
     this.tabConfigBackground = tabConfigBackground;
   }
 
   setTailleBackground(width, height) {
     this.tailleBackground = new Taille(width, height);
+    this.scrollMove.setBackgroundTaille(this.tailleBackground);
   }
 
   setTailleJoueur(width, height) {
@@ -50,11 +53,21 @@ class Game {
     this.projectDev = true;
   }
 
-
   mourir(enumAction) {
-    if(!this.game != undefined) {
-      console.log(this.backgrounds[enumAction.background].plateformes[enumAction.collision.index]);
-      this.backgrounds[enumAction.background].joueur.mourir(this.backgrounds[enumAction.background].plateformes[enumAction.collision.index]);
+    if (!this.game != undefined) {
+      if (enumAction.collision.plateforme) {
+        this.backgrounds[enumAction.background].joueur.mourir(
+          this.backgrounds[enumAction.background].plateformes[
+            enumAction.collision.index
+          ]
+        );
+      } else {
+        this.backgrounds[enumAction.background].joueur.mourir(
+          this.backgrounds[enumAction.background].tabAutrePlateforme[
+            enumAction.collision.index
+          ]
+        );
+      }
     }
   }
 
@@ -69,26 +82,30 @@ class Game {
     this.backgrounds[1].joueur.nmDeplacement(num);
   }
 
-  posCroll() {
-  }
+  posCroll() {}
 
   remove() {
     for (let index = 0; index < this.backgrounds.length; index++) {
       const element = this.backgrounds[index];
-      if(document.getElementById(element.idBackground) != undefined) {
+      if (document.getElementById(element.idBackground) != undefined) {
         document.getElementById(element.idBackground).remove();
       }
     }
   }
 
-  keyGame(keySaut = ' ', keyGauche = 'ArrowLeft', keyDroite = 'ArrowRight', keyCoucou = 'c') {
+  keyGame(
+    keySaut = " ",
+    keyGauche = "ArrowLeft",
+    keyDroite = "ArrowRight",
+    keyCoucou = "c"
+  ) {
     this.keySaut = keySaut;
     this.keyGauche = keyGauche;
     this.keyDroite = keyDroite;
     this.keyCoucou = keyCoucou;
   }
 
-  keyGameDev(keyHaut = 'ArrowUp', keyBas = 'ArrowDown') {
+  keyGameDev(keyHaut = "ArrowUp", keyBas = "ArrowDown") {
     this.keyHaut = keyHaut;
     this.keyBas = keyBas;
   }
@@ -125,102 +142,248 @@ class Game {
     this.idTypeMort = idTypeMort;
   }
 
-  choixBackground(idBackground, taille, scrollMove = undefined, imgBack = undefined, imgBas = undefined) {
+  choixMov() {
+    let config = undefined;
+    let configMov = undefined;
+    switch (this.nbBackground) {
+      case 0:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.SOUS_TERRE;
+        }
+        break;
+      case 1:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.SOUS_MER;
+        }
+        break;
+      case 2:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.TERRE;
+        }
+        break;
+      case 3:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.CIEL_NUAGE;
+        }
+        break;
+      case 4:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.CIEL_AVIONS;
+        }
+        break;
+      case 5:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.ESPACE_ASTEROIDE;
+        }
+        break;
+      case 6:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.ESPACE_SATELLITE;
+        }
+        break;
+    }
+    if(config != undefined) {
+      configMov = new ConfigMoveUser(config.hauteurSaut, config.millisecondeSaut, 
+            config.millisecondeTomber, config.millisecondeDeplacement, 
+            config.largeurDeplacement, config.millisecondeCoucou, config.largeurCoucou);
+    }
+    return configMov;
+  }
+
+  choixBackground(
+    idBackground,
+    taille,
+    scrollMove = undefined,
+    imgBack = undefined,
+    imgBas = undefined
+  ) {
+    let configMov = this.choixMov();
     let config = undefined;
     switch (this.nbBackground) {
-        case 0:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.SOUS_TERRE;
-          }
-        return new BackgroundSousTerre(idBackground, taille, scrollMove, config, imgBack, imgBas);
-          
-        case 1:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.SOUS_MER;
-          }
-        return new BackgroundSousMer(idBackground, taille, scrollMove, config, imgBack, imgBas);
-           
-        case 2:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.TERRE;
-          }
-        return new BackgroundTerre(idBackground, taille, scrollMove, config, imgBack, imgBas);
-          
-        case 3:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.CIEL_NUAGE;
-          }
-        return new BackgroundCielNuages(idBackground, taille, scrollMove, config, imgBack, imgBas);
-          
-        case 4:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.CIEL_AVIONS;
-          }
-        return new BackgroundCielAvions(idBackground, taille, scrollMove, config, imgBack, imgBas);
-           
-        case 5:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.ESPACE_ASTEROIDE;
-          }
-        return new BackgroundEspaceSatellite(idBackground, taille, scrollMove, config, imgBack, imgBas);
-      
-        case 6:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.ESPACE_SATELLITE;
-          }
-        return new BackgroundEspaceAsteroide(idBackground, taille, scrollMove, config, imgBack, imgBas);
-           
-        default:
-          if(this.tabConfigBackground != undefined) {
-            config = this.tabConfigBackground.ESPACE_VAISSEAU;
-          }
-        return new BackgroundEspaceVaisseau(idBackground, taille, scrollMove, config, imgBack, imgBas);
-          
+      case 0:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.SOUS_TERRE;
+        }
+        return new BackgroundSousTerre(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      case 1:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.SOUS_MER;
+        }
+        return new BackgroundSousMer(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      case 2:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.TERRE;
+        }
+        return new BackgroundTerre(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      case 3:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.CIEL_NUAGE;
+        }
+        return new BackgroundCielNuages(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      case 4:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.CIEL_AVIONS;
+        }
+        return new BackgroundCielAvions(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      case 5:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.ESPACE_ASTEROIDE;
+        }
+        return new BackgroundEspaceSatellite(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      case 6:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.ESPACE_SATELLITE;
+        }
+        return new BackgroundEspaceAsteroide(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
+
+      default:
+        if (this.tabConfigBackground != undefined) {
+          config = this.tabConfigBackground.ESPACE_VAISSEAU;
+        }
+        return new BackgroundEspaceVaisseau(
+          idBackground,
+          taille,
+          scrollMove,
+          config,
+          configMov,
+          imgBack,
+          imgBas
+        );
     }
-}
-  
+  }
+
   addBackground() {
     //if(this.nbscroll >= 1 || this.backgrounds.length < 2) {
-      let screenGame = document.getElementById(this.idScreen);
-      // permet d'ajouter un nouveau canvas tout en définissant sa taille
-      let newcanvas = document.createElement('canvas');
-      newcanvas.width = this.tailleBackground.x;
-      newcanvas.height = this.tailleBackground.y;
-      newcanvas.id = this.idBackground;
-      let scrollMove = new ScrollMove(this.idScreen, this);
-      scrollMove.debut();
-      //retourne l'objet contexte de dessin du canvas
-      let ctx = newcanvas.getContext("2d");
-      //insère avant un nouveau canva et retourne le premier élément dans le screenGame
-      screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-      let background = this.choixBackground(this.idBackground, this.tailleBackground, scrollMove);
-      if(this.projectDev) {
-        background.setProjectDev();
-      }
-      // ludovic (debut) : pour ajouter le joueur
-      let posJoueur = new Position(this.tailleBackground.x/2, -this.tailleBackground.y);
-      if(this.backgrounds.length > 0) {
-        let posJoueurRecup = this.backgrounds[this.backgrounds.length-1].joueur.pos;
-        posJoueur = new Position(posJoueurRecup.x, -this.tailleBackground.y+posJoueurRecup.y);
-      } else if(this.backgrounds.length > 1) {
-        let posJoueurRecup = this.backgrounds[this.backgrounds.length-1].joueur.pos;
-        posJoueur = new Position(posJoueurRecup.x-posJoueur.taille.x, -this.tailleBackground.y+posJoueurRecup.y+posJoueur.taille.y);
-      }
-      let addJoueur = this.setJoueur(posJoueur.x, posJoueur.y, this.tailleJoueur.x, this.tailleJoueur.y);
-      addJoueur.keyGame(this.keySaut, this.keyGauche, this.keyDroite, this.keyCoucou);
-      addJoueur.modifTenue(this.tenueJoueur);
-      addJoueur.keyGameDev(this.keyHaut, this.keyBas);
-      addJoueur.configSaut(this.hauteurSaut, this.millisecondeSaut, this.millisecondeTomber);
-      addJoueur.configDeplacement(this.largeurDeplacement, this.millisecondeDeplacement);
-      addJoueur.configCoucou(this.largeurCoucou, this.millisecondeCoucou);
-      addJoueur.setBackground(background);
-      background.setJoueur(addJoueur);
+    let screenGame = document.getElementById(this.idScreen);
+    // permet d'ajouter un nouveau canvas tout en définissant sa taille
+    let newcanvas = document.createElement("canvas");
+    newcanvas.width = this.tailleBackground.x;
+    newcanvas.height = this.tailleBackground.y;
+    newcanvas.id = this.idBackground;
+    //insère avant un nouveau canva et retourne le premier élément dans le screenGame
+    screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
+    let background = this.choixBackground(
+      this.idBackground,
+      this.tailleBackground,
+      this.scrollMove
+    );
+    if (this.projectDev) {
+      background.setProjectDev();
+    }
+    // ludovic (debut) : pour ajouter le joueur
+    let posJoueur = new Position(
+      this.tailleBackground.x / 2,
+      -this.tailleBackground.y
+    );
+    if (this.backgrounds.length > 0) {
+      let posJoueurRecup = this.backgrounds[this.backgrounds.length - 1].joueur
+        .pos;
+      posJoueur = new Position(
+        posJoueurRecup.x,
+        -this.tailleBackground.y + posJoueurRecup.y
+      );
+    } else if (this.backgrounds.length > 1) {
+      let posJoueurRecup = this.backgrounds[this.backgrounds.length - 1].joueur
+        .pos;
+      posJoueur = new Position(
+        posJoueurRecup.x - posJoueur.taille.x,
+        -this.tailleBackground.y + posJoueurRecup.y + posJoueur.taille.y
+      );
+    }
+    let addJoueur = this.setJoueur(
+      posJoueur.x,
+      posJoueur.y,
+      this.tailleJoueur.x,
+      this.tailleJoueur.y,
+      background
+    );
+    addJoueur.keyGame(
+      this.keySaut,
+      this.keyGauche,
+      this.keyDroite,
+      this.keyCoucou
+    );
+    addJoueur.modifTenue(this.tenueJoueur);
+    addJoueur.keyGameDev(this.keyHaut, this.keyBas);
+    addJoueur.configSaut(
+      this.hauteurSaut,
+      this.millisecondeSaut,
+      this.millisecondeTomber
+    );
+    addJoueur.configDeplacement(
+      this.largeurDeplacement,
+      this.millisecondeDeplacement
+    );
+    addJoueur.configCoucou(this.largeurCoucou, this.millisecondeCoucou);
+    addJoueur.setBackground(background);
+    background.setJoueur(addJoueur);
 
-      // ludovic (fin) : pour ajouter le joueur
-
-      this.backgrounds.push(background);
-      this.createBackground();
-      this.deleteBackground();
+    // ludovic (fin) : pour ajouter le joueur
+    this.backgrounds.push(background);
+    this.createBackground();
+    this.deleteBackground();
     //}
 
     // ludovic (debut) : pour ajouter le joueur
@@ -235,7 +398,7 @@ class Game {
 
   createBackground() {
     this.nbBackground++;
-    this.idBackground = "background_game_"+this.nbBackground;
+    this.idBackground = "background_game_" + this.nbBackground;
   }
 
   deleteBackground() {
@@ -245,21 +408,26 @@ class Game {
       //this.scrollMove.debut();
       screenGame.removeChild(screenGame.lastChild);
       this.backgrounds.splice(0, 1);
+      this.backgrounds[0].scrollMove.recalculPos();
     }
     this.nbscroll = 0;
   }
 
-  setJoueurStopTomber() {
+  setJoueurStopTomber(enumAction) {
     this.nbscroll++;
     const element = this.backgrounds[0];
-    if(!element.valideTenue() && !this.isTtop) {
+    if (enumAction != undefined) {
+      this.backgrounds[enumAction.background].plateformes[
+        enumAction.collision.index
+      ].effetSaut();
+    }
+    if (!element.valideTenue() && !this.isTtop) {
       this.tuerJoueur(element.typeMortTenue());
     }
-    if(!this.isTtop) {
-      element.scrollMove.changeBackground();
-      element.scrollMove.bottom();
+    if (!this.isTtop) {
+      //element.scrollMove.changeBackground();
+      //element.scrollMove.bottom();
     }
-    //element.joueur.finTomber();
   }
 
   moveScrollAvecJoueur() {
@@ -273,7 +441,10 @@ class Game {
 
   setJoueurPositionXY(posX, posY) {
     this.backgrounds[0].joueur.setPositionXY(posX, posY);
-    this.backgrounds[1].joueur.setPositionXY(posX, posY+this.backgrounds[1].taille.y);
+    this.backgrounds[1].joueur.setPositionXY(
+      posX,
+      posY + this.backgrounds[1].taille.y
+    );
     this.moveScrollAvecJoueur();
   }
 
@@ -285,42 +456,46 @@ class Game {
 
   setJoueurPositionY(posY) {
     this.backgrounds[0].joueur.setPositionY(posY);
-    this.backgrounds[1].joueur.setPositionY(posY+this.backgrounds[1].taille.y);
+    this.backgrounds[1].joueur.setPositionY(
+      posY + this.backgrounds[1].taille.y
+    );
     this.moveScrollAvecJoueur();
   }
 
   getEnumCollision() {
     let enumCollision = this.backgrounds[0].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
-      console.log({collision : enumCollision, background : 0});
-      return {collision : enumCollision, background : 0};
+      return { collision: enumCollision, background: 0 };
     }
     enumCollision = this.backgrounds[1].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
-      console.log({collision : enumCollision, background : 1});
-      return {collision : enumCollision, background : 1};
+      return { collision: enumCollision, background: 1 };
     }
-    console.log({collision : enumCollision, background : -1});
-    return {collision : enumCollision, background : -1};
+    return { collision: enumCollision, background: -1 };
   }
 
   setPosInitJoueur(posX, posY) {
-    console.log(this.backgrounds[0]);
     this.backgrounds[0].joueur.setPositionXY(posX, posY);
   }
 
-  setJoueur(posX, posY, tailleX, tailleY) {
+  setJoueur(posX, posY, tailleX, tailleY, background) {
     let joueur = new Joueur(new Taille(tailleX, tailleY));
+    joueur.setBackground(background);
     joueur.setPosition(new Position(posX, posY));
     joueur.setGame(this);
     return joueur;
   }
 
   tuerJoueur(enumTypeMort) {
-    if(enumTypeMort != EnumTypeMort.NULL) {
-      if(this.idTypeMort != undefined && document.getElementById(this.idTypeMort) != undefined) {
+    if (enumTypeMort != EnumTypeMort.NULL) {
+      if (
+        this.idTypeMort != undefined &&
+        document.getElementById(this.idTypeMort) != undefined
+      ) {
         document.getElementById(this.idTypeMort).value = enumTypeMort;
-        document.getElementById(this.idTypeMort).dispatchEvent(new Event("change"));
+        document
+          .getElementById(this.idTypeMort)
+          .dispatchEvent(new Event("change"));
       }
       this.stop();
     }
@@ -342,12 +517,11 @@ class Game {
         element.afficher();
       }
     }
-
   }
 
   eventKey(keyPress) {
     if (this.backgrounds[0].joueur != undefined) {
-      if(keyPress == " ") {
+      if (keyPress == " ") {
         this.backgrounds[0].joueur.sauter();
       }
       this.backgrounds[0].joueur.choixMouvement(keyPress);
@@ -357,25 +531,25 @@ class Game {
   start() {
     this.isTtop = false;
     this.score.start();
-      if (this.backgrounds[0].joueur != undefined) {
-        let classGame = this;
-        document.body.addEventListener("keydown", (event) => {
-          if(!classGame.isTtop) {
-            this.backgrounds[0].joueur.choixMouvement(event.key);
-          }
-        });
-      }
-
-      let folderWorker0 = folderWorker;
-      if(folderWorker0 == undefined) {
-          folderWorker0 = "./js/worker/";
-      }
-      this.workerGame = new Worker(folderWorker0+"workerScore.js");
+    if (this.backgrounds[0].joueur != undefined) {
       let classGame = this;
-      this.workerGame.onmessage = function (e) {
-        classGame.afficher();
-      }
-      this.workerGame.postMessage([this.milliseconde, true]);
+      document.body.addEventListener("keydown", (event) => {
+        if (!classGame.isTtop) {
+          this.backgrounds[0].joueur.choixMouvement(event.key);
+        }
+      });
+    }
+
+    let folderWorker0 = folderWorker;
+    if (folderWorker0 == undefined) {
+      folderWorker0 = "./js/worker/";
+    }
+    this.workerGame = new Worker(folderWorker0 + "workerScore.js");
+    let classGame = this;
+    this.workerGame.onmessage = function (e) {
+      classGame.afficher();
+    };
+    this.workerGame.postMessage([this.milliseconde, true]);
   }
 
   stop() {
@@ -384,7 +558,7 @@ class Game {
     if (this.backgrounds[0] != undefined) {
       this.backgrounds[0].stop();
     }
-    if(this.workerGame != undefined) {
+    if (this.workerGame != undefined) {
       this.workerGame.postMessage([0, false]);
       this.workerGame.terminate();
       this.workerGame = undefined;
@@ -399,17 +573,17 @@ class Game {
     }
 
     let folderWorker0 = folderWorker;
-    if(folderWorker0 == undefined) {
-        folderWorker0 = "./js/worker/";
+    if (folderWorker0 == undefined) {
+      folderWorker0 = "./js/worker/";
     }
-    this.workerGame = new Worker(folderWorker0+"workerScore.js");
+    this.workerGame = new Worker(folderWorker0 + "workerScore.js");
     let classGame = this;
     this.workerGame.onmessage = function (e) {
       classGame.afficher();
-    }
+    };
     this.workerGame.postMessage([this.milliseconde, true]);
-}
-  screenBottom(pos){
+  }
+  screenBottom(pos) {
     this.backgrounds[0].screenBottom(pos);
   }
 }
