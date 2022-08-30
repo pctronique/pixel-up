@@ -10,7 +10,7 @@ class PlateformePierre extends Plateforme {
 
     action(enumCollision) {
         if(enumCollision == EnumCollision.HAUT) {
-            //this.effetPas();
+            this.effetPas();
             return EnumAction.STOP;
         }
         return EnumAction.NULL;
