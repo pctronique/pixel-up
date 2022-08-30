@@ -9,19 +9,22 @@ class MouvementJoueur {
     this.workerJoueurSauter = undefined;
     this.workerJoueurTomber = undefined;
     this.workerJoueurDeplacement = undefined;
+    this.workerJoueurCoucou = undefined;
     this.sauter0 = false;
     this.tomber0 = false;
     this.deplacement0 = false;
     this.move0 = false;
+    this.coucou0 = false;
+    this.infoStopTomber = undefined;
     this.hauteurSaut = 100;
     this.millisecondeSaut = 2;
     this.millisecondeTomber = 2;
     this.millisecondeDeplacement = 8;
     //this.largeurDeplacement = 5;
-    this.largeurDeplacement = 1;
-    this.millisecondeCoucou = 8;
+    this.largeurDeplacement = 5;
+    this.millisecondeCoucou = 120;
     //this.largeurDeplacement = 5;
-    this.largeurCoucou = 1;
+    this.largeurCoucou = 15;
     this.hauteurTomber = 10000;//joueur.background.taille.y;
     this.keySaut = ' ';
     this.keyGauche = 'ArrowLeft';
@@ -63,6 +66,7 @@ class MouvementJoueur {
     this.finSauter();
     this.finTomber();
     this.finMove();
+    this.finCoucou();
   }
 
   finSauter() {
@@ -82,7 +86,7 @@ class MouvementJoueur {
       this.workerJoueurTomber.terminate();
       this.workerJoueurTomber = undefined;
     }
-    this.joueur.game.setJoueurStopTomber();
+    this.joueur.game.setJoueurStopTomber(this.infoStopTomber);
     this.joueur.posBackground();
     this.tomber0 = false;
   }
@@ -94,6 +98,15 @@ class MouvementJoueur {
       this.workerJoueurDeplacement = undefined;
     }
     this.move0 = false;
+  }
+
+  finCoucou() {
+    if(this.workerJoueurCoucou != undefined) {
+      this.workerJoueurCoucou.postMessage([0, 0, false]);
+      this.workerJoueurCoucou.terminate();
+      this.workerJoueurCoucou = undefined;
+    }
+    this.coucou0 = false;
   }
 
   eventSauter() {
@@ -133,10 +146,10 @@ class MouvementJoueur {
   }
 
   sauter() {
-    if(!this.move0) {
+    if(!this.move0 && !this.coucou0) {
       this.joueur.game.nmDeplacement(2);
     }
-    if(!this.tomber0 && !this.sauter0) {
+    if(!this.tomber0 && !this.sauter0 && !this.coucou0) {
       this.sauter0 = true;
       this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
@@ -154,6 +167,7 @@ class MouvementJoueur {
         let enumAction = classMovJoueur.collisionAction();
         if (enumAction.collision.enumCollision != EnumCollision.NULL) {
           if(enumAction.collision.enumAction == EnumAction.MORT || enumAction.collision.enumAction == EnumAction.STOP) {
+            classMovJoueur.infoStopTomber = enumAction;
             tomber = false;
           }
           if(enumAction.collision.enumAction == EnumAction.MORT) {
@@ -171,7 +185,7 @@ class MouvementJoueur {
   }
 
   tomber() {
-    if(!this.tomber0) {
+    if(!this.tomber0 && !this.coucou0) {
       this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
@@ -205,7 +219,6 @@ class MouvementJoueur {
           }
         }
       }
-      console.log(move);
       if (move) {
         move = e.data[2];
       }
@@ -218,12 +231,41 @@ class MouvementJoueur {
   }
 
   move(enumMouvement) {
-    if(!this.move0) {
+    if(!this.move0 && !this.coucou0) {
       this.move0 = true;
       this.workerJoueurDeplacement = new Worker(this.folderWorker0+"workerJoueurMove.js");
       this.eventMove();
       let droite = (enumMouvement == EnumMouvement.DROITE);
       this.workerJoueurDeplacement.postMessage([this.joueur.pos.x, droite, this.largeurDeplacement, this.millisecondeDeplacement, true]);
+    }
+  }
+
+  eventCoucou() {
+    let classJoueur = this.joueur;
+    let classMovJoueur = this;
+    let coucou = true;
+    this.workerJoueurCoucou.onmessage = function (e) {
+      if (coucou) {
+        let nbDeplacement = e.data[0]+11;
+        classJoueur.game.nmDeplacement(nbDeplacement);
+      }
+      if (coucou) {
+        coucou = e.data[1];
+      }
+      if (!coucou) {
+        let nbDeplacement = 13;
+        classJoueur.game.nmDeplacement(nbDeplacement);
+        classMovJoueur.finCoucou();
+      }
+    };
+  }
+
+  coucou() {
+    if(!this.move0 && !this.coucou0 && !this.tomber0 && !this.sauter0) {
+      this.coucou0 = true;
+      this.workerJoueurCoucou = new Worker(this.folderWorker0+"workerJoueurCoucou.js");
+      this.eventCoucou();
+      this.workerJoueurCoucou.postMessage([this.millisecondeCoucou, this.largeurCoucou, true]);
     }
   }
 
@@ -252,32 +294,26 @@ class MouvementJoueur {
     return mouvem;
   }
 
-  coucou() {}
-
   moveDev(eventKey) {
     let x = this.joueur.pos.x;
     let y = this.joueur.pos.y;
     let enumMouvement = this.enumMouvement(eventKey);
     if (enumMouvement == EnumMouvement.DROITE) {
       let pos = new Position(x + 1, y);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionX(x+1);
       let enumAction = this.collisionAction();
-      console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.GAUCHE) {
       let pos = new Position(x - 1, y);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionX(x-1);
       let enumAction = this.collisionAction();
-      console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.BAS) {
       let pos = new Position(x, y + 1);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionY(y+1);
       let enumAction = this.collisionAction();
-      console.log(enumAction);
     } else if (enumMouvement == EnumMouvement.HAUT) {
       let pos = new Position(x, y - 1);
-      this.joueur.setPosition(pos);
+      this.joueur.game.setJoueurPositionY(y-1);
       let enumAction = this.collisionAction();
-      console.log(enumAction);
     }
   }
   
@@ -316,6 +352,8 @@ class MouvementJoueur {
           this.move(EnumMouvement.DROITE);
         } else if (enumMouvement == EnumMouvement.GAUCHE) {
           this.move(EnumMouvement.GAUCHE);
+        } else if (enumMouvement == EnumMouvement.COUCOU) {
+          this.coucou();
         }
       }
   }

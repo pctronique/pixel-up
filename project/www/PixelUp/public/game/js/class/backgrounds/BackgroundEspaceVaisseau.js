@@ -3,7 +3,7 @@ class BackgroundEspaceVaisseau extends Background {
 
 
     constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
@@ -15,7 +15,7 @@ class BackgroundEspaceVaisseau extends Background {
 
     imgBackDisplay(canvas) {
         this.imageSrc("./img/fondEspace2.jpg");
-        let BackgroundEspaceVaisseau = new Images(this.imageSource, this.pos, this.taille);
+        let BackgroundEspaceVaisseau = new Images(this.imageSource, configMoveUser = undefined, this.pos, this.taille);
         BackgroundEspaceVaisseau.setBackground(this);
         BackgroundEspaceVaisseau.afficher(canvas);
     }
