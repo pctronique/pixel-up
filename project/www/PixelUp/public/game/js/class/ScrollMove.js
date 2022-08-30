@@ -7,18 +7,27 @@ class ScrollMove {
         this.posScrollOld = undefined;
         this.posScrollSous = 0;
         this.posScroll = 0;
+        this.backgroundTaille = new Taille(0, 0);
+    }
+
+    setBackgroundTaille(taille) {
+        if(taille!= undefined) {
+            this.backgroundTaille = taille;
+        }
     }
 
     debut() {
+        this.posScrollOld = undefined;
         this.gameElement.scrollTop = this.gameElement.scrollHeight;
     }
 
-    setBackground(background) {
-        this.background = background;
+    recalculPos() {
+        this.posScrollOld = this.posScrollOld-this.gameElement.offsetHeight;
+        this.gameElement.scrollTop = this.posScrollOld;
     }
 
     taillePixel() {
-        return (this.gameElement.scrollHeight/this.gameElement.childElementCount)/this.background.taille.y;
+        return (this.gameElement.scrollHeight/this.gameElement.childElementCount)/this.backgroundTaille.y;
     }
 
     monter() {
@@ -40,7 +49,7 @@ class ScrollMove {
 
     calculMilieu() {
         let taillePixel = this.taillePixel();
-        return (this.background.taille.y-this.gameElement.offsetHeight/2)/this.taillePixel();
+        return (this.backgroundTaille.y-this.gameElement.offsetHeight/2)/this.taillePixel();
     }
 
     placeBas() {
