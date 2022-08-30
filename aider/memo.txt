@@ -1,0 +1,14 @@
+ Pour fred :
+ => querySelector("canvas")
+ => insertBefore
+ => childElementCount
+ => removeChild
+ => lastChild
+ => scrollHeight
+ => let st = //[scrollHeight, childElementCount, offsetHeight]
+ 
+ Pour vanessa :
+ => let st = //[scrollHeight, scrollWidth, offsetHeight, scrollTop];
+ 
+ Les deux :
+ st => pour variable scrollHeight, vous pouvez changer le nom de la variable.

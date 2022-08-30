@@ -40,8 +40,10 @@
             
             <a href="{{ path('app_jeux')}}"><li>Lancer la partie</li></a>
             <a href="{{ path('app_score_index')}}"><li>Classement</li></a>
+            
             {% if app.user %}
-                
+
+             
                 
                  {% if is_granted('ROLE_ADMIN') %}
                         {# Si l'utilisateur est authentifié et qu'il est admin #}

@@ -1,0 +1,46 @@
+52-50=2
+180-78=102
+426-144=282
+929-221=708
+ 
+ 
+ 
+
+ 
+while (startHauteur < this.taille.y) {
+      let posPlateforme = 0;
+      let nb = 0;
+      console.log("************");
+      while (posPlateforme < this.taille.x) {
+        let objRndPos = new RndPos(posPlateforme, 0);
+        let taille = new Taille(50, 10);
+        let plateforme = new Plateforme(taille);
+        
+        if (nb != 0) {
+            objRndPos.minMax(70, 100);
+            posPlateforme += objRndPos.getX();
+            posPlateforme += taille.getX();
+        } else {
+            objRndPos.minMax(0, 70);
+            posPlateforme += objRndPos.getX();
+        }
+
+        let pos = new Position(posPlateforme, this.taille.y - startHauteur);
+
+        console.log(posPlateforme);
+        plateforme.setPosition(pos);
+        plateforme.setBackground(this);
+        let posArete = plateforme.getAreteRectangle();
+        this.plateformesCollision.push({
+          id: this.plateformes.length,
+          haut: posArete.haut(),
+          bas: posArete.bas(),
+          gauche: posArete.gauche(),
+          droite: posArete.droite(),
+        });
+        this.plateformes.push(plateforme);
+        nb++;
+      }
+      startHauteur += defaultHauteur;
+      
+    }
