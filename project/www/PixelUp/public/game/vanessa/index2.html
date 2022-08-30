@@ -14,15 +14,16 @@
 
     <div id="game">
         <div id="info_Game">
-            <button id="start">Start</button>
+            <button id="start" class="button"><img src="img/startButton.png" alt="bouton start"></button>
+            <button id="config" class="button" data-modal="modalOne"><img src="img/optionButton.png"></button>
+            <button id="config" class="button" data-modal="modalTwo"><img src="img/optionButton.png"></button>
+            <button id="config3" class="button" data-modal="modalThree"><img src="img/optionButton.png"></button>
         </div>
         <input type="hidden" id="game_typeMort" value="-1">
         <div id="score">0</div>
         <div class="screenGame" id="screenGame_0">
         </div>
-        <p>
-            <button class="button" data-modal="modalOne"><img src="img/reglage.png"></button>
-        </p>
+       
         <div id="modalOne" class="modal">
             <div class="modal-content">
                 <div class="contact-form">
@@ -31,42 +32,21 @@
                         <div>
                             <h2>Commandes</h2>
                                 <label>Saut</label>
-                                <input class="fname" type="text" name="name" />
+                                <input class="tab_input" id="saut" type="text" name="name" />
                                 <label>Droite</label>
-                                <input type="text" name="name" />
+                                <input class="tab_input" id="droite" type="text" name="name" />
                                 <label>Gauche</label>
-                                <input type="text" name="name" />
+                                <input class="tab_input" id="gauche" type="text" name="name" />
                                 <label>Haut</label>
-                                <input class="fname" type="text" name="name" />
+                                <input class="tab_input" id="haut" class="tab_input" type="text" name="name" />
                                 <label>Bas</label>
-                                <input type="text" name="name" />
+                                <input class="tab_input" id="bas" type="text" name="name" />
                                 <label>Coucou</label>
-                                <input type="text" name="name" />
-                            <h2>Saut/Chute</h2>
-                                <label>Hauteur de saut</label>
-                                <input class="fname" type="text" name="name" />
-                                <label>milliseconde de saut</label>
-                                <input type="text" name="name" />
-                                <label>milliseconde chute</label>
-                                <input type="text" name="name" />
-                            <h2>Déplacements</h2>
-                                <label>Largeur de déplacement</label>
-                                <input class="fname" type="text" name="name" />
-                                <label>milliseconde de déplacement</label>
-                                <input type="text" name="name" />
-                            <h2>Intéraction "coucou"</h2>
-                                <label>Largeur coucou</label>
-                                <input class="fname" type="text" name="name" />
-                                <label>milliseconde coucou</label>
-                                <input type="text" name="name" />
-                            <h2>Jeu</h2>
-                                <label>milliseconde</label>
-                                <input type="text" name="name" />
-                                <label>milliseconde score </label>
-                                <input type="text" name="name" />
+                                <input class="tab_input" id="coucou" type="text" name="name" />
+                           
                         </div>
 
-                        <button type="submit" href="/">configurer</button>
+                        <button id="valider" type="submit" href="/">Valider</button>
                     </form>
                 </div>
             </div>
@@ -74,27 +54,142 @@
         <div id="modalTwo" class="modal">
             <div class="modal-content">
                 <div class="contact-form">
-                    <span class="close">&times;</span>
+                    <a class="close">&times;</a>
                     <form action="/">
-
-                        <span>Message</span>
                         <div>
-                            <textarea rows="4"></textarea>
+                            
+                            <h2>Saut/Chute</h2>
+                                <label>Hauteur de saut</label>
+                                <input class="tab_input" id="hauteurSaut" type="text" name="name" />
+                                <label>milliseconde de saut</label>
+                                <input class="tab_input" id="millisecondeSaut" type="text" name="name" />
+                                <label>milliseconde chute</label>
+                                <input class="tab_input" id="millisecondeTomber" type="text" name="name" />
+                            <h2>Déplacements</h2>
+                                <label>Largeur de déplacement</label>
+                                <input class="tab_input" id="largeurDeplacement" type="text" name="name" />
+                                <label>milliseconde de déplacement</label>
+                                <input class="tab_input" id="millisecondeDeplacement" type="text" name="name" />
+                            <h2>Intéraction "coucou"</h2>
+                                <label>Largeur coucou</label>
+                                <input class="tab_input" id="largeurCoucou" type="text" name="name" />
+                                <label>milliseconde coucou</label>
+                                <input class="tab_input" id="millisecondeCoucou" type="text" name="name" />
+                            <h2>Jeu</h2>
+                                <label>milliseconde</label>
+                                <input class="tab_input" id="millisecondeJeu" type="text" name="name" />
+                                <label>milliseconde score </label>
+                                <input class="tab_input" id="millisecondeScore" type="text" name="name" />
                         </div>
-                        <button type="submit" href="/">Submit</button>
+
+                        <button id="validerConfig" type="submit" href="/">Valider</button>
                     </form>
                 </div>
             </div>
         </div>
-        <!-- <div class="modal" id="modal">
-            <div class="modal-back"></div>
-            <div class="modal-container">
-              Configurations du jeu<br />
-              <input type="text" id="input" />
-              <a href="#" id="modal-close">[fermer]</a>
-            </div>
-          </div>-->
+        <div id="modalThree" class="modal">
+            <div class="modal-content">
+                <div class="contact-form">
+                    <a class="close">&times;</a>
+                    <form action="/">
+                        <div>
+                            
+                            <h2>Sous-Terre</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="sousTerreMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="sousTerreMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="sousTerreMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="sousTerreMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="sousTerreNbPiege" type="text" name="name" />
+                            <h2>Sous-Mer</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="sousMerMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="sousMerMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="sousMerMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="sousMerMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="sousMerNbPiege" type="text" name="name" />
+                            <h2>Terre</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="terreMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="terreMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="terreMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="terreMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="terreNbPiege" type="text" name="name" />
+                            <h2>Ciel Nuages</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="cielNuagesMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="cielNuagesMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="cielNuagesMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="cielNuagesMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="cielNuagesNbPiege" type="text" name="name" />
+                            <h2>Ciel Avions</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="cielAvionMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="cielAvionMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="cielAvionMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="cielAvionMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="cielAvionNbPiege" type="text" name="name" />
+                            <h2>Espace Astéroïdes</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="espaceAsteroideMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="espaceAsteroideMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="espaceAsteroideMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="espaceAsteroideMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="espaceAsteroideNbPiege" type="text" name="name" />
+                            <h2>Espace Satellites</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="espaceSatelliteMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="espaceSatelliteMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="espaceSatelliteMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="espaceSatelliteMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="espaceSatelliteNbPiege" type="text" name="name" />
+                            <h2>Espace Vaisseaux</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="espaceVaisseauMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="espaceVaisseauMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="espaceVaisseauMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="espaceVaisseauMaxY" type="text" name="name" />
+                                <label>Nombre de pièges</label>
+                                <input class="tab_input" id="espaceVaisseauNbPiege" type="text" name="name" />
+                        </div>
 
+                        <button id="validerConfigBackground" type="submit" href="/">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
         <script src="./../js/class/enum/EnumAction.js"></script>
         <script src="./../js/class/enum/EnumCollision.js"></script>
         <script src="./../js/class/enum/EnumMouvement.js"></script>
