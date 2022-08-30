@@ -2,8 +2,8 @@ class BackgroundTerre extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
@@ -16,7 +16,7 @@ class BackgroundTerre extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/immeuble2.png");
+        this.imageSrc("./img/pixil-frame-0 (8)coupe2.png");
         let Terre = new Images(this.imageSource, this.pos, this.taille);
         Terre.setBackground(this);
         Terre.afficher(canvas);

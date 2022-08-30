@@ -11,8 +11,15 @@ class Joueur extends Personnage {
     this.nmDepl = 2;
     this.tailleImg = new Taille(100, 100);
     //this.tailleImg = new Taille(47, 47);
-    this.modifTenue(EnumTenues.NORMAL);
+    //this.modifTenue(EnumTenues.NORMAL);
+    this.modifTenue(EnumTenues.MER);
   }
+
+  /*visibleGame() {
+    visibleGame();
+    console.log("visibleGame");
+    console.log(this);
+  }*/
 
   nmDeplacement(num) {
     this.nmDepl = num;
@@ -20,7 +27,6 @@ class Joueur extends Personnage {
 
   mourir(enumAction) {
     if (this.game != undefined) {
-      console.log(enumAction);
       this.game.tuerJoueur(enumAction.typeMort());
     }
   }
@@ -91,7 +97,8 @@ class Joueur extends Personnage {
   }
 
   afficher(canvas) {
-    /*let ctx = canvas.getContext("2d");
+    /*this.createBorder(canvas);
+    let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
     ctx.fillRect(this.posLeft.x, this.posLeft.y, this.taille.x, this.taille.y);
     ctx.fillRect(this.posRight.x, this.posRight.y, this.taille.x, this.taille.y);
@@ -105,29 +112,13 @@ class Joueur extends Personnage {
       this.img,
       new Position(this.pos.x+this.posImg.x, this.pos.y+this.posImg.y),
       this.tailleImg,
-      new Position(32, 32)
+      new Position(96, 96)
     );
     imgJoueur.setObjetDuplique(this);
     imgJoueur.select(this.nmDepl);
     imgJoueur.setBackground(this.background);
     imgJoueur.colorTransparance("#ffffff");
     imgJoueur.afficher(canvas);
-  }
-
-  visibleGame() {
-    if(this.background != undefined && this.background.taille != undefined) {
-      console.log("0001V");
-      console.log(this.background);
-      console.log("imgVisible : "+this.imgVisible());
-      console.log("imgLeftVisible : "+this.imgLeftVisible());
-      console.log("imgRighttVisible : "+this.imgRighttVisible());
-      super.visibleGame();
-      console.log("0002V");
-      console.log("imgVisible2 : "+this.imgVisible());
-      console.log("imgLeftVisible2 : "+this.imgLeftVisible());
-      console.log("imgRighttVisible2 : "+this.imgRighttVisible());
-      console.log(this.background);
-    }
   }
 
   collisionHaut() {

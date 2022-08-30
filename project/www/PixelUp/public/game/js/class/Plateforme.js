@@ -22,13 +22,13 @@ class Plateforme extends BlockRectange {
     }
 
     effetPas(){
-        let effetPas =new EffetsSonores("son/pas2.mp3",100,true);
-        effetPas.start();
+        /*let effetPas =new EffetsSonores("son/pas2.mp3",100,true);
+        effetPas.start();*/
     }
 
     effetSaut(){
-        let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",100,true);
-        effetSaut.start();
+        /*let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",100,true);
+        effetSaut.start();*/
     }
 
     effetGameOver(){
@@ -43,6 +43,5 @@ class Plateforme extends BlockRectange {
         }
         return EnumAction.NULL;
     }
-    
     
 }

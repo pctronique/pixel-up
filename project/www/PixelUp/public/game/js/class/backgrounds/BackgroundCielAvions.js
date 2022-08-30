@@ -2,8 +2,8 @@ class BackgroundCielAvions extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
@@ -20,7 +20,7 @@ class BackgroundCielAvions extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/ciel.png");
+        this.imageSrc("./img/pixil-frame-0 (12).png");
         let cielAvions = new Images(this.imageSource, this.pos, this.taille);
         cielAvions.setBackground(this);
         cielAvions.afficher(canvas);

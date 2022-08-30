@@ -21,7 +21,7 @@ let tabConfig = {
         millisecondeCoucou : 8,
     },
     game : {
-        milliseconde : 5,
+        milliseconde : 40,
         scoreMilliseconde : 500,
     },
 }

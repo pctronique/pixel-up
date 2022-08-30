@@ -10,7 +10,7 @@ if (window.Worker) {
     let idScreen = "screenGame_0";
     let heightJoueur = 60;
     //let heightJoueur = 47;
-    game = new Game("screenGame_0", tabConfigBackground);
+    game = new Game("screenGame_0", tabConfigBackground, tabConfigMoveBackground);
     game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
     game.setTailleJoueur(18, heightJoueur);
     //game.setTailleJoueur(47, heightJoueur);
@@ -19,7 +19,7 @@ if (window.Worker) {
     game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
     game.configDeplacement(tabConfig.deplacement.largeurDeplacement, tabConfig.deplacement.millisecondeDeplacement);
     game.configCoucou(tabConfig.coucou.largeurCoucou, tabConfig.coucou.millisecondeCoucou);
-    //game.setProjectDev();
+    game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
     game.addBackground();
@@ -31,23 +31,23 @@ if (window.Worker) {
 
     screenGame.addEventListener("scroll", function () {
 
-        console.log("scrollTop0 : " + screenGame.scrollTop);
+        /*console.log("scrollTop0 : " + screenGame.scrollTop);
         console.log("scrollHeight0 : " + screenGame.scrollHeight);
         console.log("scrollWidth0 : " + screenGame.scrollWidth);
         console.log("offsetHeight0 : " + screenGame.offsetHeight);
-        console.log("offsetWidth0 : " + screenGame.offsetWidth);
+        console.log("offsetWidth0 : " + screenGame.offsetWidth);*/
         let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
         let calcul4 = (screenGame.scrollHeight / 2) / backgroundTaille.y;
         let st = -1 * (game.backgrounds[0].scrollMove.placeBas() / game.backgrounds[0].scrollMove.taillePixel());
-        console.log(calcul4);
+        //console.log(calcul4);
         game.backgrounds[0].scrollMove.bottom();
-        game.backgrounds[0].scrollMove.changeBackground();
+        //game.backgrounds[0].scrollMove.changeBackground();
         //game.screenBottom(st);
         //game.afficher();
-        /*let scrollHaut = game.backgrounds[0].scrollMove.changeBackground();
+        let scrollHaut = screenGame.scrollHeight / screenGame.childElementCount - screenGame.offsetHeight;
         if (screenGame.scrollTop < scrollHaut) {
             game.addBackground(backgroundTaille.x, backgroundTaille.y, 18, 60);
-        }*/
+        }
     }, false);
 
     screenGame.scrollTop = screenGame.scrollHeight;
