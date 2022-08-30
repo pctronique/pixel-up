@@ -11,7 +11,8 @@ class Joueur extends Personnage {
     this.nmDepl = 2;
     this.tailleImg = new Taille(100, 100);
     //this.tailleImg = new Taille(47, 47);
-    this.modifTenue(EnumTenues.NORMAL);
+    //this.modifTenue(EnumTenues.NORMAL);
+    this.modifTenue(EnumTenues.MER);
   }
 
   /*visibleGame() {
@@ -111,7 +112,7 @@ class Joueur extends Personnage {
       this.img,
       new Position(this.pos.x+this.posImg.x, this.pos.y+this.posImg.y),
       this.tailleImg,
-      new Position(32, 32)
+      new Position(96, 96)
     );
     imgJoueur.setObjetDuplique(this);
     imgJoueur.select(this.nmDepl);

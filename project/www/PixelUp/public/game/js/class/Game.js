@@ -383,7 +383,7 @@ class Game {
     // ludovic (fin) : pour ajouter le joueur
     this.backgrounds.push(background);
     this.createBackground();
-    this.deleteBackground();
+    //this.deleteBackground();
     //}
 
     // ludovic (debut) : pour ajouter le joueur
