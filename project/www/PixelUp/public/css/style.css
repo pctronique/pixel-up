@@ -7,7 +7,7 @@ header{
 }
 
 body{
-    background:  center repeat url("../media/PixelUpBackground.png");
+    background:  center repeat url("../media/bakgroundcity.png");
     background-size: cover;
     -webkit-animation: background 50s linear infinite;
     animation: background 50s linear infinite;
@@ -37,7 +37,7 @@ transform: scale(1.2);
 }
 
 header h1{
-    color: white;
+    color: #b327f1;
     font-family: 'Silkscreen', cursive;
     margin: 0 100px;
   }
@@ -115,15 +115,16 @@ header{
     text-align: center;
   }
 
-  #menu a:first-of-type li{
-    background-color: #C23028ce;
+  #menu a li{
+    background-color: #8900a5;
+    color: white;
   }
 
-  #menu a:nth-of-type(2) li{
-    background: #F6B339ce;
+  #menu a:nth-child(2n+1) li{
+    background: #004aad;
   }
 
-  #menu a:nth-of-type(3) li{
+  /*#menu a:nth-of-type(3) li{
     background: #0594D0ce;
   }
 
@@ -134,15 +135,15 @@ header{
 
   #menu a:nth-of-type(5) li{
     background: #fef5ffce;
-  }
+  }*/
 
 
 
   #menu li{
     margin: 15px 0;
-    padding: 5px;
+    padding: 15px;
     width: 100%;
-    border: 2px solid black;
+    border: 2px solid #ff4754;
     transition: 0.2s;
     font-family: 'Silkscreen', cursive;
     border-radius: 10px;
@@ -165,35 +166,17 @@ header{
   }
 
   footer li{
-    width: 60px;
-    height: 60px;
-    background-color: black;
-    border: solid 7px white;
+    width: 40px;
+    height: 40px;
+    background-color: #b327f1;
+    border: solid 7px #ff4754;
   }
 
-  footer li:first-of-type{
-    background-color: #77021D;
+  footer li:nth-child(2n+1){
+    border: solid 7px #004aad;
+
   }
 
-  footer li:nth-of-type(2){
-    background-color: #F6B339;
-  }
-
-  footer li:nth-of-type(3){
-    background-color: #04BBFF;
-  }
-
-  footer li:nth-of-type(4){
-    background-color: #003C57;
-  }
-
-  footer li:nth-of-type(5){
-    background-color: #ACC27A;
-  }
-
-  footer li:nth-of-type(6){
-    background-color: #6D594D;
-  }
 
 /* FORMULAIRE EDITPROFIL */
 
