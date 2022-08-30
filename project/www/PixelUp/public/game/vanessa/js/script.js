@@ -45,7 +45,7 @@ if (window.Worker) {
     }, false);
  
     function startGame(e) {
-  
+      document.getElementById("info_Game").style.display = "none";
         game.start();
         //game.startDev();
       }

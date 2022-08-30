@@ -17,26 +17,6 @@ window.onclick = function (event) {
     event.target.style.display = "none";
   }
 };
-let valider = document.querySelector("#valider");
-
-valider.onclick = function () {
-  let modal = valider.closest(".modal");
-  modal.style.display = "none";
-};
-
-let valider2 = document.querySelector("#validerConfig");
-
-valider2.onclick = function () {
-  let modal = valider2.closest(".modal");
-  modal.style.display = "none";
-};
-
-let valider3 = document.querySelector("#validerConfigBackground");
-
-valider3.onclick = function () {
-  let modal = valider3.closest(".modal");
-  modal.style.display = "none";
-};
 
 let valider4 = document.querySelector("#validerConfigGameMoveBackground");
 
@@ -44,5 +24,3 @@ valider4.onclick = function () {
   let modal = valider4.closest(".modal");
   modal.style.display = "none";
 };
-
-

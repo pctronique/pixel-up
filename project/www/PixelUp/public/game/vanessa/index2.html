@@ -14,10 +14,11 @@
 
     <div id="game">
         <div id="info_Game">
-            <button id="start" class="button"><img src="img/startButton.png" alt="bouton start"></button>
+            <button id="start" class="buttonStart"><img src="img/startButton.png" alt="bouton start"></button>
             <button id="config" class="button" data-modal="modalOne"><img src="img/optionButton.png"></button>
             <button id="config" class="button" data-modal="modalTwo"><img src="img/optionButton.png"></button>
             <button id="config3" class="button" data-modal="modalThree"><img src="img/optionButton.png"></button>
+            <button id="config4" class="button" data-modal="modalFor"><img src="img/optionButton.png"></button>
         </div>
         <input type="hidden" id="game_typeMort" value="-1">
         <div id="score">0</div>
@@ -189,6 +190,140 @@
                 </div>
             </div>
         </div>
+        <div id="modalFor" class="modal">
+            <div class="modal-content">
+                <div class="contact-form">
+                    <a class="close">&times;</a>
+                    <form action="/">
+                        <div>
+                            
+                            <h2>Sous-Terre</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="sousTerreHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="sousTerreMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="sousTerreMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="sousTerreMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="sousTerreLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="sousTerreMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="sousTerreLargeurCoucou" type="text" name="name" />
+                            <h2>Sous-Mer</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="sousMerHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="sousMerMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="sousMerMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="sousMerMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="sousMerLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="sousMerMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="sousMerLargeurCoucou" type="text" name="name" />
+                            <h2>Terre</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="terreHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="terreMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="terreMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="terreMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="terreLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="terreMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="terreLargeurCoucou" type="text" name="name" />
+                            <h2>Ciel Nuages</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="cielNuageHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="cielNuageMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="cielNuageMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="cielNuageMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="cielNuageLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="cielNuageMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="cielNuageLargeurCoucou" type="text" name="name" />
+                            <h2>Ciel Avions</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="cielAvionHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="cielAvionMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="cielAvionMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="cielAvionMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="cielAvionLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="cielAvionMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="cielAvionLargeurCoucou" type="text" name="name" />
+                            <h2>Espace Astéroïdes</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="espaceAsteroideHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="espaceAsteroideLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="espaceAsteroideLargeurCoucou" type="text" name="name" />
+                            <h2>Espace Satellites</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="espaceSatelliteHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="espaceSatelliteLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="espaceSatelliteLargeurCoucou" type="text" name="name" />
+                            <h2>Espace Vaisseaux</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="espaceVaisseauHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="espaceVaisseauLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="espaceVaisseauLargeurCoucou" type="text" name="name" />
+                        </div>
+
+                        <button id="validerConfigGameMoveBackground" type="submit" href="/">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
        
         <script src="./../js/class/enum/EnumAction.js"></script>
         <script src="./../js/class/enum/EnumCollision.js"></script>
@@ -200,7 +335,6 @@
         <script src="./../js/class/Taille.js"></script>
         <script src="./../js/class/Images.js"></script>
         <script src="./../js/class/ImageGif.js"></script>
-        <script src="./../js/class/Audio.js"></script>
         <script src="./../js/class/EffetsSonores.js"></script>
         <script src="./../js/class/Pause.js"></script>
         <script src="./../js/class/Score.js"></script>
@@ -260,6 +394,7 @@
         <script src="./../js/class/ImageTenue.js"></script>
         <script src="./js/configGame.js"></script>
         <script src="./js/configGameBackgroung.js"></script>
+        <script src="./js/configGameMoveBackgroung.js"></script>
         <script src="./js/script.js"></script>
         <script src="./js/script2.js"></script>
 
