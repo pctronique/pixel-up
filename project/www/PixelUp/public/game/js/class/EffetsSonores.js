@@ -1,9 +1,8 @@
-class Musique {
-    constructor(source,volume=100,loop=false)
+class EffetsSonores {
+    constructor(source,volume=100)
     {
         this.source=source;
         this.volume=volume;
-        this.loop=loop;
         var son;
         this.son=son;
         this.finish=false;
@@ -21,8 +20,6 @@ class Musique {
         this.son.setAttribute("hidden","true");
         this.son.setAttribute("volume",this.volume);
         this.son.setAttribute("autostart","true");
-        this.son.setAttribute("loop",this.loop);
-        this.son.setAttribute("loopEnd",31);
         document.body.appendChild(this.son);
         
     }
@@ -35,6 +32,5 @@ class Musique {
     {
         this.finish=false;
         this.volume=volume;
-        this.loop=loop;
     }
 }

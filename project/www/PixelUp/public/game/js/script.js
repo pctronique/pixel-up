@@ -6,7 +6,7 @@ if (window.Worker) {
 
   let heightJoueur = 60;
     //let heightJoueur = 47;
-    game = new Game("screenGame_0", tabConfigBackground);
+    game = new Game("screenGame_0", tabConfigBackground, tabConfigMoveBackground);
     game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
     game.setTailleJoueur(18, heightJoueur);
     //game.setTailleJoueur(47, heightJoueur);

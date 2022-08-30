@@ -68,11 +68,8 @@ class Images {
     if (this.background != undefined) {
       return false;
     }
-    let posLeft = this.getPosLeft();
-    return (
-        (pos.x > 0 && pos.x + this.tailleImg.x < this.background.taille.x) && 
-        (posLeft.x + this.tailleImg.x > this.background.taille.x)
-    );
+    return ((this.pos.x > 0 && this.pos.x < this.background.taille.x && 
+      this.pos.x+this.tailleImg.x > this.background.taille.x) || (!this.imgVisible() && this.pos.x > 0));
   }
 
   getPosRight() {
@@ -83,11 +80,10 @@ class Images {
     if (this.background != undefined) {
       return false;
     }
-    let posRight = this.getPosRight();
-    return (
-      (pos.x < 0 && posRight.x + this.tailleImg.x > 0)
-    );
+    return ((this.pos.x < 0 && this.pos.x+this.tailleImg.x > 0 && 
+      this.pos.x+this.tailleImg.x < this.background.taille.x) || (!this.imgVisible() && this.pos.x < 0));
   }
+
   repeatImage(ctx, imageObj) {
     let imgComp = new Image();
     imgComp.src = this.compressImage(
@@ -116,17 +112,7 @@ class Images {
 
   uneImage(img, ctx) {
     if (this.objet != undefined) {
-      if (this.imgLeftVisible()) {
-        let posLeft = this.getPosRight();
-        ctx.drawImage(
-          img,
-          posLeft.x,
-          posLeft.y,
-          this.taille.x,
-          this.taille.y
-        );
-      }
-      if (this.imgRighttVisible) {
+      //if (this.imgLeftVisible()) {
         let posLeft = this.getPosLeft();
         ctx.drawImage(
           img,
@@ -135,7 +121,16 @@ class Images {
           this.taille.x,
           this.taille.y
         );
-      }
+      //} else if (this.imgRighttVisible) {
+        let posRight = this.getPosRight();
+        ctx.drawImage(
+          img,
+          posRight.x,
+          posRight.y,
+          this.taille.x,
+          this.taille.y
+        );
+      //}
     }
     return ctx.drawImage(
       img,
@@ -149,21 +144,21 @@ class Images {
   selectImag(width, height, img, ctx) {
     let imgPos = this.posSect(width, height);
     if (this.objet != undefined) {
-      if (this.imgLeftVisible()) {
-        let posLeft = this.getPosRight();
+      //if (this.imgLeftVisible()) {
+        let posRight = this.getPosRight();
         ctx.drawImage(
           img,
           imgPos.x,
           imgPos.y,
           this.tailleImg.x,
           this.tailleImg.y,
-          posLeft.x,
-          posLeft.y,
+          posRight.x,
+          posRight.y,
           this.taille.x,
           this.taille.y
         );
-      }
-      if (this.imgRighttVisible()) {
+      //}
+      //if (this.imgRighttVisible()) {
         let posLeft = this.getPosLeft();
         ctx.drawImage(
           img,
@@ -176,7 +171,7 @@ class Images {
           this.taille.x,
           this.taille.y
         );
-      }
+      //}
     }
     return ctx.drawImage(
       img,

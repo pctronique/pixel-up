@@ -15,18 +15,15 @@ class Personnage extends BlockRectange // implements InterfaceGravite
     }
 
     getEnumCollision() {
-        console.log(this.tabAutrePlateforme);
         for (let index = 0; index < this.tabAutrePlateforme.length; index++) {
             const element = this.tabAutrePlateforme[index];
             let collision = new Collision(this);
             collision.setPlateforme(element);
             let enumCollision = collision.getEnumCollision();
-            console.log(enumCollision);
             if(enumCollision != EnumCollision.NULL) {
                 let enumAction = collision.plateforme.action(enumCollision);
-                console.log(enumAction);
                 if (enumAction == EnumAction.STOP || enumAction == EnumAction.MORT) {
-                    return {enumCollision:enumCollision, enumAction:enumAction, index:index};
+                    return {enumCollision:enumCollision, enumAction:enumAction, index:index, plateforme:false};
                 }
             }
         };
@@ -35,15 +32,14 @@ class Personnage extends BlockRectange // implements InterfaceGravite
             let collision = new Collision(this);
             collision.setPlateforme(element);
             let enumCollision = collision.getEnumCollision();
-            //console.log(enumCollision);
             if(enumCollision != EnumCollision.NULL) {
                 let enumAction = collision.plateforme.action(enumCollision);
                 if (enumAction == EnumAction.STOP || enumAction == EnumAction.MORT) {
-                    return {enumCollision:enumCollision, enumAction:enumAction, index:index};
+                    return {enumCollision:enumCollision, enumAction:enumAction, index:index, plateforme:true};
                 }
             }
         };
-        return {enumCollision:EnumCollision.NULL, enumAction:EnumAction.NULL, index:-1};
+        return {enumCollision:EnumCollision.NULL, enumAction:EnumAction.NULL, index:-1, plateforme:false};
     }
 
     posBackground() {

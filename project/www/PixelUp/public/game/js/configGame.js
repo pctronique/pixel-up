@@ -13,7 +13,7 @@ let tabConfig = {
         millisecondeTomber : 2,
     },
     deplacement : {
-        largeurDeplacement : 5,
+        largeurDeplacement : 1,
         millisecondeDeplacement : 8,
     },
     coucou : {
