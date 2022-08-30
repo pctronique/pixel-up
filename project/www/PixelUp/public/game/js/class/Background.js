@@ -119,6 +119,7 @@ class Background {
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
+  
   creerPlateformeTenue(tenue) {
     if (tenue != undefined) {
       let taille = new Taille(40, 40);
