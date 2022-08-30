@@ -6,6 +6,7 @@ class PlateformeAvions extends PlateformePiegeCote {
     }
 
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.AVION;
     }
 

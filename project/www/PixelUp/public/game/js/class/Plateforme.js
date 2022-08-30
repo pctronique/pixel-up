@@ -31,6 +31,11 @@ class Plateforme extends BlockRectange {
         effetSaut.start();*/
     }
 
+    effetGameOver(){
+        let effetGameOver = new EffetsSonores("son/gameOver.mp3", 100, true);
+        effetGameOver.start();
+    }
+    
     action(enumCollision) {
         if(enumCollision == EnumCollision.HAUT) {
           this.effetPas();

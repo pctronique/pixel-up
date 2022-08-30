@@ -425,7 +425,8 @@ class Game {
         enumAction.collision.index
       ].effetSaut();
     }
-    if (!element.valideTenue() && !this.isTtop) {
+    if(!element.valideTenue() && !this.isTtop) {
+      this.effetGameOver();
       this.tuerJoueur(element.typeMortTenue());
     }
     if (!this.isTtop) {
