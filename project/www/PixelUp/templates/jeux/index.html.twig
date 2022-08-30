@@ -9,9 +9,9 @@
 
 {% block body %}
 
-    <pre>
-        {{ dump(app.user) }}
-    </pre>
+   {# <pre>
+        {{ dump(app.use   r) }}
+    </pre>#}
 
     <div id="game">
         <div id="info_Game">
@@ -40,6 +40,8 @@
     <script src="{{ asset('/game/js/class/enum/EnumTenues.js') }}"></script>
 
     <script src="{{ asset('/game/js/class/ConfigMoveUser.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/EffetsSonores.js') }}"></script>
 
     <script src="{{ asset('/game/js/class/MouvementJoueur.js') }}"></script> 
 
@@ -163,12 +165,16 @@
     
     <script src="{{ asset('/game/js/class/backgrounds/TestBackgroundPlanete.js') }}"></script>
     
-    <script src="{{ asset('/game/js/configGame.js') }}"></script>
-    <script src="{{ asset('/game/js/configGameBackgroung.js') }}"></script>
-    <script src="{{ asset('/game/js/configGameMoveBackgroung.js') }}"></script>
+    <script src="{{ asset('/js/configGame.js') }}"></script>
+
+    <script src="{{ asset('/game/js/audio.js') }}"></script>
+    
+    <script src="{{ asset('/js/configGameBackgroung.js') }}"></script>
+    
+    <script src="{{ asset('/js/configGameMoveBackgroung.js') }}"></script>
     
     <script src="{{ asset('/js/script.js') }}"></script>
     
-    <script src="{{ asset('/game/js/finDePartie.js') }}"></script>
+    <script src="{{ asset('/js/finDePartie.js') }}"></script>
 
 {% endblock %}
