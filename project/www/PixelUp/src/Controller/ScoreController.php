@@ -15,13 +15,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/score/{id}')]
+#[Route('/score')]
 class ScoreController extends AbstractController
 {
     #[Route('/', name: 'app_score_index', methods: ['GET'])]
     public function index(ScoreRepository $scoreRepository, UserRepository $userRepo,
      Request $request, ScoreService $ScoreService,
-     ManagerRegistry $doctrine,  int $id): Response
+     ManagerRegistry $doctrine): Response
     {
         $scores = $ScoreService->getPaginatedScores();
         $form = $this->createForm(SearchScoreType::class);
@@ -32,37 +32,34 @@ class ScoreController extends AbstractController
 
 
 
-
-         //TEST NOUVELLE METHODE POUR REMPLACER LE SCORE ACTUEL PAR LE NOUVEAU S'IL EST MEILLEUR 
-
-        //$score = $entityManager->getRepository(Score::class);
-        //$entityManager = $doctrine->getManager();
-
-
-        $nouveauScore = 52000;
+        $nouveauScore = 73000;
+        
         $entityManager = $doctrine->getManager();
         
-        //$scoreAll = $scoreRepository->getAllUserScore();
-        //$score = $entityManager->getRepository(Score::class)->find($id);
         $userForeach = $userRepo->findAll();
         $userId = "";
         $scoreRank = "";
 
-
+        $classScore = $scoreRepository->recupClassScore($user);//->setScore($nouveauScore);
         
         if($nouveauScore > $personnalScores[0]["score"]){
 
+            $classScore[0]->setScore($nouveauScore);
+            
             foreach ($userForeach as $value) {
+                
                 $userId = $value->getId();
                 $userRank = $scoreRepository->classmentBDD($value);
-                $bliblablou = $scoreRepository->getPersonnalScore($value);
-                $scoreRank = $scoreRepository->find($bliblablou[0]["id"]);
+                $userScore = $scoreRepository->getPersonnalScore($value);
+                $scoreRank = $scoreRepository->find($userScore[0]["id"]);
                 $scoreRank->setClassement($userRank["rank"]);
                 $scoreRepository->add($scoreRank);
                 $entityManager->persist($scoreRank);
                 $entityManager->flush();
+                header("Refresh:0");
                 
             }
+            
         }
 
         
@@ -87,6 +84,7 @@ class ScoreController extends AbstractController
             'user' => $user,
             'user_rank' => $userId,
             'score_rank' => $scoreRank,
+            'bliblablou' => $classScore,
         ]);
     }
 

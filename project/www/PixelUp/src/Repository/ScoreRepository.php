@@ -40,6 +40,18 @@ class ScoreRepository extends ServiceEntityRepository
         }
     }
 
+    // Methode qui recupere la class score
+
+    public function recupClassScore($user){
+
+        $query = $this->createQueryBuilder('s')
+            ->select('s')
+            ->innerJoin('s.user', 'u')
+            ->where('u = :user')
+            ->setParameter(':user', $user);
+        return $query->getQuery()->getResult();
+    }
+
 
 
     // Methode qui recherche le meilleur score de chaque joueur ( Classement )
@@ -47,7 +59,7 @@ class ScoreRepository extends ServiceEntityRepository
     public function getUserScore(){
         $query = $this->createQueryBuilder('s')
             ->innerJoin('s.user', 'u')
-            ->select('u.username, s.score, s.date');
+            ->select('u.username, s.score, s.date', 's.classement');
         $query->groupBy('s.user');
         $query->orderBy('s.score', 'DESC');
         return $query->getQuery()->getResult();
@@ -80,12 +92,12 @@ class ScoreRepository extends ServiceEntityRepository
 
         $query = $this->createQueryBuilder('s');
         if($mots != null) {
-            $query->select('u.username', 'MAX(s.score) AS max_score', 's.date')
+            $query->select('u.username', 's.score', 's.date', 's.classement')
             ->innerJoin('s.user', 'u')
             ->where('MATCH_AGAINST(u.username) AGAINST(:mots boolean)>0')
             ->setParameter('mots', $mots);
             $query->groupBy('s.user');
-            $query->orderBy('max_score', 'DESC');
+            $query->orderBy('s.score', 'DESC');
         }
         return $query->getQuery()->getResult();
 

@@ -63,6 +63,15 @@
         <tbody id="tbodyscore">
         {% for score in scores %}
             <tr>
+            {% if score.classement == 1 %}
+            <td>or</td>
+            {% elseif score.classement == 2 %}
+            <td>argent</td>
+            {% elseif score.classement == 3 %}
+            <td>bronze</td>
+            {% else %}
+                <td>{{ score.classement }}</td>
+            {% endif %}
                 <td>{{ score.score }}</td>
                 <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ score.username }}</td>
@@ -74,11 +83,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    {{ dump(rank) }}
-    {{ dump(user) }}
-    {{ dump(user_rank) }}
-    {{ dump(score_rank) }}
 
                 {% if 'mots' in app.request.uri %}
 
