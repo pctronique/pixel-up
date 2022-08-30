@@ -18,6 +18,18 @@ class UserController extends AbstractController
 {
     
 
+    #[Route('/usershow', name: 'app_user_show', methods: ['GET'])]
+    public function show(UserRepository $userRepository): Response
+    {
+        return $this->render('admin/show.html.twig', [
+
+            'userRepository' => $userRepository->findAll(),
+            
+            
+        ]);
+    }
+
+
     
     #[Route('/profil', name: 'app_profil')]
 
@@ -59,4 +71,20 @@ class UserController extends AbstractController
         $this->addFlash('success', 'Suppresion du profil effectuer');
         return $this->redirectToRoute('app_pixel_up', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('admin/{id}', name: 'app_user_admin_delete', methods: ['POST'])]
+    public function addel(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+
+            $userRepository->remove($user, true);
+        }
+        
+
+        $this->addFlash('success', 'Suppresion du profil effectuer');
+        return $this->redirectToRoute('app_user_show', [], Response::HTTP_SEE_OTHER);
+    }
+
+
 }
