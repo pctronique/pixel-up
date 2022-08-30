@@ -96,7 +96,8 @@ class Joueur extends Personnage {
   }
 
   afficher(canvas) {
-    /*let ctx = canvas.getContext("2d");
+    /*this.createBorder(canvas);
+    let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
     ctx.fillRect(this.posLeft.x, this.posLeft.y, this.taille.x, this.taille.y);
     ctx.fillRect(this.posRight.x, this.posRight.y, this.taille.x, this.taille.y);
@@ -117,22 +118,6 @@ class Joueur extends Personnage {
     imgJoueur.setBackground(this.background);
     imgJoueur.colorTransparance("#ffffff");
     imgJoueur.afficher(canvas);
-  }
-
-  visibleGame() {
-    if(this.background != undefined && this.background.taille != undefined) {
-      console.log("0001V");
-      console.log(this.background);
-      console.log("imgVisible : "+this.imgVisible());
-      console.log("imgLeftVisible : "+this.imgLeftVisible());
-      console.log("imgRighttVisible : "+this.imgRighttVisible());
-      super.visibleGame();
-      console.log("0002V");
-      console.log("imgVisible2 : "+this.imgVisible());
-      console.log("imgLeftVisible2 : "+this.imgLeftVisible());
-      console.log("imgRighttVisible2 : "+this.imgRighttVisible());
-      console.log(this.background);
-    }
   }
 
   collisionHaut() {

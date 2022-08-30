@@ -27,13 +27,13 @@ class Plateforme extends BlockRectange {
     }
 
     effetSaut(){
-        let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",100,true);
-        effetSaut.start();
+        /*let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",100,true);
+        effetSaut.start();*/
     }
 
     action(enumCollision) {
         if(enumCollision == EnumCollision.HAUT) {
-          this.effetPas();
+          //this.effetPas();
             return EnumAction.STOP;
         }
         return EnumAction.NULL;

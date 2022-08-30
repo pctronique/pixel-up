@@ -82,16 +82,12 @@ class BlockRectange extends Pause {
   }
 
   imgLeftVisible() {
-    /*return ((this.posLeft.x > 0 && this.posLeft.x < this.background.taille.x || 
-      (this.posLeft.x+this.taille.x) > 0 && (this.posLeft.x+this.taille.x) < this.background.taille.x) || (this.imgVisible() && this.pos.x < 0));*/
       return ((this.pos.x > 0 && this.pos.x < this.background.taille.x && 
         this.pos.x+this.taille.x > this.background.taille.x) || !this.imgVisible() && this.pos.x > 0);
 
   }
 
   imgRighttVisible() {
-    /*return ((this.posRight.x > 0 && this.posRight.x < this.background.taille.x || 
-      (this.posRight.x+this.taille.x) > 0 && (this.posRight.x+this.taille.x) < this.background.taille.x) || (this.imgVisible() && this.pos.x > this.background.taille.x));*/
       return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && 
         this.pos.x+this.taille.x < this.background.taille.x) || !this.imgVisible() && this.pos.x < 0);
   }
@@ -120,8 +116,9 @@ class BlockRectange extends Pause {
   }
 
   setPositionXY(posX, posY) {
-    this.pos = new Position(posX, posY);
-    if (this.pos === undefined) {
+    let posTmp = new Position(posX, posY);
+    this.setPosition(posTmp);
+    /*if (this.pos === undefined) {
       this.pos = new Position();
     }
       if(this.background == undefined && this.background.taille != undefined) {
@@ -131,7 +128,7 @@ class BlockRectange extends Pause {
     this.areteRectangle = new AreteRectangle(this.pos, this.taille);
     this.areteRectangleLeft = new AreteRectangle(this.posLeft, this.taille);
     this.areteRectangleRight = new AreteRectangle(this.posRight, this.taille);
-    this.visibleGame();
+    this.visibleGame();*/
   }
 
   setPositionX(posX) {
@@ -139,10 +136,10 @@ class BlockRectange extends Pause {
       this.pos.x = posX;
       this.posLeft.x = this.pos.x - this.background.taille.x;
       this.posRight.x = this.pos.x + this.background.taille.x;
-      this.areteRectangle = new AreteRectangle(this.pos, this.taille);
-      this.areteRectangleLeft = new AreteRectangle(this.posLeft, this.taille);
-      this.areteRectangleRight = new AreteRectangle(this.posRight, this.taille);
     }
+    this.areteRectangle = new AreteRectangle(this.pos, this.taille);
+    this.areteRectangleLeft = new AreteRectangle(this.posLeft, this.taille);
+    this.areteRectangleRight = new AreteRectangle(this.posRight, this.taille);
     this.visibleGame();
   }
 
@@ -153,13 +150,25 @@ class BlockRectange extends Pause {
   setPositionY(posY) {
     if(this.pos != undefined && posY != undefined) {
       this.pos.y = posY;
-      this.areteRectangle = new AreteRectangle(this.pos, this.taille);
+      this.posLeft.y = posY;
+      this.posRight.y = posY;
     }
+    this.areteRectangle = new AreteRectangle(this.pos, this.taille);
+    this.areteRectangleLeft = new AreteRectangle(this.posLeft, this.taille);
+    this.areteRectangleRight = new AreteRectangle(this.posRight, this.taille);
     this.visibleGame();
   }
 
   getAreteRectangle() {
     return this.areteRectangle;
+  }
+
+  getAreteRectangleLeft() {
+    return this.areteRectangleLeft;
+  }
+
+  getAreteRectangleRight() {
+    return this.areteRectangleRight;
   }
 
   getPosition() {

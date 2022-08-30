@@ -49,7 +49,6 @@ class EnumTypeMortInfo {
     }
 
     static typeMortInfoEnum(enumTypeMort) {
-        console.log(EnumTypeMortInfo.typeMortInfo());
         let TabEnum = EnumTypeMortInfo.typeMortInfo();
         for (let index = 0; index < TabEnum.length; index++) {
             const element = TabEnum[index];

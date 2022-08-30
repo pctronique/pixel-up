@@ -1,7 +1,7 @@
 class BackgroundSousTerre extends Background {
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, imgBack, imgBas);
+    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
@@ -15,8 +15,8 @@ class BackgroundSousTerre extends Background {
         let pos = new Position(0, this.taille.y - 1);
         let taille0 = new Taille(this.taille.x, 10);
         let plateforme = new PlateformeSolid(taille0);
-        plateforme.setPosition(pos);
         plateforme.setBackground(this);
+        plateforme.setPosition(pos);
         this.plateformes.push(plateforme);
     }
 
