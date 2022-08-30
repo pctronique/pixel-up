@@ -181,6 +181,10 @@ class Game {
           config = this.tabConfigMovBackground.ESPACE_SATELLITE;
         }
         break;
+      default:
+        if (this.tabConfigMovBackground != undefined) {
+          config = this.tabConfigMovBackground.ESPACE_VAISSEAU;
+        }
     }
     if(config != undefined) {
       configMov = new ConfigMoveUser(config.hauteurSaut, config.millisecondeSaut, 
