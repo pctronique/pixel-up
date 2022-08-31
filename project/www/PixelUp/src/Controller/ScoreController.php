@@ -41,28 +41,30 @@ class ScoreController extends AbstractController
         $scoreRank = "";
 
         $classScore = $scoreRepository->recupClassScore($user);//->setScore($nouveauScore);
-        
-        if($nouveauScore > $personnalScores[0]["score"]){
 
-            $classScore[0]->setScore($nouveauScore);
-            
-            foreach ($userForeach as $value) {
-                
-                $userId = $value->getId();
-                $userRank = $scoreRepository->classmentBDD($value);
-                $userScore = $scoreRepository->getPersonnalScore($value);
-                $scoreRank = $scoreRepository->find($userScore[0]["id"]);
-                $scoreRank->setClassement($userRank["rank"]);
-                $scoreRepository->add($scoreRank);
-                $entityManager->persist($scoreRank);
-                $entityManager->flush();
-                header("Refresh:0");
-                
+        if(!empty($personnalScores)){
+        
+            if($nouveauScore > $personnalScores[0]["score"]){
+
+                $classScore[0]->setScore($nouveauScore);
+
+                foreach ($userForeach as $value) {
+
+                    $userId = $value->getId();
+                    $userRank = $scoreRepository->classmentBDD($value);
+                    $userScore = $scoreRepository->getPersonnalScore($value);
+                    $scoreRank = $scoreRepository->find($userScore[0]["id"]);
+                    $scoreRank->setClassement($userRank["rank"]);
+                    $scoreRepository->add($scoreRank);
+                    $entityManager->persist($scoreRank);
+                    $entityManager->flush();
+                    header("Refresh:0");
+
+                }
+
             }
-            
-        }
 
-        
+        }
         
 
         
