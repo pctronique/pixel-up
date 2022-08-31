@@ -17,7 +17,7 @@ if (window.Worker) {
       game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
       game.configDeplacement(tabConfig.deplacement.largeurDeplacement, tabConfig.deplacement.millisecondeDeplacement);
       game.configCoucou(tabConfig.coucou.largeurCoucou, tabConfig.coucou.millisecondeCoucou);
-      //game.setProjectDev();
+      game.setProjectDev();
       game.scoreId("score");
       game.setIdTypeMort("game_typeMort");
       game.addBackground();
