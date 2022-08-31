@@ -26,7 +26,7 @@ class ScoreController extends AbstractController
         $scores = $ScoreService->getPaginatedScores();
         $form = $this->createForm(SearchScoreType::class);
         $search = $form->handleRequest($request);
-        $user = $this->getUser()->getId();
+        $user = $this->getUser();
         $personnalRank = $scoreRepository->classmentBDD($user);
         $personnalScores = $scoreRepository->getPersonnalScore($user);
 
@@ -42,29 +42,31 @@ class ScoreController extends AbstractController
 
         $classScore = $scoreRepository->recupClassScore($user);//->setScore($nouveauScore);
 
-        if(!empty($personnalScores)){
+        if (isset($personnalScores[0]["score"])){
         
-            if($nouveauScore > $personnalScores[0]["score"]){
+        if($nouveauScore > $personnalScores[0]["score"]){
 
-                $classScore[0]->setScore($nouveauScore);
-
-                foreach ($userForeach as $value) {
-
-                    $userId = $value->getId();
-                    $userRank = $scoreRepository->classmentBDD($value);
-                    $userScore = $scoreRepository->getPersonnalScore($value);
-                    $scoreRank = $scoreRepository->find($userScore[0]["id"]);
-                    $scoreRank->setClassement($userRank["rank"]);
-                    $scoreRepository->add($scoreRank);
-                    $entityManager->persist($scoreRank);
-                    $entityManager->flush();
-                    header("Refresh:0");
-
-                }
-
+            $classScore[0]->setScore($nouveauScore);
+            
+            foreach ($userForeach as $value) {
+                
+                $userId = $value->getId();
+                $userRank = $scoreRepository->classmentBDD($value);
+                $userScore = $scoreRepository->getPersonnalScore($value);
+                $scoreRank = $scoreRepository->find($userScore[0]["id"]);
+                $scoreRank->setClassement($userRank["rank"]);
+                $scoreRepository->add($scoreRank);
+                $entityManager->persist($scoreRank);
+                $entityManager->flush();
+                header("Refresh:0");
+                
             }
-
+            
         }
+
+    }
+
+        
         
 
         

@@ -30,6 +30,7 @@ class ScoresFixtures extends Fixture implements DependentFixtureInterface
         for ($count = 0; $count < 50; $count++) {
             $score = new Score();
             $score->setScore(rand(1, 50000));
+            $score->setClassement(0);
             $score->setDate(new DateTime('06/04/2014'));
             $score->setUser($this->getReference("user_".$count));
             $manager->persist($score);
