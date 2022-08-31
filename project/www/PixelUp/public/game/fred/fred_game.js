@@ -29,8 +29,8 @@ if (window.Worker) {
     let screenGame = document.getElementById("screenGame_0");
     screenGame.scrollTop = screenGame.scrollHeight;
 
-    //  game.start();
-    game.stop();
+      game.stop();
+  
    
 
     // fonction mathématique écoute évènement au scroll par rapport à la taille de screenGame 

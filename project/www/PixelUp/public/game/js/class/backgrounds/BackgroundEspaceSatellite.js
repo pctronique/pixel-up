@@ -15,7 +15,7 @@ class BackgroundEspaceSatellite extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/pixil-frame-0 (23).png");
+        this.imageSrc("./img/background_SATELLITES.png");
         let espaceSatellite = new Images(this.imageSource, this.pos, this.taille);
         espaceSatellite.setBackground(this);
         espaceSatellite.afficher(canvas);

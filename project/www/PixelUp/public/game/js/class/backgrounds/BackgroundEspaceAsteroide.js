@@ -15,7 +15,7 @@ class BackgroundEspaceAsteroide extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/pixil-frame-0 (35).png");
+        this.imageSrc("./img/background_ASTEROIDES.png");
         let backgroundEspaceAsteroide = new Images(this.imageSource, this.pos, this.taille);
         backgroundEspaceAsteroide.setBackground(this);
         backgroundEspaceAsteroide.afficher(canvas);
