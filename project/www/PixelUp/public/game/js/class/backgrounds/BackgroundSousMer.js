@@ -30,14 +30,20 @@ class BackgroundSousMer extends Background {
         //return new PlateformeMobilePoisson();
         let min=1; 
         let max=4;  
+        if(this.stopPg) {
+            max=3;
+        }
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
+            this.isPiege = false;
             return new PlateformeMobilePoisson();
         }
         else if (random == 2){
+            this.isPiege = false;
             return new PlateformeMobileRequin();
         }
         else if (random == 3) {
+            this.isPiege = true;
             return new PlateformePiegesRadFish();
         }
    
