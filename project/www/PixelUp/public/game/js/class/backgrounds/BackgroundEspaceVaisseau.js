@@ -14,7 +14,7 @@ class BackgroundEspaceVaisseau extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/fondEspace2.jpg");
+        this.imageSrc("./img/background_VAISSEAUX.png");
         let BackgroundEspaceVaisseau = new Images(this.imageSource, this.pos, this.taille);
         BackgroundEspaceVaisseau.setBackground(this);
         BackgroundEspaceVaisseau.afficher(canvas);
