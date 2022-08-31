@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/score')]
 class ScoreController extends AbstractController
 {
-    #[Route('/', name: 'app_score_index', methods: ['GET'])]
+    #[Route('/result', name: 'app_score_index', methods: ['GET', 'POST'])]
     public function index(ScoreRepository $scoreRepository, UserRepository $userRepo,
      Request $request, ScoreService $ScoreService,
      ManagerRegistry $doctrine): Response
@@ -32,7 +32,7 @@ class ScoreController extends AbstractController
 
 
 
-        $nouveauScore = 73000;
+        $nouveauScore = (!empty($_GET)&&array_key_exists('scoreGame',$_GET))? intval($_GET['scoreGame']):0;
         
         $entityManager = $doctrine->getManager();
         
@@ -40,7 +40,7 @@ class ScoreController extends AbstractController
         $userId = "";
         $scoreRank = "";
 
-        $classScore = $scoreRepository->recupClassScore($user);//->setScore($nouveauScore);
+        $classScore = $scoreRepository->recupClassScore($user);
 
         if (isset($personnalScores[0]["score"])){
         
