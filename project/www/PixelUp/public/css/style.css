@@ -11,6 +11,7 @@ body{
     background-size: cover;
     -webkit-animation: background 50s linear infinite;
     animation: background 50s linear infinite;
+    position: relative;
 }
 
 *{
@@ -74,7 +75,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 20px;
     text-align: center;
   }
 
@@ -157,6 +158,12 @@ header{
   }
 
 /* FOOTER */
+
+  footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 
   footer ul{
     width: 100%;

@@ -10,7 +10,7 @@
 
     <div id ="pacman">
         
-        <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
+        <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
         <div></div>
         <div></div>
         <div></div>
@@ -25,7 +25,7 @@
                         {# Si l'utilisateur est authentifié et qu'il est admin #}
                         <h1>Accueil Admin</h1>
                 {% else %}
-            <div class="arrow"><p>Bienvenue !<p></div>
+            <div class="arrow"></div>
             {% endif %}
         </div>
 
@@ -35,7 +35,7 @@
       
             
           
-
+            
             <!--<audio autoplay onplay="handleFirstPlay(event)" src="./son_menu/Touche.mp3"></audio>-->
             
             <a href="{{ path('app_jeux')}}"><li>Lancer la partie</li></a>
@@ -73,7 +73,7 @@
 
     
     
-    <script src="{{ asset('./js/son.js') }}"></script>
+    
 
     
 
