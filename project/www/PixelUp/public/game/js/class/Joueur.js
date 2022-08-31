@@ -11,8 +11,7 @@ class Joueur extends Personnage {
     this.nmDepl = 2;
     this.tailleImg = new Taille(100, 100);
     //this.tailleImg = new Taille(47, 47);
-    //this.modifTenue(EnumTenues.NORMAL);
-    this.modifTenue(EnumTenues.MER);
+    this.modifTenue(EnumTenues.NORMAL);
   }
 
   /*visibleGame() {
@@ -51,6 +50,14 @@ class Joueur extends Personnage {
     //this.imageSrc('./img/personnage-1.png');
     this.posImg = ImageTenue.recupPos(tenue);
     this.tenue = tenue;
+  }
+
+  configMoveUser(configMoveUser) {
+    if(configMoveUser != undefined) {
+      this.configSaut(configMoveUser.hauteurSaut, configMoveUser.millisecondeSaut, configMoveUser.millisecondeTomber);
+      this.configDeplacement(configMoveUser.largeurDeplacement, configMoveUser.millisecondeDeplacement);
+      this.configCoucou(configMoveUser.largeurCoucou, configMoveUser.millisecondeCoucou);
+    }
   }
 
   keyGame(

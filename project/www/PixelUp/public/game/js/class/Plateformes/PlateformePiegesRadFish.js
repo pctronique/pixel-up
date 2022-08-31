@@ -2,6 +2,7 @@ class PlateformePiegesRadFish extends PlateformeMobile{
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
         this.taille = new Taille(90,23);
+        this.piege = true;
 
     }
     action(enumCollision) {

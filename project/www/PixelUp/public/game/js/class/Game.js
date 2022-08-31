@@ -382,12 +382,13 @@ class Game {
     );
     addJoueur.configCoucou(this.largeurCoucou, this.millisecondeCoucou);
     addJoueur.setBackground(background);
+    addJoueur.configMoveUser(background.configMoveUser);
     background.setJoueur(addJoueur);
 
     // ludovic (fin) : pour ajouter le joueur
     this.backgrounds.push(background);
     this.createBackground();
-    //this.deleteBackground();
+    this.deleteBackground();
     //}
 
     // ludovic (debut) : pour ajouter le joueur
@@ -470,10 +471,14 @@ class Game {
   getEnumCollision() {
     let enumCollision = this.backgrounds[0].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
+      this.backgrounds[0].joueur.configMoveUser(this.backgrounds[0].configMoveUser);
+      this.backgrounds[1].joueur.configMoveUser(this.backgrounds[0].configMoveUser);
       return { collision: enumCollision, background: 0 };
     }
     enumCollision = this.backgrounds[1].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
+      this.backgrounds[0].joueur.configMoveUser(this.backgrounds[1].configMoveUser);
+      this.backgrounds[1].joueur.configMoveUser(this.backgrounds[1].configMoveUser);
       return { collision: enumCollision, background: 1 };
     }
     return { collision: enumCollision, background: -1 };
@@ -588,6 +593,7 @@ class Game {
     };
     this.workerGame.postMessage([this.milliseconde, true]);
   }
+
   screenBottom(pos) {
     this.backgrounds[0].screenBottom(pos);
   }

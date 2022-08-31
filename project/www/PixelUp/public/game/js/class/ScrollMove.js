@@ -32,19 +32,28 @@ class ScrollMove {
 
     monter() {
         const element = this.game.backgrounds[0];
+        let ecranGame = element.taille.y*2;
+        let posJoueur = ecranGame-element.joueur.pos.y;
+        let posJoueurBase = posJoueur*this.taillePixel();
+        let posJoueurBase2 = element.joueur.pos.y/this.taillePixel();
+        console.log("pos_joueur : " + element.joueur.pos.y);
         console.log("scrollTop : " + this.gameElement.scrollTop);
         console.log("scrollHeight : " + this.gameElement.scrollHeight);
         console.log("scrollWidth : " + this.gameElement.scrollWidth);
         console.log("offsetHeight : " + this.gameElement.offsetHeight);
         console.log("offsetWidth : " + this.gameElement.offsetWidth);
         let divEcran = this.gameElement.scrollHeight/this.gameElement.offsetHeight;
-        let ecranGame = (element.taille.y*2)/divEcran;
-        let posEcranGame = ecranGame-element.joueur.pos.y;
-        let posScrollSous = posEcranGame*this.taillePixel();
-        this.posScroll = (this.gameElement.scrollHeight-this.gameElement.offsetHeight)-posScrollSous;
+        console.log("divEcran : " + divEcran);
+        
+        console.log("ecranGame : " + ecranGame);
+        console.log("posJoueur : " + posJoueur);
+        console.log("posJoueurBase : " + posJoueurBase);
+        console.log("posJoueurBase2 : " + posJoueurBase2);
+        /*this.posScroll = (this.gameElement.scrollHeight-this.gameElement.offsetHeight)-posScrollSous;
+        console.log("this.posScroll : " + this.posScroll);
         if(this.posScrollOld > this.posScroll) {
             this.gameElement.scrollTop = this.posScroll;
-        }
+        }*/
     }
 
     calculMilieu() {

@@ -33,10 +33,18 @@ class Background {
     this.maxX = 102;
     this.minY = 10;
     this.maxY = 70;
+    this.nbPgLine = -1;
+    this.nbPgSepareLine = -1;
+    this.nbPgTotal = -1;
+    this.isPiege = false;
+    this.stopPg = false;
     this.tenueBackground = undefined;
     if (tabConfig == undefined) {
       this.creerPlatforme(50, 300, 25, 80);
     } else {
+      this.nbPgLine = tabConfig.nbPiege.nbPgLine;
+      this.nbPgSepareLine = tabConfig.nbPiege.nbPgSepareLine;
+      this.nbPgTotal = tabConfig.nbPiege.nbPgTotal;
       this.creerPlatforme(
         tabConfig.minX,
         tabConfig.maxX,
@@ -152,13 +160,42 @@ class Background {
     this.plateformesCollision = [];
     let defaultHauteur = this.maxY; //hauteur espacement initiale interligne y entre 2 plateformes
     let startHauteur = defaultHauteur;
+    let countPg = 0;
+    let countPgLine = 0;
+    let countOldPgLine = 0;
+    let nbLine = 0;
     while (startHauteur < this.taille.y) {
+      this.stopPg = true;
+      if(this.nbPgSepareLine != -1) {
+        countPgLine = Math.floor(nbLine/this.nbPgSepareLine);
+        if(countPgLine != countOldPgLine) {
+          countOldPgLine = countPgLine;
+          this.stopPg = false;
+        }
+      } else {
+        this.stopPg = false;
+      }
+      countPgLine=0;
       let nombreDeLignes = 0;
       let posPlateforme = 0;
       while (posPlateforme < this.taille.x) {
+          if(this.nbPgTotal != -1 && !this.stopPg) {
+            if(countPg>=this.nbPgTotal) {
+              this.stopPg = true;
+            }
+          }
+          if(this.nbPgLine != -1 && !this.stopPg) {
+            if(countPgLine>=this.nbPgLine) {
+              this.stopPg = true;
+            }
+          }
         let objRndPos = new RndPos(posPlateforme, 0); //creation aleatoire position de la nouvelle platemeforme en x
         // let taille = new Taille(50, 10);
         let plateforme = this.choixPlateforme();
+        if(plateforme.piege) {
+          countPg++;
+          countPgLine++;
+        }
         if (nombreDeLignes == 0) {
           objRndPos.minMaxX(0, this.maxX - this.minX);
           posPlateforme += objRndPos.getX();
@@ -181,20 +218,11 @@ class Background {
           if (this.projectDev) {
             plateforme.setProjectDev();
           }
-          //let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-          /*this.plateformesCollision.push(
-            new CollisionPlateforme(
-              this.plateformes.length,
-              posArete.haut(),
-              posArete.bas(),
-              posArete.gauche(),
-              posArete.droite()
-            )
-          );*/
           this.plateformes.push(plateforme);
         }
         nombreDeLignes++;
       }
+      nbLine++;
       startHauteur += defaultHauteur;
     }
   }
