@@ -19,7 +19,7 @@ if (window.Worker) {
     game.configSaut(tabConfig.sautTomber.hauteurSaut, tabConfig.sautTomber.millisecondeSaut, tabConfig.sautTomber.millisecondeTomber);
     game.configDeplacement(tabConfig.deplacement.largeurDeplacement, tabConfig.deplacement.millisecondeDeplacement);
     game.configCoucou(tabConfig.coucou.largeurCoucou, tabConfig.coucou.millisecondeCoucou);
-    game.setProjectDev();
+    //game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
     game.addBackground();
@@ -36,7 +36,7 @@ if (window.Worker) {
         console.log("scrollWidth0 : " + screenGame.scrollWidth);
         console.log("offsetHeight0 : " + screenGame.offsetHeight);
         console.log("offsetWidth0 : " + screenGame.offsetWidth);*/
-        console.log("scrollTop01 : " + screenGame.scrollTop);
+        //console.log("scrollTop01 : " + screenGame.scrollTop);
         let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
         let calcul4 = (screenGame.scrollHeight / 2) / backgroundTaille.y;
         let st = -1 * (game.backgrounds[0].scrollMove.placeBas() / game.backgrounds[0].scrollMove.taillePixel());

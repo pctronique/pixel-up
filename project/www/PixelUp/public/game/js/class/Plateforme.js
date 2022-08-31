@@ -7,9 +7,14 @@ class Plateforme extends BlockRectange {
      */
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille);
+        this.piege = false;
         if(this.taille == undefined || this.taille.y == 0) {
             this.taille = new Taille(0, 20);
         }
+    }
+
+    getPiege() {
+        return this.piege;
     }
 
     afficher(canvas) {

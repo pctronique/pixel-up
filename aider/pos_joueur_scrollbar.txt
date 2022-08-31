@@ -64,14 +64,68 @@ ScrollMove.js:50 this.posScroll : 1180.8
 scrollTop01 : 1138.888916015625
 
 pos_joueur : 800
-ScrollMove.js:36 scrollTop : 2416.666748046875
-ScrollMove.js:37 scrollHeight : 3493
-ScrollMove.js:38 scrollWidth : 1747
-ScrollMove.js:39 offsetHeight : 1077
-ScrollMove.js:40 offsetWidth : 1766
-ScrollMove.js:42 divEcran : 3.243268337975859
-ScrollMove.js:44 ecranGame : 616.6618952190095
-ScrollMove.js:46 posEcranGame : -183.33810478099053
-ScrollMove.js:48 posScrollSous : -320.19999999999993
-ScrollMove.js:50 this.posScroll : 2736.2
-scrollTop01 : 2173.33349609375
+ScrollMove.js:40 scrollTop : 1842
+ScrollMove.js:41 scrollHeight : 3062
+ScrollMove.js:42 scrollWidth : 1531
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 1546
+ScrollMove.js:46 divEcran : 2.5098360655737704
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 1837.1999999999998
+ScrollMove.js:51 posJoueurBase2 : 1224.8
+pos_ecran: 1007
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 2332
+ScrollMove.js:41 scrollHeight : 3552
+ScrollMove.js:42 scrollWidth : 1776
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 1791
+ScrollMove.js:46 divEcran : 2.911475409836066
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 2131.2
+ScrollMove.js:51 posJoueurBase2 : 1420.8
+pos_ecran: 973
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 150
+ScrollMove.js:41 scrollHeight : 1370
+ScrollMove.js:42 scrollWidth : 685
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 700
+ScrollMove.js:46 divEcran : 1.1229508196721312
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 822.0000000000001
+ScrollMove.js:51 posJoueurBase2 : 548
+pos_ecran: 1125
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 780
+ScrollMove.js:41 scrollHeight : 2000
+ScrollMove.js:42 scrollWidth : 1000
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 1015
+ScrollMove.js:46 divEcran : 1.639344262295082
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 1200
+ScrollMove.js:51 posJoueurBase2 : 800
+pos_ecran: 1080
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 0
+ScrollMove.js:41 scrollHeight : 1220
+ScrollMove.js:42 scrollWidth : 610
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 625
+ScrollMove.js:46 divEcran : 1
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 732
+ScrollMove.js:51 posJoueurBase2 : 1311.4754098360656
+
+
+

@@ -7,6 +7,7 @@ class PlateformePiegeHaut extends Plateforme {
      */
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
+        this.piege = true;
     }
 
     action(enumCollision) {

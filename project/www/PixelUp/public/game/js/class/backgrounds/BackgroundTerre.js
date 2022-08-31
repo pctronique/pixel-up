@@ -29,12 +29,17 @@ class BackgroundTerre extends Background {
     choixPlateforme(){
         //return new PlateformeNacelles();
         let min=1; 
-        let max=3;  
+        let max=3;
+        if(this.stopPg) {
+            max=2;
+        } 
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
+            this.isPiege = false;
             return new PlateformeNacelles();
         }
         else if (random == 2){
+            this.isPiege = true;
             return new PlateformePiegesNacelles();
         }
    
