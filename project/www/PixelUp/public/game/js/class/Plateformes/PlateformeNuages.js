@@ -7,7 +7,7 @@ class PlateformeNuages extends PlateformeMobile{
 
     action(enumCollision) {
         if (enumCollision == EnumCollision.HAUT) {
-            this.effetPas();
+            
             return EnumAction.STOP;
         }
         return EnumAction.NULL;
@@ -19,7 +19,7 @@ class PlateformeNuages extends PlateformeMobile{
     afficher(canvas){
         this.deplacement();
         //this.img;
-        this.imageSrc('./img/nuagetest.png');
+        this.imageSrc('./img/nuage3.png');
         this.createBorder(canvas);
         let nuages = new Images(this.img, new Position(this.pos.x-25, this.pos.y-34), new Taille(100,90));
         nuages.setObjetDuplique(this);
