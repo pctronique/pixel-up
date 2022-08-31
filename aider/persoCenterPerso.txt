@@ -1,0 +1,25 @@
+scrollTop0 : 1721.1112060546875
+scrollHeight0 : 3131
+scrollWidth0 : 1566
+offsetHeight0 : 1077
+offsetWidth0 : 1584
+501 sur 1077
+170 sur 1077
+
+scrollTop0 : 1268.888916015625
+scrollHeight0 : 2516
+scrollWidth0 : 1258
+offsetHeight0 : 1077
+offsetWidth0 : 1277
+506 sur 1077
+335 sur 1077
+
+scrollTop0 : 941.1111450195312
+script1.js:35 scrollHeight0 : 2516
+script1.js:36 scrollWidth0 : 1258
+script1.js:37 offsetHeight0 : 1077
+script1.js:38 offsetWidth0 : 1277
+593 sur 1077
+97 sur 1077
+pos joueur : 174.88076311605724
+ScrollMove.js:46 pos scroll : 220

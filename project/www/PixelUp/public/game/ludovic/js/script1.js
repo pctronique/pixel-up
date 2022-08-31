@@ -31,11 +31,11 @@ if (window.Worker) {
 
     screenGame.addEventListener("scroll", function () {
 
-        /*console.log("scrollTop0 : " + screenGame.scrollTop);
+        console.log("scrollTop0 : " + screenGame.scrollTop);
         console.log("scrollHeight0 : " + screenGame.scrollHeight);
         console.log("scrollWidth0 : " + screenGame.scrollWidth);
         console.log("offsetHeight0 : " + screenGame.offsetHeight);
-        console.log("offsetWidth0 : " + screenGame.offsetWidth);*/
+        console.log("offsetWidth0 : " + screenGame.offsetWidth);
         //console.log("scrollTop01 : " + screenGame.scrollTop);
         let calcul0 = ((screenGame.scrollHeight - screenGame.scrollWidth) + (screenGame.scrollWidth - screenGame.offsetHeight) - screenGame.scrollTop);
         let calcul4 = (screenGame.scrollHeight / 2) / backgroundTaille.y;
@@ -45,10 +45,10 @@ if (window.Worker) {
         //game.backgrounds[0].scrollMove.changeBackground();
         //game.screenBottom(st);
         //game.afficher();
-        /*let scrollHaut = screenGame.scrollHeight / screenGame.childElementCount - screenGame.offsetHeight;
+        let scrollHaut = screenGame.scrollHeight / screenGame.childElementCount - screenGame.offsetHeight;
         if (screenGame.scrollTop < scrollHaut) {
-            game.addBackground(backgroundTaille.x, backgroundTaille.y, 18, 60);
-        }*/
+           game.addBackground(backgroundTaille.x, backgroundTaille.y, 18, 60);
+        }
     }, false);
 
     screenGame.scrollTop = screenGame.scrollHeight;
