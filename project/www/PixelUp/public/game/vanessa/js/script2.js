@@ -38,4 +38,11 @@ valider3.onclick = function () {
   modal.style.display = "none";
 };
 
+let valider4 = document.querySelector("#validerConfigGameMoveBackground");
+
+valider4.onclick = function () {
+  let modal = valider4.closest(".modal");
+  modal.style.display = "none";
+};
+
 

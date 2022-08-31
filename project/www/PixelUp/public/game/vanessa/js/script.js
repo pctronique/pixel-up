@@ -28,7 +28,7 @@ if (window.Worker) {
     let screenGame = document.getElementById("screenGame_0");
     screenGame.scrollTop = screenGame.scrollHeight;
 
-     //game.start();
+     game.start();
 
 
     screenGame.addEventListener("scroll", function () {
@@ -45,7 +45,7 @@ if (window.Worker) {
     }, false);
  
     function startGame(e) {
-  
+      document.getElementById("info_Game").style.display = "none";
         game.start();
         //game.startDev();
       }
