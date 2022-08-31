@@ -1,0 +1,67 @@
+body {
+    margin : 0;
+    padding : 0;
+    /*background-color: black;*/
+}
+#score {
+    position: absolute;
+    padding: 10px;
+    z-index: 2;
+    margin-top: 2px;
+    background-color: rgba(255, 255, 255, 0.815);
+    border-radius: 10px;
+    right: 0;
+    margin: 10px
+}
+.screenGame {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.screenGame canvas {
+    display: flex;
+}
+#utilisateur {
+    position: absolute;
+    margin-left: -335px;
+    margin-top: 950px;
+}
+#test {
+    width: 20px;
+    height: 20px;
+    background:red;
+    margin-top:1980px;
+    position: absolute;
+}
+.buttonMove button, #start {
+    padding: 25px;
+    margin: 5px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgba(249, 255, 196, 0.685);
+    border: rgba(128, 128, 128, 0.767) 2px solid;
+}
+.buttonMove {
+    position: absolute;
+    bottom: 0;
+}
+#buttonMoveRight {
+    right: 0;
+}
+#button_left {
+    right: 0;
+}
+#button_right {
+    right: 0;
+}
+#info_Game {
+    position: absolute;
+    z-index: 2;
+}
+#imageTest{
+    background-color: blueviolet;
+}

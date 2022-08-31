@@ -57,6 +57,18 @@ services:
             #- ./.docker/config/config.php:/usr/local/apache2/www/config/config.php:rw
             #- ./.docker/config/.env.local:/usr/local/apache2/www/.env.local:rw
             
+    nodejs:
+        container_name: ${NAME_NODE_CONTAINER}
+        build: .docker/nodejs
+        restart: always
+        tty: true
+        stdin_open: true
+        volumes:
+            - ./project/www/:/usr/local/apache2/www
+            - ./projecttmp/logs/pm2:/root/.pm2/logs/:rw
+        ports:
+            - ${VALUE_NODE_PORT}:1338
+            
 
 ###########################
 # Setup the Database (MariaDB) container

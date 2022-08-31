@@ -1,6 +1,12 @@
+body {
+    margin : 0;
+    padding : 0;
+    /*background-color: black;*/
+}
+
 html {
 	background-color: #7D2663;
-	font-family: sans-serif;
+	font-family: 'Silkscreen', cursive;
 }
 
 h1 {
@@ -10,6 +16,7 @@ h1 {
 	position: absolute;
 	top: 0;
 	z-index: -1;
+	font-family: 'Silkscreen', cursive;
 }
 
 p {
@@ -37,3 +44,4 @@ p {
 .controls div {
   padding-bottom: 1rem;
 }
+
