@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}coucou{% endblock %}</title>
+        <title>{% block title %}PixelUp{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,6 +57,13 @@
             </ul>
         </footer>
     
-    <script src="{{ asset('js/pg_score.js') }}"></script>
+    <audio id="myaudio" src="{{ asset('son_menu/Touche.mp3') }}"></audio>
+    <script src="{{ asset('js/pg_home.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('./js/son.js') }}"></script>
+    <script type="text/javascript">
+        $(window).load(function() {
+        $(".loader").fadeOut(2500); })
+    </script>
     </body>
 </html>

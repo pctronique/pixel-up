@@ -63,7 +63,16 @@
         <tbody id="tbodyscore">
         {% for score in scores %}
             <tr>
-                <td>{{ score.max_score }}</td>
+            {% if score.classement == 1 %}
+            <td>or</td>
+            {% elseif score.classement == 2 %}
+            <td>argent</td>
+            {% elseif score.classement == 3 %}
+            <td>bronze</td>
+            {% else %}
+                <td>{{ score.classement }}</td>
+            {% endif %}
+                <td>{{ score.score }}</td>
                 <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ score.username }}</td>
             </tr>
@@ -85,5 +94,5 @@
 
 </section>
 
-
+<script src="{{ asset('js/pg_score.js') }}"></script>
 {% endblock %}
