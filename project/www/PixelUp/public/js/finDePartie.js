@@ -31,7 +31,7 @@ typeMort.addEventListener("change", function (e) {
   alert(message + "  " + scoreGame.innerText);
 
  
-    let dataArray = { "scoreGame":scoreGame.innerText, "typeMort": typeMort };
+    let dataArray = { "scoreGame":scoreGame.innerText, "typeMort": typeMort.value };
     fetch_post('/score/result',dataArray).then(function (response) {
       console.log(response);
       alert(message + "Envoyer" + scoreGame.innerText);

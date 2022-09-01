@@ -32,7 +32,7 @@ class ScoreController extends AbstractController
 
 
 
-        $nouveauScore = (!empty($_GET)&&array_key_exists('scoreGame',$_GET))? intval($_GET['scoreGame']):0;
+        $nouveauScore = (!empty($_POST)&&array_key_exists('scoreGame',$_POST))? intval($_POST['scoreGame']):0;
         
         $entityManager = $doctrine->getManager();
         
