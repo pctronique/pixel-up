@@ -5,9 +5,11 @@ class Background {
     scrollMove = undefined,
     tabConfig = undefined,
     configMoveUser = undefined,
+    volumeEffet =100,
     imgBack = undefined,
     imgBas = undefined
   ) {
+    this.volumeEffet = volumeEffet;
     this.configMoveUser = configMoveUser;
     this.taille = taille;
     this.imgBack = imgBack;
@@ -33,10 +35,18 @@ class Background {
     this.maxX = 102;
     this.minY = 10;
     this.maxY = 70;
+    this.nbPgLine = -1;
+    this.nbPgSepareLine = -1;
+    this.nbPgTotal = -1;
+    this.isPiege = false;
+    this.stopPg = false;
     this.tenueBackground = undefined;
     if (tabConfig == undefined) {
       this.creerPlatforme(50, 300, 25, 80);
     } else {
+      this.nbPgLine = tabConfig.nbPiege.nbPgLine;
+      this.nbPgSepareLine = tabConfig.nbPiege.nbPgSepareLine;
+      this.nbPgTotal = tabConfig.nbPiege.nbPgTotal;
       this.creerPlatforme(
         tabConfig.minX,
         tabConfig.maxX,
@@ -54,14 +64,18 @@ class Background {
   }
 
   valideTenue() {
-    return true;
-    //return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
+    //return true;
+    return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
   }
 
   typeMortTenue() {
+    this.effetGameOver();
     return EnumTypeMort.NULL;
   }
-
+  effetGameOver(){
+    let effetGameOver = new EffetsSonores("son/gameOver.mp3", 100, true);
+    effetGameOver.start();
+  }
   setProjectDev() {
     this.projectDev = true;
     for (let index = 0; index < this.tabAutrePlateforme.length; index++) {
@@ -96,6 +110,7 @@ class Background {
       this.plateformePourTenue.taille.y + posPlateforme.y
     );
     if (this.plateformePourTenue != undefined) {
+      this.plateformePourTenue.volume = this.volumeEffet;
       this.plateformePourTenue.setBackground(this);
       this.plateformePourTenue.setPosition(pos);
       if (this.projectDev) {
@@ -111,6 +126,7 @@ class Background {
     this.screen_bottom = screen_bottom;
     if (this.screen_bottom != undefined) {
       //this.screen_bottom.setTaille(taille);
+      this.screen_bottom.volume = this.volumeEffet;
       this.screen_bottom.setBackground(this);
       this.screen_bottom.setPosition(pos);
       if (this.projectDev) {
@@ -119,12 +135,14 @@ class Background {
       this.tabAutrePlateforme.push(this.screen_bottom);
     }
   }
+  
   creerPlateformeTenue(tenue) {
     if (tenue != undefined) {
       let taille = new Taille(40, 40);
       let pos = new Position(this.taille.x - taille.x - 60, taille.y - 10);
       //let pos = new Position(0, this.taille.y - 40);
       this.tenue = tenue;
+      this.tenue.volume = this.volumeEffet;
       this.tenue.setTaille(taille);
       this.tenue.setBackground(this);
       this.tenue.setPosition(pos);
@@ -151,13 +169,43 @@ class Background {
     this.plateformesCollision = [];
     let defaultHauteur = this.maxY; //hauteur espacement initiale interligne y entre 2 plateformes
     let startHauteur = defaultHauteur;
+    let countPg = 0;
+    let countPgLine = 0;
+    let countOldPgLine = 0;
+    let nbLine = 0;
     while (startHauteur < this.taille.y) {
+      this.stopPg = true;
+      if(this.nbPgSepareLine != -1) {
+        countPgLine = Math.floor(nbLine/this.nbPgSepareLine);
+        if(countPgLine != countOldPgLine) {
+          countOldPgLine = countPgLine;
+          this.stopPg = false;
+        }
+      } else {
+        this.stopPg = false;
+      }
+      countPgLine=0;
       let nombreDeLignes = 0;
       let posPlateforme = 0;
       while (posPlateforme < this.taille.x) {
+          if(this.nbPgTotal != -1 && !this.stopPg) {
+            if(countPg>=this.nbPgTotal) {
+              this.stopPg = true;
+            }
+          }
+          if(this.nbPgLine != -1 && !this.stopPg) {
+            if(countPgLine>=this.nbPgLine) {
+              this.stopPg = true;
+            }
+          }
         let objRndPos = new RndPos(posPlateforme, 0); //creation aleatoire position de la nouvelle platemeforme en x
         // let taille = new Taille(50, 10);
         let plateforme = this.choixPlateforme();
+        plateforme.volume = this.volumeEffet;
+        if(plateforme.piege) {
+          countPg++;
+          countPgLine++;
+        }
         if (nombreDeLignes == 0) {
           objRndPos.minMaxX(0, this.maxX - this.minX);
           posPlateforme += objRndPos.getX();
@@ -180,20 +228,11 @@ class Background {
           if (this.projectDev) {
             plateforme.setProjectDev();
           }
-          //let posArete = plateforme.getAreteRectangle(); //creation rectangle plateforme
-          /*this.plateformesCollision.push(
-            new CollisionPlateforme(
-              this.plateformes.length,
-              posArete.haut(),
-              posArete.bas(),
-              posArete.gauche(),
-              posArete.droite()
-            )
-          );*/
           this.plateformes.push(plateforme);
         }
         nombreDeLignes++;
       }
+      nbLine++;
       startHauteur += defaultHauteur;
     }
   }
@@ -252,6 +291,8 @@ class Background {
           this.taille.y + posBas - this.screen_bottom.taille.y
         );
         this.screen_bottom.setPosition(pos);
+      } else {
+        this.screen_bottom.setPosition(0);
       }
     }
   }
@@ -327,6 +368,7 @@ class Background {
       }
     } else if (this.nbDisplayOther == 3) {
       this.nbDisplayOther++;
+      this.joueur.game.collisionActionGameAll();
       if (this.joueur != undefined) {
         this.joueur.afficher(this.canvasBackground);
       } else {
@@ -342,12 +384,14 @@ class Background {
       //this.afficherContenue();
     } else if (this.nbDisplayOther == 5) {*/
       let backGroundOld = document.getElementById(this.idBackground);
-      let ctx = backGroundOld.getContext("2d");
-      ctx.clearRect(0, 0, this.taille.x, this.taille.y);
-      backGroundOld.parentNode.replaceChild(
-        this.canvasBackground,
-        backGroundOld
-      );
+      if(backGroundOld != undefined) {
+        let ctx = backGroundOld.getContext("2d");
+        ctx.clearRect(0, 0, this.taille.x, this.taille.y);
+        backGroundOld.parentNode.replaceChild(
+          this.canvasBackground,
+          backGroundOld
+        );
+      }
       this.stopDisplay = true;
     }
   }

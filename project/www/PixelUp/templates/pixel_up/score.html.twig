@@ -64,11 +64,11 @@
         {% for score in scores %}
             <tr>
             {% if score.classement == 1 %}
-            <td>or</td>
+            <td><img src="{{ asset('media/Trop_Or.gif') }}" alt="Trophé en or"/></td>
             {% elseif score.classement == 2 %}
-            <td>argent</td>
+            <td><img src="{{ asset('media/Trop_Silv.gif') }}" alt="Trophé en argent"/></td>
             {% elseif score.classement == 3 %}
-            <td>bronze</td>
+            <td><img src="{{ asset('media/Trop_Bron.gif') }}" alt="Trophé en bronze"/></td>
             {% else %}
                 <td>{{ score.classement }}</td>
             {% endif %}

@@ -1,4 +1,4 @@
-let folderWorker = "./game/js/worker/";
+let folderWorker = "./js/worker/";
 
 if (window.Worker) {
   let backgroundTaille = new Taille(1000, 5000);
@@ -25,7 +25,7 @@ if (window.Worker) {
 
   let screenGame = document.getElementById("screenGame_0");
 
-  screenGame.addEventListener(
+  /*screenGame.addEventListener(
     "scroll",
     function () {
       let calcul0 =
@@ -47,15 +47,29 @@ if (window.Worker) {
       }
     },
     false
-  );
+  );*/
 
   screenGame.scrollTop = screenGame.scrollHeight;
 
-  function startGame(e) {
-    document.getElementById("start").style.display = "none";
-    game.start();
-    play();
-  }
+  let loadSound = true;
+    function changer() {
+        if (loadSound) {
+            play();
+            document.getElementById("son_jeu").src = "img/haut_parleur_son_ouvert.png";
+            loadSound = false;
+        } else {
+            stop();
+            document.getElementById("son_jeu").src = "img/haut_parleur_son_coupe.png";
+            loadSound = true;
+            
+        }
+    }
+    function startGame(e) {
+      document.getElementById("info_Game").style.display = "none";
+        changer();
+        game.start();
+    }
+
 
   document.getElementById("start").addEventListener("click", startGame);
 
@@ -75,3 +89,4 @@ if (window.Worker) {
 } else {
   console.log("Your browser doesn't support web workers.");
 }
+document.getElementById("son_jeu").addEventListener("click", changer);

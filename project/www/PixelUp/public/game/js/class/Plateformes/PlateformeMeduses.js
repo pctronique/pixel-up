@@ -16,6 +16,7 @@ class PlateformeMeduses extends PlateformePiegeHaut {
   }
 
   typeMort() {
+    this.effetGameOver();
     return EnumTypeMort.MEDUSE;
   }
 

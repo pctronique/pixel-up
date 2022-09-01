@@ -7,9 +7,15 @@ class Plateforme extends BlockRectange {
      */
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille);
+        this.piege = false;
         if(this.taille == undefined || this.taille.y == 0) {
             this.taille = new Taille(0, 20);
         }
+        this.volume = 100;
+    }
+
+    getPiege() {
+        return this.piege;
     }
 
     afficher(canvas) {
@@ -22,18 +28,23 @@ class Plateforme extends BlockRectange {
     }
 
     effetPas(){
-        let effetPas =new EffetsSonores("son/pas2.mp3",100,true);
+        let effetPas =new EffetsSonores("son/pas2.mp3",this.volume,true);
         effetPas.start();
     }
 
     effetSaut(){
-        let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",100,true);
+        let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",this.volume,true);
         effetSaut.start();
     }
 
+    effetGameOver(){
+        let effetGameOver = new EffetsSonores("son/gameOver.mp3", 100, true);
+        effetGameOver.start();
+    }
+    
     action(enumCollision) {
         if(enumCollision == EnumCollision.HAUT) {
-          //this.effetPas();
+          this.effetPas();
             return EnumAction.STOP;
         }
         return EnumAction.NULL;
