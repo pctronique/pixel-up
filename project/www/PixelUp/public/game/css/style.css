@@ -42,7 +42,6 @@ body {
     margin: 5px;
     border-radius: 50px;
     border: none;
-    background-color: rgba(249, 255, 196, 0.685);
     border: rgba(128, 128, 128, 0.767) 2px solid;
 }
 .buttonMove {

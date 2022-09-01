@@ -1,11 +1,11 @@
 class PlateformeOiseaux extends PlateformeMobile{
     constructor(taille = undefined, collisionHautStable = true) {
         super(taille, collisionHautStable);
-        this.taille = new Taille(100,50);
+        this.taille = new Taille(40,10);
         this.imgGif = new ImageGif(
           ["./img/oiseau copy 01.png", "./img/oiseau copy 02.png"],
           this.pos,
-          this.taille,
+          new Taille(100,50),
         );
         this.imgGif.setIsRepeat(true);
         this.imgGif.start();
@@ -14,7 +14,7 @@ class PlateformeOiseaux extends PlateformeMobile{
 
     action(enumCollision) {
         if (enumCollision == EnumCollision.HAUT) {
-          //this.effetPas();
+          this.effetPas();
             return EnumAction.STOP;
         }
         return EnumAction.NULL;
@@ -31,8 +31,7 @@ class PlateformeOiseaux extends PlateformeMobile{
         this.deplacement();
         this.createBorder(canvas);
           this.imgGif.setBackground(this.background);
-          this.imgGif.pos = new Position(this.pos.x-25, this.pos.y-38);
-          this.imgGif.taille = new Taille(400,100);
+          this.imgGif.pos = new Position(this.pos.x-28, this.pos.y-38);
           this.imgGif.afficher(canvas);
         //this.img;
         /*this.imageSrc('./img/oiseau.png');

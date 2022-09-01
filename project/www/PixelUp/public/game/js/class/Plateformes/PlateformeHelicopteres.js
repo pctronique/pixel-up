@@ -12,6 +12,7 @@ class PlateformeHelicopteres extends PlateformePiegeHaut {
     }
 
     typeMort() {
+      this.effetGameOver();
         return EnumTypeMort.HELICOPTERE;
     }
 

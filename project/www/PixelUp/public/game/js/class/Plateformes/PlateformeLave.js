@@ -14,6 +14,7 @@ class PlateformeLave extends PlateformePiegeHaut {
     }
 
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.LAVE;
     }
 

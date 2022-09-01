@@ -1,0 +1,131 @@
+
+pos_joueur : 800
+scrollTop : 1405.5555419921875
+scrollHeight : 2482
+scrollWidth : 1241
+offsetHeight : 1077
+offsetWidth : 1260
+divEcran : 2.3045496750232126
+ecranGame : 867.8485092667204
+posEcranGame : 67.84850926672038
+posScrollSous : 84.2
+this.posScroll : 1320.8
+
+pos_joueur : 800
+scrollTop : 2250
+scrollHeight : 3327
+scrollWidth : 1663
+offsetHeight : 1077
+offsetWidth : 1682
+divEcran : 3.0891364902506964
+ecranGame : 647.4301172227232
+posEcranGame : -152.5698827772768
+posScrollSous : -253.79999999999995
+this.posScroll : 2503.8
+
+pos_joueur : 800
+scrollTop : 834.4444580078125
+scrollHeight : 1911
+scrollWidth : 956
+offsetHeight : 1077
+offsetWidth : 974
+divEcran : 1.7743732590529249
+ecranGame : 1127.1585557299843
+posEcranGame : 327.1585557299843
+posScrollSous : 312.6
+this.posScroll : 521.4
+
+
+
+pos_joueur : 800
+ScrollMove.js:36 scrollTop : 718.888916015625
+ScrollMove.js:37 scrollHeight : 1796
+ScrollMove.js:38 scrollWidth : 898
+ScrollMove.js:39 offsetHeight : 1077
+ScrollMove.js:40 offsetWidth : 917
+ScrollMove.js:42 divEcran : 1.6675951717734447
+ScrollMove.js:44 ecranGame : 1199.3318485523384
+ScrollMove.js:46 posEcranGame : 399.33184855233844
+ScrollMove.js:48 posScrollSous : 358.5999999999999
+ScrollMove.js:50 this.posScroll : 360.4000000000001
+scrollTop01 : 595.5555419921875
+
+pos_joueur : 800
+ScrollMove.js:36 scrollTop : 1305.5555419921875
+ScrollMove.js:37 scrollHeight : 2382
+ScrollMove.js:38 scrollWidth : 1191
+ScrollMove.js:39 offsetHeight : 1077
+ScrollMove.js:40 offsetWidth : 1210
+ScrollMove.js:42 divEcran : 2.211699164345404
+ScrollMove.js:44 ecranGame : 904.2821158690176
+ScrollMove.js:46 posEcranGame : 104.28211586901762
+ScrollMove.js:48 posScrollSous : 124.19999999999999
+ScrollMove.js:50 this.posScroll : 1180.8
+scrollTop01 : 1138.888916015625
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 1842
+ScrollMove.js:41 scrollHeight : 3062
+ScrollMove.js:42 scrollWidth : 1531
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 1546
+ScrollMove.js:46 divEcran : 2.5098360655737704
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 1837.1999999999998
+ScrollMove.js:51 posJoueurBase2 : 1224.8
+pos_ecran: 1007
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 2332
+ScrollMove.js:41 scrollHeight : 3552
+ScrollMove.js:42 scrollWidth : 1776
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 1791
+ScrollMove.js:46 divEcran : 2.911475409836066
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 2131.2
+ScrollMove.js:51 posJoueurBase2 : 1420.8
+pos_ecran: 973
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 150
+ScrollMove.js:41 scrollHeight : 1370
+ScrollMove.js:42 scrollWidth : 685
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 700
+ScrollMove.js:46 divEcran : 1.1229508196721312
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 822.0000000000001
+ScrollMove.js:51 posJoueurBase2 : 548
+pos_ecran: 1125
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 780
+ScrollMove.js:41 scrollHeight : 2000
+ScrollMove.js:42 scrollWidth : 1000
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 1015
+ScrollMove.js:46 divEcran : 1.639344262295082
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 1200
+ScrollMove.js:51 posJoueurBase2 : 800
+pos_ecran: 1080
+
+pos_joueur : 800
+ScrollMove.js:40 scrollTop : 0
+ScrollMove.js:41 scrollHeight : 1220
+ScrollMove.js:42 scrollWidth : 610
+ScrollMove.js:43 offsetHeight : 1220
+ScrollMove.js:44 offsetWidth : 625
+ScrollMove.js:46 divEcran : 1
+ScrollMove.js:48 ecranGame : 2000
+ScrollMove.js:49 posJoueur : 1200
+ScrollMove.js:50 posJoueurBase : 732
+ScrollMove.js:51 posJoueurBase2 : 1311.4754098360656
+
+
+

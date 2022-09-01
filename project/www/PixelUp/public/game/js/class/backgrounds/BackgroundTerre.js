@@ -16,7 +16,7 @@ class BackgroundTerre extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/pixil-frame-0 (8)coupe2.png");
+        this.imageSrc("./img/background_VILLE.png");
         let Terre = new Images(this.imageSource, this.pos, this.taille);
         Terre.setBackground(this);
         Terre.afficher(canvas);
@@ -29,12 +29,17 @@ class BackgroundTerre extends Background {
     choixPlateforme(){
         //return new PlateformeNacelles();
         let min=1; 
-        let max=3;  
+        let max=3;
+        if(this.stopPg) {
+            max=2;
+        } 
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
+            this.isPiege = false;
             return new PlateformeNacelles();
         }
         else if (random == 2){
+            this.isPiege = true;
             return new PlateformePiegesNacelles();
         }
    
