@@ -45,8 +45,18 @@
 
         {% block body %}{% endblock %}
 
-        <footer>
+        <footer {% if app.request.get('_route') == 'app_score_index' %} style="position:initial" {% endif %}>
             <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>
