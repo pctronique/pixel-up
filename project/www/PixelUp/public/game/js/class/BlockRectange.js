@@ -18,6 +18,7 @@ class BlockRectange extends Pause {
       this.posLeft = new Position();
       this.posRight = new Position();
     }
+    this.isImgVisible = true;
     this.game = undefined;
     this.areteRectangle = new AreteRectangle(this.pos, this.taille);
     this.areteRectangleLeft = new AreteRectangle(this.pos, this.taille);
@@ -25,6 +26,11 @@ class BlockRectange extends Pause {
     this.background = undefined;
     this.idBackground = undefined;
     this.projectDev = false;
+    this.deplacementImg = 0;
+  }
+   
+  deplacement() {
+   this.setPositionX(this.pos.x+this.deplacementImg);
   }
 
   setProjectDev() {
@@ -77,19 +83,20 @@ class BlockRectange extends Pause {
   }
 
   imgVisible() {
-    return (this.pos.x > 0 && this.pos.x < this.background.taille.x || 
+    this.isImgVisible = (this.pos.x > 0 && this.pos.x < this.background.taille.x || 
       (this.pos.x+this.taille.x) > 0 && (this.pos.x+this.taille.x) < this.background.taille.x);
+    return this.isImgVisible;
   }
 
   imgLeftVisible() {
       return ((this.pos.x > 0 && this.pos.x < this.background.taille.x && 
-        this.pos.x+this.taille.x > this.background.taille.x) || !this.imgVisible() && this.pos.x > 0);
+        this.pos.x+this.taille.x > this.background.taille.x) || !this.isImgVisible && this.pos.x > 0);
 
   }
 
   imgRighttVisible() {
       return ((this.pos.x < 0 && this.pos.x+this.taille.x > 0 && 
-        this.pos.x+this.taille.x < this.background.taille.x) || !this.imgVisible() && this.pos.x < 0);
+        this.pos.x+this.taille.x < this.background.taille.x) || !this.isImgVisible && this.pos.x < 0);
   }
 
   setBackground(background) {

@@ -3,11 +3,11 @@ class ConfigMoveUser {
         millisecondeTomber, millisecondeDeplacement, 
         largeurDeplacement, millisecondeCoucou, largeurCoucou) {
         this.hauteurSaut = hauteurSaut;
-        this.millisecondeSaut = hauteurSaut;
-        this.millisecondeTomber = hauteurSaut;
-        this.millisecondeDeplacement = hauteurSaut;
-        this.largeurDeplacement = hauteurSaut;
-        this.millisecondeCoucou = hauteurSaut;
-        this.largeurCoucou = hauteurSaut;
+        this.millisecondeSaut = millisecondeSaut;
+        this.millisecondeTomber = millisecondeTomber;
+        this.millisecondeDeplacement = millisecondeDeplacement;
+        this.largeurDeplacement = largeurDeplacement;
+        this.millisecondeCoucou = millisecondeCoucou;
+        this.largeurCoucou = largeurCoucou;
     }
 }

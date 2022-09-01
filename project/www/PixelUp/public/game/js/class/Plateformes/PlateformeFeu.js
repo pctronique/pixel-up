@@ -14,6 +14,7 @@ class PlateformeFeu extends PlateformePiegeHaut {
     }
 
     typeMort() {
+      this.effetGameOver();
         return EnumTypeMort.FEU;
     }
 

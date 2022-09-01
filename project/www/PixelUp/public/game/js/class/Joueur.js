@@ -45,11 +45,21 @@ class Joueur extends Personnage {
   }
 
   modifTenue(tenue) {
-    this.tenueOld = this.tenue;
-    this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
-    //this.imageSrc('./img/personnage-1.png');
-    this.posImg = ImageTenue.recupPos(tenue);
-    this.tenue = tenue;
+    if(this.tenue != tenue) {
+      this.tenueOld = this.tenue;
+      this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
+      //this.imageSrc('./img/personnage-1.png');
+      this.posImg = ImageTenue.recupPos(tenue);
+      this.tenue = tenue;
+    }
+  }
+
+  configMoveUser(configMoveUser) {
+    if(configMoveUser != undefined) {
+      this.configSaut(configMoveUser.hauteurSaut, configMoveUser.millisecondeSaut, configMoveUser.millisecondeTomber);
+      this.configDeplacement(configMoveUser.largeurDeplacement, configMoveUser.millisecondeDeplacement);
+      this.configCoucou(configMoveUser.largeurCoucou, configMoveUser.millisecondeCoucou);
+    }
   }
 
   keyGame(
@@ -96,6 +106,8 @@ class Joueur extends Personnage {
   }
 
   afficher(canvas) {
+
+    this.deplacement();
     /*this.createBorder(canvas);
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;
@@ -111,7 +123,7 @@ class Joueur extends Personnage {
       this.img,
       new Position(this.pos.x+this.posImg.x, this.pos.y+this.posImg.y),
       this.tailleImg,
-      new Position(32, 32)
+      new Position(96, 96)
     );
     imgJoueur.setObjetDuplique(this);
     imgJoueur.select(this.nmDepl);

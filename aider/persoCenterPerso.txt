@@ -1,0 +1,59 @@
+scrollTop0 : 1721.1112060546875
+scrollHeight0 : 3131
+scrollWidth0 : 1566
+offsetHeight0 : 1077
+offsetWidth0 : 1584
+501 sur 1077
+170 sur 1077
+
+scrollTop0 : 1268.888916015625
+scrollHeight0 : 2516
+scrollWidth0 : 1258
+offsetHeight0 : 1077
+offsetWidth0 : 1277
+506 sur 1077
+335 sur 1077
+506-335=171
+
+scrollTop0 : 941.1111450195312
+script1.js:35 scrollHeight0 : 2516
+script1.js:36 scrollWidth0 : 1258
+script1.js:37 offsetHeight0 : 1077
+script1.js:38 offsetWidth0 : 1277
+593 sur 1077
+97 sur 1077
+593-97=496
+pos joueur : 174.88076311605724
+ScrollMove.js:46 pos scroll : 220
+
+
+************************************************
+
+pos joueur : 189.69555035128806
+os scroll : 324
+calcul01 : 38.64168618266979
+2157.3583138173303
+
+scrollTop0 : 1649
+scrollHeight0 : 3416
+scrollWidth0 : 1708
+offsetHeight0 : 1220
+offsetWidth0 : 1723
+
+
+***********************************************
+
+
+pos joueur : 203.52564102564102
+pos scroll : 253.99999999999997
+calcul01 : 108.97435897435895
+1167.025641025641
+
+scrollTop0 : 954
+scrollHeight0 : 2496
+scrollWidth0 : 1248
+offsetHeight0 : 1220
+offsetWidth0 : 1263
+
+
+

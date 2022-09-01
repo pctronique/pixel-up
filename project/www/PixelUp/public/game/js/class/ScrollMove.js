@@ -31,24 +31,25 @@ class ScrollMove {
     }
 
     monter() {
+        if(this.gameElement.scrollTop == 0) {
+            this.posScrollOld = undefined;
+            this.gameElement.scrollTop = this.gameElement.scrollHeight;
+        }
         const element = this.game.backgrounds[0];
-        console.log("scrollTop : " + this.gameElement.scrollTop);
-        console.log("scrollHeight : " + this.gameElement.scrollHeight);
-        console.log("scrollWidth : " + this.gameElement.scrollWidth);
-        console.log("offsetHeight : " + this.gameElement.offsetHeight);
-        console.log("offsetWidth : " + this.gameElement.offsetWidth);
-        let divEcran = this.gameElement.scrollHeight/this.gameElement.offsetHeight;
-        let ecranGame = (element.taille.y*2)/divEcran;
-        let posEcranGame = ecranGame-element.joueur.pos.y;
-        let posScrollSous = posEcranGame*this.taillePixel();
-        this.posScroll = (this.gameElement.scrollHeight-this.gameElement.offsetHeight)-posScrollSous;
+        let pixelEcran = new PixelEcran(element.taille.y, this.gameElement);
+        let posJoueur = element.taille.y-(element.joueur.pos.y+element.joueur.taille.y);
+        if(posJoueur<0) {
+            posJoueur = -1*(posJoueur-element.taille.y);
+        }
+        let posJoueurEcran = (pixelEcran.posEcran(posJoueur)-(this.gameElement.offsetHeight/3));
+        let scrollTotal = this.gameElement.scrollHeight-this.gameElement.offsetHeight;
+        this.posScroll = scrollTotal-posJoueurEcran;
         if(this.posScrollOld > this.posScroll) {
             this.gameElement.scrollTop = this.posScroll;
         }
     }
 
     calculMilieu() {
-        let taillePixel = this.taillePixel();
         return (this.backgroundTaille.y-this.gameElement.offsetHeight/2)/this.taillePixel();
     }
 
@@ -70,7 +71,11 @@ class ScrollMove {
     changeBackground() {
         let scrollHaut = this.gameElement.scrollHeight / this.gameElement.childElementCount - this.gameElement.offsetHeight;
         if (this.gameElement.scrollTop < scrollHaut) {
+            this.gameElement.scrollTop = this.gameElement.scrollHeight;
+            this.posScroll = this.gameElement.scrollTop;
+            this.posScrollOld = (this.gameElement.scrollHeight-this.gameElement.offsetHeight);
             this.game.addBackground();
+            this.monter();
         }
     }
 

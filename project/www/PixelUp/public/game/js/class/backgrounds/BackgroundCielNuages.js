@@ -15,7 +15,7 @@ class BackgroundCielNuages extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/pixil-frame-0 (11).png");
+        this.imageSrc("./img/background_CIEL_NUAGES.png");
         let cielNuages = new Images(this.imageSource, this.pos, this.taille);
         cielNuages.setBackground(this);
         cielNuages.afficher(canvas);
@@ -28,15 +28,20 @@ class BackgroundCielNuages extends Background {
     choixPlateforme(){
         //return new PlateformeOiseaux();
         let min=1; 
-        let max=4;  
+        let max=4;
+        if(this.stopPg) {
+            max=3;
+        }
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
             return new PlateformeOiseaux();
         }
         else if (random == 2){
+            this.isPiege = false;
             return new PlateformeNuages();
         }
         else if (random == 3) {
+            this.isPiege = true;
             return new PlateformePiegesNuages();
         }
     }

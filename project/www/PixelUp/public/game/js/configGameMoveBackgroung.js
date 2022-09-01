@@ -1,6 +1,6 @@
 let tabConfigMoveBackground = {
     SOUS_TERRE : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -9,7 +9,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     SOUS_MER : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -18,7 +18,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     TERRE : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -27,7 +27,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     CIEL_NUAGE : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -36,7 +36,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     CIEL_AVIONS : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -45,7 +45,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     ESPACE_ASTEROIDE : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -54,7 +54,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     ESPACE_SATELLITE : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
@@ -63,7 +63,7 @@ let tabConfigMoveBackground = {
         largeurCoucou : 15,
     },
     ESPACE_VAISSEAU : {
-        hauteurSaut : 100,
+        hauteurSaut : 200,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
         millisecondeDeplacement : 8,
