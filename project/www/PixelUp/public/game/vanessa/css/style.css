@@ -1,6 +1,7 @@
 body {
     margin : 0;
     padding : 0;
+    min-width: 320px;
     /*background-color: black;*/
 }
 #score {
@@ -109,12 +110,10 @@ body {
     margin: 200px;
     box-shadow: inset 0 0 1em rgb(230, 0, 255), 0 0 2em rgb(174, 0, 255);
     background-color: #292929ed;
- 
-
   }
   input,
   textarea {
-    width: 100%;
+    width: 97%;
     color: #eed7d7;
     padding: 10px;
     margin-bottom: 10px;
@@ -162,4 +161,17 @@ body {
   background-color: #ec00c0;
   box-shadow: inset 0 0 1em rgb(230, 0, 255), 0 0 2em rgb(174, 0, 255);
 }
- 
+
+@media (max-width: 950px){
+  form {
+    
+    margin: 40px;
+}
+.close {
+  
+  margin-right: 60px;
+}
+.contact-form button {
+  width: 100px;
+}
+}

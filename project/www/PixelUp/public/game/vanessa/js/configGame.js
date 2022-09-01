@@ -7,6 +7,10 @@ let tabConfig = {
         keyHaut : 'ArrowUp',
         keyBas : 'ArrowDown',
     },
+    volume : {
+        musique : 100,
+        game : 100,
+    },
     sautTomber : {
         hauteurSaut : 200,
         millisecondeSaut : 2,
@@ -45,6 +49,8 @@ document.getElementById("config").addEventListener("click", function(e){
     document.getElementById("coucou").value = tabConfig.key.keyCoucou;
     document.getElementById("haut").value = tabConfig.key.keyHaut;
     document.getElementById("bas").value = tabConfig.key.keyBas;
+    document.getElementById("volumeMusique").value = tabConfig.volume.musique;
+    document.getElementById("volumeJeu").value = tabConfig.volume.game;
 });
 
 document.getElementById("valider").addEventListener("click", function(e) {
@@ -56,6 +62,8 @@ document.getElementById("valider").addEventListener("click", function(e) {
     tabConfig.key.keyCoucou = document.getElementById("coucou").value;
     tabConfig.key.keyHaut = document.getElementById("haut").value;
     tabConfig.key.keyBas = document.getElementById("bas").value;
+    tabConfig.volume.musique = parseInt(document.getElementById("volumeMusique").value);
+    tabConfig.volume.game = parseInt(document.getElementById("volumeJeu").value);
     
     saveLocal();
 
