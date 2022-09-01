@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SuccesController extends AbstractController
 {
-    #[Route('/user/succes', name: 'app_succes')]
+    #[Route('/user/succes', name: 'app_succes', methods: ['GET', 'POST'])]
     public function index(MortRepository $mortRepository,UserRepository $user): Response
     {
 
@@ -21,6 +21,18 @@ class SuccesController extends AbstractController
             1 => false, // Requins
             2 => false // Chutes
         ];
+
+        $newMortType = (!empty($_POST)&&array_key_exists('typeMort',$_POST))? intval($_POST['typeMort']):null;
+
+        if($newMortType == 0){
+
+        } elseif($newMortType == 3){
+
+        } elseif($newMortType == 1){
+
+        }
+
+        
 
 
             if($morts[2]['compteur'] >= 350){ // Astéroides
