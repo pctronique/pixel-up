@@ -16,7 +16,7 @@ class BackgroundSousMer extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/mer5.png");
+        this.imageSrc("./img/background_SOUS_MER.png");
         let sousMer = new Images(this.imageSource, this.pos, this.taille);
         sousMer.setBackground(this);
         sousMer.afficher(canvas);
@@ -46,7 +46,6 @@ class BackgroundSousMer extends Background {
             this.isPiege = true;
             return new PlateformePiegesRadFish();
         }
-   
     }
 
 

@@ -38,6 +38,11 @@ class Game {
     this.keyHaut = "ArrowUp";
     this.keyBas = "ArrowDown";
     this.tabConfigBackground = tabConfigBackground;
+    this.volumeEffet = 100;
+  }
+
+  setVolumeEffet(volume) {
+    this.volumeEffet = volume;
   }
 
   setTailleBackground(width, height) {
@@ -54,19 +59,22 @@ class Game {
   }
 
   mourir(enumAction) {
-    if (!this.game != undefined) {
-      if (enumAction.collision.plateforme) {
-        this.backgrounds[enumAction.background].joueur.mourir(
-          this.backgrounds[enumAction.background].plateformes[
-            enumAction.collision.index
-          ]
-        );
-      } else {
-        this.backgrounds[enumAction.background].joueur.mourir(
-          this.backgrounds[enumAction.background].tabAutrePlateforme[
-            enumAction.collision.index
-          ]
-        );
+
+    if(!this.isTtop) {
+      if (!this.game != undefined) {
+        if (enumAction.collision.plateforme) {
+          this.backgrounds[enumAction.background].joueur.mourir(
+            this.backgrounds[enumAction.background].plateformes[
+              enumAction.collision.index
+            ]
+          );
+        } else {
+          this.backgrounds[enumAction.background].joueur.mourir(
+            this.backgrounds[enumAction.background].tabAutrePlateforme[
+              enumAction.collision.index
+            ]
+          );
+        }
       }
     }
   }
@@ -214,6 +222,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -228,6 +237,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -242,6 +252,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -256,6 +267,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -270,6 +282,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -284,6 +297,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -298,6 +312,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -312,6 +327,7 @@ class Game {
           scrollMove,
           config,
           configMov,
+          this.volumeEffet,
           imgBack,
           imgBas
         );
@@ -388,7 +404,8 @@ class Game {
     // ludovic (fin) : pour ajouter le joueur
     this.backgrounds.push(background);
     this.createBackground();
-    //this.deleteBackground();
+    this.deleteBackground();
+    this.backgrounds[0].scrollMove.monter();
     //}
 
     // ludovic (debut) : pour ajouter le joueur
@@ -410,10 +427,14 @@ class Game {
     let screenGame = document.getElementById(this.idScreen);
     // console.log(screenGame);
     if (screenGame.childElementCount > 2) {
+      this.backgrounds[0].scrollMove.debut();
       //this.scrollMove.debut();
       screenGame.removeChild(screenGame.lastChild);
       this.backgrounds.splice(0, 1);
       this.backgrounds[0].scrollMove.recalculPos();
+    }
+    if(this.backgrounds.lenght > 2) {
+      this.backgrounds.splice(0, 1);
     }
     this.nbscroll = 0;
   }
@@ -431,8 +452,8 @@ class Game {
       this.tuerJoueur(element.typeMortTenue());
     }
     if (!this.isTtop) {
-      //element.scrollMove.changeBackground();
-      //element.scrollMove.bottom();
+      element.scrollMove.changeBackground();
+      element.scrollMove.bottom();
     }
   }
 
@@ -473,15 +494,48 @@ class Game {
     if (enumCollision.enumCollision != EnumCollision.NULL) {
       this.backgrounds[0].joueur.configMoveUser(this.backgrounds[0].configMoveUser);
       this.backgrounds[1].joueur.configMoveUser(this.backgrounds[0].configMoveUser);
+      this.getMoveAutoJoueur(this.backgrounds[0].plateformes[
+        enumCollision.index
+      ].deplacementImg);
       return { collision: enumCollision, background: 0 };
     }
     enumCollision = this.backgrounds[1].joueur.getEnumCollision();
     if (enumCollision.enumCollision != EnumCollision.NULL) {
       this.backgrounds[0].joueur.configMoveUser(this.backgrounds[1].configMoveUser);
       this.backgrounds[1].joueur.configMoveUser(this.backgrounds[1].configMoveUser);
+      this.getMoveAutoJoueur(this.backgrounds[1].plateformes[
+        enumCollision.index
+      ].deplacementImg);
       return { collision: enumCollision, background: 1 };
     }
     return { collision: enumCollision, background: -1 };
+  }
+
+  getEnumCollisionGD() {
+    let enumCollision = this.backgrounds[0].joueur.getEnumCollisionGD();
+    if (enumCollision.enumCollision != EnumCollision.NULL) {
+      this.backgrounds[0].joueur.configMoveUser(this.backgrounds[0].configMoveUser);
+      this.backgrounds[1].joueur.configMoveUser(this.backgrounds[0].configMoveUser);
+      this.getMoveAutoJoueur(this.backgrounds[0].plateformes[
+        enumCollision.index
+      ].deplacementImg);
+      return { collision: enumCollision, background: 0 };
+    }
+    enumCollision = this.backgrounds[1].joueur.getEnumCollisionGD();
+    if (enumCollision.enumCollision != EnumCollision.NULL) {
+      this.backgrounds[0].joueur.configMoveUser(this.backgrounds[1].configMoveUser);
+      this.backgrounds[1].joueur.configMoveUser(this.backgrounds[1].configMoveUser);
+      this.getMoveAutoJoueur(this.backgrounds[1].plateformes[
+        enumCollision.index
+      ].deplacementImg);
+      return { collision: enumCollision, background: 1 };
+    }
+    return { collision: enumCollision, background: -1 };
+  }
+
+  getMoveAutoJoueur(deplacement) {
+    this.backgrounds[0].joueur.deplacementImg = deplacement;
+    this.backgrounds[1].joueur.deplacementImg = deplacement;
   }
 
   setPosInitJoueur(posX, posY) {
@@ -596,5 +650,29 @@ class Game {
 
   screenBottom(pos) {
     this.backgrounds[0].screenBottom(pos);
+  }
+
+  /*collisionActionGameAll() {
+    let background = 0;
+    let mort = this.collisionActionGameJoueur(this.backgrounds[0].joueur);
+    if (mort.collision.enumCollision == EnumCollision.NULL) {
+      background = 1;
+      mort = this.collisionActionGameJoueur(this.backgrounds[1].joueur);
+    }
+    if (mort.enumCollision != EnumCollision.NULL) {
+      if (mort.collision.enumAction == EnumAction.MORT) {
+        this.mourir(mort);
+      }
+    }
+  }*/
+
+  collisionActionGameAll() {
+    let enumCollision = this.getEnumCollisionGD();
+    let valueCollision = enumCollision.collision;
+    if (valueCollision.enumCollision != EnumCollision.NULL) {
+      if (valueCollision.enumAction == EnumAction.MORT) {
+        this.mourir(enumCollision);
+      }
+    }
   }
 }
