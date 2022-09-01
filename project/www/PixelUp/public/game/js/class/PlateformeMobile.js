@@ -3,8 +3,4 @@ class PlateformeMobile extends Plateforme {
         super(taille, collisionHautStable);
         this.deplacementImg = -1;
     }
-   
-   deplacement() {
-    this.setPositionX(this.pos.x+this.deplacementImg);
-   }
 }

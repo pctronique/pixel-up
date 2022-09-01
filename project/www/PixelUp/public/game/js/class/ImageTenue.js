@@ -9,11 +9,11 @@ class ImageTenue {
     static tabImage() {
         return [
             new ImageTenue(EnumTenues.NULL, "", new Position(0, 0)),
-            new ImageTenue(EnumTenues.NORMAL, "MINEUR.png", new Position(-43, -20)),
-            new ImageTenue(EnumTenues.MER, "PLONGEUR.png", new Position(-40, -28)),
-            new ImageTenue(EnumTenues.TERRE, "JOUEUR_NORMAL.png", new Position(-40, -19)),
-            new ImageTenue(EnumTenues.CIEL, "HOMME_VOLANT.png", new Position(-40, -19)),
-            new ImageTenue(EnumTenues.ESPACE, "COSMONAUTE.png", new Position(-40, -20)),
+            new ImageTenue(EnumTenues.NORMAL, "MINEUR (1).png", new Position(-43, -20)),
+            new ImageTenue(EnumTenues.MER, "PLONGEUR (1).png", new Position(-40, -28)),
+            new ImageTenue(EnumTenues.TERRE, "JOUEUR_NORMAL (1).png", new Position(-40, -19)),
+            new ImageTenue(EnumTenues.CIEL, "HOMME_VOLANT (1).png", new Position(-40, -19)),
+            new ImageTenue(EnumTenues.ESPACE, "COSMONAUTE (1).png", new Position(-40, -20)),
         ];
     }
 
