@@ -65,6 +65,7 @@ if (window.Worker) {
         }
     }
     function startGame(e) {
+      document.getElementById("info_Game").style.display = "none";
         changer();
         game.start();
     }
