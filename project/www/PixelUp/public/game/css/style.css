@@ -72,6 +72,130 @@ body {
     right: 0;
 }
 #info_Game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 400px;
+    padding: 25px;
+    margin: 5px;
+
+ 
+}
+#info_Game0 {
+    position: absolute;
+    z-index: 2;
+
+}
+#imageTest{
+    background-color: blueviolet;
+}
+#info_Game img{
+  width: 200px;
+}
+
+
+/*pop up*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 8;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-image: url("../img/fondConfig1.png");
+    background-size: 140% cover;
+    
+  }
+  label{
+    text-align: left;
+  }
+  
+  h2,
+  p {
+    margin: 0 0 20px;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ec00c0;
+  }
+ label{
+    color:#eed7d7;
+    font-family: Arial, Helvetica, sans-serif;
+ }
+  form {
+    padding: 45px;
+    margin: 200px;
+    box-shadow: inset 0 0 1em rgb(230, 0, 255), 0 0 2em rgb(174, 0, 255);
+    background-color: #292929ed;
+  }
+  input,
+  textarea {
+    width: 97%;
+    color: #eed7d7;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ff9cfa;
+    background-color: rgb(2, 2, 2);
+    outline: none;
+  }
+  .contact-form button {
+    width: 30%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    border: none;
+    background: #878787;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(225, 225, 225);
+  }
+ 
+  .close {
+    color: rgb(255, 255, 255);
+    float: right;
+    font-size: 48px;
+    font-weight: bold;
+    margin-right: 220px;
+  }
+  .close:hover,
+  .close:focus {
+    color: #ec00c0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  button img{
+    width: 50px;
+    position: relative;
+  }
+  button.button, button.buttonStart {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+#valider, #validerConfig, #validerConfigBackground,#validerConfigGameMoveBackground{
+  background-color: #ec00c0;
+  box-shadow: inset 0 0 1em rgb(230, 0, 255), 0 0 2em rgb(174, 0, 255);
+}
+
+@media (max-width: 950px){
+  form {
+    
+    margin: 40px;
+}
+.close {
+  
+  margin-right: 60px;
+}
+.contact-form button {
+  width: 100px;
+}
 }
