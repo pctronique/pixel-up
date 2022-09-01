@@ -1,4 +1,4 @@
-let folderWorker = "./js/worker/";
+let folderWorker = "./game/js/worker/";
 
 if (window.Worker) {
   let backgroundTaille = new Taille(1000, 5000);
