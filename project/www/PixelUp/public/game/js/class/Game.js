@@ -448,7 +448,7 @@ class Game {
       ].effetSaut();
     }
     if(!element.valideTenue() && !this.isTtop) {
-      this.effetGameOver();
+      
       this.tuerJoueur(element.typeMortTenue());
     }
     if (!this.isTtop) {
