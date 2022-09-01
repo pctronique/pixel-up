@@ -5,9 +5,11 @@ class Background {
     scrollMove = undefined,
     tabConfig = undefined,
     configMoveUser = undefined,
+    volumeEffet =100,
     imgBack = undefined,
     imgBas = undefined
   ) {
+    this.volumeEffet = volumeEffet;
     this.configMoveUser = configMoveUser;
     this.taille = taille;
     this.imgBack = imgBack;
@@ -62,8 +64,8 @@ class Background {
   }
 
   valideTenue() {
-    return true;
-    //return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
+    //return true;
+    return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
   }
 
   typeMortTenue() {
@@ -104,6 +106,7 @@ class Background {
       this.plateformePourTenue.taille.y + posPlateforme.y
     );
     if (this.plateformePourTenue != undefined) {
+      this.plateformePourTenue.volume = this.volumeEffet;
       this.plateformePourTenue.setBackground(this);
       this.plateformePourTenue.setPosition(pos);
       if (this.projectDev) {
@@ -119,6 +122,7 @@ class Background {
     this.screen_bottom = screen_bottom;
     if (this.screen_bottom != undefined) {
       //this.screen_bottom.setTaille(taille);
+      this.screen_bottom.volume = this.volumeEffet;
       this.screen_bottom.setBackground(this);
       this.screen_bottom.setPosition(pos);
       if (this.projectDev) {
@@ -134,6 +138,7 @@ class Background {
       let pos = new Position(this.taille.x - taille.x - 60, taille.y - 10);
       //let pos = new Position(0, this.taille.y - 40);
       this.tenue = tenue;
+      this.tenue.volume = this.volumeEffet;
       this.tenue.setTaille(taille);
       this.tenue.setBackground(this);
       this.tenue.setPosition(pos);
@@ -192,6 +197,7 @@ class Background {
         let objRndPos = new RndPos(posPlateforme, 0); //creation aleatoire position de la nouvelle platemeforme en x
         // let taille = new Taille(50, 10);
         let plateforme = this.choixPlateforme();
+        plateforme.volume = this.volumeEffet;
         if(plateforme.piege) {
           countPg++;
           countPgLine++;
@@ -281,6 +287,8 @@ class Background {
           this.taille.y + posBas - this.screen_bottom.taille.y
         );
         this.screen_bottom.setPosition(pos);
+      } else {
+        this.screen_bottom.setPosition(0);
       }
     }
   }
@@ -356,6 +364,7 @@ class Background {
       }
     } else if (this.nbDisplayOther == 3) {
       this.nbDisplayOther++;
+      this.joueur.game.collisionActionGameAll();
       if (this.joueur != undefined) {
         this.joueur.afficher(this.canvasBackground);
       } else {
@@ -371,12 +380,14 @@ class Background {
       //this.afficherContenue();
     } else if (this.nbDisplayOther == 5) {*/
       let backGroundOld = document.getElementById(this.idBackground);
-      let ctx = backGroundOld.getContext("2d");
-      ctx.clearRect(0, 0, this.taille.x, this.taille.y);
-      backGroundOld.parentNode.replaceChild(
-        this.canvasBackground,
-        backGroundOld
-      );
+      if(backGroundOld != undefined) {
+        let ctx = backGroundOld.getContext("2d");
+        ctx.clearRect(0, 0, this.taille.x, this.taille.y);
+        backGroundOld.parentNode.replaceChild(
+          this.canvasBackground,
+          backGroundOld
+        );
+      }
       this.stopDisplay = true;
     }
   }

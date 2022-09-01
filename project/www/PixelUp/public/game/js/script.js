@@ -25,7 +25,7 @@ if (window.Worker) {
 
   let screenGame = document.getElementById("screenGame_0");
 
-  screenGame.addEventListener(
+  /*screenGame.addEventListener(
     "scroll",
     function () {
       let calcul0 =
@@ -47,14 +47,14 @@ if (window.Worker) {
       }
     },
     false
-  );
+  );*/
 
   screenGame.scrollTop = screenGame.scrollHeight;
 
   function startGame(e) {
     document.getElementById("start").style.display = "none";
     game.start();
-    play();
+    //play();
   }
 
   document.getElementById("start").addEventListener("click", startGame);

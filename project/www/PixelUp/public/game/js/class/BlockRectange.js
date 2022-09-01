@@ -26,6 +26,11 @@ class BlockRectange extends Pause {
     this.background = undefined;
     this.idBackground = undefined;
     this.projectDev = false;
+    this.deplacementImg = 0;
+  }
+   
+  deplacement() {
+   this.setPositionX(this.pos.x+this.deplacementImg);
   }
 
   setProjectDev() {

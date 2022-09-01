@@ -11,6 +11,7 @@ class Plateforme extends BlockRectange {
         if(this.taille == undefined || this.taille.y == 0) {
             this.taille = new Taille(0, 20);
         }
+        this.volume = 100;
     }
 
     getPiege() {
@@ -27,13 +28,13 @@ class Plateforme extends BlockRectange {
     }
 
     effetPas(){
-        /*let effetPas =new EffetsSonores("son/pas2.mp3",100,true);
-        effetPas.start();*/
+        let effetPas =new EffetsSonores("son/pas2.mp3",this.volume,true);
+        effetPas.start();
     }
 
     effetSaut(){
-        /*let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",100,true);
-        effetSaut.start();*/
+        let effetSaut =new EffetsSonores("son/sfx-boing9.mp3",this.volume,true);
+        effetSaut.start();
     }
 
     action(enumCollision) {

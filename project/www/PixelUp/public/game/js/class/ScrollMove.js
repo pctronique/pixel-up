@@ -31,35 +31,25 @@ class ScrollMove {
     }
 
     monter() {
+        if(this.gameElement.scrollTop == 0) {
+            this.posScrollOld = undefined;
+            this.gameElement.scrollTop = this.gameElement.scrollHeight;
+        }
         const element = this.game.backgrounds[0];
         let pixelEcran = new PixelEcran(element.taille.y, this.gameElement);
-        /*console.log("pos_joueur : " + element.joueur.pos.y);
-        console.log("scrollTop : " + this.gameElement.scrollTop);
-        console.log("scrollHeight : " + this.gameElement.scrollHeight);
-        console.log("scrollWidth : " + this.gameElement.scrollWidth);
-        console.log("offsetHeight : " + this.gameElement.offsetHeight);
-        console.log("offsetWidth : " + this.gameElement.offsetWidth);
-        console.log("posJoueurEcran : " + pixelEcran.unPixelEcran(element.joueur.pos.y+element.joueur.taille.y));
-        console.log("divEcran : " + pixelEcran.moitierEcran());*/
-        console.log("pos joueur : "+pixelEcran.unPixelEcran(element.joueur.pos.y+element.joueur.taille.y));
-        let calcul021 = pixelEcran.unPixelEcran(element.joueur.pos.y+element.joueur.taille.y)/pixelEcran.divTaille();
-        console.log("pos scroll : "+calcul021);
-        let scrollTotal = this.gameElement.scrollHeight-this.gameElement.offsetHeight;
-        let calcul01 = pixelEcran.unPixelEcran(element.taille.y-(element.joueur.pos.y+element.joueur.taille.y)) - pixelEcran.moitierEcran();
-        //console.log(calcul01);
-        if(calcul01 > 0) {
-            let calcul2 = calcul01*((this.gameElement.scrollHeight/this.gameElement.offsetHeight)*this.gameElement.offsetWidth);
-              //this.gameElement.scrollTop = scrollTotal-calcul2 ;
+        let posJoueur = element.taille.y-(element.joueur.pos.y+element.joueur.taille.y);
+        if(posJoueur<0) {
+            posJoueur = -1*(posJoueur-element.taille.y);
         }
-        /*this.posScroll = (this.gameElement.scrollHeight-this.gameElement.offsetHeight)-posScrollSous;
-        console.log("this.posScroll : " + this.posScroll);
+        let posJoueurEcran = (pixelEcran.posEcran(posJoueur)-(this.gameElement.offsetHeight/3));
+        let scrollTotal = this.gameElement.scrollHeight-this.gameElement.offsetHeight;
+        this.posScroll = scrollTotal-posJoueurEcran;
         if(this.posScrollOld > this.posScroll) {
             this.gameElement.scrollTop = this.posScroll;
-        }*/
+        }
     }
 
     calculMilieu() {
-        let taillePixel = this.taillePixel();
         return (this.backgroundTaille.y-this.gameElement.offsetHeight/2)/this.taillePixel();
     }
 
@@ -81,7 +71,11 @@ class ScrollMove {
     changeBackground() {
         let scrollHaut = this.gameElement.scrollHeight / this.gameElement.childElementCount - this.gameElement.offsetHeight;
         if (this.gameElement.scrollTop < scrollHaut) {
+            this.gameElement.scrollTop = this.gameElement.scrollHeight;
+            this.posScroll = this.gameElement.scrollTop;
+            this.posScrollOld = (this.gameElement.scrollHeight-this.gameElement.offsetHeight);
             this.game.addBackground();
+            this.monter();
         }
     }
 
