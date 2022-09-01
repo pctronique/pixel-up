@@ -46,7 +46,6 @@ class BackgroundSousMer extends Background {
             this.isPiege = true;
             return new PlateformePiegesRadFish();
         }
-   
     }
 
 

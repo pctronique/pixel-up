@@ -45,11 +45,13 @@ class Joueur extends Personnage {
   }
 
   modifTenue(tenue) {
-    this.tenueOld = this.tenue;
-    this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
-    //this.imageSrc('./img/personnage-1.png');
-    this.posImg = ImageTenue.recupPos(tenue);
-    this.tenue = tenue;
+    if(this.tenue != tenue) {
+      this.tenueOld = this.tenue;
+      this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
+      //this.imageSrc('./img/personnage-1.png');
+      this.posImg = ImageTenue.recupPos(tenue);
+      this.tenue = tenue;
+    }
   }
 
   configMoveUser(configMoveUser) {
@@ -104,6 +106,8 @@ class Joueur extends Personnage {
   }
 
   afficher(canvas) {
+
+    this.deplacement();
     /*this.createBorder(canvas);
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = this.couleur;

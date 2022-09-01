@@ -122,13 +122,6 @@ class MouvementJoueur {
     };
   }
 
-  infoColision(enumCollision) {
-    let tabColl = enumCollision.collision;
-    let enumCollision0 = tabColl.enumCollision;
-    let enumAction = tabColl.enumAction;
-    let index = tabColl.index;
-  }
-
   collisionAction() {
     if (this.joueur.background != undefined) {
         this.joueur.tabPlateforme = this.joueur.background.getPlateformes();
@@ -136,7 +129,6 @@ class MouvementJoueur {
     }
     let enumCollision = this.joueur.game.getEnumCollision();
     let valueCollision = enumCollision.collision;
-    this.infoColision(enumCollision);
     if (valueCollision.enumCollision != EnumCollision.NULL) {
       if (valueCollision.enumAction == EnumAction.STOP || valueCollision.enumAction == EnumAction.MORT) {
         return enumCollision;
@@ -146,10 +138,11 @@ class MouvementJoueur {
   }
 
   sauter() {
-    if(!this.move0 && !this.coucou0) {
+    if(!this.move0) {
       this.joueur.game.nmDeplacement(2);
     }
-    if(!this.tomber0 && !this.sauter0 && !this.coucou0) {
+    if(!this.tomber0 && !this.sauter0) {
+      this.joueur.game.getMoveAutoJoueur(0);
       this.sauter0 = true;
       this.workerJoueurSauter = new Worker(this.folderWorker0+"workerJoueurSauter.js");
       this.eventSauter();
@@ -185,7 +178,7 @@ class MouvementJoueur {
   }
 
   tomber() {
-    if(!this.tomber0 && !this.coucou0) {
+    if(!this.tomber0) {
       this.tomber0 = true;
       this.workerJoueurTomber = new Worker(this.folderWorker0+"workerJoueurTomber.js");
       this.eventTomber();
@@ -232,6 +225,7 @@ class MouvementJoueur {
 
   move(enumMouvement) {
     if(!this.move0 && !this.coucou0) {
+      this.joueur.game.getMoveAutoJoueur(0);
       this.move0 = true;
       this.workerJoueurDeplacement = new Worker(this.folderWorker0+"workerJoueurMove.js");
       this.eventMove();
