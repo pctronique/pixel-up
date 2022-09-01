@@ -12,6 +12,7 @@ class PlateformeMeteoritesFeu extends PlateformePiegeHaut {
     }
 
     typeMort() {
+      this.effetGameOver();
         return EnumTypeMort.METEORITEFEU;
     }
 

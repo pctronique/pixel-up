@@ -28,15 +28,20 @@ class BackgroundCielNuages extends Background {
     choixPlateforme(){
         //return new PlateformeOiseaux();
         let min=1; 
-        let max=4;  
+        let max=4;
+        if(this.stopPg) {
+            max=3;
+        }
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
             return new PlateformeOiseaux();
         }
         else if (random == 2){
+            this.isPiege = false;
             return new PlateformeNuages();
         }
         else if (random == 3) {
+            this.isPiege = true;
             return new PlateformePiegesNuages();
         }
     }

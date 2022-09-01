@@ -27,7 +27,6 @@ class BackgroundCielAvions extends Background {
     }
 
     choixPlateforme() {
-
         return new PlateformeAvions();
     }
 
