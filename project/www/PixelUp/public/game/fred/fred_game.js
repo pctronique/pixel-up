@@ -1,7 +1,7 @@
 let folderWorker = "./../js/worker/";
 if (window.Worker) {
     //déclaration des variables que l'on a besoin
-    let backgroundTaille = new Taille(1000, 5000);
+    let backgroundTaille = new Taille(1000, 2500);
     let game = undefined;
     let nbGame = 0;
 
@@ -29,8 +29,6 @@ if (window.Worker) {
     let screenGame = document.getElementById("screenGame_0");
     screenGame.scrollTop = screenGame.scrollHeight;
 
-      game.stop();
-  
    
 
     // fonction mathématique écoute évènement au scroll par rapport à la taille de screenGame 
@@ -68,6 +66,24 @@ if (window.Worker) {
         game.start();
     }
 
- }
+ 
 document.getElementById("start").addEventListener("click", startGame);
+document.getElementById("son_jeu").addEventListener("click", changer);
+
+  document.querySelector("#button_up").addEventListener("click", function (e) {
+    game.eventKey(" ");
+  });
+  document
+    .querySelector("#button_left")
+    .addEventListener("click", function (e) {
+      game.eventKey("ArrowLeft");
+    });
+  document
+    .querySelector("#button_right")
+    .addEventListener("click", function (e) {
+      game.eventKey("ArrowRight");
+    });
+} else {
+  console.log("Your browser doesn't support web workers.");
+}
 document.getElementById("son_jeu").addEventListener("click", changer);
