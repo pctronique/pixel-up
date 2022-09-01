@@ -10,12 +10,355 @@
 <body>
     <div id="game">
         <div id="info_Game">
+            <button id="start" class="buttonStart"><img src="img/startButton.png" alt="bouton start"></button>
+            <button id="config" class="button" data-modal="modalOne"><img src="img/optionButton.png"></button>
+            <button id="config" class="button" data-modal="modalTwo"><img src="img/parametreButton.png"></button>
+            <button id="config3" class="button" data-modal="modalThree"><img src="img/parametreButton.png"></button>
+            <button id="config4" class="button" data-modal="modalFor"><img src="img/parametreButton.png"></button>
+        </div>
+        <div id="info_Game0">
             <img src="img/haut_parleur_son_ouvert.png" id="son_jeu"  alt="son_ok" width="50">
-            <button id="start">Start</button>
+  
         </div>
         <input type="hidden" id="game_typeMort" value="-1">
         <div id="score">0</div>
         <div class="screenGame" id="screenGame_0">
+        </div>
+        
+        <div id="modalOne" class="modal">
+            <div class="modal-content">
+                <div class="contact-form">
+                    <a class="close">&times;</a>
+                    <form action="/">
+                        <div>
+                            <h2>Commandes</h2>
+                                <label>Saut</label>
+                                <input class="tab_input" id="saut" type="text" name="name" />
+                                <label>Droite</label>
+                                <input class="tab_input" id="droite" type="text" name="name" />
+                                <label>Gauche</label>
+                                <input class="tab_input" id="gauche" type="text" name="name" />
+                                <label>Haut</label>
+                                <input class="tab_input" id="haut" class="tab_input" type="text" name="name" />
+                                <label>Bas</label>
+                                <input class="tab_input" id="bas" type="text" name="name" />
+                                <label>Coucou</label>
+                                <input class="tab_input" id="coucou" type="text" name="name" />
+                            <h2>Son</h2>
+                                <label>Volume Musique</label>
+                                <input type="range" id="volumeMusique" value="100">
+                                <label>Volume du Jeu</label>
+                                <input type="range" id="volumeJeu" value="100">
+                           
+                        </div>
+
+                        <button id="valider" type="submit" href="/">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="modalTwo" class="modal">
+            <div class="modal-content">
+                <div class="contact-form">
+                    <a class="close">&times;</a>
+                    <form action="/">
+                        <div>
+                            
+                            <h2>Saut/Chute</h2>
+                                <label>Hauteur de saut</label>
+                                <input class="tab_input" id="hauteurSaut" type="text" name="name" />
+                                <label>milliseconde de saut</label>
+                                <input class="tab_input" id="millisecondeSaut" type="text" name="name" />
+                                <label>milliseconde chute</label>
+                                <input class="tab_input" id="millisecondeTomber" type="text" name="name" />
+                            <h2>Déplacements</h2>
+                                <label>Largeur de déplacement</label>
+                                <input class="tab_input" id="largeurDeplacement" type="text" name="name" />
+                                <label>milliseconde de déplacement</label>
+                                <input class="tab_input" id="millisecondeDeplacement" type="text" name="name" />
+                            <h2>Intéraction "coucou"</h2>
+                                <label>Largeur coucou</label>
+                                <input class="tab_input" id="largeurCoucou" type="text" name="name" />
+                                <label>milliseconde coucou</label>
+                                <input class="tab_input" id="millisecondeCoucou" type="text" name="name" />
+                            <h2>Jeu</h2>
+                                <label>milliseconde</label>
+                                <input class="tab_input" id="millisecondeJeu" type="text" name="name" />
+                                <label>milliseconde score </label>
+                                <input class="tab_input" id="millisecondeScore" type="text" name="name" />
+                        </div>
+
+                        <button id="validerConfig" type="submit" href="/">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="modalThree" class="modal">
+            <div class="modal-content">
+                <div class="contact-form">
+                    <a class="close">&times;</a>
+                    <form action="/">
+                        <div>
+                            
+                            <h2>Sous-Terre</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="sousTerreMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="sousTerreMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="sousTerreMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="sousTerreMaxY" type="text" name="name" />                         
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="sousTerreNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="sousTerreNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="sousTerreNbPgTotal" type="text" name="name" />
+                            <h2>Sous-Mer</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="sousMerMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="sousMerMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="sousMerMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="sousMerMaxY" type="text" name="name" />                          
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="sousMerNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="sousMerNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="sousMerNbPgTotal" type="text" name="name" />
+                            <h2>Terre</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="terreMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="terreMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="terreMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="terreMaxY" type="text" name="name" />                        
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="terreNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="terreNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="terreNbPgTotal" type="text" name="name" />
+                            <h2>Ciel Nuages</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="cielNuagesMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="cielNuagesMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="cielNuagesMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="cielNuagesMaxY" type="text" name="name" />                        
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="cielNuagesNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="cielNuagesNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="cielNuagesNbPgTotal" type="text" name="name" />
+                            <h2>Ciel Avions</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="cielAvionMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="cielAvionMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="cielAvionMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="cielAvionMaxY" type="text" name="name" />                     
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="cielAvionNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="cielAvionNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="cielAvionNbPgTotal" type="text" name="name" />
+                            <h2>Espace Astéroïdes</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="espaceAsteroideMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="espaceAsteroideMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="espaceAsteroideMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="espaceAsteroideMaxY" type="text" name="name" />                           
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="espaceAsteroideNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="espaceAsteroideNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="espaceAsteroideNbPgTotal" type="text" name="name" />
+                            <h2>Espace Satellites</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="espaceSatelliteMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="espaceSatelliteMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="espaceSatelliteMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="espaceSatelliteMaxY" type="text" name="name" />                         
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="espaceSatelliteNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="espaceSatelliteNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="espaceSatelliteNbPgTotal" type="text" name="name" />
+                            <h2>Espace Vaisseaux</h2>
+                                <label>min X</label>
+                                <input class="tab_input" id="espaceVaisseauMinX" type="text" name="name" />
+                                <label>max X</label>
+                                <input class="tab_input" id="espaceVaisseauMaxX" type="text" name="name" />
+                                <label>min Y</label>
+                                <input class="tab_input" id="espaceVaisseauMinY" type="text" name="name" />
+                                <label>max Y</label>
+                                <input class="tab_input" id="espaceVaisseauMaxY" type="text" name="name" />                       
+                                <label>Nombre de pièges par ligne</label>
+                                <input class="tab_input" id="espaceVaisseauNbPgLine" type="text" name="name" />
+                                <label>Nombre de pièges séparation par ligne</label>
+                                <input class="tab_input" id="espaceVaisseauNbPgSepareLine" type="text" name="name" />
+                                <label>Nombre de pièges total</label>
+                                <input class="tab_input" id="espaceVaisseauNbPgTotal" type="text" name="name" />
+                        </div>
+
+                        <button id="validerConfigBackground" type="submit" href="/">Valider</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="modalFor" class="modal">
+            <div class="modal-content">
+                <div class="contact-form">
+                    <a class="close">&times;</a>
+                    <form action="/">
+                        <div>
+                            
+                            <h2>Sous-Terre</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="sousTerreHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="sousTerreMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="sousTerreMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="sousTerreMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="sousTerreLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="sousTerreMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="sousTerreLargeurCoucou" type="text" name="name" />
+                            <h2>Sous-Mer</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="sousMerHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="sousMerMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="sousMerMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="sousMerMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="sousMerLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="sousMerMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="sousMerLargeurCoucou" type="text" name="name" />
+                            <h2>Terre</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="terreHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="terreMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="terreMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="terreMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="terreLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="terreMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="terreLargeurCoucou" type="text" name="name" />
+                            <h2>Ciel Nuages</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="cielNuageHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="cielNuageMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="cielNuageMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="cielNuageMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="cielNuageLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="cielNuageMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="cielNuageLargeurCoucou" type="text" name="name" />
+                            <h2>Ciel Avions</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="cielAvionHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="cielAvionMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="cielAvionMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="cielAvionMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="cielAvionLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="cielAvionMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="cielAvionLargeurCoucou" type="text" name="name" />
+                            <h2>Espace Astéroïdes</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="espaceAsteroideHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="espaceAsteroideLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="espaceAsteroideMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="espaceAsteroideLargeurCoucou" type="text" name="name" />
+                            <h2>Espace Satellites</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="espaceSatelliteHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="espaceSatelliteLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="espaceSatelliteMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="espaceSatelliteLargeurCoucou" type="text" name="name" />
+                            <h2>Espace Vaisseaux</h2>
+                                <label>Hauteur du saut</label>
+                                <input class="tab_input" id="espaceVaisseauHauteurSaut" type="text" name="name" />
+                                <label>Milliseconde Saut</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeSaut" type="text" name="name" />
+                                <label>Milliseconde Tomber</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeTomber" type="text" name="name" />
+                                <label>Milliseconde Déplacement</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeDeplacement" type="text" name="name" />
+                                <label>Largeur Déplacement</label>
+                                <input class="tab_input" id="espaceVaisseauLargeurDeplacement" type="text" name="name" />
+                                <label>Milliseconde Coucou</label>
+                                <input class="tab_input" id="espaceVaisseauMillisecondeCoucou" type="text" name="name" />
+                                <label>Largeur Coucou</label>
+                                <input class="tab_input" id="espaceVaisseauLargeurCoucou" type="text" name="name" />
+                        </div>
+                        <button id="validerConfigGameMoveBackground" type="submit" href="/">Valider</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <div class="buttonMove" id="buttonMoveLeft">
@@ -99,6 +442,7 @@
     <script src="./js/configGame.js"></script>
     <script src="./js/audio.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/script2.js"></script>
     <script src="./js/finDePartie.js"></script>
 </body>
 </html>
