@@ -69,9 +69,13 @@ class Background {
   }
 
   typeMortTenue() {
+    this.effetGameOver();
     return EnumTypeMort.NULL;
   }
-
+  effetGameOver(){
+    let effetGameOver = new EffetsSonores("son/gameOver.mp3", 100, true);
+    effetGameOver.start();
+  }
   setProjectDev() {
     this.projectDev = true;
     for (let index = 0; index < this.tabAutrePlateforme.length; index++) {
