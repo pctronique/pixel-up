@@ -1,8 +1,8 @@
 class EnumTypeMort {
   static NULL = -1;
-  static TOMBER = 0; // Vous êtes tombé.
+  static AVION = 0; // Vous avez été percuté par un avion.
   static REQUIN = 1; // Vous avez été mangé par un requin.
-  static AVION = 2; // Vous avez été percuté par un avion.
+  static TOMBER = 2; // Vous êtes tombé.
   static ASTEROIDE = 3; // Vous avez été percuté par un astéroïde.
   static FEU = 4; //Vous avez été brûlé par le feu.
   static HELICOPTERE = 5; //Vous avez été percuté par un hélicoptère.

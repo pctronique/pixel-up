@@ -7,11 +7,12 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 
 class SuccesController extends AbstractController
 {
     #[Route('/user/succes', name: 'app_succes', methods: ['GET', 'POST'])]
-    public function index(MortRepository $mortRepository,UserRepository $user): Response
+    public function index(MortRepository $mortRepository,UserRepository $user, ManagerRegistry $doctrine): Response
     {
 
         $user = $this->getUser();
@@ -22,13 +23,16 @@ class SuccesController extends AbstractController
             2 => false // Chutes
         ];
 
-        $newMortType = (!empty($_POST)&&array_key_exists('typeMort',$_POST))? intval($_POST['typeMort']):null;
+        $newMortType = 1/*(!empty($_POST)&&array_key_exists('typeMort',$_POST))? intval($_POST['typeMort']):null*/;
+        $AddMortRequest = "";
+        $entityManager = $doctrine->getManager();
 
-        if($newMortType == 0){
+        if($newMortType == 1 || $newMortType == 2 || $newMortType == 3){
 
-        } elseif($newMortType == 3){
-
-        } elseif($newMortType == 1){
+            $AddMortRequest = $mortRepository->incrementValue($newMortType, $user);
+            $classMort = $mortRepository->recupClassMort($user, $newMortType);
+            $classMort[0]->setCompteur($AddMortRequest);
+            $entityManager->flush();
 
         }
 
@@ -63,6 +67,8 @@ class SuccesController extends AbstractController
             'morts' => $morts,
             'trueOrFalseSuccess' => $trueOrFalseSuccess,
             'totalMorts' => array_multisum($morts),
+            'AddMortRequest' => $AddMortRequest,
+            'classMort' => $classMort,
         ]);
 
         

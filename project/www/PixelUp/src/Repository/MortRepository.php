@@ -51,8 +51,35 @@ class MortRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function incrementValue($newMortType, $user) {
+        $qb = $this->createQueryBuilder("m")
+        ->select("m.compteur")
+        ->innerJoin('m.user', 'u')
+        ->where("m.cat_mort = :catMort")
+        ->setParameter(':catMort', $newMortType)
+        ->andWhere('u = :user')
+        ->setParameter(':user', $user);
+        $result = $qb->getQuery()->getSingleScalarResult();
+        $result+= 1;
+        
+        return $result;
+        
+        }
 
-  
+        // Methode qui recupere la class mort
+
+        public function recupClassMort($user, $newMortType){
+
+            $query = $this->createQueryBuilder('m')
+                ->select('m')
+                ->innerJoin('m.user', 'u')
+                ->where("m.cat_mort = :catMort")
+                ->setParameter(':catMort', $newMortType)
+                ->andWhere('u = :user')
+                ->setParameter(':user', $user);
+            return $query->getQuery()->getResult();
+        }
+
     //    /**
     //     * @return Mort[] Returns an array of Mort objects
     //     */
