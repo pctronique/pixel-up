@@ -11,6 +11,7 @@ if (window.Worker) {
     let heightJoueur = 60;
     //let heightJoueur = 47;
     game = new Game("screenGame_0", tabConfigBackground, tabConfigMoveBackground);
+    game.activeAutoScroll(true);
     game.setVolumeEffet(0);
     game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
     game.setTailleJoueur(18, heightJoueur);
@@ -65,9 +66,10 @@ if (window.Worker) {
     //game.startDev();
   }
 
-  /*function stopGame(e) {
+  function stopGame(e) {
     game.stop();
-  }*/
+  }
+
   document.getElementById("start").addEventListener("click", startGame);
   //document.getElementById("stop").addEventListener("click", stopGame);
 
