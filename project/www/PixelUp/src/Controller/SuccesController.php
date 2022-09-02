@@ -23,7 +23,12 @@ class SuccesController extends AbstractController
             2 => false // Chutes
         ];
 
-        $newMortType = (!empty($_POST)&&array_key_exists('typeMort',$_POST))? intval($_POST['typeMort']):null;
+        $newMortType = (!empty($_POST)&&array_key_exists('typeMort',$_POST))? intval($_POST['typeMort']):0;
+
+        if($newMortType == 4 || $newMortType == 5 || $newMortType == 6 || $newMortType == 7 || $newMortType == 8){
+            $newMortType = 2;
+        }
+
         $entityManager = $doctrine->getManager();
         $AddMortRequest = "";
         $classMort = "";
@@ -70,6 +75,7 @@ class SuccesController extends AbstractController
             'totalMorts' => array_multisum($morts),
             'AddMortRequest' => $AddMortRequest,
             'classMort' => $classMort,
+            'newMortType' => $newMortType
         ]);
 
         

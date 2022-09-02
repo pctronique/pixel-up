@@ -35,8 +35,13 @@ typeMort.addEventListener("change", function (e) {
     fetch_post('/score/result',dataArray).then(function (response) {
       console.log(response);
       /*alert(message + "Envoyer" + scoreGame.innerText);*/
+    });
 
-      window.location.replace("/score/result");
+    let dataArray2 = { "typeMort": typeMort.value };
+    fetch_post('/user/succes',dataArray).then(function (response) {
+      console.log(response);
+      /*alert(message + "Envoyer" + scoreGame.innerText);*/
+      //window.location.replace("/score/result");
     });
 
 
