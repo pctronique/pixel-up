@@ -41,7 +41,7 @@ typeMort.addEventListener("change", function (e) {
     fetch_post('/user/succes',dataArray).then(function (response) {
       console.log(response);
       /*alert(message + "Envoyer" + scoreGame.innerText);*/
-      //window.location.replace("/score/result");
+      window.location.replace("/");
     });
 
 
