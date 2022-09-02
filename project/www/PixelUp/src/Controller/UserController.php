@@ -87,4 +87,32 @@ class UserController extends AbstractController
     }
 
 
+    #[Route('admin/{id}', name: 'app_user_admin_mod', methods: ['POST'])]
+    public function addRole(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        if ($this->isCsrfTokenValid('add' . $user->getId(), $request->request->get('_token'))) {
+            
+            if ($user->getRoles()[0]=='ROLE_ADMIN') {
+                $user->setRoles(['ROLE_USER']);
+            }else {
+                
+                $user->setRoles(['ROLE_ADMIN']);
+               
+            }
+
+            $userRepository->add($user, true);
+            $this->addFlash('success', 'Nouveaux role'); 
+         
+
+           
+        }
+
+
+
+       
+        return $this->redirectToRoute('app_user_show', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
 }
