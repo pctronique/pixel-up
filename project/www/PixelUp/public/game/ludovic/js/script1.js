@@ -65,9 +65,10 @@ if (window.Worker) {
     //game.startDev();
   }
 
-  /*function stopGame(e) {
+  function stopGame(e) {
     game.stop();
-  }*/
+  }
+
   document.getElementById("start").addEventListener("click", startGame);
   //document.getElementById("stop").addEventListener("click", stopGame);
 
