@@ -118,8 +118,8 @@ class Images {
           img,
           posLeft.x,
           posLeft.y,
-          this.taille.x,
-          this.taille.y
+          this.tailleImg.x,
+          this.tailleImg.y
         );
       //} else if (this.imgRighttVisible) {
         let posRight = this.getPosRight();
@@ -127,8 +127,8 @@ class Images {
           img,
           posRight.x,
           posRight.y,
-          this.taille.x,
-          this.taille.y
+          this.tailleImg.x,
+          this.tailleImg.y
         );
       //}
     }

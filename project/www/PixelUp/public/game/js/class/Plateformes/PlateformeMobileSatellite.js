@@ -6,6 +6,7 @@ class PlateformeMobileSatellite extends PlateformeMobile {
     }
 
     typeMort() {
+        this.effetGameOver();
         return EnumTypeMort.SATELLITE;
     }
 

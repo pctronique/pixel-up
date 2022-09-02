@@ -25,6 +25,9 @@ class Score
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\Column]
+    private ?int $classement = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +65,18 @@ class Score
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getClassement(): ?int
+    {
+        return $this->classement;
+    }
+
+    public function setClassement(int $classement): self
+    {
+        $this->classement = $classement;
 
         return $this;
     }

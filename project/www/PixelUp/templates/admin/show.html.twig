@@ -24,6 +24,7 @@
                    {#<th>Score</th>
                    <th>Temps de jeux</th>#}
                    <th>Role</th>
+                   <th>Changer de Role</th>
                    <th>Actions</th>
                </tr>
         </thead>
@@ -40,8 +41,8 @@
                 {#<td>{{ userRepositorys.score}}</td>#}
                 <td>{{ userRepositorys.username}}</td>
                 <td>{{ userRepositorys.roles[0]}}</td>
+                <td>{{ include('admin/_add_form.twig') }}</td>
                 <td>{{ include('admin/_delete_form.html.twig') }}</td>
-                
             </tr>
 
         {% else %}

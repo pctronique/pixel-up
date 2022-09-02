@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_user_admin_mod', {'id': userRepositorys.id}) }}" onsubmit="return confirm('{{userRepositorys.username}} va être promu Administrateur?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('add' ~ userRepositorys.id) }}">
+    <button class="btn">Accés Role Admin</button>
+</form>

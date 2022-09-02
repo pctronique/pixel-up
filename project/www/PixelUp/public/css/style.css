@@ -7,8 +7,11 @@ header{
 }
 
 body{
-    background:  center no-repeat url("../media/PixelUpBackground.png");
+    background:  center repeat url("../media/bakgroundcity.png");
     background-size: cover;
+    -webkit-animation: background 50s linear infinite;
+    animation: background 50s linear infinite;
+    position: relative;
 }
 
 *{
@@ -35,7 +38,7 @@ transform: scale(1.2);
 }
 
 header h1{
-    color: white;
+    color: #b327f1;
     font-family: 'Silkscreen', cursive;
     margin: 0 100px;
   }
@@ -72,7 +75,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 20px;
     text-align: center;
   }
 
@@ -113,36 +116,28 @@ header{
     text-align: center;
   }
 
-  #menu a:first-of-type li{
-    background-color: #C23028;
+  #menu a li{
+    background-color: #8900a5;
+    color: white;
   }
 
-  #menu a:nth-of-type(2) li{
-    background: #F6B339;
+  #menu a:nth-child(2n+1) li{
+    background: #004aad;
   }
 
-  #menu a:nth-of-type(3) li{
-    background: #0594D0;
+  #homeSection{
+    margin-top: 5vh;
   }
-
-
-  #menu a:nth-of-type(4) li{
-    background: #13d005ce;
-  }
-
-  #menu a:nth-of-type(5) li{
-    background: #fef5ffce;
-  }
-
 
 
   #menu li{
     margin: 15px 0;
-    padding: 5px;
+    padding: 15px;
     width: 100%;
-    border: 2px solid black;
+    border: 2px solid #ff4754;
     transition: 0.2s;
     font-family: 'Silkscreen', cursive;
+    border-radius: 10px;
   }
 
   #menu li:hover{
@@ -154,43 +149,34 @@ header{
 
 /* FOOTER */
 
-  footer ul{
+  footer{
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    overflow: hidden;
+  }
+
+  footer ul{
+    width: 600%;
     display: flex;
     justify-content: space-between;
     padding: 40px;
+    -webkit-animation: footerRotate 100s linear infinite;
+    animation: footerRotate 100s linear infinite;
   }
 
   footer li{
-    width: 60px;
-    height: 60px;
-    background-color: black;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: solid 7px black;
+  }
+
+  footer li:nth-child(2n+1){
     border: solid 7px white;
+    background-color: black;
   }
 
-  footer li:first-of-type{
-    background-color: #77021D;
-  }
-
-  footer li:nth-of-type(2){
-    background-color: #F6B339;
-  }
-
-  footer li:nth-of-type(3){
-    background-color: #04BBFF;
-  }
-
-  footer li:nth-of-type(4){
-    background-color: #003C57;
-  }
-
-  footer li:nth-of-type(5){
-    background-color: #ACC27A;
-  }
-
-  footer li:nth-of-type(6){
-    background-color: #6D594D;
-  }
 
 /* FORMULAIRE EDITPROFIL */
 
@@ -330,10 +316,6 @@ tbody tr:nth-child(even) {
   background-color: rgb(100, 100, 100);
 }
 
-#tbodyscore iconify-icon{
-  font-size: 3em;
-}
-
 #bestScore{
   display: none;
 }
@@ -380,3 +362,96 @@ tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
   margin: 100px auto;
   width: fit-content;
 }
+
+/* LOADER HOME */
+
+.loader {
+
+  position : fixed;
+  z-index: 9999;
+  background : url('icon-loader.gif') 50% 50% no-repeat, black;
+  top : 0px;
+  left : 0px;
+  height : 100%;
+  width : 100%;
+  cursor : wait;
+  }
+
+  @-webkit-keyframes slide-fwd-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+    }
+  }
+  @keyframes slide-fwd-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+    }
+  }
+
+  @-webkit-keyframes footerRotate {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    50% {
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+  }
+  @keyframes footerRotate {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    50% {
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+
+  }
+
+  
+  @-webkit-keyframes background {
+    0% { background-position-x:   0; }
+    100% { background-position-x: 100vw; }
+  }
+  @keyframes background {
+    0% { background-position-x:   0; }
+    100% { background-position-x: 100vw; }
+  }
+
+.loader img { 
+
+  height : 20%;
+  width : 20%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-left: -150px;
+  -webkit-animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+  
+  }
+
+
+
+/* LOADER GAME */
