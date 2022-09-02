@@ -9,9 +9,10 @@ function timeGame() {
 
 onmessage = function(e) {
   isLoad = e.data[1];
-  if(isLoad) {
-    setInterval(function () {timeGame()}, e.data[0]);
-  } else if(myInterval != undefined) {
+  if(myInterval != undefined) {
     clearInterval(myInterval);
+  }
+  if(isLoad) {
+    myInterval = setInterval(function () {timeGame()}, e.data[0]);
   }
 }

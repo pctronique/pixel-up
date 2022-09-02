@@ -18,11 +18,12 @@ function sauter() {
 
 onmessage = function (e) {
   isLoad = e.data[4];
+  if(myInterval != undefined) {
+    clearInterval(myInterval);
+  }
   if(isLoad) {
     y = e.data[0];
     hauteurTomber = e.data[2];
-    setInterval(function () {sauter()}, e.data[3]);
-  } else if(myInterval != undefined) {
-    clearInterval(myInterval);
+    myInterval = setInterval(function () {sauter()}, e.data[3]);
   }
 };

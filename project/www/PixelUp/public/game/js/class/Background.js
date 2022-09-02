@@ -41,6 +41,7 @@ class Background {
     this.isPiege = false;
     this.stopPg = false;
     this.tenueBackground = undefined;
+    this.moveBack = false;
     if (tabConfig == undefined) {
       this.creerPlatforme(50, 300, 25, 80);
     } else {
@@ -64,18 +65,14 @@ class Background {
   }
 
   valideTenue() {
-    //return true;
     return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
   }
 
   typeMortTenue() {
-    this.effetGameOver();
+    //this.moveBack = false;
     return EnumTypeMort.NULL;
   }
-  effetGameOver(){
-    let effetGameOver = new EffetsSonores("son/gameOver.mp3", 100, true);
-    effetGameOver.start();
-  }
+
   setProjectDev() {
     this.projectDev = true;
     for (let index = 0; index < this.tabAutrePlateforme.length; index++) {
