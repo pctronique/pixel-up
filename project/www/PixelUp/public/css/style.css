@@ -38,9 +38,11 @@ transform: scale(1.2);
 }
 
 header h1{
-    color: #b327f1;
+    color: royalblue;
     font-family: 'Silkscreen', cursive;
     margin: 0 100px;
+    font-size: 5em;
+    text-shadow: 2px 2px 2px white;
   }
 
 header{
@@ -114,15 +116,53 @@ header{
     margin:  50px auto;
     width: fit-content;
     text-align: center;
+    background: rgb(0 0 0 / 50%);
+    width: 30%;
+    padding: 24px 98px;
+    border-radius: 10px;
+    position: relative;
   }
 
+  #menu::after{
+    content: "";
+    background-color: white;
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+    width: 2px;
+    height: 0%;
+    animation: width 2s infinite;
+  }
+
+  #menu::before{
+    content: "";
+    background-color: white;
+    position: absolute;
+    right: 50px;
+    top: 0;
+    width: 2px;
+    height: 0%;
+    animation: width 2s infinite;
+  }
+
+  @keyframes width {
+    0% {
+        height: 0%;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
   #menu a li{
-    background-color: #8900a5;
+    background-color: #2703A6;
     color: white;
   }
 
   #menu a:nth-child(2n+1) li{
-    background: #004aad;
+    background: royalblue;
+    color:blanc;
   }
 
   #homeSection{
@@ -134,7 +174,7 @@ header{
     margin: 15px 0;
     padding: 15px;
     width: 100%;
-    border: 2px solid #ff4754;
+    border: 2px solid white;
     transition: 0.2s;
     font-family: 'Silkscreen', cursive;
     border-radius: 10px;
@@ -150,8 +190,6 @@ header{
 /* FOOTER */
 
   footer{
-    position: absolute;
-    bottom: 0;
     width: 100%;
     overflow: hidden;
   }
