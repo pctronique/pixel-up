@@ -88,6 +88,9 @@ class Game {
     this.tenueJoueur = tenue;
     this.backgrounds[0].joueur.modifTenue(tenue);
     this.backgrounds[1].joueur.modifTenue(tenue);
+    console.log(this.tenueJoueur);
+    console.log(this.backgrounds[0].joueur);
+    console.log(this.backgrounds[1].joueur);
   }
 
   nmDeplacement(num) {
