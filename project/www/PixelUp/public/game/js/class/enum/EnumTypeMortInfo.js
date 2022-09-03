@@ -40,11 +40,11 @@ class EnumTypeMortInfo {
             new EnumTypeMortInfo(EnumTypeMort.RADFISH, "RADFISH", "Vous avez été tué par un poisson radioactif."),
             new EnumTypeMortInfo(EnumTypeMort.NUAGEGRIS, "NUAGEGRIS", "Vous avez été tué par un nuage orageux."),
             new EnumTypeMortInfo(EnumTypeMort.NACELLECASSEE, "NACELLECASSEE", "Vous êtes tombé dans le vide."),
-            new EnumTypeMortInfo(EnumTypeMort.TENUE_NORMAL, "TENUE_NORMAL", "TENUE_NORMAL"),
-            new EnumTypeMortInfo(EnumTypeMort.TENUE_MER, "TENUE_MER", "TENUE_MER"),
-            new EnumTypeMortInfo(EnumTypeMort.TENUE_TERRE, "TENUE_TERRE", "TENUE_TERRE"),
-            new EnumTypeMortInfo(EnumTypeMort.TENUE_CIEL, "TENUE_CIEL", "TENUE_CIEL"),
-            new EnumTypeMortInfo(EnumTypeMort.TENUE_ESPACE, "TENUE_ESPACE", "TENUE_ESPACE"),
+            new EnumTypeMortInfo(EnumTypeMort.TENUE_NORMAL, "TENUE_NORMAL", "Vous n'avez pas la bonne tenue."),
+            new EnumTypeMortInfo(EnumTypeMort.TENUE_MER, "TENUE_MER", "Vous n'avez pas la bonne tenue."),
+            new EnumTypeMortInfo(EnumTypeMort.TENUE_TERRE, "TENUE_TERRE", "Vous n'avez pas la bonne tenue."),
+            new EnumTypeMortInfo(EnumTypeMort.TENUE_CIEL, "TENUE_CIEL", "Vous n'avez pas la bonne tenue."),
+            new EnumTypeMortInfo(EnumTypeMort.TENUE_ESPACE, "TENUE_ESPACE", "Vous n'avez pas la bonne tenue."),
         ];
     }
 

@@ -12,7 +12,7 @@ class BackgroundTerre extends Background {
         this.creerPlatformeBottom(new PlateformeLave());
         this.creerPlateformeTenue(new TenueCiel());
         this.creerPlateformePourTenue(new PlateformeTenueCiel(), new Position(-25,53));
-        this.setTenueBackground(EnumTenues.Terre);
+        this.setTenueBackground(EnumTenues.TERRE);
     }
 
     imgBackDisplay(canvas) {

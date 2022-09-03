@@ -40,7 +40,7 @@ class Background {
     this.nbPgTotal = -1;
     this.isPiege = false;
     this.stopPg = false;
-    this.tenueBackground = undefined;
+    this.tenueBackground0 = undefined;
     this.moveBack = false;
     if (tabConfig == undefined) {
       this.creerPlatforme(50, 300, 25, 80);
@@ -60,12 +60,18 @@ class Background {
     this.creerPlateformeTenue(undefined, undefined);
   }
 
+  reloadTenue(){
+    this.setTenueBackground(undefined);
+  }
+
   setTenueBackground(tenue) {
-    this.tenueBackground = tenue;
+    if(tenue != undefined) {
+      this.tenueBackground0 = tenue;
+    }
   }
 
   valideTenue() {
-    return this.tenueBackground == this.joueur.tenue || this.tenueBackground == this.joueur.tenueOld;
+    return this.tenueBackground0 == this.joueur.tenue || this.tenueBackground0 == this.joueur.tenueOld;
   }
 
   typeMortTenue() {
