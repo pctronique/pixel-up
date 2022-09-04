@@ -31,8 +31,8 @@ let tabConfig = {
 }
 
 function saveLocal() {
-   
     localStorage.setItem('pixelUpConfigurations', JSON.stringify(tabConfig));
+    location.reload();
 }
 
 function loadLocal() {
@@ -94,6 +94,54 @@ document.getElementById("validerConfig").addEventListener("click", function(e) {
     tabConfig.game.scoreMilliseconde = document.getElementById("millisecondeScore").value;
    
     saveLocal();
+});
+
+document.getElementById("bp_saut").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("bp_saut").addEventListener('keydown', function(e) {
+        document.getElementById("saut").value = e.key;
+        document.getElementById("bp_saut").removeEventListener("keydown", undefined);
+    });
+});
+
+document.getElementById("bp_droite").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("bp_droite").addEventListener('keydown', function(e) {
+        document.getElementById("droite").value = e.key;
+        document.getElementById("bp_droite").removeEventListener("keydown", undefined);
+    });
+});
+
+document.getElementById("bp_gauche").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("bp_gauche").addEventListener('keydown', function(e) {
+        document.getElementById("gauche").value = e.key;
+        document.getElementById("bp_gauche").removeEventListener("keydown", undefined);
+    });
+});
+
+document.getElementById("bp_haut").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("bp_haut").addEventListener('keydown', function(e) {
+        document.getElementById("haut").value = e.key;
+        document.getElementById("bp_haut").removeEventListener("keydown", undefined);
+    });
+});
+
+document.getElementById("bp_bas").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("bp_bas").addEventListener('keydown', function(e) {
+        document.getElementById("bas").value = e.key;
+        document.getElementById("bp_bas").removeEventListener("keydown", undefined);
+    });
+});
+
+document.getElementById("bp_coucou").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.getElementById("bp_coucou").addEventListener('keydown', function(e) {
+        document.getElementById("coucou").value = e.key;
+        document.getElementById("bp_coucou").removeEventListener("keydown", undefined);
+    });
 });
 
 loadLocal();

@@ -101,6 +101,13 @@ body {
   width: 200px;
 }
 
+.input_button {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  justify-items: center;
+}
+
 
 /*pop up*/
 .modal {
@@ -186,6 +193,17 @@ body {
 #valider, #validerConfig, #validerConfigBackground,#validerConfigGameMoveBackground{
   background-color: #ec00c0;
   box-shadow: inset 0 0 1em rgb(230, 0, 255), 0 0 2em rgb(174, 0, 255);
+}
+
+.input_button button {
+  background-color: rgb(230, 0, 255);
+  color: black;
+  border: none;
+  margin: 0px;
+  padding: 10px;
+  margin-left: -15px;
+  margin-top: -9px;
+  padding-right: 21px;
 }
 
 @media (max-width: 950px){

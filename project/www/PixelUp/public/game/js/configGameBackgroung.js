@@ -90,8 +90,8 @@ let tabConfigBackground = {
 }
 
 function saveLocalConfigBackground() {
-   
     localStorage.setItem('pixelUpConfigurationsBackground', JSON.stringify(tabConfigBackground));
+    location.reload();
 }
 
 function loadLocalConfigBackground() {

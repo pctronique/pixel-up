@@ -73,8 +73,8 @@ let tabConfigMoveBackground = {
     },
 }
 function saveLocalConfigGameMoveBackground() {
-   
     localStorage.setItem('pixelUpConfigurationsGameMoveBackground', JSON.stringify(tabConfigMoveBackground));
+    location.reload();
 }
 
 function loadLocalConfigGameMoveBackground() {
