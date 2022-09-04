@@ -8,7 +8,7 @@ let tabConfig = {
         keyBas : 'ArrowDown',
     },
     sautTomber : {
-        hauteurSaut : 200,
+        hauteurSaut : 400,
         millisecondeSaut : 2,
         millisecondeTomber : 2,
     },
@@ -21,7 +21,8 @@ let tabConfig = {
         millisecondeCoucou : 8,
     },
     game : {
-        milliseconde : 40,
+        milliseconde : 5,
         scoreMilliseconde : 500,
     },
 }
+
