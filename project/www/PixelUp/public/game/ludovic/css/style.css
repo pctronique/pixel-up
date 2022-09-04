@@ -13,6 +13,22 @@ body {
     right: 0;
     margin: 10px
 }
+#splashScreengame {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  position: absolute;
+  z-index: 10;
+}
+#splashScreengame img {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -75px;
+}
 .screenGame {
     display: flex;
     flex-direction: column;

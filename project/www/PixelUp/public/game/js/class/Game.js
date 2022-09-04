@@ -5,6 +5,7 @@ class Game {
     if (pause) {
       this.classPause = new Pause();
     }
+    this.splashScreen = undefined;
     this.allImage = undefined;
     this.imgValidate = false;
     this.tabConfigMovBackground = tabConfigMovBackground;
@@ -55,6 +56,13 @@ class Game {
     this.addBackground();
     this.backgrounds[0].joueur.setPositionXY(this.initJoueur.x, this.initJoueur.y);
     this.afficher();
+    if(this.splashScreen != undefined) {
+      this.splashScreen.style.display = "none";
+    }
+  }
+
+  setSplashScreen(idSplashScreen) {
+    this.splashScreen = document.getElementById(idSplashScreen);
   }
 
   activeAutoScroll(active) {
