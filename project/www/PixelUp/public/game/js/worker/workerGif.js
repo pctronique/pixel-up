@@ -15,12 +15,13 @@ function addScore() {
 
 onmessage = function (e) {
   isLoad = e.data[2];
+  if(myInterval != undefined) {
+    clearInterval(myInterval);
+  }
   if(isLoad) {
     nbFrame = e.data[1];
-    setInterval(function () {
+    myInterval = setInterval(function () {
       addScore();
     }, e.data[0]);
-  } else if(myInterval != undefined) {
-    clearInterval(myInterval);
   }
 };

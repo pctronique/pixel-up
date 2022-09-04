@@ -28,10 +28,11 @@ function move() {
 
 onmessage = function (e) {
   isLoad = e.data[2];
+  if(myInterval != undefined) {
+    clearInterval(myInterval);
+  }
   if(isLoad) {
     largeurDeplacement = e.data[1];
-    setInterval(function () {move()}, e.data[0]);
-  } else if(myInterval != undefined) {
-    clearInterval(myInterval);
+    myInterval = setInterval(function () {move()}, e.data[0]);
   }
 };
