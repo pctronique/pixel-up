@@ -20,7 +20,7 @@ body {
     height: 100vh;
     position: relative;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 .screenGame canvas {
     display: flex;
