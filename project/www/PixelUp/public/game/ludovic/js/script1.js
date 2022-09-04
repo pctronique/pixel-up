@@ -11,10 +11,12 @@ if (window.Worker) {
     let heightJoueur = 60;
     //let heightJoueur = 47;
     game = new Game("screenGame_0", tabConfigBackground, tabConfigMoveBackground);
+    game.setAllImage(new AllImage(game));
     game.activeAutoScroll(false);
     game.setVolumeEffet(0);
     game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
     game.setTailleJoueur(18, heightJoueur);
+    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - heightJoueur - 1);
     //game.setTailleJoueur(47, heightJoueur);
     game.keyGame(tabConfig.key.keySaut, tabConfig.key.keyGauche, tabConfig.key.keyDroite, tabConfig.key.keyCoucou);
     game.keyGameDev(tabConfig.key.keyHaut, tabConfig.key.keyBas);
@@ -24,10 +26,6 @@ if (window.Worker) {
     //game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
-    game.addBackground();
-    game.addBackground();
-    game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - heightJoueur - 1);
-    game.afficher();
 
     let screenGame = document.getElementById(idScreen);
 
@@ -56,7 +54,7 @@ if (window.Worker) {
     screenGame.scrollTop = screenGame.scrollHeight;
 
 
-  game.start();
+  //game.start();
   //game.startDev();
 
   //game.keyGame("k");

@@ -2,20 +2,20 @@ class BackgroundEspaceVaisseau extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
+    constructor(allImage, idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(allImage, idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
             this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
         }
-        this.creerPlatformeBottom(new PlateformeMeteoritesFeu());
+        this.creerPlatformeBottom(new PlateformeMeteoritesFeu(this.allImage));
         this.setTenueBackground(EnumTenues.ESPACE);
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/background_VAISSEAUX.png");
-        let BackgroundEspaceVaisseau = new Images(this.imageSource, this.pos, this.taille);
+        //this.imageSrc(this.allImage.recupImgData("bkg_vaisseaux"));
+        let BackgroundEspaceVaisseau = new Images(this.allImage.recupImg("bkg_vaisseaux"), this.pos, this.taille);
         BackgroundEspaceVaisseau.setBackground(this);
         BackgroundEspaceVaisseau.afficher(canvas);
     }
@@ -30,10 +30,10 @@ class BackgroundEspaceVaisseau extends Background {
         let max=3;  
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
-            return new PlateformeVaisseauJaune(taille);
+            return new PlateformeVaisseauJaune(this.allImage, taille);
         }
         else if (random == 2){
-            return new PlateformeVaisseau(taille);
+            return new PlateformeVaisseau(this.allImage, taille);
         }
    
     }

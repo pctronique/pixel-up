@@ -2,22 +2,22 @@ class BackgroundSousMer extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
+    constructor(allImage, idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(allImage, idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
             this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
         }
-        this.creerPlatformeBottom(new PlateformeMeduses());
-        this.creerPlateformeTenue(new TenueTerre());
-        this.creerPlateformePourTenue(new PlateformeTenueTerre(), new Position(-20,36));
+        this.creerPlatformeBottom(new PlateformeMeduses(this.allImage));
+        this.creerPlateformeTenue(new TenueTerre(this.allImage));
+        this.creerPlateformePourTenue(new PlateformeTenueTerre(this.allImage), new Position(-20,36));
         this.setTenueBackground(EnumTenues.MER);
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/background_SOUS_MER.png");
-        let sousMer = new Images(this.imageSource, this.pos, this.taille);
+        //this.imageSrc(this.allImage.recupImgData("bkg_sous_mer"));
+        let sousMer = new Images(this.allImage.recupImg("bkg_sous_mer"), this.pos, this.taille);
         sousMer.setBackground(this);
         sousMer.afficher(canvas);
     }
@@ -36,15 +36,15 @@ class BackgroundSousMer extends Background {
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
             this.isPiege = false;
-            return new PlateformeMobilePoisson();
+            return new PlateformeMobilePoisson(this.allImage);
         }
         else if (random == 2){
             this.isPiege = false;
-            return new PlateformeMobileRequin();
+            return new PlateformeMobileRequin(this.allImage);
         }
         else if (random == 3) {
             this.isPiege = true;
-            return new PlateformePiegesRadFish();
+            return new PlateformePiegesRadFish(this.allImage);
         }
     }
 

@@ -2,22 +2,22 @@ class BackgroundTerre extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
+    constructor(allImage, idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(allImage, idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
             this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
         }
-        this.creerPlatformeBottom(new PlateformeLave());
-        this.creerPlateformeTenue(new TenueCiel());
-        this.creerPlateformePourTenue(new PlateformeTenueCiel(), new Position(-25,53));
+        this.creerPlatformeBottom(new PlateformeLave(this.allImage));
+        this.creerPlateformeTenue(new TenueCiel(this.allImage));
+        this.creerPlateformePourTenue(new PlateformeTenueCiel(this.allImage), new Position(-25,53));
         this.setTenueBackground(EnumTenues.TERRE);
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/background_VILLE.png");
-        let Terre = new Images(this.imageSource, this.pos, this.taille);
+        //this.imageSrc(this.allImage.recupImgData("bkg_ville"));
+        let Terre = new Images(this.allImage.recupImg("bkg_ville"), this.pos, this.taille);
         Terre.setBackground(this);
         Terre.afficher(canvas);
     }
@@ -36,11 +36,11 @@ class BackgroundTerre extends Background {
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
             this.isPiege = false;
-            return new PlateformeNacelles();
+            return new PlateformeNacelles(this.allImage);
         }
         else if (random == 2){
             this.isPiege = true;
-            return new PlateformePiegesNacelles();
+            return new PlateformePiegesNacelles(this.allImage);
         }
    
     }

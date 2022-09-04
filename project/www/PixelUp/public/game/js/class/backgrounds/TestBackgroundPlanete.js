@@ -1,6 +1,6 @@
 class TestBackgroundPlanete extends Background {
-  constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
-    super(idBackground, taille, scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
+  constructor(allImage, idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+    super(allImage, idBackground, taille, scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
     this.imageSrc("./img/ciel.png");
     this.imgGif = new ImageGif(
       [

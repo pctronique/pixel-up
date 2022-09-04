@@ -1,8 +1,8 @@
 class ImageGif extends Images {
-    constructor(srcs, pos, taille, tailleImg = undefined, milliseconde = 500) {
-        super(srcs, pos, taille, tailleImg);
-        this.srcs = srcs;
-        this.src = srcs[0];
+    constructor(images, pos, taille, tailleImg = undefined, milliseconde = 500) {
+        super(images, pos, taille, tailleImg);
+        this.images = images;
+        this.image = images[0];
         this.milliseconde = milliseconde;
         this.workerGif = undefined;
     }
@@ -18,9 +18,9 @@ class ImageGif extends Images {
         this.workerGif = new Worker(folderWorker0+"workerGif.js");
         let classGif = this;
         this.workerGif.onmessage = function (e) {
-            classGif.src = classGif.srcs[e.data];
+            classGif.image = classGif.images[e.data];
         }
-        this.workerGif.postMessage([this.milliseconde, this.srcs.length, true]);
+        this.workerGif.postMessage([this.milliseconde, this.images.length, true]);
     }
     stop() {
         if(this.workerGif != undefined) {

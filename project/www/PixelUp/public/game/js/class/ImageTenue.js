@@ -6,29 +6,29 @@ class ImageTenue {
         this.pos = pos;
     }
 
-    static tabImage() {
+    static tabImage(allImage) {
         return [
-            new ImageTenue(EnumTenues.NULL, "", new Position(0, 0)),
-            new ImageTenue(EnumTenues.NORMAL, "MINEUR (1).png", new Position(-43, -20)),
-            new ImageTenue(EnumTenues.MER, "PLONGEUR (1).png", new Position(-40, -28)),
-            new ImageTenue(EnumTenues.TERRE, "JOUEUR_NORMAL (1).png", new Position(-40, -19)),
-            new ImageTenue(EnumTenues.CIEL, "HOMME_VOLANT (1).png", new Position(-40, -19)),
-            new ImageTenue(EnumTenues.ESPACE, "COSMONAUTE (1).png", new Position(-40, -20)),
+            new ImageTenue(EnumTenues.NULL, undefined, new Position(0, 0)),
+            new ImageTenue(EnumTenues.NORMAL, allImage.recupImg("tenue_mineur"), new Position(-43, -20)),
+            new ImageTenue(EnumTenues.MER, allImage.recupImg("tenue_plongeur"), new Position(-40, -28)),
+            new ImageTenue(EnumTenues.TERRE, allImage.recupImg("tenue_normal"), new Position(-40, -19)),
+            new ImageTenue(EnumTenues.CIEL, allImage.recupImg("tenue_homme_volant"), new Position(-40, -19)),
+            new ImageTenue(EnumTenues.ESPACE, allImage.recupImg("tenue_cosmonaute"), new Position(-40, -20)),
         ];
     }
 
-    static recupTenue(enumTenue) {
-        let tabEnum = ImageTenue.tabImage();
+    static recupTenue(allImage, enumTenue) {
+        let tabEnum = ImageTenue.tabImage(allImage);
         for (let i = 0; i < tabEnum.length; i ++) {
             if (tabEnum[i].enumTenues == enumTenue) {
                 return tabEnum[i].src;
             }
         }
-        return "MINEUR.png";
+        return this.allImage.recupImgData("tenue_mineur");
     }
 
-    static recupPos(enumTenue) {
-        let tabEnum = ImageTenue.tabImage();
+    static recupPos(allImage, enumTenue) {
+        let tabEnum = ImageTenue.tabImage(allImage);
         for (let i = 0; i < tabEnum.length; i ++) {
             if (tabEnum[i].enumTenues == enumTenue) {
                 return tabEnum[i].pos;

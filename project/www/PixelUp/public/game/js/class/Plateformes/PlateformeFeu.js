@@ -1,11 +1,11 @@
 class PlateformeFeu extends PlateformePiegeHaut {
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(0, 100);
         this.imgGif = new ImageGif(
             [
-              "./img/flamme-1.png",
-              "./img/flamme-2.png",
+              this.allImage.recupImg("plft_flamme_1"),
+              this.allImage.recupImg("plft_flamme_2"),
             ],
             this.pos,
             this.taille

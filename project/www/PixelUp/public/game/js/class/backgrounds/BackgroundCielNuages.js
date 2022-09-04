@@ -2,21 +2,22 @@ class BackgroundCielNuages extends Background {
 
 
 
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
+    constructor(allImage, idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(allImage, idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
             this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
         }
-        this.creerPlatformeBottom(new PlateformeHelicopteres());
+        this.creerPlatformeBottom(new PlateformeHelicopteres(this.allImage));
         this.creerPlateformeTenue(undefined);
         this.setTenueBackground(EnumTenues.CIEL);
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/background_CIEL_NUAGES.png");
-        let cielNuages = new Images(this.imageSource, this.pos, this.taille);
+        //this.imageSrc(this.allImage.recupImgData("bkg_ciel_nuages"));
+        let cielNuages = new Images(
+            this.allImage.recupImg("bkg_ciel_nuages"), this.pos, this.taille);
         cielNuages.setBackground(this);
         cielNuages.afficher(canvas);
     }
@@ -34,15 +35,15 @@ class BackgroundCielNuages extends Background {
         }
         let random = Math.floor(Math.random() * (max - min)) + min; 
         if(random == 1){
-            return new PlateformeOiseaux();
+            return new PlateformeOiseaux(this.allImage);
         }
         else if (random == 2){
             this.isPiege = false;
-            return new PlateformeNuages();
+            return new PlateformeNuages(this.allImage);
         }
         else if (random == 3) {
             this.isPiege = true;
-            return new PlateformePiegesNuages();
+            return new PlateformePiegesNuages(this.allImage);
         }
     }
 

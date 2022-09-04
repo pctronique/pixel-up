@@ -1,6 +1,6 @@
 class PlateformeVaisseau extends PlateformeMobile{
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(60,20);
 
     }
@@ -13,9 +13,9 @@ class PlateformeVaisseau extends PlateformeMobile{
     afficher(canvas){
         this.deplacement();
         //this.img;
-        this.imageSrc('./img/vaisseau2.png');
+        //this.imageSrc(this.allImage.recupImgData("plft_vaisseau_2"));
         this.createBorder(canvas);
-        let vaisseau = new Images(this.img, new Position(this.pos.x-10, this.pos.y-15), new Taille(100,50));
+        let vaisseau = new Images(this.allImage.recupImg("plft_vaisseau_2"), new Position(this.pos.x-10, this.pos.y-15), new Taille(100,50));
         vaisseau.setObjetDuplique(this);
         vaisseau.setBackground(this.background);
         vaisseau.afficher(canvas);

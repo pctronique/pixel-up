@@ -1,5 +1,6 @@
 class Background {
   constructor(
+    allImage, 
     idBackground,
     taille,
     scrollMove = undefined,
@@ -9,6 +10,7 @@ class Background {
     imgBack = undefined,
     imgBas = undefined
   ) {
+    this.allImage = allImage;
     this.volumeEffet = volumeEffet;
     this.configMoveUser = configMoveUser;
     this.taille = taille;

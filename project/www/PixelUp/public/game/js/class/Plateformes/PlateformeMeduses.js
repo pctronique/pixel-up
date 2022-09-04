@@ -1,9 +1,10 @@
 class PlateformeMeduses extends PlateformePiegeHaut {
-  constructor(taille = undefined, collisionHautStable = true) {
-    super(taille, collisionHautStable);
+  constructor(allImage, taille = undefined, collisionHautStable = true) {
+    super(allImage, taille, collisionHautStable);
     this.taille = new Taille(0, 80);
     this.imgGif = new ImageGif(
-      ["./img/meduse3.png", "./img/meduse6.png"],// 
+      [this.allImage.recupImg("plft_meduse_3"), 
+      this.allImage.recupImg("plft_meduse_6")],// 
       this.pos,
       this.taille
     );

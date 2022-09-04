@@ -1,6 +1,6 @@
 class PlateformePiegesNuages extends PlateformeMobile{
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(82,20);
 
     }
@@ -20,8 +20,8 @@ class PlateformePiegesNuages extends PlateformeMobile{
         this.deplacement();
 
         //this.img;
-        this.imageSrc('./img/nuage_gris.png');
-        let piegesNuages = new Images(this.img, new Position(this.pos.x-40, this.pos.y-38), new Taille(150,100));
+        //this.imageSrc(this.allImage.recupImgData("plft_nuage_gris"));
+        let piegesNuages = new Images(this.allImage.recupImg("plft_nuage_gris"), new Position(this.pos.x-40, this.pos.y-38), new Taille(150,100));
         this.createBorder(canvas);
         piegesNuages.setObjetDuplique(this);
         piegesNuages.setBackground(this.background);

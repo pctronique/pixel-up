@@ -1,6 +1,6 @@
 class PlateformeMobilePoisson extends PlateformeMobile {
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(70,25);
     }
 
@@ -17,9 +17,9 @@ class PlateformeMobilePoisson extends PlateformeMobile {
     afficher(canvas){
         this.deplacement();
         //this.img;
-        this.imageSrc('./img/posson.png');
+        //this.imageSrc(this.allImage.recupImgData("plft_poisson"));
         this.createBorder(canvas);
-        let poisson = new Images(this.img, new Position(this.pos.x-16, this.pos.y-15), new Taille(100,50));
+        let poisson = new Images(this.allImage.recupImg("plft_poisson"), new Position(this.pos.x-16, this.pos.y-15), new Taille(100,50));
         poisson.setObjetDuplique(this);
         poisson.setBackground(this.background);
         poisson.afficher(canvas);

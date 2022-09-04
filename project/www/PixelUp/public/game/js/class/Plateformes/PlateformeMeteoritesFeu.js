@@ -1,9 +1,10 @@
 class PlateformeMeteoritesFeu extends PlateformePiegeHaut {
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(0, 55);
         this.imgGif = new ImageGif(
-          ["./img/meteorite4.png", "./img/meteorite5.png"],
+          [this.allImage.recupImg("plft_meteorite_4"), 
+          this.allImage.recupImg("plft_meteorite_5")],
           this.pos,
           this.taille,
         );

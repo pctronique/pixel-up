@@ -1,9 +1,10 @@
 class PlateformeHelicopteres extends PlateformePiegeHaut {
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(0, 60);
         this.imgGif = new ImageGif(
-          ["./img/helico3.png", "./img/helico6.png"],
+          [this.allImage.recupImg("plft_helico_3"), 
+          this.allImage.recupImg("plft_helico_6")],
           this.pos,
           this.taille,
         );

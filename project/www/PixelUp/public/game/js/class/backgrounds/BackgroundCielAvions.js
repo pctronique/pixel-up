@@ -1,17 +1,15 @@
 class BackgroundCielAvions extends Background {
 
-
-
-    constructor(idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
-        super(idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
+    constructor(allImage, idBackground, taille, scrollMove = undefined, tabConfig = undefined, configMoveUser = undefined, imgBack = undefined, imgBas = undefined) {
+        super(allImage, idBackground, taille,  scrollMove, tabConfig, configMoveUser, imgBack, imgBas);
         if(tabConfig == undefined) {
             this.creerPlatforme(50, 300, 25, 80);
         } else {
             this.creerPlatforme(tabConfig.minX, tabConfig.maxX, tabConfig.minY, tabConfig.maxY);
         }
-        this.creerPlatformeBottom(new PlateformeHelicopteres());
-        this.creerPlateformeTenue(new TenueEspace());
-        this.creerPlateformePourTenue(new PlateformeTenueEspace(), new Position(-25,39));
+        this.creerPlatformeBottom(new PlateformeHelicopteres(this.allImage));
+        this.creerPlateformeTenue(new TenueEspace(this.allImage));
+        this.creerPlateformePourTenue(new PlateformeTenueEspace(this.allImage), new Position(-25,39));
         this.setTenueBackground(EnumTenues.CIEL);
     }
 
@@ -20,14 +18,14 @@ class BackgroundCielAvions extends Background {
     }
 
     imgBackDisplay(canvas) {
-        this.imageSrc("./img/background_CIEL_AVIONS.png");
-        let cielAvions = new Images(this.imageSource, this.pos, this.taille);
+        //this.imageSrc(this.allImage.recupImg("bkg_ciel_avions"));
+        let cielAvions = new Images(this.allImage.recupImg("bkg_ciel_avions"), this.pos, this.taille);
         cielAvions.setBackground(this);
         cielAvions.afficher(canvas);
     }
 
     choixPlateforme() {
-        return new PlateformeAvions();
+        return new PlateformeAvions(this.allImage);
     }
 
 }

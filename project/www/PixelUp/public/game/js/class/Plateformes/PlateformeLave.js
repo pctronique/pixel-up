@@ -1,11 +1,11 @@
 class PlateformeLave extends PlateformePiegeHaut {
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(0, 50);
         this.imgGif = new ImageGif(
             [
-              "./img/Lave.png",
-              "./img/Lave1.png",
+                this.allImage.recupImg("plft_lave"),
+                this.allImage.recupImg("plft_lave_1"),
             ],
             this.pos,
             this.taille

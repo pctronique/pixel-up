@@ -1,6 +1,6 @@
 class PlateformeMobile extends Plateforme {
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.deplacementImg = -1;
     }
 }

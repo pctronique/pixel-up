@@ -5,6 +5,8 @@ class Game {
     if (pause) {
       this.classPause = new Pause();
     }
+    this.allImage = undefined;
+    this.imgValidate = false;
     this.tabConfigMovBackground = tabConfigMovBackground;
     this.scrollMove = new ScrollMove(idScreen, this);
     this.tailleBackground = new Taille(0, 0);
@@ -39,7 +41,20 @@ class Game {
     this.keyBas = "ArrowDown";
     this.tabConfigBackground = tabConfigBackground;
     this.volumeEffet = 100;
+    this.initJoueur = new Position();
     this.activeAutoScroll(false);
+  }
+
+  setAllImage(allImage) {
+    this.allImage = allImage;
+  }
+
+  endLoadImg() {
+    this.imgValidate = true;
+    this.addBackground();
+    this.addBackground();
+    this.backgrounds[0].joueur.setPositionXY(this.initJoueur.x, this.initJoueur.y);
+    this.afficher();
   }
 
   activeAutoScroll(active) {
@@ -88,9 +103,6 @@ class Game {
     this.tenueJoueur = tenue;
     this.backgrounds[0].joueur.modifTenue(tenue);
     this.backgrounds[1].joueur.modifTenue(tenue);
-    console.log(this.tenueJoueur);
-    console.log(this.backgrounds[0].joueur);
-    console.log(this.backgrounds[1].joueur);
   }
 
   nmDeplacement(num) {
@@ -225,6 +237,7 @@ class Game {
           config = this.tabConfigBackground.SOUS_TERRE;
         }
         return new BackgroundSousTerre(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -240,6 +253,7 @@ class Game {
           config = this.tabConfigBackground.SOUS_MER;
         }
         return new BackgroundSousMer(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -255,6 +269,7 @@ class Game {
           config = this.tabConfigBackground.TERRE;
         }
         return new BackgroundTerre(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -270,6 +285,7 @@ class Game {
           config = this.tabConfigBackground.CIEL_NUAGE;
         }
         return new BackgroundCielNuages(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -285,6 +301,7 @@ class Game {
           config = this.tabConfigBackground.CIEL_AVIONS;
         }
         return new BackgroundCielAvions(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -300,6 +317,7 @@ class Game {
           config = this.tabConfigBackground.ESPACE_ASTEROIDE;
         }
         return new BackgroundEspaceSatellite(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -315,6 +333,7 @@ class Game {
           config = this.tabConfigBackground.ESPACE_SATELLITE;
         }
         return new BackgroundEspaceAsteroide(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -330,6 +349,7 @@ class Game {
           config = this.tabConfigBackground.ESPACE_VAISSEAU;
         }
         return new BackgroundEspaceVaisseau(
+          this.allImage,
           idBackground,
           taille,
           scrollMove,
@@ -547,11 +567,11 @@ class Game {
   }
 
   setPosInitJoueur(posX, posY) {
-    this.backgrounds[0].joueur.setPositionXY(posX, posY);
+    this.initJoueur = new Position(posX, posY);
   }
 
   setJoueur(posX, posY, tailleX, tailleY, background) {
-    let joueur = new Joueur(new Taille(tailleX, tailleY));
+    let joueur = new Joueur(this.allImage, new Taille(tailleX, tailleY));
     joueur.setBackground(background);
     joueur.setPosition(new Position(posX, posY));
     joueur.setGame(this);
@@ -578,14 +598,16 @@ class Game {
   }
 
   afficher() {
-    for (let index = 0; index < this.backgrounds.length; index++) {
-      const element = this.backgrounds[index];
-      if (element != undefined && this.joueur != undefined && index == 0) {
-        this.joueur.setBackground(element);
-        element.setJoueur(this.joueur);
-        element.afficher();
-      } else if (element != undefined) {
-        element.afficher();
+    if(this.imgValidate) {
+      for (let index = 0; index < this.backgrounds.length; index++) {
+        const element = this.backgrounds[index];
+        if (element != undefined && this.joueur != undefined && index == 0) {
+          this.joueur.setBackground(element);
+          element.setJoueur(this.joueur);
+          element.afficher();
+        } else if (element != undefined) {
+          element.afficher();
+        }
       }
     }
   }

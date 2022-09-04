@@ -5,8 +5,9 @@ class Plateforme extends BlockRectange {
      * @param {*} taille sa taille
      * @param {*} collisionHautStable conserver le joueur au dessu de la platforme
      */
-    constructor(taille = undefined, collisionHautStable = true) {
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
         super(taille);
+        this.allImage = allImage;
         this.piege = false;
         if(this.taille == undefined || this.taille.y == 0) {
             this.taille = new Taille(0, 20);

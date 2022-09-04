@@ -1,6 +1,7 @@
 class Joueur extends Personnage {
-  constructor(taille = undefined) {
+  constructor(allImage, taille = undefined) {
     super(taille);
+    this.allImage = allImage;
     this.mouvementJoueur = new MouvementJoueur(this);
     this.couleur = "#24AE1D";
     this.game = undefined;
@@ -47,9 +48,9 @@ class Joueur extends Personnage {
   modifTenue(tenue) {
     if(this.tenue != tenue) {
       this.tenueOld = this.tenue;
-      this.imageSrc('./img/tenues_personnage/'+ImageTenue.recupTenue(tenue));
+      this.imageSrc(ImageTenue.recupTenue(this.allImage, tenue));
       //this.imageSrc('./img/personnage-1.png');
-      this.posImg = ImageTenue.recupPos(tenue);
+      this.posImg = ImageTenue.recupPos(this.allImage, tenue);
       this.tenue = tenue;
     }
   }

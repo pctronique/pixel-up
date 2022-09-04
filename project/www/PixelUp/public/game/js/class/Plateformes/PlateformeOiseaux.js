@@ -1,9 +1,10 @@
 class PlateformeOiseaux extends PlateformeMobile{
-    constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+    constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
         this.taille = new Taille(40,10);
         this.imgGif = new ImageGif(
-          ["./img/oiseau copy 01.png", "./img/oiseau copy 02.png"],
+          [this.allImage.recupImg("plft_oiseau_1"), 
+          this.allImage.recupImg("plft_oiseau_2")],
           this.pos,
           new Taille(100,50),
         );

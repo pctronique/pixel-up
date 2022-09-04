@@ -1,6 +1,6 @@
 class Images {
-  constructor(src, pos, taille, tailleImg = undefined) {
-    this.src = src;
+  constructor(image, pos, taille, tailleImg = undefined) {
+    this.image = image;
     this.x = 0;
     this.y = 0;
     this.nbr = 0;
@@ -36,28 +36,28 @@ class Images {
     //if (monCanvas.getContext) {
     let ctx = canvas.getContext("2d");
     /* nouvelle image */
-    let img = new Image();
+    //let img = new Image();
     /* définition de la source */
-    img.src = this.src;
+    //img.src = this.src;
     /* tracé uniquement quand l'image sera chargée
         (quand l'événement onLoad sera déclenché, exécuter ctx.drawImage() */
-    let classImgs = this;
+    //let classImgs = this;
 
-    img.onload = function () {
-      if (classImgs.isRepeat) {
-        classImgs.repeatImage(ctx, img);
-      } else if (classImgs.isCut) {
-        classImgs.selectImag(img.width, img.height, img, ctx);
+    //img.onload = function () {
+      if (this.isRepeat) {
+        this.repeatImage(ctx, this.image);
+      } else if (this.isCut) {
+        this.selectImag(this.image.width, this.image.height, this.image, ctx);
       } else {
-        classImgs.uneImage(img, ctx);
+        this.uneImage(this.image, ctx);
       }
       //classImgs.transpImg(ctx);
-      if (!classImgs.isRepeat) {
-        if (classImgs.background != undefined) {
-          classImgs.background.afficherContenue();
+      if (!this.isRepeat) {
+        if (this.background != undefined) {
+          this.background.afficherContenue();
         }
       }
-    };
+    //};
   }
 
   getPosLeft() {
@@ -85,28 +85,28 @@ class Images {
   }
 
   repeatImage(ctx, imageObj) {
-    let imgComp = new Image();
+    /*let imgComp = new Image();
     imgComp.src = this.compressImage(
       imageObj,
       this.tailleImg.y / imageObj.height
     );
     let classImgs = this;
 
-    imgComp.onload = function () {
-      let nbImg = Math.floor(classImgs.tailleImg.x / imgComp.width);
+    imgComp.onload = function () {*/
+      let nbImg = Math.floor(this.tailleImg.x / imageObj.width);
       for (let index = 0; index < nbImg; index++) {
         ctx.drawImage(
-          imgComp,
-          classImgs.pos.x + index * imgComp.width,
-          classImgs.pos.y,
-          imgComp.width,
-          imgComp.height
+          imageObj,
+          this.pos.x + index * imageObj.width,
+          this.pos.y,
+          imageObj.width,
+          imageObj.height
         );
       }
-      if (classImgs.background != undefined) {
-        classImgs.background.afficherContenue();
+      if (this.background != undefined) {
+        this.background.afficherContenue();
       }
-    };
+    //};
   }
   imgGif(src) {}
 

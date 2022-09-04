@@ -97,4 +97,3 @@ document.getElementById("validerConfig").addEventListener("click", function(e) {
 });
 
 loadLocal();
-console.log(tabConfig);

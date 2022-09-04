@@ -4,8 +4,8 @@ class PlateformePiegeCote extends PlateformeMobile{
      * @param {*} taille sa taille
      * @param {*} collisionHautStable conserver le joueur au dessu de la platforme
      */
-     constructor(taille = undefined, collisionHautStable = true) {
-        super(taille, collisionHautStable);
+     constructor(allImage, taille = undefined, collisionHautStable = true) {
+        super(allImage, taille, collisionHautStable);
     }
 
     action(enumCollision) {

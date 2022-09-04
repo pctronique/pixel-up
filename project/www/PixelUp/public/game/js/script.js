@@ -7,6 +7,7 @@ if (window.Worker) {
   let heightJoueur = 60;
     //let heightJoueur = 47;
     game = new Game("screenGame_0", tabConfigBackground, tabConfigMoveBackground);
+    game.setAllImage(new AllImage(game));
     game.setTailleBackground(backgroundTaille.x, backgroundTaille.y);
     game.setTailleJoueur(18, heightJoueur);
     //game.setTailleJoueur(47, heightJoueur);
@@ -18,10 +19,11 @@ if (window.Worker) {
     //game.setProjectDev();
     game.scoreId("score");
     game.setIdTypeMort("game_typeMort");
-    game.addBackground();
-    game.addBackground();
     game.setPosInitJoueur(backgroundTaille.x / 2, backgroundTaille.y - heightJoueur - 1);
-    game.afficher();
+    /*game.addBackground();
+    game.addBackground();
+    
+    game.afficher();*/
 
   let screenGame = document.getElementById("screenGame_0");
 
