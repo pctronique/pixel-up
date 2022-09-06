@@ -68,6 +68,7 @@ if (window.Worker) {
         }
     }
     function startGame(e) {
+      e.preventDefault();
       document.getElementById("info_Game").style.display = "none";
         changer();
         game.start();
@@ -77,17 +78,20 @@ if (window.Worker) {
   document.getElementById("start").addEventListener("click", startGame);
 
   document.querySelector("#button_up").addEventListener("click", function (e) {
-    game.eventKey(" ");
+    e.preventDefault();
+    game.eventKey(tabConfig.keySaut);
   });
   document
     .querySelector("#button_left")
     .addEventListener("click", function (e) {
-      game.eventKey("ArrowLeft");
+      e.preventDefault();
+      game.eventKey(tabConfig.keyGauche);
     });
   document
     .querySelector("#button_right")
     .addEventListener("click", function (e) {
-      game.eventKey("ArrowRight");
+      e.preventDefault();
+      game.eventKey(tabConfig.keyDroite);
     });
 } else {
   console.log("Your browser doesn't support web workers.");
