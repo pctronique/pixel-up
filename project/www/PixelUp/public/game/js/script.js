@@ -79,19 +79,19 @@ if (window.Worker) {
 
   document.querySelector("#button_up").addEventListener("click", function (e) {
     e.preventDefault();
-    game.eventKey(tabConfig.keySaut);
+    game.eventKey(tabConfig.key.keySaut);
   });
   document
     .querySelector("#button_left")
     .addEventListener("click", function (e) {
       e.preventDefault();
-      game.eventKey(tabConfig.keyGauche);
+      game.eventKey(tabConfig.key.keyGauche);
     });
   document
     .querySelector("#button_right")
     .addEventListener("click", function (e) {
       e.preventDefault();
-      game.eventKey(tabConfig.keyDroite);
+      game.eventKey(tabConfig.key.keyDroite);
     });
 } else {
   console.log("Your browser doesn't support web workers.");

@@ -621,10 +621,13 @@ class Game {
   }
 
   eventKey(keyPress) {
-    if (this.backgrounds[0].joueur != undefined) {
+    /*if (this.backgrounds[0].joueur != undefined) {
       if (keyPress == " ") {
         this.backgrounds[0].joueur.sauter();
       }
+      this.backgrounds[0].joueur.choixMouvement(keyPress);
+    }*/
+    if (!this.isTtop) {
       this.backgrounds[0].joueur.choixMouvement(keyPress);
     }
   }
@@ -636,9 +639,10 @@ class Game {
     if (this.backgrounds[0].joueur != undefined) {
       let classGame = this;
       document.body.addEventListener("keydown", (event) => {
-        if (!classGame.isTtop) {
+        classGame.eventKey(event.key);
+        /*if (!classGame.isTtop) {
           this.backgrounds[0].joueur.choixMouvement(event.key);
-        }
+        }*/
       });
     }
 
