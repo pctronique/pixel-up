@@ -21,5 +21,14 @@ mkdir -p projecttmp/log/mysql
 chmod 777 -R project
 chmod 777 -R projecttmp
 
+# creation du fichier .env
+if [ -e .env ]
+then
+    echo ""
+else
+    echo ""
+    cp .env.example .env
+fi
+
 # creation du docker du projet
 docker-compose up -d
