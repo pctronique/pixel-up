@@ -1,4 +1,4 @@
-FROM php:7.4.16-fpm
+FROM php:8.1-rc-fpm
 
 #RUN pear install PhpDocumentor-1.4.4 \
 #                 XML_Beautifier \
@@ -17,28 +17,20 @@ RUN apt install -y graphviz
 RUN apt install -y libzip-dev
 #RUN apt install -y zlib-dev
 
-RUN set -ex; \
-	\
-	apt-get update; \
-	apt-get install -y vim curl debconf subversion apt-transport-https apt-utils build-essential locales acl mailutils wget; \
-	apt-get install -y \
-		libjpeg-dev \
-		libpng-dev \
-        libmcrypt-dev \
-		unzip \
-        git \
-	; \
-	rm -rf /var/lib/apt/lists/*; \
-	\
-	docker-php-ext-configure gd --with-jpeg; \
-	docker-php-ext-install -j5 gd mysqli pdo_mysql json xsl zip; \
-	pecl install -o -f xdebug-3.0.4 \
-        && rm -rf /tmp/pear 
+RUN set -ex
+RUN apt-get update
+RUN apt-get install -y vim curl debconf subversion apt-transport-https apt-utils build-essential locales acl mailutils wget
+RUN apt-get install -y libjpeg-dev libpng-dev libmcrypt-dev unzip git
+RUN rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-configure gd --with-jpeg
+RUN pecl install -o -f xdebug && rm -rf /tmp/pear
+RUN docker-php-ext-install -j5 gd mysqli pdo_mysql xsl zip
+#RUN docker-php-ext-install -j5 json
    
 #install mailhog     
-RUN apt-get update &&\
-    apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git &&\
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git
+RUN rm -rf /var/lib/apt/lists/*
 RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
 ENV PATH /usr/local/go/bin:$PATH
 RUN go get github.com/mailhog/mhsendmail
@@ -86,7 +78,7 @@ RUN mkdir /opt/phpDocumentor/
 
 WORKDIR /opt/phpDocumentor/
 
-RUN composer require "phpdocumentor/phpdocumentor:^3"
+#RUN composer require "phpdocumentor/phpdocumentor:^3"
 #RUN wget https://www.phpdoc.org/phpDocumentor.phar
 #RUN cp phpDocumentor.phar /usr/local/bin/phpdoc && chmod +x /usr/local/bin/phpdoc
 #RUN pear channel-discover pear.phpdoc.org
@@ -108,6 +100,6 @@ WORKDIR /usr/local/apache2/www
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
-RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 CMD ["php-fpm"]
