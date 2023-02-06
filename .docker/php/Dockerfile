@@ -91,9 +91,9 @@ RUN composer selfupdate && \
     composer require "phpunit/phpunit:8.*.*" --prefer-source --no-interaction && \
     ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
 
-ADD https://phar.phpunit.de/phpunit-skelgen.phar /tmp
-RUN chmod +x /tmp/phpunit-skelgen.phar
-RUN mv /tmp/phpunit-skelgen.phar /usr/local/bin/phpunit-skelgen
+#ADD https://phar.phpunit.de/phpunit-skelgen.phar /tmp
+#RUN chmod +x /tmp/phpunit-skelgen.phar
+#RUN mv /tmp/phpunit-skelgen.phar /usr/local/bin/phpunit-skelgen
 
 WORKDIR /usr/local/apache2/www
 
