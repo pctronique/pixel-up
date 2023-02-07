@@ -116,7 +116,7 @@ services:
 ###########################
     mailhog:
         container_name: ${NAME_MAILHOG_CONTAINER}
-        image: mailhog/mailhog:v1.0.0
+        image: mailhog/mailhog:${VALUE_MAILHOG_VERSION}
         ports:
             - ${VALUE_MAILHOG_PORT}:1025
             - ${VALUE_MAILHOG_DISPLAY_PORT}:8025
