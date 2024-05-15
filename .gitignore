@@ -10,3 +10,4 @@
 /www/var
 /www/vendor
 /www/.env.local
+/www/composer.lock
