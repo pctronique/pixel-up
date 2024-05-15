@@ -1,0 +1,42 @@
+
+    class UserController extends AbstractController
+{
+    #[Route('/modif_profil', name: 'app_modif_profil', methods: ['GET'])]
+    public function index(UserRepository $userRepository): Response
+    {
+        return $this->render('pixel_up/updateProfil.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+
+
+
+ #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    public function show(User $user): Response
+    {
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+
+
+
+ return $this->render('login/index.html.twig', [
+             'last_username' => $lastUsername,
+             'error'         => $error,
+          ]);
+      }
+
+    
+    <label for="pseudo">&nbsp;Utilisateur:</label>
+        <div class="flexForm">
+            <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+            <input type="text" id="pseudo" name="pseudo" autocomplete="off" value="{{ user.username }}" />
+        </div>
+        
+        <label for="password"> Mot de passe&nbsp;:</label>
+        <div class="flexForm">
+            <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+            <input type="password" id="password" name="password" autocomplete="new-password"  value="{{ user.password }}"/>
+        </div>

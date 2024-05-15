@@ -33,12 +33,7 @@ services:
             - ${VALUE_SYMFONY_PORT}:8000
             - ${VALUE_SYMFONY2_PORT}:8001
         volumes:
-            - ./project/www/:/usr/local/apache2/www
-            - ./project/unit/:/usr/local/apache2/unit:rw
-            - ./project/cron/:/usr/local/apache2/cron:rw
-            - ./project/install/:/usr/local/apache2/install:rw
-            - ./project/error/:/usr/local/apache2/error:rw
-            - ./project/docs/:/usr/local/apache2/docs:rw
+            - ./www/:/usr/local/apache2/www
             - ./projecttmp/data:/usr/local/projecttmp/data:rw
             - ./projecttmp/log/php:/usr/local/projecttmp/log/php:rw
             - ./projecttmp/log/xdebug:/usr/local/projecttmp/log/xdebug:rw
@@ -48,11 +43,6 @@ services:
             - ./.docker/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
             - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
-            - ./.docker/mysql/conf.d:/etc/mysql/conf.d
-            - ./.docker/config/config_cron_path.php:/usr/local/apache2/cron/config_path.php:rw
-            - ./.docker/config/config_error_path.php:/usr/local/apache2/error/config_path.php:rw
-            - ./.docker/config/config_install_path.php:/usr/local/apache2/install/config_path.php:rw
-            - ./.docker/config/.htaccess:/usr/local/apache2/www/.htaccess:rw
             #- ./.docker/config/sgbd_config.php:/usr/local/apache2/www/config/sgbd_config.php:rw
             #- ./.docker/config/config.php:/usr/local/apache2/www/config/config.php:rw
             #- ./.docker/config/.env.local:/usr/local/apache2/www/.env.local:rw

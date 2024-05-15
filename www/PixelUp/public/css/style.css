@@ -1,0 +1,452 @@
+/* HEADER & BACKGROUND */
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    background:  center no-repeat url("../media/PixelUpBackground.png");
+    background-size: cover;
+}
+
+*{
+  font-family: 'Silkscreen', cursive; 
+}
+
+#homeButton{
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 8px solid white;
+  background: black;
+  padding: 10px;
+  height: 65px;
+
+}
+
+#homeButton iconify-icon{
+  transition: 0.2s;
+}
+
+#homeButton:hover iconify-icon{
+transform: scale(1.2);
+}
+
+header h1{
+    color: white;
+    font-family: 'Silkscreen', cursive;
+    margin: 0 100px;
+  }
+
+header{
+    padding: 40px;
+  }
+
+#pacman{
+    margin: auto;
+    width: 20%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#pacman div{
+    background-color: white;
+    height: 20px;
+    width: 20px;
+}
+
+.flex{
+  display: flex;
+}
+
+/* FLECHE ROUGE DECO */
+
+.btn {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #ff4754;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    text-align: center;
+  }
+
+.btn .arrow {
+    height: 0.2em;
+    width: 20em;
+    position: relative;
+    background: #ff4754;
+    transition: all 0.2s;
+}
+
+.btn .arrow::before,
+.btn .arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #ff4754;
+  height: 0.2em;
+  width: 1em;
+}
+
+.btn .arrow::before {
+  transform: rotate(45deg);
+  transform-origin: right bottom;
+}
+  
+.btn .arrow::after {
+  transform: rotate(-45deg);
+  transform-origin: right top;
+}
+
+/* MENU PRINCIPAL */
+
+  #menu{
+    margin:  50px auto;
+    width: fit-content;
+    text-align: center;
+  }
+
+  #menu a:first-of-type li{
+    background-color: #C23028;
+  }
+
+  #menu a:nth-of-type(2) li{
+    background: #F6B339;
+  }
+
+  #menu a:nth-of-type(3) li{
+    background: #0594D0;
+  }
+
+
+  #menu a:nth-of-type(4) li{
+    background: #13d005ce;
+  }
+
+  #menu a:nth-of-type(5) li{
+    background: #fef5ffce;
+  }
+
+
+
+  #menu li{
+    margin: 15px 0;
+    padding: 5px;
+    width: 100%;
+    border: 2px solid black;
+    transition: 0.2s;
+    font-family: 'Silkscreen', cursive;
+  }
+
+  #menu li:hover{
+
+    transform: scale(1.1);
+    
+
+  }
+
+/* FOOTER */
+
+  footer ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+  }
+
+  footer li{
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    border: solid 7px white;
+  }
+
+  footer li:first-of-type{
+    background-color: #77021D;
+  }
+
+  footer li:nth-of-type(2){
+    background-color: #F6B339;
+  }
+
+  footer li:nth-of-type(3){
+    background-color: #04BBFF;
+  }
+
+  footer li:nth-of-type(4){
+    background-color: #003C57;
+  }
+
+  footer li:nth-of-type(5){
+    background-color: #ACC27A;
+  }
+
+  footer li:nth-of-type(6){
+    background-color: #6D594D;
+  }
+
+/* FORMULAIRE EDITPROFIL */
+
+/**/#profilForm{
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+    border: 5px white solid;
+    background: rgb(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.flexForm{
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+#profilForm label{
+    color: white;
+    font-family: 'Silkscreen', cursive;
+}
+
+#profilForm input{
+    background: black;
+    border: 1px solid white;
+    color: white;
+    height: 40px;
+    border-radius: 15px;
+    text-align : center;
+    margin : 35px 0;
+}
+
+input[type="submit"], button{
+    width: 50%;
+    margin: 25px 100px !important;
+    font-family: 'Silkscreen', cursive;
+    cursor: pointer;
+    transition: 0.2s;
+    background: white !important;
+    border: 2px solid black !important;
+    color: black !important;
+    box-shadow: -5px 5px 10px rgb(0 0 0 / 50%);
+}
+
+input[type="submit"]:hover, button:hover{
+  transform: scale(1.05);
+  box-shadow: -10px 15px 10px rgba(0, 0, 0, 0.5);
+  
+}
+
+.flexForm:nth-of-type(1), .flexForm:nth-of-type(3), .flexForm:nth-of-type(5){
+  flex-direction: row-reverse;
+}
+
+.flexForm:nth-of-type(1) svg, .flexForm:nth-of-type(3) svg, .flexForm:nth-of-type(5) svg{
+  transform: scaleX(-1);
+}
+
+.flexForm::after {
+  content: "";
+  background-color: white;
+  position: absolute;
+  height: 4px;
+  width: 70%;
+  bottom: -5px;
+  
+}
+
+
+/* FORMULAIRE EDITPROFIL TEST 
+
+.profilForm{
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  border: 5px white solid;
+  background: rgb(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.flexForm{
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.profilForm label{
+  color: white;
+  font-family: 'Silkscreen', cursive;
+}
+
+.profilForm input{
+  background: black;
+  border: 1px solid white;
+  color: white;
+  height: 40px;
+  border-radius: 15px;
+  text-align : center;
+  margin : 35px 0;
+}
+
+input[type="submit"]{
+  width: 50%;
+  margin: 25px 100px !important;
+  font-family: 'Silkscreen', cursive;
+  cursor: pointer;
+  transition: 0.2s;
+  background: white !important;
+  border: 2px solid black !important;
+  color: black !important;
+  box-shadow: -5px 5px 10px rgb(0 0 0 / 50%);
+}
+
+input[type="submit"]:hover{
+transform: scale(1.05);
+box-shadow: -10px 15px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.flexForm:nth-of-type(1), .flexForm:nth-of-type(3), .flexForm:nth-of-type(5){
+flex-direction: row-reverse;
+}
+
+.flexForm:nth-of-type(1) svg, .flexForm:nth-of-type(3) svg, .flexForm:nth-of-type(5) svg{
+transform: scaleX(-1);
+}
+
+.flexForm::after {
+content: "";
+background-color: white;
+position: absolute;
+height: 4px;
+width: 70%;
+bottom: -5px;
+
+}*/
+
+/* SCORE / CLASSEMENT */
+
+#bestScore h1, #ranked h1{
+  margin: auto;
+  color: white;
+  width: fit-content;
+  margin-bottom: 50px;
+}
+
+#bestScore figure{
+  width: fit-content;
+  margin: auto;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bestScore figcaption{
+  margin-top: 50px;
+}
+
+.scoreMenu{
+  display: flex;
+  color: white;
+  margin: auto;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.scoreMenu a{
+  color: white;
+}
+
+#classement, #score, .table, #succes{
+  margin: auto;
+  text-align: center;
+  color: white;
+  background: rgb(255,255,255,0.1);
+}
+
+#tbodySucces td, #tbodySucces tr{
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  border: none;
+}
+
+.table{
+  border: 2px solid white;
+  border-spacing: 25px;
+}
+
+td{
+  border: 1px solid white;
+  padding: 5px;
+}
+
+tbody tr:nth-child(odd), #search_score_mots {
+  background-color: silver;
+  color: black;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(100, 100, 100);
+}
+
+#tbodyscore iconify-icon{
+  font-size: 3em;
+}
+
+#bestScore{
+  display: none;
+}
+
+#search_score, #search_score_mots, #search_score_Rechercher, #ranked form, #bestScore p{
+  text-align: center;
+  width: fit-content;
+  margin: 15px auto !important;
+  color: white;
+}
+
+/* PAGINATION */
+
+.pagination{
+  margin: 20px auto;
+  width: fit-content;
+  color: white;
+  background: rgb(255,255,255,0.5);
+
+}
+
+/* SCORE ET SUCCES */
+
+tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
+  display: none;
+}
+
+/* BOUTON DELETE PROFIL */
+
+.btn-delete{
+
+    margin: 15px 0 !important;
+    padding: 5px;
+    width: 100%;
+    border: 2px solid black;
+    transition: 0.2s;
+    font-family: 'Silkscreen', cursive;
+}
+
+/* MESSAGE D'ACCES IMPOSSIBLE */
+
+.goToLogin{
+  color:white;
+  margin: 100px auto;
+  width: fit-content;
+}
