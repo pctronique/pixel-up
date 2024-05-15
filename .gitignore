@@ -7,3 +7,6 @@
 /www/config/filedotenv.php
 /www/config/.env
 /www/data
+/www/var
+/www/vendor
+/www/.env.local
