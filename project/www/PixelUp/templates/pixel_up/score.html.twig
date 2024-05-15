@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Score index{% endblock %}
+
+{% block body %}
+
+<div class="flex">
+     
+    <button onclick=
+        {% if 'mots' in app.request.uri %}
+            "location.href='{{path('app_score_index')}}'"
+        {% else %}
+            "showRanked()"
+        {% endif %}
+        >Classement
+    </button>
+    <button onclick="showBestScore()">Meilleur score</button>
+</div>
+
+<section id="bestScore">
+
+    <h1>Meilleur score</h1>
+    {% if app.user %}
+        <figure>
+            <iconify-icon icon="emojione-v1:trophy" style="color: #ff8400; width="200" height="200""></iconify-icon>
+            <figcaption>
+
+
+            {% if personnalScores[0] is defined %}
+
+                {{ personnalScores[0].score}}
+
+                {% else %}
+
+                <p>Lancer une partie pour voir votre premier score !</p>
+
+            {% endif %}
+            
+
+
+            </figcaption>
+        </figure>
+    {% else %}
+    <p> Connectez vous pour acceder à ces informations. </p>
+    {% endif %}
+</section>
+
+<section id="ranked">
+
+    <h1>Classement</h1>
+
+    {{ form(form) }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Classement</th>
+                <th>Score</th>
+                <th>Date</th>
+                <th>Joueur</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyscore">
+        {% for score in scores %}
+            <tr>
+                <td>{{ score.max_score }}</td>
+                <td>{{ score.date ? score.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ score.username }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun score</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+                {% if 'mots' in app.request.uri %}
+
+                {% else %}
+
+                {{ knp_pagination_render(scores) }}
+
+                {% endif %}
+
+</section>
+
+
+{% endblock %}

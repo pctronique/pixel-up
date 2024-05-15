@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Accueil !{% endblock %}
+
+{% block body %}
+
+
+
+
+
+    <div id ="pacman">
+        
+        <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
+        <div></div>
+        <div></div>
+        <div></div>
+
+    </div>
+
+    <section>
+
+        <div class="btn">
+            <!--Rajouté H1 si Admin-->
+            {% if is_granted('ROLE_ADMIN') %}
+                        {# Si l'utilisateur est authentifié et qu'il est admin #}
+                        <h1>Accueil Admin</h1>
+                {% else %}
+            <div class="arrow"><p>Bienvenue !<p></div>
+            {% endif %}
+        </div>
+
+        <ul id="menu"> 
+ 
+     
+      
+            
+          
+
+            <!--<audio autoplay onplay="handleFirstPlay(event)" src="./son_menu/Touche.mp3"></audio>-->
+            
+            <a href="{{ path('app_jeux')}}"><li>Lancer la partie</li></a>
+            <a href="{{ path('app_score_index')}}"><li>Classement</li></a>
+            {% if app.user %}
+                
+                
+                 {% if is_granted('ROLE_ADMIN') %}
+                        {# Si l'utilisateur est authentifié et qu'il est admin #}
+                        <a href="{{ path('app_admin') }}"><li>Page admin</li></a>
+                {% endif %}
+
+                <a href="{{ path('app_profil') }}"><li>Profil de {{app.user.username}} </li></a>
+                <a href="{{ path('app_logout') }}"><li>Déconnexion</li></a>
+                
+            {% else %}
+
+               
+                <a href="{{ path('app_login') }}"><li>Connexion/Inscription</li></a>
+                
+            {% endif %}
+            <a href="{{ path('app_options')}}"><li>Options</li></a>
+
+            
+        </ul>
+        
+
+    </section>
+
+    
+    
+    <script src="{{ asset('./js/son.js') }}"></script>
+{% endblock %}
