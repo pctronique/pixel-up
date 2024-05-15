@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Inscription !{% endblock %}
+
+{% block body %}
+
+<!--La mise en forme altére l'envoie des données, form_start, row?, mis-en-forme prête dans public/test.html.yaml-->
+  
+{{ form_start(registrationForm) }} 
+<div id="profilForm"> 
+
+ <label for="pseudo">&nbsp;Utilisateur:</label>
+<div class="flexForm">
+ <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+{{ form_widget(registrationForm.username) }}
+</div>
+
+ <label for="pseudo">&nbsp;Mot de passe:</label>
+<div class="flexForm">
+ <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
+{{ form_widget(registrationForm.plainPassword, {label: 'Mot de passe :'}) }}
+</div>
+
+<label for="pseudo">&nbsp;Conditions d'utilisation : </label>
+<div class="flexForm">
+{{ form_widget(registrationForm.Conditions) }}
+ </div>
+    <div class="flexForm">
+    <button type="submit" class="btn">S'inscrire</button>
+    </div>
+
+{{ form_end(registrationForm) }}
+</div>
+
+{% endblock %}
+

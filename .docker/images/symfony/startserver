@@ -1,0 +1,50 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides: startserver
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start nodejs server
+### END INIT INFO
+
+DAEMON="/var/docker/php/updateProject.sh" #ligne de commande du programme, attention à l'extension .py.
+DAEMONUSER="root" #utilisateur du programme
+daemon_NAME="startserver" #Nom du programme (doit être identique à l'exécutable).
+
+d_start () {
+    /var/docker/php/updateProject.sh start
+}
+ 
+d_stop () {
+    /var/docker/php/updateProjectStart.sh stop
+}
+ 
+d_restart () {
+    d_stop
+    d_start
+}
+ 
+d_log () {
+    /var/docker/php/updateProjectStart.sh log
+}
+ 
+case "$1" in
+    start|stop)
+        d_${1}
+        ;;
+ 
+    restart|reload)
+        d_restart
+        ;;
+ 
+    log)
+        d_log
+        ;;
+
+    *)
+        echo "Usage: /etc/init.d/$daemon_NAME {start|stop|restart|reloadlog|}"
+        exit 1
+        ;;
+esac
+exit 0
