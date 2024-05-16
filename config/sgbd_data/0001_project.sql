@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : pixel_up_mariadb:3306
--- Généré le : jeu. 16 mai 2024 à 11:32
+-- Généré le : jeu. 16 mai 2024 à 13:27
 -- Version du serveur : 10.4.18-MariaDB-1:10.4.18+maria~focal
 -- Version de PHP : 8.2.8
 
@@ -32,6 +32,37 @@ CREATE TABLE `cat_mort` (
   `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `cat_mort`
+--
+
+INSERT INTO `cat_mort` (`id`, `nom`) VALUES
+(0, 'TOMBER'),
+(1, 'REQUIN'),
+(2, 'AVION'),
+(3, 'ASTEROIDE'),
+(4, 'FEU'),
+(5, 'HELICOPTERE'),
+(6, 'LAVE'),
+(7, 'MEDUSE'),
+(8, 'METEORITEFEU'),
+(9, 'POISSON'),
+(10, 'SATELLITE'),
+(11, 'NACELLE'),
+(12, 'NUAGE'),
+(13, 'OISEAU'),
+(14, 'PIERRE'),
+(15, 'VAISSEAU'),
+(16, 'VAISSEAUJAUNE'),
+(17, 'RADFISH'),
+(18, 'NUAGEGRIS'),
+(19, 'NACELLECASSEE'),
+(20, 'TENUE_NORMAL'),
+(21, 'TENUE_MER'),
+(22, 'TENUE_TERRE'),
+(23, 'TENUE_CIEL'),
+(24, 'TENUE_ESPACE');
+
 -- --------------------------------------------------------
 
 --
@@ -56,7 +87,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20220818120428', '2024-05-16 11:29:28', 5),
 ('DoctrineMigrations\\Version20220819135837', '2024-05-16 11:29:28', 5),
 ('DoctrineMigrations\\Version20220822093400', '2024-05-16 11:29:28', 85),
-('DoctrineMigrations\\Version20220824125433', '2024-05-16 11:29:28', 59);
+('DoctrineMigrations\\Version20220824125433', '2024-05-16 11:29:28', 59),
+('DoctrineMigrations\\Version20220826142948', '2024-05-16 12:45:14', 77);
 
 -- --------------------------------------------------------
 
@@ -87,6 +119,13 @@ CREATE TABLE `mort` (
   `compteur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `mort`
+--
+
+INSERT INTO `mort` (`id`, `cat_mort_id`, `user_id`, `compteur`) VALUES
+(1, 2, 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -97,8 +136,16 @@ CREATE TABLE `score` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `score` double NOT NULL,
-  `date` datetime NOT NULL
+  `date` datetime NOT NULL,
+  `classement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `score`
+--
+
+INSERT INTO `score` (`id`, `user_id`, `score`, `date`, `classement`) VALUES
+(1, 1, 0, '2024-05-16 12:47:31', 0);
 
 -- --------------------------------------------------------
 
@@ -114,6 +161,13 @@ CREATE TABLE `succes` (
   `succ3` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `succes`
+--
+
+INSERT INTO `succes` (`id`, `user_id`, `succ1`, `succ2`, `succ3`) VALUES
+(1, 1, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +180,13 @@ CREATE TABLE `user` (
   `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`roles`)),
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
+(1, 'root', '[\"ROLE_USER\"]', '$2y$13$5keANpa4wgcuNdMCn75PC.z8KexGixCHwf06.os/dHhQBV1AbYOZi');
 
 --
 -- Index pour les tables déchargées
@@ -190,7 +251,7 @@ ALTER TABLE `user` ADD FULLTEXT KEY `name_fulltext_index` (`username`);
 -- AUTO_INCREMENT pour la table `cat_mort`
 --
 ALTER TABLE `cat_mort`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `messenger_messages`
@@ -202,25 +263,25 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT pour la table `mort`
 --
 ALTER TABLE `mort`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `score`
 --
 ALTER TABLE `score`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `succes`
 --
 ALTER TABLE `succes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
