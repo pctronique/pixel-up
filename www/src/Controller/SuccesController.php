@@ -22,7 +22,6 @@ class SuccesController extends AbstractController
             2 => false // Chutes
         ];
 
-
             /*if($morts[2]['compteur'] >= 350){ // Astéroides
                 $trueOrFalseSuccess[0] = true;
             }

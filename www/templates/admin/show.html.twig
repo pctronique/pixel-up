@@ -4,31 +4,44 @@
 
 {% block body %}
 
-<!--Fichier à supprimier-->
+
+<section id="ranked">
     
- <h1>Comptes d'utilisateur</h1>
+    <div class="btn">  
+    
+        <h1>Comptes d'utilisateur</h1>
+    
+    </div>
 
-<table>
+
+    <table class="table">
 
 
-     <thead>
-            <tr>  
-                <th>Id</th>
-                <th>Identifiant</th>
-                <th>Actions</th>
-            </tr>
+        <thead>
+               <tr>  
+                   <th>Id</th>
+                   <th>Identifiant</th>
+                   {#<th>Score</th>
+                   <th>Temps de jeux</th>#}
+                   <th>Role</th>
+                   <th>Actions</th>
+               </tr>
         </thead>
 
-
-    
+        
         
         <tbody>
-        {% for users in user %}
+
+        {% for userRepositorys in userRepository %}
+
             <tr>
              
-                <td>{{ user.id}}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ include('user/_delete_form.html.twig') }}</td>
+                <td>{{ userRepositorys.id}}</td>
+                {#<td>{{ userRepositorys.score}}</td>#}
+                <td>{{ userRepositorys.username}}</td>
+                <td>{{ userRepositorys.roles[0]}}</td>
+                <td>{{ include('admin/_delete_form.html.twig') }}</td>
+                
             </tr>
 
         {% else %}
@@ -36,9 +49,10 @@
                 <td>Aucune données trouver</td>
             </tr>
         {% endfor %}
+
         </tbody>
 
 
-    </table>
-
+        </table>
+</section>
 {% endblock %}

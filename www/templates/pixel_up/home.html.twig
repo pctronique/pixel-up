@@ -10,14 +10,14 @@
 
     <div id ="pacman">
         
-        <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 100px;"></span>
+        <span class="iconify" data-icon="icon-park-twotone:game" style="color: white; font-size: 70px;"></span>
         <div></div>
         <div></div>
         <div></div>
 
     </div>
 
-    <section>
+    <section id="homeSection">
 
         <div class="btn">
             <!--Rajouté H1 si Admin-->
@@ -25,7 +25,7 @@
                         {# Si l'utilisateur est authentifié et qu'il est admin #}
                         <h1>Accueil Admin</h1>
                 {% else %}
-            <div class="arrow"><p>Bienvenue !<p></div>
+            <div class="arrow"></div>
             {% endif %}
         </div>
 
@@ -35,13 +35,15 @@
       
             
           
-
+            
             <!--<audio autoplay onplay="handleFirstPlay(event)" src="./son_menu/Touche.mp3"></audio>-->
             
             <a href="{{ path('app_jeux')}}"><li>Lancer la partie</li></a>
             <a href="{{ path('app_score_index')}}"><li>Classement</li></a>
+            
             {% if app.user %}
-                
+
+             
                 
                  {% if is_granted('ROLE_ADMIN') %}
                         {# Si l'utilisateur est authentifié et qu'il est admin #}
@@ -65,7 +67,14 @@
 
     </section>
 
+    <div class="loader">
+        <img src="{{ asset('./media/pixelUp.png') }}" alt="Logo PixelUp"/>
+    </div>
+
     
     
-    <script src="{{ asset('./js/son.js') }}"></script>
+    
+
+    
+
 {% endblock %}

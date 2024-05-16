@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : pixel_up_mariadb:3306
--- Généré le : jeu. 16 mai 2024 à 13:40
+-- Généré le : jeu. 16 mai 2024 à 13:27
 -- Version du serveur : 10.4.18-MariaDB-1:10.4.18+maria~focal
 -- Version de PHP : 8.2.8
 
@@ -87,7 +87,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20220818120428', '2024-05-16 11:29:28', 5),
 ('DoctrineMigrations\\Version20220819135837', '2024-05-16 11:29:28', 5),
 ('DoctrineMigrations\\Version20220822093400', '2024-05-16 11:29:28', 85),
-('DoctrineMigrations\\Version20220824125433', '2024-05-16 11:29:28', 59);
+('DoctrineMigrations\\Version20220824125433', '2024-05-16 11:29:28', 59),
+('DoctrineMigrations\\Version20220826142948', '2024-05-16 12:45:14', 77);
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,7 @@ CREATE TABLE `mort` (
 --
 
 INSERT INTO `mort` (`id`, `cat_mort_id`, `user_id`, `compteur`) VALUES
-(1, 4, 1, 0);
+(1, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -135,15 +136,16 @@ CREATE TABLE `score` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `score` double NOT NULL,
-  `date` datetime NOT NULL
+  `date` datetime NOT NULL,
+  `classement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `score`
 --
 
-INSERT INTO `score` (`id`, `user_id`, `score`, `date`) VALUES
-(1, 1, 0, '2024-05-16 13:38:05');
+INSERT INTO `score` (`id`, `user_id`, `score`, `date`, `classement`) VALUES
+(1, 1, 0, '2024-05-16 12:47:31', 0);
 
 -- --------------------------------------------------------
 
@@ -184,7 +186,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'root', '[\"ROLE_USER\"]', '$2y$13$qBAPqzg0eTLpI5AuEco8m.bepyFa/jaMcCRCezlNK1CH8DlLQmRBS');
+(1, 'root', '[\"ROLE_USER\"]', '$2y$13$5keANpa4wgcuNdMCn75PC.z8KexGixCHwf06.os/dHhQBV1AbYOZi');
 
 --
 -- Index pour les tables déchargées
@@ -249,7 +251,7 @@ ALTER TABLE `user` ADD FULLTEXT KEY `name_fulltext_index` (`username`);
 -- AUTO_INCREMENT pour la table `cat_mort`
 --
 ALTER TABLE `cat_mort`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `messenger_messages`

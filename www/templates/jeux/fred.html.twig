@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+        <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('./game/css/style.css') }}" />
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <title>Document</title>
+    </head>
+    <body>
+        <a href="{{ path('app_pixel_up') }}" id="homeButton"><iconify-icon icon="flat-color-icons:home" style="color: #ff8400;" width="30" height="30"></iconify-icon></a>
+        <div id="game">
+            <div id="info_Game">
+                <button id="start" class="buttonStart"><img src="{{ asset('./game/img/startButton.png') }}" alt="bouton start"></button>
+                <button id="config" class="button" data-modal="modalOne"><img src="{{ asset('./game/img/optionButton.png') }}"></button>
+                <button id="config" class="button" data-modal="modalTwo"><img src="{{ asset('./game/img/parametreButton.png') }}"></button>
+                <button id="config3" class="button" data-modal="modalThree"><img src="{{ asset('./game/img/parametreButton.png') }}"></button>
+                <button id="config4" class="button" data-modal="modalFor"><img src="{{ asset('./game/img/parametreButton.png') }}"></button>
+            </div>
+            <div id="info_Game0">
+                <img src="{{ asset('./game/img/haut_parleur_son_ouvert.png') }}" id="son_jeu"  alt="son_ok" width="50">
+    
+            </div>
+            <input type="hidden" id="game_typeMort" value="-1">
+            <div id="score">0</div>
+            <div class="screenGame" id="screenGame_0">
+            </div>
+            
+            <div id="modalOne" class="modal">
+                <div class="modal-content">
+                    <div class="contact-form">
+                        <a class="close">&times;</a>
+                        <form action="/">
+                            <div>
+                                <h2>Commandes</h2>
+                                    <label>Saut</label>
+                                    <input class="tab_input" id="saut" type="text" name="name" />
+                                    <label>Droite</label>
+                                    <input class="tab_input" id="droite" type="text" name="name" />
+                                    <label>Gauche</label>
+                                    <input class="tab_input" id="gauche" type="text" name="name" />
+                                    <label>Haut</label>
+                                    <input class="tab_input" id="haut" class="tab_input" type="text" name="name" />
+                                    <label>Bas</label>
+                                    <input class="tab_input" id="bas" type="text" name="name" />
+                                    <label>Coucou</label>
+                                    <input class="tab_input" id="coucou" type="text" name="name" />
+                                <h2>Son</h2>
+                                    <label>Volume Musique</label>
+                                    <input type="range" id="volumeMusique" value="100">
+                                    <label>Volume du Jeu</label>
+                                    <input type="range" id="volumeJeu" value="100">
+                            
+                            </div>
+
+                            <button id="valider" type="submit" href="/">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="modalTwo" class="modal">
+                <div class="modal-content">
+                    <div class="contact-form">
+                        <a class="close">&times;</a>
+                        <form action="/">
+                            <div>
+                                
+                                <h2>Saut/Chute</h2>
+                                    <label>Hauteur de saut</label>
+                                    <input class="tab_input" id="hauteurSaut" type="text" name="name" />
+                                    <label>milliseconde de saut</label>
+                                    <input class="tab_input" id="millisecondeSaut" type="text" name="name" />
+                                    <label>milliseconde chute</label>
+                                    <input class="tab_input" id="millisecondeTomber" type="text" name="name" />
+                                <h2>Déplacements</h2>
+                                    <label>Largeur de déplacement</label>
+                                    <input class="tab_input" id="largeurDeplacement" type="text" name="name" />
+                                    <label>milliseconde de déplacement</label>
+                                    <input class="tab_input" id="millisecondeDeplacement" type="text" name="name" />
+                                <h2>Intéraction "coucou"</h2>
+                                    <label>Largeur coucou</label>
+                                    <input class="tab_input" id="largeurCoucou" type="text" name="name" />
+                                    <label>milliseconde coucou</label>
+                                    <input class="tab_input" id="millisecondeCoucou" type="text" name="name" />
+                                <h2>Jeu</h2>
+                                    <label>milliseconde</label>
+                                    <input class="tab_input" id="millisecondeJeu" type="text" name="name" />
+                                    <label>milliseconde score </label>
+                                    <input class="tab_input" id="millisecondeScore" type="text" name="name" />
+                            </div>
+
+                            <button id="validerConfig" type="submit" href="/">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="modalThree" class="modal">
+                <div class="modal-content">
+                    <div class="contact-form">
+                        <a class="close">&times;</a>
+                        <form action="/">
+                            <div>
+                                
+                                <h2>Sous-Terre</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="sousTerreMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="sousTerreMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="sousTerreMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="sousTerreMaxY" type="text" name="name" />                         
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="sousTerreNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="sousTerreNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="sousTerreNbPgTotal" type="text" name="name" />
+                                <h2>Sous-Mer</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="sousMerMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="sousMerMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="sousMerMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="sousMerMaxY" type="text" name="name" />                          
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="sousMerNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="sousMerNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="sousMerNbPgTotal" type="text" name="name" />
+                                <h2>Terre</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="terreMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="terreMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="terreMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="terreMaxY" type="text" name="name" />                        
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="terreNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="terreNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="terreNbPgTotal" type="text" name="name" />
+                                <h2>Ciel Nuages</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="cielNuagesMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="cielNuagesMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="cielNuagesMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="cielNuagesMaxY" type="text" name="name" />                        
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="cielNuagesNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="cielNuagesNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="cielNuagesNbPgTotal" type="text" name="name" />
+                                <h2>Ciel Avions</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="cielAvionMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="cielAvionMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="cielAvionMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="cielAvionMaxY" type="text" name="name" />                     
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="cielAvionNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="cielAvionNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="cielAvionNbPgTotal" type="text" name="name" />
+                                <h2>Espace Astéroïdes</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="espaceAsteroideMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="espaceAsteroideMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="espaceAsteroideMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="espaceAsteroideMaxY" type="text" name="name" />                           
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="espaceAsteroideNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="espaceAsteroideNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="espaceAsteroideNbPgTotal" type="text" name="name" />
+                                <h2>Espace Satellites</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="espaceSatelliteMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="espaceSatelliteMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="espaceSatelliteMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="espaceSatelliteMaxY" type="text" name="name" />                         
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="espaceSatelliteNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="espaceSatelliteNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="espaceSatelliteNbPgTotal" type="text" name="name" />
+                                <h2>Espace Vaisseaux</h2>
+                                    <label>min X</label>
+                                    <input class="tab_input" id="espaceVaisseauMinX" type="text" name="name" />
+                                    <label>max X</label>
+                                    <input class="tab_input" id="espaceVaisseauMaxX" type="text" name="name" />
+                                    <label>min Y</label>
+                                    <input class="tab_input" id="espaceVaisseauMinY" type="text" name="name" />
+                                    <label>max Y</label>
+                                    <input class="tab_input" id="espaceVaisseauMaxY" type="text" name="name" />                       
+                                    <label>Nombre de pièges par ligne</label>
+                                    <input class="tab_input" id="espaceVaisseauNbPgLine" type="text" name="name" />
+                                    <label>Nombre de pièges séparation par ligne</label>
+                                    <input class="tab_input" id="espaceVaisseauNbPgSepareLine" type="text" name="name" />
+                                    <label>Nombre de pièges total</label>
+                                    <input class="tab_input" id="espaceVaisseauNbPgTotal" type="text" name="name" />
+                            </div>
+
+                            <button id="validerConfigBackground" type="submit" href="/">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="modalFor" class="modal">
+                <div class="modal-content">
+                    <div class="contact-form">
+                        <a class="close">&times;</a>
+                        <form action="/">
+                            <div>
+                                
+                                <h2>Sous-Terre</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="sousTerreHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="sousTerreMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="sousTerreMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="sousTerreMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="sousTerreLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="sousTerreMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="sousTerreLargeurCoucou" type="text" name="name" />
+                                <h2>Sous-Mer</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="sousMerHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="sousMerMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="sousMerMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="sousMerMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="sousMerLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="sousMerMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="sousMerLargeurCoucou" type="text" name="name" />
+                                <h2>Terre</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="terreHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="terreMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="terreMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="terreMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="terreLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="terreMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="terreLargeurCoucou" type="text" name="name" />
+                                <h2>Ciel Nuages</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="cielNuageHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="cielNuageMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="cielNuageMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="cielNuageMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="cielNuageLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="cielNuageMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="cielNuageLargeurCoucou" type="text" name="name" />
+                                <h2>Ciel Avions</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="cielAvionHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="cielAvionMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="cielAvionMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="cielAvionMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="cielAvionLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="cielAvionMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="cielAvionLargeurCoucou" type="text" name="name" />
+                                <h2>Espace Astéroïdes</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="espaceAsteroideHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="espaceAsteroideMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="espaceAsteroideMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="espaceAsteroideMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="espaceAsteroideLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="espaceAsteroideMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="espaceAsteroideLargeurCoucou" type="text" name="name" />
+                                <h2>Espace Satellites</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="espaceSatelliteHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="espaceSatelliteMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="espaceSatelliteMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="espaceSatelliteMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="espaceSatelliteLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="espaceSatelliteMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="espaceSatelliteLargeurCoucou" type="text" name="name" />
+                                <h2>Espace Vaisseaux</h2>
+                                    <label>Hauteur du saut</label>
+                                    <input class="tab_input" id="espaceVaisseauHauteurSaut" type="text" name="name" />
+                                    <label>Milliseconde Saut</label>
+                                    <input class="tab_input" id="espaceVaisseauMillisecondeSaut" type="text" name="name" />
+                                    <label>Milliseconde Tomber</label>
+                                    <input class="tab_input" id="espaceVaisseauMillisecondeTomber" type="text" name="name" />
+                                    <label>Milliseconde Déplacement</label>
+                                    <input class="tab_input" id="espaceVaisseauMillisecondeDeplacement" type="text" name="name" />
+                                    <label>Largeur Déplacement</label>
+                                    <input class="tab_input" id="espaceVaisseauLargeurDeplacement" type="text" name="name" />
+                                    <label>Milliseconde Coucou</label>
+                                    <input class="tab_input" id="espaceVaisseauMillisecondeCoucou" type="text" name="name" />
+                                    <label>Largeur Coucou</label>
+                                    <input class="tab_input" id="espaceVaisseauLargeurCoucou" type="text" name="name" />
+                            </div>
+                            <button id="validerConfigGameMoveBackground" type="submit" href="/">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttonMove" id="buttonMoveLeft">
+            <button id="button_up">Up</button>
+        </div>
+        <div class="buttonMove" id="buttonMoveRight">
+            <button id="button_left">left</button><button id="button_right">right</button>
+        </div>
+
+        <script src="{{ asset('./game/js/class/enum/EnumAction.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/enum/EnumCollision.js') }}"></script>
+        <script src="{{ asset('./game/js/class/enum/EnumMouvement.js') }}"></script>
+        <script src="{{ asset('./game/js/class/enum/EnumTypeMort.js') }}"></script>
+        <script src="{{ asset('./game/js/class/enum/EnumTenues.js') }}"></script>
+        <script src="{{ asset('./game/js/class/enum/EnumTypeMortInfo.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/ScrollMove.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/ConfigMoveUser.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/MouvementJoueur.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/PixelEcran.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/Taille.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Images.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/ImageGif.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/ImageTenue.js') }}"></script>
+        <script src="{{ asset('./game/js/class/EffetsSonores.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/Pause.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/Score.js') }}"></script>   
+        <script src="{{ asset('./game/js/class/BlockRectange.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/Background.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Collision.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Position.js') }}"></script>
+        <script src="{{ asset('./game/js/class/RndPos.js') }}"></script>
+        <script src="{{ asset('./game/js/class/AreteRectangleCote.js') }}"></script>
+        <script src="{{ asset('./game/js/class/CollisionPlateforme.js') }}"></script>
+        <script src="{{ asset('./game/js/class/AreteRectangle.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Personnage.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Joueur.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Game.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateforme.js') }}"></script>
+        <script src="{{ asset('./game/js/class/PlateformePiegeHaut.js') }}"></script>
+        <script src="{{ asset('./game/js/class/PlateformeMobile.js') }}"></script>
+        <script src="{{ asset('./game/js/class/PlateformePiegeCote.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeSolid.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePiegesNacelles.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePiegesNuages.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePiegesRadFish.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeFeu.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeLave.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePierre.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePiegesNacelles.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePiegesNuages.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformePiegesRadFish.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeMobileRequin.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeMobileSatellite.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeMobileAsteroide.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeMobilePoisson.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeMeduses.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeNacelles.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeMeteoritesFeu.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeOiseaux.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeNuages.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeAvions.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeHelicopteres.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeVaisseau.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeVaisseauJaune.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundSousTerre.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundSousMer.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundTerre.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundCielNuages.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundCielAvions.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundEspaceSatellite.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundEspaceAsteroide.js') }}"></script> 
+        <script src="{{ asset('./game/js/class/backgrounds/BackgroundEspaceVaisseau.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Tenue.js') }}"></script>
+        <script src="{{ asset('./game/js/class/tenues/TenueMer.js') }}"></script>
+        <script src="{{ asset('./game/js/class/tenues/TenueTerre.js') }}"></script>
+        <script src="{{ asset('./game/js/class/tenues/TenueCiel.js') }}"></script>
+        <script src="{{ asset('./game/js/class/tenues/TenueEspace.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeTenueMer.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeTenueTerre.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeTenueCiel.js') }}"></script>
+        <script src="{{ asset('./game/js/class/Plateformes/PlateformeTenueEspace.js') }}"></script>
+        <script src="{{ asset('./game/js/class/backgrounds/TestBackgroundPlanete.js') }}"></script>
+        <script src="{{ asset('./game/fred/scriptImagesBackground.js') }}"></script>
+        <script src="{{ asset('./game/js/configGameBackgroung.js') }}"></script>
+        <script src="{{ asset('./game/js/configGameMoveBackgroung.js') }}"></script>
+        <script src="{{ asset('./game/js/configGame.js') }}"></script>
+        <script src="{{ asset('./game/js/audio.js') }}"></script>
+        <script src="{{ asset('./game/fred/fred_game.js') }}"></script>
+
+    </body>
+</html>

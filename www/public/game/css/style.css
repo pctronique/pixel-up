@@ -13,6 +13,7 @@ body {
   /* background: black; */
   padding: 10px;
   /* height: 65px; */
+  margin-top: 50px;
 }
 
 #score {
@@ -20,11 +21,12 @@ body {
     padding: 10px;
     z-index: 2;
     margin-top: 2px;
-    background-color: rgba(255, 255, 255, 0.815);
+    color: gold;
+    background-color: rgba(0, 0, 0, 0.232);
     border-radius: 10px;
     right: 0;
     margin: 10px;
-    margin-right: 50px;
+    /*margin-right: 50px;*/
 }
 .screenGame {
     display: flex;
@@ -33,7 +35,7 @@ body {
     height: 100vh;
     position: relative;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 .screenGame canvas {
     display: flex;
@@ -55,8 +57,15 @@ body {
     margin: 5px;
     border-radius: 50px;
     border: none;
-   
+    background-color: rgba(249, 255, 196, 0.685);
+    //border: rgba(128, 128, 128, 0.767) 2px solid;
+    color: gold;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.232);
+    border: rgba(0, 0, 0, 0.475) 1px solid;
 }
+
+
 .buttonMove {
     position: absolute;
     bottom: 0;
