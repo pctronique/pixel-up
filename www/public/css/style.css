@@ -158,7 +158,8 @@ header{
 
   footer ul{
     width: 600%;
-    display: flex;
+    /*display: flex;*/
+    display: none;
     justify-content: space-between;
     padding: 40px;
     -webkit-animation: footerRotate 100s linear infinite;
