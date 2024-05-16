@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : domasym_mariadb:3306
--- Généré le : mer. 15 mai 2024 à 10:49
+-- Hôte : pixel_up_mariadb:3306
+-- Généré le : jeu. 16 mai 2024 à 11:32
 -- Version du serveur : 10.4.18-MariaDB-1:10.4.18+maria~focal
 -- Version de PHP : 8.2.8
 
@@ -43,6 +43,20 @@ CREATE TABLE `doctrine_migration_versions` (
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20220818074048', '2024-05-16 11:29:27', 46),
+('DoctrineMigrations\\Version20220818075210', '2024-05-16 11:29:28', 61),
+('DoctrineMigrations\\Version20220818075958', '2024-05-16 11:29:28', 75),
+('DoctrineMigrations\\Version20220818080410', '2024-05-16 11:29:28', 65),
+('DoctrineMigrations\\Version20220818120428', '2024-05-16 11:29:28', 5),
+('DoctrineMigrations\\Version20220819135837', '2024-05-16 11:29:28', 5),
+('DoctrineMigrations\\Version20220822093400', '2024-05-16 11:29:28', 85),
+('DoctrineMigrations\\Version20220824125433', '2024-05-16 11:29:28', 59);
 
 -- --------------------------------------------------------
 
@@ -112,13 +126,6 @@ CREATE TABLE `user` (
   `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`roles`)),
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'root', '[\"ROLE_ADMIN\"]', '$2y$13$JoEos9jbRHE9sbuCRsEI6uPRoe0qH8YAirLui/2M4LFNjS7fDMqs2');
 
 --
 -- Index pour les tables déchargées
@@ -213,7 +220,7 @@ ALTER TABLE `succes`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
