@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : pixel_up_mariadb:3306
--- Généré le : jeu. 16 mai 2024 à 11:32
+-- Généré le : jeu. 16 mai 2024 à 13:40
 -- Version du serveur : 10.4.18-MariaDB-1:10.4.18+maria~focal
 -- Version de PHP : 8.2.8
 
@@ -31,6 +31,37 @@ CREATE TABLE `cat_mort` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `cat_mort`
+--
+
+INSERT INTO `cat_mort` (`id`, `nom`) VALUES
+(1, 'TOMBER'),
+(2, 'REQUIN'),
+(3, 'AVION'),
+(4, 'ASTEROIDE'),
+(5, 'FEU'),
+(6, 'HELICOPTERE'),
+(7, 'LAVE'),
+(8, 'MEDUSE'),
+(9, 'METEORITEFEU'),
+(10, 'POISSON'),
+(11, 'SATELLITE'),
+(12, 'NACELLE'),
+(13, 'NUAGE'),
+(14, 'OISEAU'),
+(15, 'PIERRE'),
+(16, 'VAISSEAU'),
+(17, 'VAISSEAUJAUNE'),
+(18, 'RADFISH'),
+(19, 'NUAGEGRIS'),
+(20, 'NACELLECASSEE'),
+(21, 'TENUE_NORMAL'),
+(22, 'TENUE_MER'),
+(23, 'TENUE_TERRE'),
+(24, 'TENUE_CIEL'),
+(25, 'TENUE_ESPACE');
 
 -- --------------------------------------------------------
 
@@ -87,6 +118,13 @@ CREATE TABLE `mort` (
   `compteur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `mort`
+--
+
+INSERT INTO `mort` (`id`, `cat_mort_id`, `user_id`, `compteur`) VALUES
+(1, 4, 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +137,13 @@ CREATE TABLE `score` (
   `score` double NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `score`
+--
+
+INSERT INTO `score` (`id`, `user_id`, `score`, `date`) VALUES
+(1, 1, 0, '2024-05-16 13:38:05');
 
 -- --------------------------------------------------------
 
@@ -114,6 +159,13 @@ CREATE TABLE `succes` (
   `succ3` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `succes`
+--
+
+INSERT INTO `succes` (`id`, `user_id`, `succ1`, `succ2`, `succ3`) VALUES
+(1, 1, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +178,13 @@ CREATE TABLE `user` (
   `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`roles`)),
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
+(1, 'root', '[\"ROLE_USER\"]', '$2y$13$qBAPqzg0eTLpI5AuEco8m.bepyFa/jaMcCRCezlNK1CH8DlLQmRBS');
 
 --
 -- Index pour les tables déchargées
@@ -190,7 +249,7 @@ ALTER TABLE `user` ADD FULLTEXT KEY `name_fulltext_index` (`username`);
 -- AUTO_INCREMENT pour la table `cat_mort`
 --
 ALTER TABLE `cat_mort`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `messenger_messages`
@@ -202,25 +261,25 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT pour la table `mort`
 --
 ALTER TABLE `mort`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `score`
 --
 ALTER TABLE `score`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `succes`
 --
 ALTER TABLE `succes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
