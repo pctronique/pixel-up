@@ -1,0 +1,184 @@
+{#{% extends 'base.html.twig' %}#}
+
+{% block title %}{% endblock %}    
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('/game/css/style.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+   {# <pre>
+        {{ dump(app.use   r) }}
+    </pre>#}
+
+    <div id="game">
+        <div id="info_Game">
+            <button id="start">Start</button>
+        </div>
+        <input type="hidden" id="game_typeMort" value="-1">
+        <div id="score">0</div>
+        <div class="screenGame" id="screenGame_0">
+        </div>
+    </div>
+    <div class="buttonMove" id="buttonMoveLeft">
+        <button id="button_up">Up</button>
+    </div>
+    <div class="buttonMove" id="buttonMoveRight">
+        <button id="button_left">left</button><button id="button_right">right</button>
+    </div>
+    
+    <script src="{{ asset('/game/js/class/enum/EnumAction.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/enum/EnumCollision.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/enum/EnumMouvement.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/enum/EnumTypeMort.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/enum/EnumTypeMortInfo.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/enum/EnumTenues.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/ConfigMoveUser.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/EffetsSonores.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/MouvementJoueur.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/PixelEcran.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/ScrollMove.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/Taille.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Images.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/ImageGif.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/ImageTenue.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Pause.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/Score.js') }}"></script>   
+
+    <script src="{{ asset('/game/js/class/BlockRectange.js') }}"></script> 
+
+    <script src="{{ asset('/game/js/class/Background.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Collision.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Position.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/RndPos.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/AreteRectangleCote.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/CollisionPlateforme.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/AreteRectangle.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Personnage.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Joueur.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Game.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateforme.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/PlateformePiegeHaut.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/PlateformeMobile.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/PlateformePiegeCote.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeFeu.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeLave.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformePierre.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformePiegesNacelles.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformePiegesNuages.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformePiegesRadFish.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeMobileRequin.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeMobileSatellite.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeMobileAsteroide.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeMobilePoisson.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeMeduses.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeNacelles.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeMeteoritesFeu.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeSolid.js') }}"></script>
+
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeOiseaux.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeNuages.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeAvions.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeHelicopteres.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeVaisseau.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeVaisseauJaune.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundSousTerre.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundSousMer.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundTerre.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundCielNuages.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundCielAvions.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundEspaceSatellite.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundEspaceAsteroide.js') }}"></script> 
+    
+    <script src="{{ asset('/game/js/class/backgrounds/BackgroundEspaceVaisseau.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Tenue.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/tenues/TenueMer.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/tenues/TenueTerre.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/tenues/TenueCiel.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/tenues/TenueEspace.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeTenueMer.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeTenueTerre.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeTenueCiel.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/Plateformes/PlateformeTenueEspace.js') }}"></script>
+    
+    <script src="{{ asset('/game/js/class/backgrounds/TestBackgroundPlanete.js') }}"></script>
+    
+    <script src="{{ asset('/js/configGame.js') }}"></script>
+
+    <script src="{{ asset('/game/js/audio.js') }}"></script>
+    
+    <script src="{{ asset('/js/configGameBackgroung.js') }}"></script>
+    
+    <script src="{{ asset('/js/configGameMoveBackgroung.js') }}"></script>
+    
+    <script src="{{ asset('/js/script.js') }}"></script>
+    
+    <script src="{{ asset('/js/finDePartie.js') }}"></script>
+
+{% endblock %}
