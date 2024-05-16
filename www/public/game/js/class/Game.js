@@ -39,6 +39,11 @@ class Game {
     this.keyBas = "ArrowDown";
     this.tabConfigBackground = tabConfigBackground;
     this.volumeEffet = 100;
+    this.activeAutoScroll(false);
+  }
+
+  activeAutoScroll(active) {
+    this.scrollMove.setAutoScrollActive(active);
   }
 
   setVolumeEffet(volume) {
@@ -335,87 +340,81 @@ class Game {
   }
 
   addBackground() {
-    //if(this.nbscroll >= 1 || this.backgrounds.length < 2) {
-    let screenGame = document.getElementById(this.idScreen);
-    // permet d'ajouter un nouveau canvas tout en définissant sa taille
-    let newcanvas = document.createElement("canvas");
-    newcanvas.width = this.tailleBackground.x;
-    newcanvas.height = this.tailleBackground.y;
-    newcanvas.id = this.idBackground;
-    //insère avant un nouveau canva et retourne le premier élément dans le screenGame
-    screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
-    let background = this.choixBackground(
-      this.idBackground,
-      this.tailleBackground,
-      this.scrollMove
-    );
-    if (this.projectDev) {
-      background.setProjectDev();
-    }
-    // ludovic (debut) : pour ajouter le joueur
-    let posJoueur = new Position(
-      this.tailleBackground.x / 2,
-      -this.tailleBackground.y
-    );
-    if (this.backgrounds.length > 0) {
-      let posJoueurRecup = this.backgrounds[this.backgrounds.length - 1].joueur
-        .pos;
-      posJoueur = new Position(
-        posJoueurRecup.x,
-        -this.tailleBackground.y + posJoueurRecup.y
+    if(this.backgrounds.length < 2 || this.backgrounds[0].moveBack) {
+      //if(this.nbscroll >= 1 || this.backgrounds.length < 2) {
+      let screenGame = document.getElementById(this.idScreen);
+      // permet d'ajouter un nouveau canvas tout en définissant sa taille
+      let newcanvas = document.createElement("canvas");
+      newcanvas.width = this.tailleBackground.x;
+      newcanvas.height = this.tailleBackground.y;
+      newcanvas.id = this.idBackground;
+      //insère avant un nouveau canva et retourne le premier élément dans le screenGame
+      screenGame.insertBefore(newcanvas, screenGame.querySelector("canvas"));
+      let background = this.choixBackground(
+        this.idBackground,
+        this.tailleBackground,
+        this.scrollMove
       );
-    } else if (this.backgrounds.length > 1) {
-      let posJoueurRecup = this.backgrounds[this.backgrounds.length - 1].joueur
-        .pos;
-      posJoueur = new Position(
-        posJoueurRecup.x - posJoueur.taille.x,
-        -this.tailleBackground.y + posJoueurRecup.y + posJoueur.taille.y
+      if (this.projectDev) {
+        background.setProjectDev();
+      }
+      // ludovic (debut) : pour ajouter le joueur
+      let posJoueur = new Position(
+        this.tailleBackground.x / 2,
+        -this.tailleBackground.y
       );
+      if (this.backgrounds.length > 0) {
+        let posJoueurRecup = this.backgrounds[this.backgrounds.length - 1].joueur
+          .pos;
+        posJoueur = new Position(
+          posJoueurRecup.x,
+          -this.tailleBackground.y + posJoueurRecup.y
+        );
+      } else if (this.backgrounds.length > 1) {
+        let posJoueurRecup = this.backgrounds[this.backgrounds.length - 1].joueur
+          .pos;
+        posJoueur = new Position(
+          posJoueurRecup.x - posJoueur.taille.x,
+          -this.tailleBackground.y + posJoueurRecup.y + posJoueur.taille.y
+        );
+      }
+      let addJoueur = this.setJoueur(
+        posJoueur.x,
+        posJoueur.y,
+        this.tailleJoueur.x,
+        this.tailleJoueur.y,
+        background
+      );
+      addJoueur.keyGame(
+        this.keySaut,
+        this.keyGauche,
+        this.keyDroite,
+        this.keyCoucou
+      );
+      addJoueur.modifTenue(this.tenueJoueur);
+      addJoueur.keyGameDev(this.keyHaut, this.keyBas);
+      addJoueur.configSaut(
+        this.hauteurSaut,
+        this.millisecondeSaut,
+        this.millisecondeTomber
+      );
+      addJoueur.configDeplacement(
+        this.largeurDeplacement,
+        this.millisecondeDeplacement
+      );
+      addJoueur.configCoucou(this.largeurCoucou, this.millisecondeCoucou);
+      addJoueur.setBackground(background);
+      addJoueur.configMoveUser(background.configMoveUser);
+      background.setJoueur(addJoueur);
+
+      // ludovic (fin) : pour ajouter le joueur
+      this.backgrounds.push(background);
+      this.createBackground();
+      this.deleteBackground();
+      this.backgrounds[0].scrollMove.monter();
+      this.scrollMove.backgroundMove(this.backgrounds[0]);
+      // ludovic (fin) : pour ajouter le joueur
     }
-    let addJoueur = this.setJoueur(
-      posJoueur.x,
-      posJoueur.y,
-      this.tailleJoueur.x,
-      this.tailleJoueur.y,
-      background
-    );
-    addJoueur.keyGame(
-      this.keySaut,
-      this.keyGauche,
-      this.keyDroite,
-      this.keyCoucou
-    );
-    addJoueur.modifTenue(this.tenueJoueur);
-    addJoueur.keyGameDev(this.keyHaut, this.keyBas);
-    addJoueur.configSaut(
-      this.hauteurSaut,
-      this.millisecondeSaut,
-      this.millisecondeTomber
-    );
-    addJoueur.configDeplacement(
-      this.largeurDeplacement,
-      this.millisecondeDeplacement
-    );
-    addJoueur.configCoucou(this.largeurCoucou, this.millisecondeCoucou);
-    addJoueur.setBackground(background);
-    addJoueur.configMoveUser(background.configMoveUser);
-    background.setJoueur(addJoueur);
-
-    // ludovic (fin) : pour ajouter le joueur
-    this.backgrounds.push(background);
-    this.createBackground();
-    this.deleteBackground();
-    this.backgrounds[0].scrollMove.monter();
-    //}
-
-    // ludovic (debut) : pour ajouter le joueur
-    /*posJoueur = new Position(tailleX/2, -tailleY);
-    if(this.backgrounds.length > 1) {
-      let posJoueurRecup = this.backgrounds[1].joueur.pos;
-      this.backgrounds[1].joueur.pos = new Position(posJoueurRecup.x, -tailleY+posJoueurRecup.y);
-    } */
-
-    // ludovic (fin) : pour ajouter le joueur
   }
 
   createBackground() {
@@ -439,6 +438,11 @@ class Game {
     this.nbscroll = 0;
   }
 
+  effetGameOver(){
+    let effetGameOver = new EffetsSonores("son/gameOver.mp3", 100, true);
+    effetGameOver.start();
+  }
+
   setJoueurStopTomber(enumAction) {
     this.nbscroll++;
     const element = this.backgrounds[0];
@@ -448,7 +452,7 @@ class Game {
       ].effetSaut();
     }
     if(!element.valideTenue() && !this.isTtop) {
-      
+      this.effetGameOver();
       this.tuerJoueur(element.typeMortTenue());
     }
     if (!this.isTtop) {
@@ -460,6 +464,7 @@ class Game {
   moveScrollAvecJoueur() {
     const element = this.backgrounds[0];
     element.scrollMove.monter();
+    this.backgrounds[0].moveBack = true;
   }
 
   setJoueurPosition(pos) {
@@ -577,7 +582,6 @@ class Game {
         element.setJoueur(this.joueur);
         element.afficher();
       } else if (element != undefined) {
-        // this.creerPlatforme();
         element.afficher();
       }
     }
@@ -595,6 +599,7 @@ class Game {
   start() {
     this.isTtop = false;
     this.score.start();
+    this.scrollMove.start();
     if (this.backgrounds[0].joueur != undefined) {
       let classGame = this;
       document.body.addEventListener("keydown", (event) => {
@@ -619,6 +624,7 @@ class Game {
   stop() {
     this.isTtop = true;
     this.score.stop();
+    this.scrollMove.stop();
     if (this.backgrounds[0] != undefined) {
       this.backgrounds[0].stop();
     }
@@ -651,20 +657,6 @@ class Game {
   screenBottom(pos) {
     this.backgrounds[0].screenBottom(pos);
   }
-
-  /*collisionActionGameAll() {
-    let background = 0;
-    let mort = this.collisionActionGameJoueur(this.backgrounds[0].joueur);
-    if (mort.collision.enumCollision == EnumCollision.NULL) {
-      background = 1;
-      mort = this.collisionActionGameJoueur(this.backgrounds[1].joueur);
-    }
-    if (mort.enumCollision != EnumCollision.NULL) {
-      if (mort.collision.enumAction == EnumAction.MORT) {
-        this.mourir(mort);
-      }
-    }
-  }*/
 
   collisionActionGameAll() {
     let enumCollision = this.getEnumCollisionGD();
