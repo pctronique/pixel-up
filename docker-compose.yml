@@ -1,6 +1,23 @@
 
 services:
 ###########################
+# Setup the Apache container
+###########################
+    httpd:
+        container_name: ${NAME_PROJECT}_httpd
+        restart: always
+        image: httpd:${VALUE_HTTPD_VERSION}
+        ports:
+            - ${VALUE_HTTPD_PORT}:80
+        volumes:
+            - ./.docker/containers/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+            - ./.docker/containers/apache/vhosts/:/usr/local/apache2/conf/vhosts
+            - ./.dockertmp/tmp/httpd/:/usr/local/apache2/tmp/httpd:rw
+            - ./.dockertmp/log/httpd/:/usr/local/apache2/logs:rw
+        volumes_from:
+            - symfony
+
+###########################
 # Setup the symfony container
 ###########################
     symfony:
