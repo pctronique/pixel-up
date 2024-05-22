@@ -364,6 +364,18 @@ tr:nth-of-type(2) .dnone, tr:nth-of-type(3) .dnone{
   width: fit-content;
 }
 
+.sf-minitoolbar button, .sf-toolbarreset button {
+  width: unset;
+  margin: unset !important;
+  font-family: unset;
+  cursor: unset;
+  transition: unset;
+  background: unset !important;
+  border: unset !important;
+  color: unset !important;
+  box-shadow: unset;
+}
+
 /* LOADER HOME */
 
 .loader {
