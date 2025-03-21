@@ -2,6 +2,8 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/compose*.yaml
+#/symfony.lock
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
