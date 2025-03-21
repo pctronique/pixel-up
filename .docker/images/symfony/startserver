@@ -17,7 +17,7 @@ d_start () {
 }
  
 d_stop () {
-    /var/docker/php/updateProjectStart.sh stop
+    /var/docker/php/updateProject.sh stop
 }
  
 d_restart () {
@@ -26,7 +26,7 @@ d_restart () {
 }
  
 d_log () {
-    /var/docker/php/updateProjectStart.sh log
+    /var/docker/php/updateProject.sh log
 }
  
 case "$1" in
