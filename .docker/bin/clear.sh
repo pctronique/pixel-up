@@ -1,4 +1,9 @@
 #!/bin/bash
+
+#/////////////////////////////////////
+#//    DEVELOPPEUR : PCTRONIQUE     //
+#/////////////////////////////////////
+
 sudo service openvpn stop
 sudo docker network prune -f
 sudo service openvpn stop
@@ -16,3 +21,8 @@ sudo service docker stop
 sudo rm -r /var/lib/docker/overlay2
 sudo service docker start
 sudo docker system prune --volumes -a -f
+
+sudo service openvpn stop
+sudo service docker stop
+sudo service docker start
+sudo service openvpn start
